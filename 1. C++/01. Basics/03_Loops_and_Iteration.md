@@ -55,7 +55,7 @@ void rangeBasedForLoop() {
     
     std::cout << "By reference: ";
     for (int& num : numbers) {
-        num *= 2;  // Modify the original
+        num *= 2;                                         // Modify the original
         std::cout << num << " ";
     }
     std::cout << "\n";
@@ -70,7 +70,7 @@ void rangeBasedForLoop() {
     std::map<std::string, int> scores = {{"Alice", 95}, {"Bob", 87}, {"Charlie", 92}};
     
     std::cout << "Map contents:\n";
-    for (const auto& [name, score] : scores) {  // C++17 structured binding
+    for (const auto& [name, score] : scores) {            // C++17 structured binding
         std::cout << name << ": " << score << "\n";
     }
     
@@ -234,7 +234,7 @@ void continueStatement() {
     // Skip even numbers
     for (int i = 0; i < 10; i++) {
         if (i % 2 == 0) {
-            continue;  // Skip even numbers
+            continue;                                 // Skip even numbers
         }
         std::cout << "Odd: " << i << "\n";
     }
@@ -245,7 +245,7 @@ void continueStatement() {
     std::cout << "Positive numbers: ";
     for (int num : numbers) {
         if (num < 0) {
-            continue;  // Skip negative numbers
+            continue;                                 // Skip negative numbers
         }
         std::cout << num << " ";
     }
@@ -327,7 +327,7 @@ void iteratorLoops() {
     // Modifying while iterating
     for (auto it = numbers.begin(); it != numbers.end(); ++it) {
         if (*it % 20 == 0) {
-            *it *= 2;  // Double multiples of 20
+            *it *= 2;                                              // Double multiples of 20
         }
     }
     
@@ -351,7 +351,7 @@ void constIterators() {
     std::cout << "Const iteration: ";
     for (auto it = numbers.cbegin(); it != numbers.cend(); ++it) {
         std::cout << *it << " ";
-        // *it = 10;  // Error: cannot modify through const iterator
+        // *it = 10;                                  // Error: cannot modify through const iterator
     }
     std::cout << "\n";
     
@@ -359,7 +359,7 @@ void constIterators() {
     std::cout << "Const reference iteration: ";
     for (const int& num : numbers) {
         std::cout << num << " ";
-        // num = 10;  // Error: cannot modify const reference
+        // num = 10;                                  // Error: cannot modify const reference
     }
     std::cout << "\n";
 }

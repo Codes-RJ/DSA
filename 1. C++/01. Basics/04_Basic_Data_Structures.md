@@ -11,12 +11,12 @@ C++ provides a rich set of built-in data structures and the Standard Template Li
 #### Static Arrays
 ```cpp
 #include <iostream>
-#include <array>    // For std::array (C++11)
+#include <array>                                           // For std::array (C++11)
 
 void demonstrateStaticArrays() {
     // C-style arrays
     int c_array[5] = {1, 2, 3, 4, 5};
-    char char_array[] = "Hello";  // Null-terminated string
+    char char_array[] = "Hello";                           // Null-terminated string
     
     // std::array (C++11) - safer alternative
     std::array<int, 5> modern_array = {1, 2, 3, 4, 5};
@@ -32,7 +32,7 @@ void demonstrateStaticArrays() {
     // Bounds checking with .at() (throws exception if out of bounds)
     try {
         std::cout << "Safe access: " << modern_array.at(2) << "\n";
-        // std::cout << modern_array.at(10) << "\n"; // Throws exception
+        // std::cout << modern_array.at(10) << "\n";                // Throws exception
     } catch (const std::out_of_range& e) {
         std::cout << "Out of range: " << e.what() << "\n";
     }
@@ -55,7 +55,7 @@ void demonstrateDynamicArrays() {
     
     // Initialize with values
     std::vector<int> more_numbers = {1, 2, 3, 4, 5};
-    std::vector<int> sized_vector(10, 0);  // 10 elements, all 0
+    std::vector<int> sized_vector(10, 0);                            // 10 elements, all 0
     
     // Access elements
     std::cout << "First element: " << numbers[0] << "\n";
@@ -88,7 +88,7 @@ void demonstrateDynamicArrays() {
 #### C-style Strings
 ```cpp
 #include <iostream>
-#include <cstring>  // For C-string functions
+#include <cstring>                                       // For C-string functions
 
 void demonstrateCStrings() {
     // C-style strings (character arrays)
@@ -96,8 +96,8 @@ void demonstrateCStrings() {
     char name[20];
     
     // Safe string copy
-    strcpy_s(name, sizeof(name), "World");  // Windows
-    // strcpy(name, "World");  // Cross-platform
+    strcpy_s(name, sizeof(name), "World");               // Windows
+    // strcpy(name, "World");                            // Cross-platform
     
     // String concatenation
     char combined[50];
@@ -178,10 +178,10 @@ void demonstrateVector() {
     std::vector<int> vec3(vec1.begin(), vec1.end());  // Copy from iterator range
     
     // Common operations
-    vec1.push_back(6);           // Add to end
-    vec1.insert(vec1.begin(), 0); // Insert at beginning
-    vec1.pop_back();             // Remove last element
-    vec1.erase(vec1.begin());    // Remove first element
+    vec1.push_back(6);                                // Add to end
+    vec1.insert(vec1.begin(), 0);                     // Insert at beginning
+    vec1.pop_back();                                  // Remove last element
+    vec1.erase(vec1.begin());                         // Remove first element
     
     // Access elements
     std::cout << "Element at index 2: " << vec1[2] << "\n";
@@ -224,8 +224,8 @@ void demonstrateDeque() {
     std::deque<int> dq;
     
     // Add elements at both ends
-    dq.push_back(10);  // Add to back
-    dq.push_front(5);  // Add to front
+    dq.push_back(10);                             // Add to back
+    dq.push_front(5);                             // Add to front
     dq.push_back(15);
     dq.push_front(0);
     
@@ -236,8 +236,8 @@ void demonstrateDeque() {
     std::cout << "\n";
     
     // Remove from both ends
-    dq.pop_front();  // Remove from front
-    dq.pop_back();   // Remove from back
+    dq.pop_front();                              // Remove from front
+    dq.pop_back();                               // Remove from back
     
     // Random access (like vector)
     std::cout << "Element at index 1: " << dq[1] << "\n";
@@ -263,13 +263,13 @@ void demonstrateList() {
     std::list<int> lst = {1, 2, 3, 4, 5};
     
     // Add elements
-    lst.push_front(0);    // Add to front
-    lst.push_back(6);     // Add to back
+    lst.push_front(0);                          // Add to front
+    lst.push_back(6);                           // Add to back
     
     // Insert at specific position
     auto it = lst.begin();
-    std::advance(it, 3);  // Move iterator to position 3
-    lst.insert(it, 99);   // Insert 99 at position 3
+    std::advance(it, 3);                        // Move iterator to position 3
+    lst.insert(it, 99);                         // Insert 99 at position 3
     
     std::cout << "List elements: ";
     for (const auto& elem : lst) {
@@ -278,12 +278,12 @@ void demonstrateList() {
     std::cout << "\n";
     
     // Remove elements
-    lst.remove(99);       // Remove all occurrences of 99
-    lst.pop_front();      // Remove first element
-    lst.pop_back();       // Remove last element
+    lst.remove(99);                              // Remove all occurrences of 99
+    lst.pop_front();                             // Remove first element
+    lst.pop_back();                              // Remove last element
     
     // Remove based on condition
-    lst.remove_if([](int x) { return x % 2 == 0; }); // Remove even numbers
+    lst.remove_if([](int x) { return x % 2 == 0; });      // Remove even numbers
     
     std::cout << "After removals: ";
     for (const auto& elem : lst) {
@@ -293,7 +293,7 @@ void demonstrateList() {
     
     // Splice (move elements from one list to another)
     std::list<int> source = {10, 20, 30};
-    lst.splice(lst.begin(), source);  // Move all elements from source to lst
+    lst.splice(lst.begin(), source);                      // Move all elements from source to lst
     
     std::cout << "After splice: ";
     for (const auto& elem : lst) {
@@ -313,7 +313,7 @@ void demonstrateForwardList() {
     std::forward_list<int> flist = {1, 2, 3, 4, 5};
     
     // Add elements
-    flist.push_front(0);  // Only push_front, no push_back
+    flist.push_front(0);                                  // Only push_front, no push_back
     
     // Insert after position
     auto it = flist.begin();
@@ -327,7 +327,7 @@ void demonstrateForwardList() {
     std::cout << "\n";
     
     // Remove elements
-    flist.pop_front();  // Remove first element
+    flist.pop_front();                                    // Remove first element
     
     // Remove after position
     it = flist.begin();
@@ -380,7 +380,7 @@ void demonstrateMap() {
     
     // Iterate over map
     std::cout << "All scores:\n";
-    for (const auto& [name, score] : scores) {  // C++17 structured binding
+    for (const auto& [name, score] : scores) {                    // C++17 structured binding
         std::cout << name << ": " << score << "\n";
     }
     
@@ -496,7 +496,7 @@ void demonstrateUnorderedSet() {
     // Insert elements
     unique_words.insert("hello");
     unique_words.insert("world");
-    unique_words.insert("hello");  // Duplicate, ignored
+    unique_words.insert("hello");                         // Duplicate, ignored
     unique_words.insert("c++");
     
     std::cout << "Unique words: ";
@@ -590,7 +590,7 @@ void demonstratePriorityQueue() {
     
     std::cout << "Priority queue (max-heap):\n";
     while (!pq.empty()) {
-        std::cout << pq.top() << " ";  // Always the largest element
+        std::cout << pq.top() << " ";                     // Always the largest element
         pq.pop();
     }
     std::cout << "\n";
@@ -604,7 +604,7 @@ void demonstratePriorityQueue() {
     
     std::cout << "Priority queue (min-heap):\n";
     while (!min_pq.empty()) {
-        std::cout << min_pq.top() << " ";  // Always the smallest element
+        std::cout << min_pq.top() << " ";                 // Always the smallest element
         min_pq.pop();
     }
     std::cout << "\n";
@@ -629,7 +629,7 @@ void demonstratePair() {
     
     // Create pairs
     auto pair1 = std::make_pair("Bob", 87);
-    std::pair<std::string, int> pair2 = {"Charlie", 92};  // C++11
+    std::pair<std::string, int> pair2 = {"Charlie", 92};    // C++11
     
     // Comparison
     if (student > pair1) {
@@ -666,7 +666,7 @@ void demonstrateTuple() {
     std::cout << "Structured binding - Name: " << name << ", Age: " << age << "\n";
     
     // Tuple operations
-    auto tuple2 = std::tuple_cat(person, tuple1);  // Concatenate tuples
+    auto tuple2 = std::tuple_cat(person, tuple1);                     // Concatenate tuples
     
     // Compare tuples
     if (person == tuple1) {
@@ -747,85 +747,94 @@ void demonstrateVariant() {
 ## Performance Considerations
 
 ### Time Complexity Summary
-```cpp
-#include <iostream>
+```
+std::vector:
 
-void complexitySummary() {
-    std::cout << "=== Time Complexity Summary ===\n";
-    std::cout << "std::vector:\n";
-    std::cout << "  Access: O(1)\n";
-    std::cout << "  Push back: O(1) amortized\n";
-    std::cout << "  Insert: O(n)\n";
-    std::cout << "  Delete: O(n)\n";
-    std::cout << "  Search: O(n)\n\n";
-    
-    std::cout << "std::deque:\n";
-    std::cout << "  Access: O(1)\n";
-    std::cout << "  Push front/back: O(1)\n";
-    std::cout << "  Insert: O(n)\n";
-    std::cout << "  Delete: O(n)\n\n";
-    
-    std::cout << "std::list:\n";
-    std::cout << "  Access: O(n)\n";
-    std::cout << "  Push front/back: O(1)\n";
-    std::cout << "  Insert: O(1) (with iterator)\n";
-    std::cout << "  Delete: O(1) (with iterator)\n";
-    std::cout << "  Search: O(n)\n\n";
-    
-    std::cout << "std::map:\n";
-    std::cout << "  Access: O(log n)\n";
-    std::cout << "  Insert: O(log n)\n";
-    std::cout << "  Delete: O(log n)\n";
-    std::cout << "  Search: O(log n)\n\n";
-    
-    std::cout << "std::unordered_map:\n";
-    std::cout << "  Access: O(1) average\n";
-    std::cout << "  Insert: O(1) average\n";
-    std::cout << "  Delete: O(1) average\n";
-    std::cout << "  Search: O(1) average\n\n";
-}
+- Access: O(1)
+- Push back: O(1) amortized
+- Insert: O(n)
+- Delete: O(n)
+- Search: O(n)
+
+
+std::deque:
+
+- Access: O(1)
+- Push front/back: O(1)
+- Insert: O(n)
+- Delete: O(n)
+
+
+std::list:
+
+- Access: O(n)
+- Push front/back: O(1)
+- Insert: O(1) (with iterator)
+- Delete: O(1) (with iterator)
+- Search: O(n)
+
+
+std::map:
+
+- Access: O(log n)
+- Insert: O(log n)
+- Delete: O(log n)
+- Search: O(log n)
+
+
+std::unordered_map:
+
+- Access: O(1) average
+- Insert: O(1) average
+- Delete: O(1) average
+- Search: O(1) average
 ```
 
 ## Choosing the Right Container
 
 ### Decision Guidelines
-```cpp
-#include <iostream>
+```
+Use std::vector when:
 
-void containerSelectionGuide() {
-    std::cout << "=== Container Selection Guide ===\n\n";
-    
-    std::cout << "Use std::vector when:\n";
-    std::cout << "- You need random access\n";
-    std::cout << "- Elements are stored contiguously\n";
-    std::cout << "- You mostly add/remove from the end\n";
-    std::cout << "- Cache performance is important\n\n";
-    
-    std::cout << "Use std::deque when:\n";
-    std::cout << "- You need fast insertion at both ends\n";
-    std::cout << "- You need random access\n";
-    std::cout << "- Elements don't need to be contiguous\n\n";
-    
-    std::cout << "Use std::list when:\n";
-    std::cout << "- You need frequent insertions/deletions in the middle\n";
-    std::cout << "- Random access is not required\n";
-    std::cout << "- Iterator validity is important\n\n";
-    
-    std::cout << "Use std::map when:\n";
-    std::cout << "- You need ordered key-value pairs\n";
-    std::cout << "- You need range queries\n";
-    std::cout << "- Logarithmic performance is acceptable\n\n";
-    
-    std::cout << "Use std::unordered_map when:\n";
-    std::cout << "- You need fast key-value lookup\n";
-    std::cout << "- Order doesn't matter\n";
-    std::cout << "- Average O(1) performance is needed\n\n";
-    
-    std::cout << "Use std::set when:\n";
-    std::cout << "- You need unique, ordered elements\n";
-    std::cout << "- You need fast membership testing\n";
-    std::cout << "- You need set operations\n\n";
-}
+- You need random access
+- Elements are stored contiguously
+- You mostly add/remove from the end
+- Cache performance is important
+
+
+Use std::deque when:
+
+- You need fast insertion at both ends
+- You need random access
+- Elements don't need to be contiguous
+
+
+Use std::list when:
+
+- You need frequent insertions/deletions in the middle
+- Random access is not required
+- Iterator validity is important
+
+
+Use std::map when:
+
+- You need ordered key-value pairs
+- You need range queries
+- Logarithmic performance is acceptable
+
+
+Use std::unordered_map when:
+
+- You need fast key-value lookup
+- Order doesn't matter
+- Average O(1) performance is needed
+
+
+Use std::set when:
+
+- You need unique, ordered elements
+- You need fast membership testing
+- You need set operations
 ```
 
 ## Best Practices

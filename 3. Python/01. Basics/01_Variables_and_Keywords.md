@@ -10,69 +10,69 @@ Python has 35 reserved keywords (as of Python 3.11). These are divided into seve
 
 ### Value Keywords
 ```python
-True    # Boolean true value
-False   # Boolean false value
-None    # Null/absent value
+True        # Boolean true value
+False       # Boolean false value
+None        # Null/absent value
 ```
 
 ### Operator Keywords
 ```python
-and     # Logical AND
-or      # Logical OR
-not     # Logical NOT
-in      # Membership test
-is      # Identity test
+and         # Logical AND
+or          # Logical OR
+not         # Logical NOT
+in          # Membership test
+is          # Identity test
 ```
 
 ### Control Flow Keywords
 ```python
-if      # Conditional statement
-elif    # Else if conditional
-else    # Else conditional
-for     # For loop
-while   # While loop
-break   # Exit loop
-continue # Skip to next iteration
-pass    # Null statement
-return  # Return from function
+if          # Conditional statement
+elif        # Else if conditional
+else        # Else conditional
+for         # For loop
+while       # While loop
+break       # Exit loop
+continue    # Skip to next iteration
+pass        # Null statement
+return      # Return from function
 ```
 
 ### Structure Keywords
 ```python
-def     # Function definition
-class   # Class definition
-lambda  # Anonymous function
+def         # Function definition
+class       # Class definition
+lambda      # Anonymous function
 ```
 
 ### Import Keywords
 ```python
-import  # Import module
-from    # Import specific from module
-as      # Alias for import
+import      # Import module
+from        # Import specific from module
+as          # Alias for import
 ```
 
 ### Exception Handling Keywords
 ```python
-try     # Try block
-except  # Exception handler
-finally # Finally block
-raise   # Raise exception
+try         # Try block
+except      # Exception handler
+finally     # Finally block
+raise       # Raise exception
 ```
 
 ### Async Programming Keywords
 ```python
-async   # Async function definition
-await   # Await expression
+async       # Async function definition
+await      # Await expression
 ```
 
 ### Other Keywords
 ```python
-del     # Delete object
-global  # Global variable declaration
-nonlocal # Nonlocal variable declaration
-yield   # Generator function
-with    # Context manager
-assert  # Assertion statement
+del         # Delete object
+global      # Global variable declaration
+nonlocal    # Nonlocal variable declaration
+yield       # Generator function
+with        # Context manager
+assert      # Assertion statement
 ```
 
 ## Variable Declaration and Assignment

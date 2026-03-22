@@ -1,9 +1,11 @@
 # C++ Variables and Keywords
 
 ## Overview
-
-Variables in C++ are named storage locations that hold data values. Keywords are reserved words that have special meaning to the C++ compiler and cannot be used as identifiers. Understanding variables and keywords is fundamental to C++ programming.
-
+```
+- Variables in C++ are named storage locations that hold data values.
+- Keywords are reserved words that have special meaning to the C++ compiler and cannot be used as identifiers. 
+- Understanding variables and keywords is fundamental to C++ programming.
+```
 ## C++ Keywords
 
 C++ has 97 reserved keywords (as of C++20). These are divided into several categories:
@@ -11,111 +13,111 @@ C++ has 97 reserved keywords (as of C++20). These are divided into several categ
 ### Fundamental Type Keywords
 ```cpp
 // Basic types
-int        // Integer type
-float      // Single-precision floating point
-double     // Double-precision floating point
-char       // Character type
-bool       // Boolean type (true/false)
-void       // No type
-wchar_t    // Wide character type
-char16_t   // UTF-16 character
-char32_t   // UTF-32 character
+int              // Integer type
+float            // Single-precision floating point
+double           // Double-precision floating point
+char             // Character type
+bool             // Boolean type (true/false)
+void             // No type
+wchar_t          // Wide character type
+char16_t         // UTF-16 character
+char32_t         // UTF-32 character
 
 // Type modifiers
-signed     // Signed integer
-unsigned   // Unsigned integer
-short      // Short integer
-long       // Long integer
-long long  // Long long integer (C++11)
+signed           // Signed integer
+unsigned         // Unsigned integer
+short            // Short integer
+long             // Long integer
+long long        // Long long integer (C++11)
 ```
 
 ### Storage Class Specifiers
 ```cpp
-auto       // Automatic storage duration (C++11: type inference)
-register   // Register storage (deprecated)
-static     // Static storage duration
-extern     // External linkage
-mutable    // Allows modification of const class members
-thread_local // Thread-local storage (C++11)
+auto             // Automatic storage duration (C++11: type inference)
+register         // Register storage (deprecated)
+static           // Static storage duration
+extern           // External linkage
+mutable          // Allows modification of const class members
+thread_local     // Thread-local storage (C++11)
 ```
 
 ### Type Qualifiers
 ```cpp
-const      // Constant value
-volatile   // Tells compiler not to optimize
+const            // Constant value
+volatile         // Tells compiler not to optimize
 ```
 
 ### Control Flow Keywords
 ```cpp
 // Selection
-if         // Conditional statement
-else       // Alternative conditional
-switch     // Multi-way branch
-case       // Switch case label
-default    // Default switch case
+if               // Conditional statement
+else             // Alternative conditional
+switch           // Multi-way branch
+case             // Switch case label
+default          // Default switch case
 
 // Loops
-for        // For loop
-while      // While loop
-do         // Do-while loop
+for              // For loop
+while            // While loop
+do               // Do-while loop
 
 // Jump statements
-break      // Exit loop or switch
-continue   // Skip to next iteration
-goto       // Unconditional jump
-return     // Return from function
+break            // Exit loop or switch
+continue         // Skip to next iteration
+goto             // Unconditional jump
+return           // Return from function
 ```
 
 ### Object-Oriented Keywords
 ```cpp
-class      // Class definition
-struct     // Structure definition
-union      // Union definition
-public     // Public access specifier
-protected  // Protected access specifier
-private    // Private access specifier
-virtual    // Virtual function
-friend     // Friend function/class
-this       // Pointer to current object
-operator   // Operator overloading
-new        // Dynamic allocation
-delete     // Dynamic deallocation
+class            // Class definition
+struct           // Structure definition
+union            // Union definition
+public           // Public access specifier
+protected        // Protected access specifier
+private          // Private access specifier
+virtual          // Virtual function
+friend           // Friend function/class
+this             // Pointer to current object
+operator         // Operator overloading
+new              // Dynamic allocation
+delete           // Dynamic deallocation
 ```
 
 ### Template and Generic Programming
 ```cpp
-template   // Template declaration
-typename   // Type parameter
-concept    // Concept definition (C++20)
-requires   // Requires clause (C++20)
+template         // Template declaration
+typename         // Type parameter
+concept          // Concept definition (C++20)
+requires         // Requires clause (C++20)
 ```
 
 ### Exception Handling
 ```cpp
-try        // Try block
-catch      // Exception handler
-throw      // Throw exception
-noexcept   // Exception specification (C++11)
+try              // Try block
+catch            // Exception handler
+throw            // Throw exception
+noexcept         // Exception specification (C++11)
 ```
 
 ### Namespace Keywords
 ```cpp
-namespace  // Namespace definition
-using      // Using declaration/directive
+namespace        // Namespace definition
+using            // Using declaration/directive
 ```
 
 ### Modern C++ Keywords (C++11 and later)
 ```cpp
-nullptr    // Null pointer literal
-constexpr  // Constant expression
-decltype   // Type inference
-override   // Override specifier
-final      // Final specifier
-explicit   // Explicit constructor
-decltype   // Declare type
-alignas    // Alignment specifier
-alignof    // Alignment query
-static_assert // Compile-time assertion
+nullptr          // Null pointer literal
+constexpr        // Constant expression
+decltype         // Type inference
+override         // Override specifier
+final            // Final specifier
+explicit         // Explicit constructor
+decltype         // Declare type
+alignas          // Alignment specifier
+alignof          // Alignment query
+static_assert    // Compile-time assertion
 ```
 
 ## Variable Declaration and Initialization
@@ -160,17 +162,16 @@ int main() {
     // Uniform initialization (preferred)
     int z{15};
     
-    // Auto type inference
-    auto number = 42;        // int
-    auto decimal = 3.14;     // double
-    auto letter = 'A';       // char
-    auto flag = true;        // bool
-    auto text = "Hello";      // const char*
-    auto str = std::string("Hi"); // std::string
+    // Auto type inference     
+    auto number = 42;                    // int
+    auto decimal = 3.14;                 // double
+    auto letter = 'A';                   // char
+    auto flag = true;                    // bool
+    auto text = "Hello";                 // const char*
+    auto str = std::string("Hi");        // std::string
     
     // Vector initialization
     std::vector<int> numbers{1, 2, 3, 4, 5};
-    
     return 0;
 }
 ```
@@ -593,6 +594,305 @@ void demonstrateMemory() {
     heap_var = nullptr;  // Avoid dangling pointer
 }
 ```
+---
+## C++ Operators
+
+### Overview
+- Operators are symbols that perform operations on variables and values. 
+- C++ provides a rich set of operators divided into several categories.
+---
+
+### Arithmetic Operators
+```cpp
+#include <iostream>
+
+void demonstrateArithmeticOperators() {
+    int a = 10, b = 3;
+    
+    // Basic arithmetic
+    int sum = a + b;         // Addition: 13
+    int difference = a - b;  // Subtraction: 7
+    int product = a * b;     // Multiplication: 30
+    int quotient = a / b;    // Division: 3 (integer division)
+    int remainder = a % b;   // Modulo: 1
+    
+    // Unary operators
+    int x = 5;
+    int y = +x;              // Unary plus: 5
+    int z = -x;              // Unary minus: -5
+    
+    // Increment/Decrement
+    int counter = 0;
+    counter++;               // Post-increment: returns 0, then becomes 1
+    ++counter;               // Pre-increment: becomes 2, returns 2
+    counter--;               // Post-decrement: returns 2, then becomes 1
+    --counter;               // Pre-decrement: becomes 0, returns 0
+    
+    std::cout << "Sum: " << sum << "\n";
+    std::cout << "Remainder: " << remainder << "\n";
+}
+```
+
+### Relational Operators
+```cpp
+#include <iostream>
+
+void demonstrateRelationalOperators() {
+    int a = 5, b = 10;
+    
+    bool equal = (a == b);            // Equal to: false
+    bool not_equal = (a != b);        // Not equal to: true
+    bool less_than = (a < b);         // Less than: true
+    bool greater_than = (a > b);      // Greater than: false
+    bool less_equal = (a <= b);       // Less than or equal: true
+    bool greater_equal = (a >= b);    // Greater than or equal: false
+    
+    std::cout << std::boolalpha;
+    std::cout << "5 == 10: " << equal << "\n";
+    std::cout << "5 != 10: " << not_equal << "\n";
+}
+```
+
+### Logical Operators
+```cpp
+#include <iostream>
+
+void demonstrateLogicalOperators() {
+    bool condition1 = true;
+    bool condition2 = false;
+    
+    bool logical_and = condition1 && condition2;   // AND: false
+    bool logical_or = condition1 || condition2;    // OR: true
+    bool logical_not = !condition1;                // NOT: false
+    
+    // Short-circuit evaluation
+    int x = 5;
+    bool short_circuit = (x > 0) && (++x > 5);     // x becomes 6
+    
+    std::cout << "AND: " << logical_and << "\n";
+    std::cout << "OR: " << logical_or << "\n";
+    std::cout << "NOT: " << logical_not << "\n";
+}
+```
+
+### Bitwise Operators
+```cpp
+#include <iostream>
+#include <bitset>
+
+void demonstrateBitwiseOperators() {
+    unsigned int a = 0b1010;            // 10 in binary
+    unsigned int b = 0b1100;            // 12 in binary
+    
+    unsigned int bitwise_and = a & b;   // AND: 1000 (8)
+    unsigned int bitwise_or = a | b;    // OR: 1110 (14)
+    unsigned int bitwise_xor = a ^ b;   // XOR: 0110 (6)
+    unsigned int bitwise_not = ~a;      // NOT: 111...10101 (depends on bit width)
+    
+    unsigned int left_shift = a << 2;   // Left shift: 101000 (40)
+    unsigned int right_shift = a >> 1;  // Right shift: 101 (5)
+    
+    std::cout << "a & b: " << std::bitset<4>(bitwise_and) << " (" << bitwise_and << ")\n";
+    std::cout << "a | b: " << std::bitset<4>(bitwise_or) << " (" << bitwise_or << ")\n";
+    std::cout << "a ^ b: " << std::bitset<4>(bitwise_xor) << " (" << bitwise_xor << ")\n";
+    std::cout << "a << 2: " << left_shift << "\n";
+}
+```
+
+### Assignment Operators
+```cpp
+#include <iostream>
+
+void demonstrateAssignmentOperators() {
+    int x = 10;      // Basic assignment
+    
+    // Compound assignment
+    x += 5;          // x = x + 5 → 15
+    x -= 3;          // x = x - 3 → 12
+    x *= 2;          // x = x * 2 → 24
+    x /= 4;          // x = x / 4 → 6
+    x %= 2;          // x = x % 2 → 0
+    
+    // Bitwise compound assignment
+    int y = 0b1010;
+    y &= 0b1100;     // y = y & 0b1100 → 1000 (8)
+    y |= 0b0011;     // y = y | 0b0011 → 1011 (11)
+    y ^= 0b0110;     // y = y ^ 0b0110 → 1101 (13)
+    y <<= 1;         // y = y << 1 → 11010 (26)
+    
+    std::cout << "x: " << x << "\n";
+    std::cout << "y: " << y << "\n";
+}
+```
+
+### Comparison and Ternary Operator
+```cpp
+#include <iostream>
+
+void demonstrateComparisonAndTernary() {
+    int a = 5, b = 10;
+    
+    // Three-way comparison (C++20 spaceship operator)
+    #if __cplusplus >= 202002L
+    auto result = a <=> b;                        // Returns std::strong_ordering
+    if (result < 0) std::cout << "a < b\n";
+    else if (result > 0) std::cout << "a > b\n";
+    else std::cout << "a == b\n";
+    #endif
+    
+    // Ternary conditional operator
+    int max = (a > b) ? a : b;                    // Returns the larger value
+    std::cout << "Maximum: " << max << "\n";
+    
+    // Chained ternary
+    int value = 25;
+    std::string grade = (value >= 90) ? "A" :
+                        (value >= 80) ? "B" :
+                        (value >= 70) ? "C" : "F";
+    std::cout << "Grade: " << grade << "\n";
+}
+```
+
+### Operator Precedence
+```cpp
+#include <iostream>
+
+void demonstrateOperatorPrecedence() {
+    // Multiplication has higher precedence than addition
+    int result1 = 5 + 3 * 2;                        // 11, not 16
+
+    // Use parentheses to change evaluation order
+    int result2 = (5 + 3) * 2;                      // 16
+    
+    // Logical AND has higher precedence than OR
+    bool result3 = true || false && false;          // true (&& evaluated first)
+    bool result4 = (true || false) && false;        // false
+    
+    std::cout << "5 + 3 * 2 = " << result1 << "\n";
+    std::cout << "(5 + 3) * 2 = " << result2 << "\n";
+}
+```
+
+---
+### Common precedence rules (highest to lowest):
+```
+    1. () [] . -> 
+    2. ++ -- ! ~ + - (unary)
+    3. * / %
+    4. + -
+    5. << >>
+    6. < <= > >=
+    7. == !=
+    8. &
+    9. ^
+    10. |
+    11. &&
+    12. ||
+    13. ?:
+    14. = += -= etc.
+    15. ,
+```
+---
+
+### Special Operators
+```cpp
+#include <iostream>
+
+void demonstrateSpecialOperators() {
+    // sizeof operator
+    int x = 42;
+    std::cout << "Size of int: " << sizeof(int) << " bytes\n";
+    std::cout << "Size of x: " << sizeof(x) << " bytes\n";
+    
+    // comma operator
+    int a, b, c;
+    a = (b = 5, c = 10, b + c);             // a = 15
+    
+    // typeid operator (requires <typeinfo>)
+    #include <typeinfo>
+    std::cout << "Type of x: " << typeid(x).name() << "\n";
+    
+    // address-of and dereference
+    int value = 100;
+    int* ptr = &value;                      // address-of operator
+    int dereferenced = *ptr;                // dereference operator: 100
+    
+    // member access operators
+    struct Point { int x; int y; };
+    Point p = {10, 20};
+    Point* pptr = &p;
+    
+    int x_coord = p.x;                      // Direct member access (.)
+    int y_coord = pptr->y;                  // Pointer member access (->)
+}
+```
+
+### Practical Example: Combining Operators
+```cpp
+#include <iostream>
+
+void demonstrateOperatorCombination() {
+    // Calculate compound interest with combined operators
+    double principal = 1000.0;
+    double rate = 0.05;
+    int years = 3;
+    
+    double amount = principal;
+    for (int i = 0; i < years; ++i) {
+        amount *= (1 + rate);               // Compound assignment with multiplication
+    }
+    
+    // Multiple operations in one line
+    int a = 5, b = 10, c = 15;
+    int result = (a + b) * c / 2 - 10;      // (5+10)*15/2-10 = 102.5? No, integer division!
+    
+    // Using ternary with assignment
+    int value = (a > b) ? a : b;
+    value = (c > value) ? c : value;        // Find maximum of three numbers
+    
+    std::cout << "Amount after " << years << " years: $" << amount << "\n";
+    std::cout << "Result: " << result << "\n";
+    std::cout << "Maximum value: " << value << "\n";
+}
+```
+
+### 2. Add after "Type Safety and Conversions" section:
+
+## Operator Overloading (Brief Overview)
+Operators can be overloaded for user-defined types:
+
+```cpp
+#include <iostream>
+
+class Vector {
+public:
+    int x, y;
+    
+    Vector(int x_val, int y_val) : x(x_val), y(y_val) {}
+    
+    // Overload + operator
+    Vector operator+(const Vector& other) const {
+        return Vector(x + other.x, y + other.y);
+    }
+    
+    // Overload += operator
+    Vector& operator+=(const Vector& other) {
+        x += other.x;
+        y += other.y;
+        return *this;
+    }
+};
+
+void demonstrateOperatorOverloading() {
+    Vector v1(1, 2);
+    Vector v2(3, 4);
+    
+    Vector v3 = v1 + v2;  // Uses overloaded + operator
+    v1 += v2;              // Uses overloaded += operator
+    
+    std::cout << "v3: (" << v3.x << ", " << v3.y << ")\n";
+}
+```
 
 ## Best Practices Summary
 
@@ -606,6 +906,12 @@ void demonstrateMemory() {
 8. **Follow naming conventions** consistently throughout your code
 9. **Be aware of type conversions** and their implications
 10. **Manage memory properly** when using pointers and dynamic allocation
+11. **Use parentheses for clarity** when operator precedence might be ambiguous
+12. **Prefer prefix increment (++i)** over postfix (i++) when the old value isn't needed
+13. **Use compound operators** (+=, -=, etc.) for cleaner code
+14. **Be careful with integer division** - it truncates toward zero
+15. **Understand short-circuit evaluation** in logical operators
+16. **Use bitwise operators** only when working with bits or flags
 
 ## Conclusion
 
