@@ -1,4 +1,4 @@
-# Combined Pattern Programming Guide (C++)
+# Pattern Programming Guide (C++)
 
 ## Table of Contents
 
