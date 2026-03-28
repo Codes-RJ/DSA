@@ -618,16 +618,3 @@ int main() {
 6. **Use covariant returns** for factory methods
 
 ---
-
-## 📚 Related Topics
-
-- [01_Friend_Functions_and_Classes.md](01_Friend_Functions_and_Classes.md)
-- [02_Mutable_Keyword.md](02_Mutable_Keyword.md)
-- [03_Explicit_Keyword.md](03_Explicit_Keyword.md)
-- [04_Virtual_Base_Class.md](04_Virtual_Base_Class.md)
-- [05_Object_Slicing.md](05_Object_Slicing.md)
-- [06_Covariant_Return_Types.md](06_Covariant_Return_Types.md)
-- [07_Placement_New.md](07_Placement_New.md)
-- [08_Type_Conversion_in_OOP.md](08_Type_Conversion_in_OOP.md)
-
----
