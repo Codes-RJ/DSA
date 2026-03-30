@@ -1,47 +1,142 @@
 # Search Algorithms in C++
 
 ## Overview
-This document covers various search algorithms implemented in C++, from the fundamental linear search to advanced searching techniques. Each algorithm includes theoretical explanations, complexity analysis, and practical implementations with examples.
+This document provides comprehensive theoretical foundations for various search algorithms implemented in C++. From fundamental linear search to advanced searching techniques, each algorithm includes detailed explanations, complexity analysis, pseudocode, and best practices.
+
+## 🎯 Importance of Search Algorithms
+
+Search algorithms are fundamental to computer science and software development because:
+- **Data Retrieval**: Essential for accessing information efficiently
+- **Performance Impact**: Directly affects application responsiveness
+- **Scalability**: Determines how systems handle growing datasets
+- **User Experience**: Fast search capabilities improve user satisfaction
+- **Resource Optimization**: Efficient algorithms save CPU time and memory
+
+## 📊 Algorithm Classification
+
+### 1. **Comparison-based Searching**
+- Linear Search, Binary Search, Jump Search
+- Time complexity bounded by Ω(log n) for sorted data
+
+### 2. **Interpolation-based Searching**
+- Interpolation Search, Exponential Search
+- Exploit data distribution patterns
+
+### 3. **Hash-based Searching**
+- Direct addressing, collision resolution
+- Average O(1) time complexity
+
+### 4. **Tree-based Searching**
+- Binary Search Trees, B-Trees, Tries
+- Dynamic data structure support
+
+### 5. **Pattern Matching**
+- Sublist Search, String matching algorithms
+- Specialized for sequence searching
 
 ---
 
-## 1. Linear Search
-
-Linear search is the simplest searching algorithm that sequentially checks each element in a container until a match is found or the entire container has been searched.
-
-### Complexity
-- **Time**: O(n) - Worst case
-- **Space**: O(1) - No additional space required
-
-### When to Use
-- Unsorted data
-- Small datasets
-- Simple implementation needed
-
----
-
-## 2. Binary Search
-
-Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing the search interval in half.
+## 🔍 Linear Search
 
 ### Theory
+Linear search is the simplest searching algorithm that sequentially checks each element in a container until a match is found or the entire container has been searched.
 
-#### Definition
-Binary search compares the target value to the middle element of the array. If they are not equal, the half in which the target cannot lie is eliminated, and the search continues on the remaining half.
+### Algorithm Steps
+1. Start from the first element
+2. Compare current element with target
+3. If match found, return index
+4. If not, move to next element
+5. Repeat until end or found
 
-#### Algorithm Steps
-1. Start with the entire sorted array
-2. Find the middle element
-3. If middle element equals target, return its index
+### Pseudocode
+```
+FUNCTION linearSearch(array, target):
+    FOR i FROM 0 TO length(array) - 1:
+        IF array[i] == target:
+            RETURN i
+    RETURN -1  // Not found
+```
+
+### Complexity Analysis
+- **Time Complexity**: O(n) - Worst/average case
+- **Space Complexity**: O(1) - No additional space
+- **Best Case**: O(1) - Target at first position
+
+### Best Practices
+- Use for small datasets (< 100 elements)
+- Ideal for unsorted data
+- Consider sentinel optimization for large arrays
+- Cache-friendly due to sequential access
+
+### When to Use
+- Unsorted or dynamically changing data
+- Small datasets where overhead isn't justified
+- When simplicity and reliability are prioritized
+- Linked lists where random access is expensive
+
+---
+
+## 🔎 Binary Search
+
+### Theory
+Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing the search interval in half, achieving logarithmic time complexity.
+
+### Mathematical Foundation
+Binary search reduces the search space by half each iteration:
+- After 1 comparison: n/2 elements remaining
+- After 2 comparisons: n/4 elements remaining
+- After k comparisons: n/2^k elements remaining
+- When n/2^k = 1, we have k = log₂n comparisons
+
+### Algorithm Steps
+1. Ensure array is sorted (prerequisite)
+2. Find the middle element: mid = left + (right - left) / 2
+3. If middle element equals target, return mid
 4. If target < middle element, search left half
 5. If target > middle element, search right half
-6. Repeat until found or array is exhausted
+6. Repeat until found or search space exhausted
 
-#### Complexity Analysis
-- **Time Complexity (Best Case)**: O(1) - when target is the middle element
-- **Time Complexity (Average Case)**: O(log n)
-- **Time Complexity (Worst Case)**: O(log n)
-- **Space Complexity**: O(1) - iterative version, O(log n) - recursive version
+### Pseudocode
+```
+FUNCTION binarySearch(array, target):
+    left = 0
+    right = length(array) - 1
+    
+    WHILE left <= right:
+        mid = left + (right - left) / 2  // Prevent overflow
+        
+        IF array[mid] == target:
+            RETURN mid
+        ELSE IF array[mid] < target:
+            left = mid + 1
+        ELSE:
+            right = mid - 1
+    
+    RETURN -1  // Not found
+```
+
+### Complexity Analysis
+- **Time Complexity**: O(log n) - All cases
+- **Space Complexity**: O(1) iterative, O(log n) recursive
+- **Best Case**: O(1) - Target at middle element
+
+### Best Practices
+- Always verify array is sorted before applying
+- Use `left + (right - left) / 2` to prevent integer overflow
+- Consider iterative version for production code
+- Handle edge cases: empty array, single element
+
+### Variants and Optimizations
+- **Lower Bound**: First occurrence of target
+- **Upper Bound**: Last occurrence of target
+- **Binary Search on Answer**: For optimization problems
+- **Exponential Search**: For unbounded arrays
+
+### When to Use
+- Large sorted datasets (> 1000 elements)
+- Multiple searches on static sorted data
+- When logarithmic performance is required
+- Range queries and finding boundaries
 
 ### Implementation 1: Iterative Binary Search
 
@@ -250,949 +345,522 @@ Does 99 exist? No
 
 ---
 
-## 3. Jump Search
-
-Jump search is an algorithm for searching in sorted arrays. It jumps ahead by fixed steps and then performs linear search within the block.
+## 🚀 Jump Search
 
 ### Theory
+Jump search is an algorithm for searching in sorted arrays. It jumps ahead by fixed steps and then performs linear search within the block, providing a balance between linear and binary search.
 
-#### Definition
-Jump search works by jumping ahead by a fixed block size (typically √n) to find the block where the element might be, then performing linear search within that block.
+### Mathematical Foundation
+Optimal block size = √n:
+- Number of jumps = √n
+- Linear search within block = √n
+- Total comparisons = 2√n = O(√n)
 
-#### Algorithm Steps
-1. Calculate optimal block size: √n
-2. Jump ahead by block size until current element >= target or end is reached
+### Algorithm Steps
+1. Calculate optimal block size: step = √n
+2. Jump ahead by block size until current element >= target
 3. Perform linear search in the previous block
 4. Return index if found, -1 otherwise
 
-#### Complexity Analysis
-- **Time Complexity**: O(√n) - Optimal block size
-- **Space Complexity**: O(1)
-
-### Implementation
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <cmath>
-using namespace std;
-
-/**
- * Jump search algorithm
- * Returns index of target if found, -1 otherwise
- */
-int jumpSearch(int arr[], int size, int target) {
-    int step = sqrt(size);  // Optimal block size
-    int prev = 0;
+### Pseudocode
+```
+FUNCTION jumpSearch(array, target):
+    n = length(array)
+    step = sqrt(n)
+    prev = 0
     
-    // Jump ahead to find the block
-    while (arr[min(step, size) - 1] < target) {
-        prev = step;
-        step += sqrt(size);
-        if (prev >= size) {
-            return -1;
-        }
-    }
+    // Find the block where element may be present
+    WHILE array[min(step, n) - 1] < target:
+        prev = step
+        step = step + sqrt(n)
+        IF prev >= n:
+            RETURN -1
     
-    // Linear search within the block
-    while (arr[prev] < target) {
-        prev++;
-        if (prev == min(step, size)) {
-            return -1;
-        }
-    }
+    // Linear search in the identified block
+    WHILE array[prev] < target:
+        prev = prev + 1
+        IF prev == min(step, n):
+            RETURN -1
     
     // Check if element is found
-    if (arr[prev] == target) {
-        return prev;
-    }
+    IF array[prev] == target:
+        RETURN prev
     
-    return -1;
-}
-
-int main() {
-    int arr[] = {10, 23, 45, 70, 89, 100, 123, 145, 167, 189};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    
-    // Test cases
-    int targets[] = {70, 10, 189, 99};
-    
-    for (int target : targets) {
-        int result = jumpSearch(arr, size, target);
-        if (result != -1) {
-            cout << "Element " << target << " found at index: " << result << endl;
-        } else {
-            cout << "Element " << target << " not found in array" << endl;
-        }
-    }
-    
-    return 0;
-}
+    RETURN -1
 ```
 
-**Output:**
-```
-Element 70 found at index: 3
-Element 10 found at index: 0
-Element 189 found at index: 9
-Element 99 not found in array
-```
+### Complexity Analysis
+- **Time Complexity**: O(√n) - Optimal block size
+- **Space Complexity**: O(1)
+- **Best Case**: O(1) - Target at first jump point
+
+### Best Practices
+- Use optimal block size √n for best performance
+- Better than linear search for medium-sized arrays
+- Simpler than binary search but slower
+- Good compromise between simplicity and efficiency
 
 ---
 
-## 4. Interpolation Search
-
-Interpolation search is an improved variant of binary search for uniformly distributed sorted arrays. It estimates the position of the target value.
+## 📈 Interpolation Search
 
 ### Theory
+Interpolation search is an improved variant of binary search for uniformly distributed sorted arrays. It estimates the position of the target value using interpolation formula.
 
-#### Definition
-Interpolation search uses a formula to estimate the position of the search key, making it more efficient than binary search for uniformly distributed data.
-
-#### Formula
+### Mathematical Foundation
+Position estimation using linear interpolation:
 ```
-position = left + ((target - arr[left]) * (right - left)) / (arr[right] - arr[left])
+pos = left + ((target - arr[left]) * (right - left)) / (arr[right] - arr[left])
 ```
 
-#### Complexity Analysis
-- **Time Complexity (Best Case)**: O(log log n) - Uniform distribution
-- **Time Complexity (Average Case)**: O(log log n)
-- **Time Complexity (Worst Case)**: O(n) - Non-uniform distribution
-- **Space Complexity**: O(1)
+For uniformly distributed data, this provides better than logarithmic performance.
 
-### Implementation
+### Algorithm Steps
+1. Check if target is within array bounds
+2. Calculate estimated position using interpolation formula
+3. Compare array[pos] with target
+4. Adjust search range based on comparison
+5. Repeat until found or range is exhausted
 
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-/**
- * Interpolation search algorithm
- * Returns index of target if found, -1 otherwise
- */
-int interpolationSearch(int arr[], int size, int target) {
-    int left = 0;
-    int right = size - 1;
+### Pseudocode
+```
+FUNCTION interpolationSearch(array, target):
+    left = 0
+    right = length(array) - 1
     
-    while (left <= right && target >= arr[left] && target <= arr[right]) {
-        if (left == right) {
-            if (arr[left] == target) {
-                return left;
-            }
-            return -1;
-        }
+    WHILE left <= right AND target >= array[left] AND target <= array[right]:
+        IF left == right:
+            IF array[left] == target:
+                RETURN left
+            RETURN -1
         
         // Calculate position using interpolation formula
-        int pos = left + ((double)(target - arr[left]) * (right - left)) / 
-                          (arr[right] - arr[left]);
+        pos = left + ((target - array[left]) * (right - left)) / (array[right] - array[left])
         
-        // Check bounds
-        if (pos < left || pos > right) {
-            break;
-        }
-        
-        if (arr[pos] == target) {
-            return pos;
-        }
-        
-        if (arr[pos] < target) {
-            left = pos + 1;
-        } else {
-            right = pos - 1;
-        }
-    }
+        IF array[pos] == target:
+            RETURN pos
+        ELSE IF array[pos] < target:
+            left = pos + 1
+        ELSE:
+            right = pos - 1
     
-    return -1;
-}
-
-int main() {
-    // Uniformly distributed array
-    int arr[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    
-    // Test cases
-    int targets[] = {70, 10, 100, 55};
-    
-    cout << "Interpolation Search on Uniform Distribution:" << endl;
-    for (int target : targets) {
-        int result = interpolationSearch(arr, size, target);
-        if (result != -1) {
-            cout << "Element " << target << " found at index: " << result << endl;
-        } else {
-            cout << "Element " << target << " not found in array" << endl;
-        }
-    }
-    
-    // Non-uniform distribution test
-    int arr2[] = {10, 15, 23, 45, 70, 89, 100, 145, 200, 500};
-    int size2 = sizeof(arr2) / sizeof(arr2[0]);
-    
-    cout << "\nInterpolation Search on Non-Uniform Distribution:" << endl;
-    int target = 70;
-    int result = interpolationSearch(arr2, size2, target);
-    if (result != -1) {
-        cout << "Element " << target << " found at index: " << result << endl;
-    } else {
-        cout << "Element " << target << " not found in array" << endl;
-    }
-    
-    return 0;
-}
+    RETURN -1
 ```
 
-**Output:**
-```
-Interpolation Search on Uniform Distribution:
-Element 70 found at index: 6
-Element 10 found at index: 0
-Element 100 found at index: 9
-Element 55 not found in array
+### Complexity Analysis
+- **Best Case**: O(log log n) - Perfectly uniform distribution
+- **Average Case**: O(log log n) - Uniform distribution
+- **Worst Case**: O(n) - Non-uniform distribution
+- **Space Complexity**: O(1)
 
-Interpolation Search on Non-Uniform Distribution:
-Element 70 found at index: 4
-```
+### Best Practices
+- Only use with uniformly distributed sorted data
+- Performance degrades significantly with skewed distributions
+- Excellent for numeric sequences with constant differences
+- Validate data distribution before using
 
 ---
 
-## 5. Exponential Search
-
-Exponential search is useful for unbounded or infinite arrays. It works by finding a range containing the target and then performing binary search.
+## ⚡ Exponential Search
 
 ### Theory
+Exponential search is useful for unbounded or infinite arrays. It works by finding a range containing the target and then performing binary search within that range.
 
-#### Algorithm Steps
-1. Start with index 1
-2. While index < size and arr[index] <= target, double the index
-3. Perform binary search between index/2 and min(index, size-1)
+### Algorithm Steps
+1. Check if first element is the target
+2. Find range by doubling index until array[i] >= target
+3. Perform binary search between i/2 and min(i, n-1)
 
-#### Complexity Analysis
-- **Time Complexity**: O(log n)
-- **Space Complexity**: O(1)
-
-### Implementation
-
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-/**
- * Binary search helper for exponential search
- */
-int binarySearchHelper(int arr[], int left, int right, int target) {
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-        
-        if (arr[mid] == target) {
-            return mid;
-        }
-        
-        if (arr[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
+### Pseudocode
+```
+FUNCTION exponentialSearch(array, target):
+    n = length(array)
     
-    return -1;
-}
-
-/**
- * Exponential search algorithm
- * Returns index of target if found, -1 otherwise
- */
-int exponentialSearch(int arr[], int size, int target) {
-    // If first element is the target
-    if (arr[0] == target) {
-        return 0;
-    }
+    // Check if first element is the target
+    IF array[0] == target:
+        RETURN 0
     
     // Find range for binary search
-    int i = 1;
-    while (i < size && arr[i] <= target) {
-        i *= 2;
-    }
+    i = 1
+    WHILE i < n AND array[i] <= target:
+        i = i * 2
     
     // Perform binary search in found range
-    return binarySearchHelper(arr, i / 2, min(i, size - 1), target);
-}
-
-int main() {
-    int arr[] = {10, 23, 45, 70, 89, 100, 123, 145, 167, 189};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    
-    // Test cases
-    int targets[] = {70, 10, 189, 99};
-    
-    for (int target : targets) {
-        int result = exponentialSearch(arr, size, target);
-        if (result != -1) {
-            cout << "Element " << target << " found at index: " << result << endl;
-        } else {
-            cout << "Element " << target << " not found in array" << endl;
-        }
-    }
-    
-    return 0;
-}
+    RETURN binarySearch(array, i/2, min(i, n-1), target)
 ```
 
-**Output:**
-```
-Element 70 found at index: 3
-Element 10 found at index: 0
-Element 189 found at index: 9
-Element 99 not found in array
-```
-
----
-
-## 6. Fibonacci Search
-
-Fibonacci search is similar to binary search but uses Fibonacci numbers to divide the array.
-
-### Theory
-
-#### Algorithm Steps
-1. Generate Fibonacci numbers until F(k) >= size
-2. Compare target with element at index F(k-2)
-3. Adjust range based on comparison
-4. Repeat until found or exhausted
-
-#### Complexity Analysis
+### Complexity Analysis
 - **Time Complexity**: O(log n)
 - **Space Complexity**: O(1)
+- **Best Case**: O(1) - Target at first position
 
-### Implementation
-
-```cpp
-#include <iostream>
-using namespace std;
-
-/**
- * Find smallest Fibonacci number >= n
- */
-int findFibonacciIndex(int n) {
-    int fib1 = 0, fib2 = 1, fib3 = 1;
-    
-    while (fib3 < n) {
-        fib1 = fib2;
-        fib2 = fib3;
-        fib3 = fib1 + fib2;
-    }
-    
-    return fib3;
-}
-
-/**
- * Fibonacci search algorithm
- * Returns index of target if found, -1 otherwise
- */
-int fibonacciSearch(int arr[], int size, int target) {
-    int fib1 = 0;    // (k-2)th Fibonacci
-    int fib2 = 1;    // (k-1)th Fibonacci
-    int fib3 = fib1 + fib2;  // kth Fibonacci
-    
-    // Find smallest Fibonacci >= size
-    while (fib3 < size) {
-        fib1 = fib2;
-        fib2 = fib3;
-        fib3 = fib1 + fib2;
-    }
-    
-    int offset = -1;
-    
-    while (fib3 > 1) {
-        int i = min(offset + fib1, size - 1);
-        
-        if (arr[i] < target) {
-            fib3 = fib2;
-            fib2 = fib1;
-            fib1 = fib3 - fib2;
-            offset = i;
-        } else if (arr[i] > target) {
-            fib3 = fib1;
-            fib2 = fib2 - fib1;
-            fib1 = fib3 - fib2;
-        } else {
-            return i;
-        }
-    }
-    
-    // Check for last element
-    if (fib2 && offset + 1 < size && arr[offset + 1] == target) {
-        return offset + 1;
-    }
-    
-    return -1;
-}
-
-int main() {
-    int arr[] = {10, 23, 45, 70, 89, 100, 123, 145, 167, 189};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    
-    // Test cases
-    int targets[] = {70, 10, 189, 99};
-    
-    for (int target : targets) {
-        int result = fibonacciSearch(arr, size, target);
-        if (result != -1) {
-            cout << "Element " << target << " found at index: " << result << endl;
-        } else {
-            cout << "Element " << target << " not found in array" << endl;
-        }
-    }
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-Element 70 found at index: 3
-Element 10 found at index: 0
-Element 189 found at index: 9
-Element 99 not found in array
-```
+### Best Practices
+- Ideal for unbounded or infinite sorted arrays
+- Useful when array size is unknown
+- More efficient than binary search for targets near beginning
+- Combined with binary search for optimal performance
 
 ---
 
-## 7. Ternary Search
-
-Ternary search divides the array into three parts instead of two, useful for unimodal functions.
+## 🌀 Fibonacci Search
 
 ### Theory
+Fibonacci search is similar to binary search but uses Fibonacci numbers to divide the array, avoiding division operations.
 
-#### Algorithm Steps
+### Mathematical Foundation
+Uses Fibonacci sequence to create partition points:
+- F(k-2) and F(k-1) create the search intervals
+- Eliminates need for division operations
+- Useful in systems where division is expensive
+
+### Algorithm Steps
+1. Generate Fibonacci numbers until F(k) >= n
+2. Compare target with element at index F(k-2)
+3. Adjust range based on comparison
+4. Update Fibonacci numbers accordingly
+5. Repeat until found or exhausted
+
+### Pseudocode
+```
+FUNCTION fibonacciSearch(array, target):
+    n = length(array)
+    
+    // Initialize Fibonacci numbers
+    fibM2 = 0    // (k-2)th Fibonacci
+    fibM1 = 1    // (k-1)th Fibonacci
+    fibM = fibM2 + fibM1  // kth Fibonacci
+    
+    // Find smallest Fibonacci >= n
+    WHILE fibM < n:
+        fibM2 = fibM1
+        fibM1 = fibM
+        fibM = fibM2 + fibM1
+    
+    // Mark the eliminated range
+    offset = -1
+    
+    WHILE fibM > 1:
+        i = min(offset + fibM2, n - 1)
+        
+        IF array[i] < target:
+            fibM = fibM1
+            fibM1 = fibM2
+            fibM2 = fibM - fibM1
+            offset = i
+        ELSE IF array[i] > target:
+            fibM = fibM2
+            fibM1 = fibM1 - fibM2
+            fibM2 = fibM - fibM1
+        ELSE:
+            RETURN i
+    
+    // Check for last element
+    IF fibM1 AND offset + 1 < n AND array[offset + 1] == target:
+        RETURN offset + 1
+    
+    RETURN -1
+```
+
+### Complexity Analysis
+- **Time Complexity**: O(log n)
+- **Space Complexity**: O(1)
+- **Best Case**: O(1)
+
+### Best Practices
+- Use when division operations are expensive
+- Suitable for embedded systems with limited arithmetic
+- Provides similar performance to binary search
+- Cache-friendly access pattern
+
+---
+
+## 🔺 Ternary Search
+
+### Theory
+Ternary search divides the array into three parts instead of two, useful for unimodal functions and finding peaks in sorted arrays.
+
+### Algorithm Steps
 1. Divide array into three parts using two mid points
 2. Compare target with both mid points
 3. Eliminate two-thirds of the array based on comparisons
 4. Repeat until found
 
-#### Complexity Analysis
+### Pseudocode
+```
+FUNCTION ternarySearch(array, target):
+    left = 0
+    right = length(array) - 1
+    
+    WHILE left <= right:
+        third = (right - left) / 3
+        mid1 = left + third
+        mid2 = right - third
+        
+        IF array[mid1] == target:
+            RETURN mid1
+        ELSE IF array[mid2] == target:
+            RETURN mid2
+        ELSE IF target < array[mid1]:
+            right = mid1 - 1
+        ELSE IF target > array[mid2]:
+            left = mid2 + 1
+        ELSE:
+            left = mid1 + 1
+            right = mid2 - 1
+    
+    RETURN -1
+```
+
+### Complexity Analysis
 - **Time Complexity**: O(log₃ n) ≈ O(log n)
 - **Space Complexity**: O(1)
+- **Best Case**: O(1)
 
-### Implementation
-
-```cpp
-#include <iostream>
-using namespace std;
-
-/**
- * Iterative ternary search
- * Returns index of target if found, -1 otherwise
- */
-int ternarySearch(int arr[], int size, int target) {
-    int left = 0;
-    int right = size - 1;
-    
-    while (left <= right) {
-        int third = (right - left) / 3;
-        int mid1 = left + third;
-        int mid2 = right - third;
-        
-        if (arr[mid1] == target) {
-            return mid1;
-        }
-        
-        if (arr[mid2] == target) {
-            return mid2;
-        }
-        
-        if (target < arr[mid1]) {
-            right = mid1 - 1;
-        } else if (target > arr[mid2]) {
-            left = mid2 + 1;
-        } else {
-            left = mid1 + 1;
-            right = mid2 - 1;
-        }
-    }
-    
-    return -1;
-}
-
-/**
- * Recursive ternary search
- */
-int ternarySearchRecursive(int arr[], int left, int right, int target) {
-    if (left > right) {
-        return -1;
-    }
-    
-    int third = (right - left) / 3;
-    int mid1 = left + third;
-    int mid2 = right - third;
-    
-    if (arr[mid1] == target) {
-        return mid1;
-    }
-    
-    if (arr[mid2] == target) {
-        return mid2;
-    }
-    
-    if (target < arr[mid1]) {
-        return ternarySearchRecursive(arr, left, mid1 - 1, target);
-    } else if (target > arr[mid2]) {
-        return ternarySearchRecursive(arr, mid2 + 1, right, target);
-    } else {
-        return ternarySearchRecursive(arr, mid1 + 1, mid2 - 1, target);
-    }
-}
-
-int main() {
-    int arr[] = {10, 23, 45, 70, 89, 100, 123, 145, 167, 189};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    
-    // Test cases
-    int targets[] = {70, 10, 189, 99};
-    
-    cout << "Iterative Ternary Search:" << endl;
-    for (int target : targets) {
-        int result = ternarySearch(arr, size, target);
-        if (result != -1) {
-            cout << "Element " << target << " found at index: " << result << endl;
-        } else {
-            cout << "Element " << target << " not found in array" << endl;
-        }
-    }
-    
-    cout << "\nRecursive Ternary Search:" << endl;
-    for (int target : targets) {
-        int result = ternarySearchRecursive(arr, 0, size - 1, target);
-        if (result != -1) {
-            cout << "Element " << target << " found at index: " << result << endl;
-        } else {
-            cout << "Element " << target << " not found in array" << endl;
-        }
-    }
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-Iterative Ternary Search:
-Element 70 found at index: 3
-Element 10 found at index: 0
-Element 189 found at index: 9
-Element 99 not found in array
-
-Recursive Ternary Search:
-Element 70 found at index: 3
-Element 10 found at index: 0
-Element 189 found at index: 9
-Element 99 not found in array
-```
+### Best Practices
+- Useful for finding peaks in unimodal functions
+- More comparisons per iteration than binary search
+- Better for functions with single peak/valley
+- Not generally better than binary search for simple searching
 
 ---
 
-## 8. Hash Table Search
-
-Hash tables provide O(1) average time complexity for search operations using key-value pairs.
+## 🎯 Hash Table Search
 
 ### Theory
+Hash tables provide O(1) average time complexity for search operations using key-value pairs and hash functions.
 
-#### Complexity Analysis
-- **Time Complexity (Average)**: O(1)
-- **Time Complexity (Worst)**: O(n) - Due to collisions
+### Mathematical Foundation
+Hash function: h(key) → index
+Collision resolution strategies:
+- **Chaining**: Linked lists at each bucket
+- **Open Addressing**: Probing sequences
+
+### Algorithm Steps
+1. Compute hash of target key
+2. Access bucket at computed index
+3. Handle collisions if necessary
+4. Search within bucket for exact match
+
+### Pseudocode
+```
+FUNCTION hashSearch(hashTable, key):
+    index = hashFunction(key)
+    
+    // Handle collisions (chaining example)
+    current = hashTable[index]
+    WHILE current != null:
+        IF current.key == key:
+            RETURN current.value
+        current = current.next
+    
+    RETURN null  // Not found
+```
+
+### Complexity Analysis
+- **Average Case**: O(1) - Good hash function, low load factor
+- **Worst Case**: O(n) - All elements hash to same bucket
 - **Space Complexity**: O(n)
 
-### Implementation
-
-```cpp
-#include <iostream>
-#include <unordered_map>
-#include <string>
-using namespace std;
-
-/**
- * Hash table search using unordered_map
- */
-template<typename K, typename V>
-bool hashTableSearch(const unordered_map<K, V>& hashMap, const K& key, V& value) {
-    auto it = hashMap.find(key);
-    if (it != hashMap.end()) {
-        value = it->second;
-        return true;
-    }
-    return false;
-}
-
-int main() {
-    // Example 1: Integer keys and values
-    unordered_map<int, string> phoneBook = {
-        {1001, "Alice"},
-        {1002, "Bob"},
-        {1003, "Charlie"},
-        {1004, "Diana"},
-        {1005, "Eve"}
-    };
-    
-    cout << "Phone Book Search:" << endl;
-    int searchId = 1003;
-    string name;
-    
-    if (hashTableSearch(phoneBook, searchId, name)) {
-        cout << "ID " << searchId << " belongs to " << name << endl;
-    } else {
-        cout << "ID " << searchId << " not found" << endl;
-    }
-    
-    // Example 2: String keys
-    unordered_map<string, int> wordCount = {
-        {"hello", 5},
-        {"world", 3},
-        {"cpp", 7},
-        {"search", 2}
-    };
-    
-    string searchWord = "cpp";
-    int count;
-    
-    if (hashTableSearch(wordCount, searchWord, count)) {
-        cout << "Word '" << searchWord << "' appears " << count << " times" << endl;
-    } else {
-        cout << "Word '" << searchWord << "' not found" << endl;
-    }
-    
-    // Example 3: Custom hash function
-    struct Person {
-        string name;
-        int age;
-        
-        bool operator==(const Person& other) const {
-            return name == other.name && age == other.age;
-        }
-    };
-    
-    struct PersonHash {
-        size_t operator()(const Person& p) const {
-            return hash<string>()(p.name) ^ hash<int>()(p.age);
-        }
-    };
-    
-    unordered_map<Person, string, PersonHash> employeeData = {
-        {{"Alice", 25}, "Engineer"},
-        {{"Bob", 30}, "Manager"},
-        {{"Charlie", 35}, "Director"}
-    };
-    
-    Person searchPerson = {"Bob", 30};
-    auto it = employeeData.find(searchPerson);
-    
-    if (it != employeeData.end()) {
-        cout << searchPerson.name << " (age " << searchPerson.age 
-             << ") is a " << it->second << endl;
-    } else {
-        cout << "Employee not found" << endl;
-    }
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-Phone Book Search:
-ID 1003 belongs to Charlie
-Word 'cpp' appears 7 times
-Bob (age 30) is a Manager
-```
+### Best Practices
+- Choose appropriate hash function for data distribution
+- Maintain load factor < 0.75 for performance
+- Handle collisions efficiently
+- Consider rehashing when table grows
 
 ---
 
-## 9. Search in Trees
+## 🌳 Tree Search (BST)
 
-### Binary Search Tree (BST) Search
+### Theory
+Binary Search Trees provide dynamic searching with O(log n) average time complexity, supporting insertions and deletions.
 
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
+### Mathematical Foundation
+BST property: left subtree < node < right subtree
+Height determines performance: balanced = O(log n), unbalanced = O(n)
 
-/**
- * Node structure for Binary Search Tree
- */
-struct BSTNode {
-    int data;
-    BSTNode* left;
-    BSTNode* right;
-    
-    BSTNode(int val) : data(val), left(nullptr), right(nullptr) {}
-};
+### Algorithm Steps
+1. Start at root
+2. Compare target with current node
+3. If equal, return node
+4. If target < node, search left subtree
+5. If target > node, search right subtree
 
-/**
- * Binary Search Tree class
- */
-class BinarySearchTree {
-private:
-    BSTNode* root;
+### Pseudocode
+```
+FUNCTION bstSearch(root, target):
+    current = root
     
-    /**
-     * Insert helper function
-     */
-    BSTNode* insert(BSTNode* node, int data) {
-        if (node == nullptr) {
-            return new BSTNode(data);
-        }
-        
-        if (data < node->data) {
-            node->left = insert(node->left, data);
-        } else if (data > node->data) {
-            node->right = insert(node->right, data);
-        }
-        
-        return node;
-    }
+    WHILE current != null:
+        IF target == current.value:
+            RETURN current
+        ELSE IF target < current.value:
+            current = current.left
+        ELSE:
+            current = current.right
     
-    /**
-     * Search helper function
-     */
-    bool search(BSTNode* node, int data) {
-        if (node == nullptr) {
-            return false;
-        }
-        
-        if (node->data == data) {
-            return true;
-        }
-        
-        if (data < node->data) {
-            return search(node->left, data);
-        } else {
-            return search(node->right, data);
-        }
-    }
-    
-    /**
-     * Find minimum value node
-     */
-    BSTNode* findMin(BSTNode* node) {
-        while (node->left != nullptr) {
-            node = node->left;
-        }
-        return node;
-    }
-    
-    /**
-     * Delete helper function
-     */
-    BSTNode* deleteNode(BSTNode* node, int data) {
-        if (node == nullptr) {
-            return node;
-        }
-        
-        if (data < node->data) {
-            node->left = deleteNode(node->left, data);
-        } else if (data > node->data) {
-            node->right = deleteNode(node->right, data);
-        } else {
-            // Node with only one child or no child
-            if (node->left == nullptr) {
-                BSTNode* temp = node->right;
-                delete node;
-                return temp;
-            } else if (node->right == nullptr) {
-                BSTNode* temp = node->left;
-                delete node;
-                return temp;
-            }
-            
-            // Node with two children
-            BSTNode* temp = findMin(node->right);
-            node->data = temp->data;
-            node->right = deleteNode(node->right, temp->data);
-        }
-        
-        return node;
-    }
-    
-    /**
-     * Inorder traversal
-     */
-    void inorder(BSTNode* node) {
-        if (node == nullptr) return;
-        
-        inorder(node->left);
-        cout << node->data << " ";
-        inorder(node->right);
-    }
-    
-public:
-    BinarySearchTree() : root(nullptr) {}
-    
-    void insert(int data) {
-        root = insert(root, data);
-    }
-    
-    bool search(int data) {
-        return search(root, data);
-    }
-    
-    void remove(int data) {
-        root = deleteNode(root, data);
-    }
-    
-    void display() {
-        cout << "BST (Inorder): ";
-        inorder(root);
-        cout << endl;
-    }
-};
-
-int main() {
-    BinarySearchTree bst;
-    
-    // Insert elements
-    int elements[] = {50, 30, 70, 20, 40, 60, 80};
-    for (int elem : elements) {
-        bst.insert(elem);
-    }
-    
-    bst.display();
-    
-    // Search operations
-    int searchElements[] = {40, 90, 50, 25};
-    
-    for (int elem : searchElements) {
-        cout << "Search " << elem << ": ";
-        if (bst.search(elem)) {
-            cout << "Found" << endl;
-        } else {
-            cout << "Not found" << endl;
-        }
-    }
-    
-    // Delete and search
-    cout << "\nDeleting 40 and 70..." << endl;
-    bst.remove(40);
-    bst.remove(70);
-    
-    bst.display();
-    
-    cout << "Search 40 after deletion: ";
-    if (bst.search(40)) {
-        cout << "Found" << endl;
-    } else {
-        cout << "Not found" << endl;
-    }
-    
-    return 0;
-}
+    RETURN null  // Not found
 ```
 
-**Output:**
-```
-BST (Inorder): 20 30 40 50 60 70 80 
-Search 40: Found
-Search 90: Not found
-Search 50: Found
-Search 25: Not found
+### Complexity Analysis
+- **Average Case**: O(log n) - Balanced tree
+- **Worst Case**: O(n) - Skewed tree
+- **Space Complexity**: O(1) iterative, O(log n) recursive
 
-Deleting 40 and 70...
-BST (Inorder): 20 30 50 60 80 
-Search 40 after deletion: Not found
-```
+### Best Practices
+- Use self-balancing trees (AVL, Red-Black) for guaranteed performance
+- Consider B-Trees for disk-based storage
+- Implement proper balancing strategies
+- Handle duplicate values consistently
 
 ---
 
-## 10. Performance Comparison
+## 🧩 Sublist Search
 
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <chrono>
-#include <random>
-#include <unordered_map>
-using namespace std;
-using namespace chrono;
+### Theory
+Sublist search finds a pattern list within a larger list, useful for pattern matching and sequence detection.
 
-/**
- * Performance comparison of search algorithms
- */
-class SearchBenchmark {
-private:
-    vector<int> data;
-    unordered_map<int, int> hashMap;
+### Algorithm Steps
+1. Align pattern with start of main list
+2. Compare elements one by one
+3. If mismatch, shift pattern by one position
+4. Repeat until match found or end reached
+
+### Pseudocode
+```
+FUNCTION sublistSearch(mainList, pattern):
+    n = length(mainList)
+    m = length(pattern)
     
-public:
-    SearchBenchmark(int size) {
-        // Generate sorted data for binary search algorithms
-        data.reserve(size);
-        for (int i = 0; i < size; i++) {
-            data.push_back(i * 2);  // Even numbers
-        }
+    FOR i FROM 0 TO n - m:
+        match = true
+        FOR j FROM 0 TO m - 1:
+            IF mainList[i + j] != pattern[j]:
+                match = false
+                BREAK
         
-        // Build hash map
-        for (int i = 0; i < size; i++) {
-            hashMap[data[i]] = i;
-        }
-    }
+        IF match:
+            RETURN i  // Pattern found at position i
     
-    // Linear Search
-    long long benchmarkLinearSearch(int target) {
-        auto start = high_resolution_clock::now();
-        
-        for (int val : data) {
-            if (val == target) break;
-        }
-        
-        auto end = high_resolution_clock::now();
-        return duration_cast<nanoseconds>(end - start).count();
-    }
-    
-    // Binary Search
-    long long benchmarkBinarySearch(int target) {
-        auto start = high_resolution_clock::now();
-        
-        binary_search(data.begin(), data.end(), target);
-        
-        auto end = high_resolution_clock::now();
-        return duration_cast<nanoseconds>(end - start).count();
-    }
-    
-    // Hash Table Search
-    long long benchmarkHashSearch(int target) {
-        auto start = high_resolution_clock::now();
-        
-        hashMap.find(target);
-        
-        auto end = high_resolution_clock::now();
-        return duration_cast<nanoseconds>(end - start).count();
-    }
-    
-    // STL Find
-    long long benchmarkSTLFind(int target) {
-        auto start = high_resolution_clock::now();
-        
-        find(data.begin(), data.end(), target);
-        
-        auto end = high_resolution_clock::now();
-        return duration_cast<nanoseconds>(end - start).count();
-    }
-    
-    void runBenchmark() {
-        const int SIZE = data.size();
-        int targetPresent = data[SIZE / 2];  // Middle element
-        int targetAbsent = -1;               // Not present
-        
-        cout << "Search Algorithm Performance Comparison" << endl;
-        cout << "Dataset size: " << SIZE << endl;
-        cout << "Target (present): " << targetPresent << endl;
-        cout << "Target (absent): " << targetAbsent << endl;
-        cout << "----------------------------------------" << endl;
-        
-        // Test with present element
-        cout << "\nSearching for PRESENT element:" << endl;
-        cout << "Linear Search:    " << benchmarkLinearSearch(targetPresent) << " ns" << endl;
-        cout << "Binary Search:    " << benchmarkBinarySearch(targetPresent) << " ns" << endl;
-        cout << "Hash Table:       " << benchmarkHashSearch(targetPresent) << " ns" << endl;
+    RETURN -1  // Pattern not found
+```
+
+### Complexity Analysis
+- **Average Case**: O(n + m)
+- **Worst Case**: O(n × m)
+- **Space Complexity**: O(1)
+
+### Best Practices
+- Use KMP algorithm for better worst-case performance
+- Consider Rabin-Karp for rolling hash approach
+- Optimize for specific pattern characteristics
+- Handle edge cases (empty pattern, pattern larger than text)
+
+---
+
+## 📋 Comprehensive Algorithm Comparison
+
+### Decision Matrix
+
+| Algorithm | Data Type | Sorted | Size Range | Stability | Memory | Best Use Case |
+|-----------|-----------|--------|------------|-----------|---------|---------------|
+| Linear | Any | No | Small (<100) | N/A | O(1) | Unsorted data |
+| Binary | Comparable | Yes | Large (>1000) | N/A | O(1) | Static sorted data |
+| Jump | Comparable | Yes | Medium (100-10000) | N/A | O(1) | Simple alternative to binary |
+| Interpolation | Numeric | Yes | Large, uniform | N/A | O(1) | Uniformly distributed |
+| Exponential | Comparable | Yes | Unknown/Infinite | N/A | O(1) | Unbounded arrays |
+| Fibonacci | Comparable | Yes | Large | N/A | O(1) | Division-optimized |
+| Ternary | Comparable | Yes | Large | N/A | O(1) | Unimodal functions |
+| Hash | Hashable | No | Any | N/A | O(n) | Frequent lookups |
+| BST | Comparable | Self-sorting | Dynamic | N/A | O(n) | Dynamic data |
+| Sublist | Sequence | No | Pattern matching | N/A | O(1) | Pattern detection |
+
+### Performance Guidelines
+
+1. **Small datasets (< 100)**: Linear search is often fastest due to cache efficiency
+2. **Medium datasets (100-10000)**: Binary search or jump search
+3. **Large datasets (> 10000)**: Binary search, hash tables, or balanced trees
+4. **Static data**: Binary search on pre-sorted arrays
+5. **Dynamic data**: Hash tables or balanced BSTs
+6. **Uniform distribution**: Interpolation search outperforms binary
+7. **Frequent insertions/deletions**: Hash tables or balanced trees
+8. **Memory constraints**: In-place algorithms (binary, jump, linear)
+
+---
+
+## 🚀 Advanced Topics and Optimizations
+
+### 1. **Hybrid Approaches**
+- Interpolation + Binary for non-uniform data
+- Jump + Linear for cache optimization
+- Hash + Tree for collision resolution
+
+### 2. **Parallel Search**
+- Multi-threaded linear search
+- Parallel binary search
+- Distributed hash tables
+
+### 3. **Cache-Optimized Search**
+- Block search for better cache utilization
+- Prefetching strategies
+- SIMD optimizations
+
+### 4. **Probabilistic Search**
+- Bloom filters for membership testing
+- Skip lists for probabilistic balancing
+- Locality-sensitive hashing
+
+### 5. **External Memory Search**
+- B-Trees for disk-based storage
+- Buffer tree techniques
+- External memory binary search
+
+---
+
+## 🎯 Best Practices Summary
+
+### General Guidelines
+1. **Profile before optimizing**: Measure actual performance
+2. **Consider data characteristics**: Size, distribution, update frequency
+3. **Handle edge cases**: Empty inputs, single elements, duplicates
+4. **Validate assumptions**: Ensure preconditions are met
+5. **Document trade-offs**: Space vs time, simplicity vs performance
+
+### Implementation Tips
+1. **Use appropriate data structures**: Arrays, vectors, trees, hash tables
+2. **Optimize for common case**: Most frequent access patterns
+3. **Consider memory hierarchy**: Cache, RAM, disk
+4. **Implement robust error handling**: Invalid inputs, overflow
+5. **Write comprehensive tests**: Edge cases, performance benchmarks
+
+### When to Choose Which Algorithm
+
+**Choose Linear Search when:**
+- Dataset is small (< 100 elements)
+- Data is unsorted and sorting is expensive
+- Simplicity and reliability are priorities
+- Cache performance is critical
+
+**Choose Binary Search when:**
+- Data is sorted or can be sorted once
+- Multiple searches will be performed
+- Logarithmic performance is required
+- Memory usage must be minimal
+
+**Choose Hash Table when:**
+- Average O(1) performance is needed
+- Data is dynamic with frequent updates
+- Keys can be effectively hashed
+- Memory overhead is acceptable
+
+**Choose Balanced Tree when:**
+- Data must remain sorted
+- Range queries are needed
+- Memory is constrained (compared to hash tables)
+- Ordered traversal is required
+
+---
+
+*This comprehensive guide provides the theoretical foundation for understanding and implementing search algorithms effectively in C++. The choice of algorithm depends on your specific requirements, data characteristics, and performance constraints.*
         cout << "STL Find:         " << benchmarkSTLFind(targetPresent) << " ns" << endl;
         
         // Test with absent element

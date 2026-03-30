@@ -6,12 +6,54 @@ This directory contains comprehensive implementations of various sorting algorit
 
 ```
 Sorting/
-├── README.md                    # This file - Overview and guide
-├── Sorting_Algorithms.md       # Complete reference with all algorithms
-├── Bubble_Sort.md              # Bubble sort and its variants
-├── Quick_Sort.md               # Quick sort with optimizations
-└── [More algorithms to be added]
+├── README.md                   # This file - Overview and guide
+├── Theory.md                   # Theoretical foundations and best practices
+├── 01_Bubble_Sort.md           # Bubble sort and its variants
+├── 02_Insertion_Sort.md        # Insertion sort and optimizations
+├── 03_Selection_Sort.md        # Selection sort implementations
+├── 04_Merge_Sort.md            # Merge sort and external sorting
+├── 05_Quick_Sort.md            # Quick sort with optimizations
+├── 06_Heap_Sort.md             # Heap sort implementations
+├── 07_Radix_Sort.md            # Radix sort for integers
+├── 08_Counting_Sort.md         # Counting sort for limited range
+├── 09_Bucket_Sort.md           # Bucket sort for distributed data
+├── 10_Shell_Sort.md            # Shell sort with gap sequences
+├── 11_Tim_Sort.md              # Tim sort (Python's default)
+├── 12_Intro_Sort.md            # Intro sort (C++ std::sort)
+├── 13_Cocktail_Sort.md         # Cocktail sort (bidirectional bubble)
+├── 14_Comb_Sort.md             # Comb sort (improved bubble)
+├── 15_Gnome_Sort.md            # Gnome sort (simple insertion-like)
+├── 16_Odd_Even_Sort.md         # Odd-Even sort (parallel processing)
+├── 17_Bitonic_Sort.md          # Bitonic sort (parallel sorting)
+├── 18_Pancake_Sort.md          # Pancake sort (flipping analogy)
+├── 19_Cycle_Sort.md            # Cycle sort (minimal writes)
+└── 20_Bogo_Sort.md             # Bogo sort (educational, impractical)
 ```
+
+## 📊 Complete List of Sorting Algorithms
+
+| Algorithm | Best Case | Average Case | Worst Case | Space | Stable | Use Case |
+|-----------|-----------|--------------|------------|-------|--------|----------|
+| Bubble Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Small datasets, educational |
+| Selection Sort | O(n²) | O(n²) | O(n²) | O(1) | No | Small datasets, minimal swaps |
+| Insertion Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Nearly sorted data, small n |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | Large datasets, stable sort |
+| Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) | No | General purpose, in-place |
+| Heap Sort | O(n log n) | O(n log n) | O(n log n) | O(1) | No | In-place, guaranteed time |
+| Counting Sort | O(n+k) | O(n+k) | O(n+k) | O(k) | Yes | Small integer range |
+| Radix Sort | O(d*(n+k)) | O(d*(n+k)) | O(d*(n+k)) | O(n+k) | Yes | Integer keys |
+| Bucket Sort | O(n+k) | O(n+k) | O(n²) | O(n+k) | Yes | Uniformly distributed data |
+| Shell Sort | O(n log n) | O(n(log n)²) | O(n²) | O(1) | No | Improvement over insertion |
+| Tim Sort | O(n) | O(n log n) | O(n log n) | O(n) | Yes | Python's default, real-world data |
+| Intro Sort | O(n log n) | O(n log n) | O(n log n) | O(log n) | No | C++'s std::sort |
+| Cocktail Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Bidirectional bubble sort |
+| Comb Sort | O(n log n) | O(n²/2^p) | O(n²) | O(1) | No | Improved bubble sort |
+| Gnome Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Simple, similar to insertion |
+| Odd-Even Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Parallel processing |
+| Bogo Sort | O(n) | O(n × n!) | O(∞) | O(1) | No | Educational, impractical |
+| Bitonic Sort | O(log² n) | O(log² n) | O(log² n) | O(n log² n) | No | Parallel sorting |
+| Pancake Sort | O(n) | O(n²) | O(n²) | O(1) | No | Pancake flipping analogy |
+| Cycle Sort | O(n²) | O(n²) | O(n²) | O(1) | No | Minimal writes |
 
 ## Available Algorithms
 
@@ -75,6 +117,60 @@ Sorting/
 - **Best for**: Medium-sized arrays, in-place improvement
 - **Variants**: Different gap sequences, adaptive, optimized
 
+### 11. Tim Sort
+- **File**: `Tim_Sort.md`
+- **Complexity**: O(n) best, O(n log n) average/worst, O(n) space
+- **Best for**: Real-world data, partially sorted arrays
+- **Variants**: Adaptive merge, galloping mode
+
+### 12. Intro Sort
+- **File**: `Intro_Sort.md`
+- **Complexity**: O(n log n) all cases, O(log n) space
+- **Best for**: General purpose, worst-case guarantee
+- **Variants**: Hybrid quick+heap+insertion sort
+
+### 13. Cocktail Sort
+- **File**: `Cocktail_Sort.md`
+- **Complexity**: O(n) best, O(n²) average/worst, O(1) space
+- **Best for**: Small datasets, educational
+- **Variants**: Bidirectional bubble, optimized
+
+### 14. Comb Sort
+- **File**: `Comb_Sort.md`
+- **Complexity**: O(n log n) best, O(n²/2^p) average, O(n²) worst
+- **Best for**: Improvement over bubble sort
+- **Variants**: Gap sequence optimization
+
+### 15. Gnome Sort
+- **File**: `Gnome_Sort.md`
+- **Complexity**: O(n) best, O(n²) average/worst, O(1) space
+- **Best for**: Simple implementation, educational
+- **Variants**: Optimized, recursive
+
+### 16. Odd-Even Sort
+- **File**: `Odd_Even_Sort.md`
+- **Complexity**: O(n) best, O(n²) average/worst, O(1) space
+- **Best for**: Parallel processing environments
+- **Variants**: Parallel implementation
+
+### 17. Bitonic Sort
+- **File**: `Bitonic_Sort.md`
+- **Complexity**: O(log² n) all cases, O(n log² n) space
+- **Best for**: Parallel processing, GPU sorting
+- **Variants**: Network-based, recursive
+
+### 18. Pancake Sort
+- **File**: `Pancake_Sort.md`
+- **Complexity**: O(n) best, O(n²) average/worst, O(1) space
+- **Best for**: Educational, pancake flipping problem
+- **Variants**: Optimized flip sequence
+
+### 19. Cycle Sort
+- **File**: `Cycle_Sort.md`
+- **Complexity**: O(n²) all cases, O(1) space
+- **Best for**: Minimal write operations
+- **Variants**: In-place, memory-constrained
+
 ## Algorithm Comparison
 
 | Algorithm | Best Time | Average Time | Worst Time | Space | Stable | In-Place |
@@ -89,6 +185,16 @@ Sorting/
 | Radix Sort | O(d × (n + k)) | O(d × (n + k)) | O(d × (n + k)) | O(n + k) | ✅ | ❌ |
 | Bucket Sort | O(n + k) | O(n + k) | O(n²) | O(n + k) | ✅ | ❌ |
 | Shell Sort | O(n log n) | O(n^1.3) | O(n²) | O(1) | ❌ | ✅ |
+| Tim Sort | O(n) | O(n log n) | O(n log n) | O(n) | ✅ | ❌ |
+| Intro Sort | O(n log n) | O(n log n) | O(n log n) | O(log n) | ❌ | ✅ |
+| Cocktail Sort | O(n) | O(n²) | O(n²) | O(1) | ✅ | ✅ |
+| Comb Sort | O(n log n) | O(n²/2^p) | O(n²) | O(1) | ❌ | ✅ |
+| Gnome Sort | O(n) | O(n²) | O(n²) | O(1) | ✅ | ✅ |
+| Odd-Even Sort | O(n) | O(n²) | O(n²) | O(1) | ✅ | ✅ |
+| Bogo Sort | O(n) | O(n × n!) | O(∞) | O(1) | ❌ | ✅ |
+| Bitonic Sort | O(log² n) | O(log² n) | O(log² n) | O(n log² n) | ❌ | ❌ |
+| Pancake Sort | O(n) | O(n²) | O(n²) | O(1) | ❌ | ✅ |
+| Cycle Sort | O(n²) | O(n²) | O(n²) | O(1) | ❌ | ✅ |
 
 ## Choosing the Right Sorting Algorithm
 

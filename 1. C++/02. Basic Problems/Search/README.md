@@ -6,14 +6,34 @@ This directory contains comprehensive implementations of various search algorith
 
 ```
 Search/
-├── README.md                    # This file - Overview and guide
-├── Search_Algorithms.md         # Complete reference with all algorithms
-├── Linear_Search.md            # Linear search with detailed implementations
-├── Binary_Search.md            # Binary search and its variants
-├── Jump_Search.md              # Jump search algorithm
-├── Interpolation_Search.md     # Interpolation search for uniform data
-└── [More algorithms to be added]
+├── README.md                   # This file - Overview and guide
+├── Theory.md                   # Theoretical foundations and best practices
+├── 01_Linear_Search.md         # Linear search implementations
+├── 02_Binary_Search.md         # Binary search and variants
+├── 03_Jump_Search.md           # Jump search algorithm
+├── 04_Interpolation_Search.md  # Interpolation search for uniform data
+├── 05_Exponential_Search.md    # Exponential search for unbounded arrays
+├── 06_Fibonacci_Search.md      # Fibonacci search (division-free)
+├── 07_Ternary_Search.md        # Ternary search for unimodal functions
+├── 08_Sublist_Search.md        # Sublist search for pattern matching
+├── 09_Hash_Search.md           # Hash table search implementations
+└── 10_Tree_Search.md           # Tree search (BST, AVL, Red-Black)
 ```
+
+## 📊 Complete List of Searching Algorithms
+
+| Algorithm | Best Case | Average Case | Worst Case | Space | Stable | Use Case |
+|-----------|-----------|--------------|------------|-------|--------|----------|
+| Linear Search | O(1) | O(n) | O(n) | O(1) | N/A | Unsorted small data |
+| Binary Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data |
+| Jump Search | O(1) | O(√n) | O(√n) | O(1) | N/A | Sorted data, better than linear |
+| Interpolation Search | O(1) | O(log log n) | O(n) | O(1) | N/A | Uniformly distributed data |
+| Exponential Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Unlimited sorted data |
+| Fibonacci Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data, division-free |
+| Ternary Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Unimodal functions |
+| Sublist Search | O(1) | O(m+n) | O(m*n) | O(1) | N/A | Pattern matching in lists |
+| Hashing | O(1) | O(1) | O(n) | O(n) | N/A | Fast lookup with keys |
+| Tree Search (BST) | O(log n) | O(log n) | O(n) | O(1) | N/A | Dynamic data |
 
 ## Available Algorithms
 
@@ -41,15 +61,56 @@ Search/
 - **Best for**: Uniformly distributed data
 - **Variants**: Template version, floating-point support, error handling
 
+### 5. Exponential Search
+- **File**: `Exponential_Search.md`
+- **Complexity**: O(log n) time, O(1) space
+- **Best for**: Unbounded/infinite sorted arrays
+- **Variants**: Recursive, array bounds checking
+
+### 6. Fibonacci Search
+- **File**: `Fibonacci_Search.md`
+- **Complexity**: O(log n) time, O(1) space
+- **Best for**: Sorted data, division-free operations
+- **Variants**: Iterative, recursive, optimized
+
+### 7. Ternary Search
+- **File**: `Ternary_Search.md`
+- **Complexity**: O(log n) time, O(1) space
+- **Best for**: Unimodal functions, finding peaks
+- **Variants**: Iterative, recursive, function optimization
+
+### 8. Sublist Search
+- **File**: `Sublist_Search.md`
+- **Complexity**: O(m+n) average, O(m*n) worst
+- **Best for**: Pattern matching in linked lists
+- **Variants**: Linked list, array pattern matching
+
+### 9. Hash Table Search
+- **File**: `Hash_Search.md`
+- **Complexity**: O(1) average, O(n) worst
+- **Best for**: Fast lookups with keys
+- **Variants**: Custom hash functions, collision handling
+
+### 10. Tree Search (BST)
+- **File**: `Tree_Search.md`
+- **Complexity**: O(log n) average, O(n) worst
+- **Best for**: Dynamic data, range queries
+- **Variants**: BST, AVL, Red-Black, B-Tree
+
 ## Algorithm Comparison
 
-| Algorithm | Time Complexity | Space | Data Required | Best Use Case |
-|-----------|----------------|-------|---------------|--------------|
-| Linear Search | O(n) | O(1) | Unsorted | Small datasets, unsorted data |
-| Binary Search | O(log n) | O(1) | Sorted | Large sorted datasets |
-| Jump Search | O(√n) | O(1) | Sorted | Medium-sized arrays |
-| Interpolation Search | O(log log n) avg, O(n) worst | O(1) | Sorted, Uniform | Uniformly distributed data |
-| Hash Table Search | O(1) avg, O(n) worst | O(n) | Any | Frequent lookups |
+| Algorithm | Time Complexity | Space | Data Required | Best Use Case | Stability |
+|-----------|----------------|-------|---------------|--------------|-----------|
+| Linear Search | O(n) | O(1) | Unsorted | Small datasets, unsorted data | N/A |
+| Binary Search | O(log n) | O(1) | Sorted | Large sorted datasets | N/A |
+| Jump Search | O(√n) | O(1) | Sorted | Medium-sized arrays | N/A |
+| Interpolation Search | O(log log n) avg, O(n) worst | O(1) | Sorted, Uniform | Uniformly distributed data | N/A |
+| Exponential Search | O(log n) | O(1) | Sorted | Unbounded arrays | N/A |
+| Fibonacci Search | O(log n) | O(1) | Sorted | Division-free operations | N/A |
+| Ternary Search | O(log n) | O(1) | Sorted | Unimodal functions | N/A |
+| Sublist Search | O(m+n) avg, O(m*n) worst | O(1) | Any | Pattern matching | N/A |
+| Hash Table Search | O(1) avg, O(n) worst | O(n) | Any | Frequent lookups | N/A |
+| Tree Search (BST) | O(log n) avg, O(n) worst | O(1) | Sorted | Dynamic data | N/A |
 
 ## Choosing the Right Algorithm
 
