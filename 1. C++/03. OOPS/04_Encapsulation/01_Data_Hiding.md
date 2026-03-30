@@ -1,5 +1,3 @@
-# 04_Encapsulation/01_Data_Hiding.md
-
 # Data Hiding in C++ - Complete Guide
 
 ## 📖 Overview

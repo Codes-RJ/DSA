@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/07_Const_Members.md
-
 # Const Members in C++ - Complete Guide
 
 ## 📖 Overview

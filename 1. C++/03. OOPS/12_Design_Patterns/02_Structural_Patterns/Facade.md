@@ -1,5 +1,3 @@
-# 12_Design_Patterns/02_Structural_Patterns/Facade.md
-
 # Facade Pattern in C++ - Complete Guide
 
 ## 📖 Overview

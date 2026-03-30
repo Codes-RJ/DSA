@@ -1,5 +1,3 @@
-# 04_Encapsulation/03_Access_Control.md
-
 # Access Control in C++ - Complete Guide
 
 ## 📖 Overview

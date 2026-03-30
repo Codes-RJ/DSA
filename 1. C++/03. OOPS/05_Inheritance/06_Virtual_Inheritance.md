@@ -1,5 +1,3 @@
-# 05_Inheritance/06_Virtual_Inheritance.md
-
 # Virtual Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

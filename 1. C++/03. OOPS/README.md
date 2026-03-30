@@ -169,12 +169,12 @@ OOPS/
 │   └── 10_Concepts.md
 │
 ├── 15_Projects_and_Applications/
-│   ├── Theory.md
-│   ├── 01_Banking_System.md
-│   ├── 02_Library_Management.md
-│   ├── 03_Employee_Management.md
-│   ├── 04_Shape_Calculator.md
-│   └── 05_Game_Character_System.md
+│   └── Theory.md
+│       ├── 01_Banking_System.md
+│       ├── 02_Library_Management.md
+│       ├── 03_Employee_Management.md
+│       ├── 04_Shape_Calculator.md
+│       └── 05_Game_Character_System.md
 │
 ├── 00_Index.md
 ├── 00_Glossary.md

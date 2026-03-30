@@ -1,9 +1,3 @@
-I'll now start with the **Design Patterns** section. Let me begin with the theory file.
-
----
-
-# 12_Design_Patterns/Theory.md
-
 # Design Patterns in C++ - Complete Guide
 
 ## 📖 Overview

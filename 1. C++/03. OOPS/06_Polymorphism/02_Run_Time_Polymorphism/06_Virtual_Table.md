@@ -1,5 +1,3 @@
-# 06_Polymorphism/02_Run_Time_Polymorphism/06_Virtual_Table.md
-
 # Virtual Table (vtable) in C++ - Complete Guide
 
 ## 📖 Overview

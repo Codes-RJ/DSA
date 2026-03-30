@@ -1,4 +1,4 @@
-# iomanip - I/O Stream Manipulators
+# 30_iomanip - I/O Stream Manipulators
 
 The `iomanip` header provides a set of *manipulators* — special objects you insert into a stream with `<<` or extract with `>>` — that control how subsequent data is formatted.
 

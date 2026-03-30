@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/09_Nested_Classes.md
-
 # Nested Classes in C++ - Complete Guide
 
 ## 📖 Overview

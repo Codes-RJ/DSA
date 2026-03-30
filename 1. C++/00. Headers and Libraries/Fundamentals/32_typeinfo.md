@@ -1,4 +1,4 @@
-# typeinfo - Runtime Type Information (RTTI)
+# 32_typeinfo - Runtime Type Information (RTTI)
 
 The `typeinfo` header provides access to runtime type metadata through the `typeid` operator and the `std::type_info` class, allowing programs to query the actual type of an object at runtime.
 

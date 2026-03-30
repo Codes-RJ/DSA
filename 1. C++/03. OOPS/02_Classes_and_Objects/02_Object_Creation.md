@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/02_Object_Creation.md
-
 # Object Creation in C++ - Complete Guide
 
 ## 📖 Overview

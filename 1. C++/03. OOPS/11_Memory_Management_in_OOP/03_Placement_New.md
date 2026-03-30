@@ -1,5 +1,3 @@
-# 11_Memory_Management_in_OOP/03_Placement_New.md
-
 # Placement New in C++ - Complete Guide
 
 ## 📖 Overview

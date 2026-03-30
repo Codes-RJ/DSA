@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/08_Destructor.md
-
 # Destructor in C++ - Complete Guide
 
 ## 📖 Overview

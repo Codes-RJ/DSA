@@ -1,5 +1,3 @@
-# 05_Inheritance/01_Basics_of_Inheritance.md
-
 # Basics of Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

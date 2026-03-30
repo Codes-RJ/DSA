@@ -1,5 +1,3 @@
-# 12_Design_Patterns/01_Creational_Patterns/Singleton.md
-
 # Singleton Pattern in C++ - Complete Guide
 
 ## 📖 Overview

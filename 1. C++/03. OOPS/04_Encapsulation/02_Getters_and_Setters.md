@@ -1,5 +1,3 @@
-# 04_Encapsulation/02_Getters_and_Setters.md
-
 # Getters and Setters in C++ - Complete Guide
 
 ## 📖 Overview

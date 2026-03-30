@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/07_Placement_New.md
-
 # Placement New in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/02_Range_Based_For_Loops.md
-
 # Range-Based For Loops in C++ - Complete Guide
 
 ## 📖 Overview

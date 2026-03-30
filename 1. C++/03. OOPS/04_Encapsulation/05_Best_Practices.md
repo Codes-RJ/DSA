@@ -1,5 +1,3 @@
-# 04_Encapsulation/05_Best_Practices.md
-
 # Encapsulation Best Practices
 
 ## 📖 Overview

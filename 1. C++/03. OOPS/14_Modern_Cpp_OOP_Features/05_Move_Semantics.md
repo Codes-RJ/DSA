@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/05_Move_Semantics.md
-
 # Move Semantics in C++ - Complete Guide
 
 ## 📖 Overview

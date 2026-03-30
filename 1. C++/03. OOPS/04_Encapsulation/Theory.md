@@ -1,5 +1,3 @@
-# 04_Encapsulation/Theory.md
-
 # Encapsulation in C++ - Complete Guide
 
 ## 📖 Overview

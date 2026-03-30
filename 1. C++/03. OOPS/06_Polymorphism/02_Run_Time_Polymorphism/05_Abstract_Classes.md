@@ -1,5 +1,3 @@
-# 06_Polymorphism/02_Run_Time_Polymorphism/05_Abstract_Classes.md
-
 # Abstract Classes in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/03_Copy_Constructor.md
-
 # Copy Constructor in C++ - Complete Guide
 
 ## 📖 Overview

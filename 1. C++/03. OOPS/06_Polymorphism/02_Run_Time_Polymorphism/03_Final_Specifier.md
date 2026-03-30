@@ -1,5 +1,3 @@
-# 06_Polymorphism/02_Run_Time_Polymorphism/03_Final_Specifier.md
-
 # Final Specifier in C++ - Complete Guide
 
 ## 📖 Overview

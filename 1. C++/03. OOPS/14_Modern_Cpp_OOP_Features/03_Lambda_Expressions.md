@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/03_Lambda_Expressions.md
-
 # Lambda Expressions in C++ - Complete Guide
 
 ## 📖 Overview

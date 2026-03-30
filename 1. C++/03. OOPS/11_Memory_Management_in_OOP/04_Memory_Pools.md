@@ -1,5 +1,3 @@
-# 11_Memory_Management_in_OOP/04_Memory_Pools.md
-
 # Memory Pools in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 07_Abstraction/02_Interfaces_in_Cpp.md
-
 # Interfaces in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 04_Encapsulation/04_Practical_Examples.md
-
 # Encapsulation - Practical Examples
 
 ## 📖 Overview

@@ -1,4 +1,4 @@
-# random - Random Number Generation Library
+# 27_random - Random Number Generation Library
 
 The `random` header provides a modern, flexible, and statistically robust framework for random number generation in C++, replacing the old `rand()` / `srand()` approach.
 

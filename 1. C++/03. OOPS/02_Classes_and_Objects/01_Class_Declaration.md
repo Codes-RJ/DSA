@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/01_Class_Declaration.md
-
 # Class Declaration in C++ - Complete Guide
 
 ## 📖 Overview

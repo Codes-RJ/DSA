@@ -1,5 +1,3 @@
-# 07_Abstraction/03_Abstract_vs_Concrete.md
-
 # Abstract vs Concrete Classes in C++ - Complete Guide
 
 ## 📖 Overview

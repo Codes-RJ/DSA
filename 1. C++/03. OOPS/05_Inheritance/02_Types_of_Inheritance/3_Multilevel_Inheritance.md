@@ -1,5 +1,3 @@
-# 05_Inheritance/02_Types_of_Inheritance/Multilevel_Inheritance.md
-
 # Multilevel Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

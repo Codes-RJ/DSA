@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/05_Constructor_Overloading.md
-
 # Constructor Overloading in C++ - Complete Guide
 
 ## 📖 Overview

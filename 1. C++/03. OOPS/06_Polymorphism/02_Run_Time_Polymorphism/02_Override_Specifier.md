@@ -1,5 +1,3 @@
-# 06_Polymorphism/02_Run_Time_Polymorphism/02_Override_Specifier.md
-
 # Override Specifier in C++ - Complete Guide
 
 ## 📖 Overview

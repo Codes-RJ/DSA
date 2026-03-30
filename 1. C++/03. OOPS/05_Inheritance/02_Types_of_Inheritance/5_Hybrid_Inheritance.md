@@ -1,5 +1,3 @@
-# 05_Inheritance/02_Types_of_Inheritance/Hybrid_Inheritance.md
-
 # Hybrid Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

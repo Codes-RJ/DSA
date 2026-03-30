@@ -1,4 +1,4 @@
-# limits - Numeric Limits
+# 34_limits - Numeric Limits
 
 The `limits` header provides a uniform, type-safe way to query the minimum, maximum, and special properties of every arithmetic type, replacing the macro-based approach of C's `<climits>` and `<cfloat>`.
 

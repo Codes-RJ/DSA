@@ -1,5 +1,3 @@
-# 01_Introduction/02_Procedural_vs_OOP.md
-
 # Procedural Programming vs Object-Oriented Programming
 
 ## 📖 Overview

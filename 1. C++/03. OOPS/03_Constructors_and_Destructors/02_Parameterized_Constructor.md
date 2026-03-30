@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/02_Parameterized_Constructor.md
-
 # Parameterized Constructor in C++ - Complete Guide
 
 ## 📖 Overview

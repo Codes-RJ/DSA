@@ -1,9 +1,3 @@
-I'll assume you want to continue with **02_Types_of_Inheritance** folder containing all 5 types of inheritance. Let me create them one by one.
-
----
-
-# 05_Inheritance/02_Types_of_Inheritance/Single_Inheritance.md
-
 # Single Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

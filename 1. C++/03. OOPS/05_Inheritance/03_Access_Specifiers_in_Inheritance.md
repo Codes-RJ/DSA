@@ -1,5 +1,3 @@
-# 05_Inheritance/03_Access_Specifiers_in_Inheritance.md
-
 # Access Specifiers in Inheritance - Complete Guide
 
 ## 📖 Overview

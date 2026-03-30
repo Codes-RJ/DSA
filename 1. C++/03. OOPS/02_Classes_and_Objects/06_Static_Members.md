@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/06_Static_Members.md
-
 # Static Members in C++ - Complete Guide
 
 ## 📖 Overview

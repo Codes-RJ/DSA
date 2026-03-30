@@ -1,5 +1,3 @@
-# 05_Inheritance/Theory.md
-
 # Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

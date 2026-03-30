@@ -1,5 +1,3 @@
-# 07_Abstraction/Theory.md
-
 # Abstraction in C++ - Complete Guide
 
 ## 📖 Overview

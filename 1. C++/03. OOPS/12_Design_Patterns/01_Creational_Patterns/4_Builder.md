@@ -1,5 +1,3 @@
-# 12_Design_Patterns/01_Creational_Patterns/Builder.md
-
 # Builder Pattern in C++ - Complete Guide
 
 ## 📖 Overview

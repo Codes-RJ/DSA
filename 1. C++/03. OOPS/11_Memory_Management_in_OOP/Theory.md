@@ -1,5 +1,3 @@
-# 11_Memory_Management_in_OOP/Theory.md
-
 # Memory Management in OOP - Complete Guide
 
 ## 📖 Overview

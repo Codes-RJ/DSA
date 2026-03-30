@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/04_Data_Members.md
-
 # Data Members in C++ - Complete Guide
 
 ## 📖 Overview

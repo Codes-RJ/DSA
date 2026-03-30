@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/08_Inline_Functions.md
-
 # Inline Functions in C++ - Complete Guide
 
 ## 📖 Overview

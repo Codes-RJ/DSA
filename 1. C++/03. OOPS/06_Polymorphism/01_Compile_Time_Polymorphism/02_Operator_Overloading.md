@@ -1,5 +1,3 @@
-# 06_Polymorphism/01_Compile_Time_Polymorphism/02_Operator_Overloading.md
-
 # Operator Overloading in C++ - Complete Guide
 
 ## 📖 Overview

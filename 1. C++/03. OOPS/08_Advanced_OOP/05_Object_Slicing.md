@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/05_Object_Slicing.md
-
 # Object Slicing in C++ - Complete Guide
 
 ## 📖 Overview

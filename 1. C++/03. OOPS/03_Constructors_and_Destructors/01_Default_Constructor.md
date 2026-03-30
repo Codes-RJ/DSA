@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/01_Default_Constructor.md
-
 # Default Constructor in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/10_Rule_of_Three_Five_Zero.md
-
 # Rule of Three, Five, and Zero in C++ - Complete Guide
 
 ## 📖 Overview

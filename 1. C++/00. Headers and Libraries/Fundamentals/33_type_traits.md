@@ -1,4 +1,4 @@
-# type_traits - Compile-Time Type Utilities
+# 33_type_traits - Compile-Time Type Utilities
 
 The `type_traits` header is the backbone of C++ template metaprogramming. It provides a rich set of compile-time predicates and transformations that let you inspect and manipulate types without any runtime cost.
 

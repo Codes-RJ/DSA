@@ -1,5 +1,3 @@
-# 13_Best_Practices/Theory.md
-
 # C++ OOP Best Practices - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/01_Auto_and_Decltype.md
-
 # auto and decltype in C++ - Complete Guide
 
 ## 📖 Overview

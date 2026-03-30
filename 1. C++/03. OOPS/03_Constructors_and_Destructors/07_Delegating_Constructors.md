@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/07_Delegating_Constructors.md
-
 # Delegating Constructors in C++ - Complete Guide
 
 ## 📖 Overview

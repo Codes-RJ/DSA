@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/01_Friend_Functions_and_Classes.md
-
 # Friend Functions and Classes in C++ - Complete Guide
 
 ## 📖 Overview

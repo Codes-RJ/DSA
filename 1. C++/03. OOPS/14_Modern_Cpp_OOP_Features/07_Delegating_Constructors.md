@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/07_Delegating_Constructors.md
-
 # Delegating Constructors in C++ - Complete Guide
 
 ## 📖 Overview

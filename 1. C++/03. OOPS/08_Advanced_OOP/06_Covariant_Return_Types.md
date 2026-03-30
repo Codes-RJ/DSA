@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/06_Covariant_Return_Types.md
-
 # Covariant Return Types in C++ - Complete Guide
 
 ## 📖 Overview

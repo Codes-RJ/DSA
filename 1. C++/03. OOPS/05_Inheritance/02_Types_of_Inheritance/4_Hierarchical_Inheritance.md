@@ -1,5 +1,3 @@
-# 05_Inheritance/02_Types_of_Inheritance/Hierarchical_Inheritance.md
-
 # Hierarchical Inheritance in C++ - Complete Guide
 
 ## 📖 Overview

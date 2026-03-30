@@ -1,5 +1,3 @@
-# 12_Design_Patterns/01_Creational_Patterns/Abstract_Factory.md
-
 # Abstract Factory Pattern in C++ - Complete Guide
 
 ## 📖 Overview

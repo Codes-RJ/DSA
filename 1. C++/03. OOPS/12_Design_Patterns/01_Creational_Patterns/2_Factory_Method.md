@@ -1,5 +1,3 @@
-# 12_Design_Patterns/01_Creational_Patterns/Factory_Method.md
-
 # Factory Method Pattern in C++ - Complete Guide
 
 ## 📖 Overview

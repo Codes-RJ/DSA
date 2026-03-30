@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/Theory.md
-
 # Advanced OOP in C++ - Complete Guide
 
 ## 📖 Overview

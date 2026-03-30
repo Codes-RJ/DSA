@@ -1,5 +1,3 @@
-# 11_Memory_Management_in_OOP/01_New_and_Delete.md
-
 # new and delete Operators in C++ - Complete Guide
 
 ## 📖 Overview

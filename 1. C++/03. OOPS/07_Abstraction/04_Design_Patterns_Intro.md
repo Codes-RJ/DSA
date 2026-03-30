@@ -1,5 +1,3 @@
-# 07_Abstraction/04_Design_Patterns_Intro.md
-
 # Design Patterns Introduction in C++ - Complete Guide
 
 ## 📖 Overview

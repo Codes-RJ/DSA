@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/Theory.md
-
 # Classes and Objects in C++ - Theory Guide
 
 ## 📖 Overview

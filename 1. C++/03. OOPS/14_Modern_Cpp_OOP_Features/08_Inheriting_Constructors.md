@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/08_Inheriting_Constructors.md
-
 # Inheriting Constructors in C++ - Complete Guide
 
 ## 📖 Overview

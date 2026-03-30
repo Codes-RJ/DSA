@@ -1,5 +1,3 @@
-# 11_Memory_Management_in_OOP/05_Smart_Pointers_Intro.md
-
 # Smart Pointers Introduction - Complete Guide
 
 ## 📖 Overview

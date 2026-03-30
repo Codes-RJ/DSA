@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/03_Explicit_Keyword.md
-
 # Explicit Keyword in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/04_Virtual_Base_Class.md
-
 # Virtual Base Class in C++ - Complete Guide
 
 ## 📖 Overview

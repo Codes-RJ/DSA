@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/06_Constructor_Initialization_List.md
-
 # Constructor Initialization List in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/04_Smart_Pointers.md
-
 # Smart Pointers in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/02_Mutable_Keyword.md
-
 # Mutable Keyword in C++ - Complete Guide
 
 ## 📖 Overview

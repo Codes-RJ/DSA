@@ -1,9 +1,3 @@
-I'll now start with the **Polymorphism** section. Let me begin with the theory file.
-
----
-
-# 06_Polymorphism/Theory.md
-
 # Polymorphism in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 01_Introduction/03_Benefits_of_OOP.md
-
 # Benefits of Object-Oriented Programming
 
 ## 📖 Overview

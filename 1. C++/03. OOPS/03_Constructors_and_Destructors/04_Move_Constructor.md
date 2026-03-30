@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/04_Move_Constructor.md
-
 # Move Constructor in C++ - Complete Guide
 
 ## 📖 Overview

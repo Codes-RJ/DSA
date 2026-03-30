@@ -1,5 +1,3 @@
-# 11_Memory_Management_in_OOP/02_New_Delete_for_Objects.md
-
 # new and delete for Objects - Complete Guide
 
 ## 📖 Overview

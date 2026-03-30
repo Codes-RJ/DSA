@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/03_Access_Specifiers.md
-
 # Access Specifiers in C++ - Complete Guide
 
 ## 📖 Overview

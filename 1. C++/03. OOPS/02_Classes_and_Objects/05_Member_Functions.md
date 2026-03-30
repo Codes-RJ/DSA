@@ -1,5 +1,3 @@
-# 02_Classes_and_Objects/05_Member_Functions.md
-
 # Member Functions in C++ - Complete Guide
 
 ## 📖 Overview

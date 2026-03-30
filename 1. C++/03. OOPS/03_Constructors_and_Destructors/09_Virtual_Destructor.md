@@ -1,5 +1,3 @@
-# 03_Constructors_and_Destructors/09_Virtual_Destructor.md
-
 # Virtual Destructor in C++ - Complete Guide
 
 ## 📖 Overview

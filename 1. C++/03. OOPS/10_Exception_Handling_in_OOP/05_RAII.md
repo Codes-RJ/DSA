@@ -1,5 +1,3 @@
-# 10_Exception_Handling/05_RAII.md
-
 # RAII (Resource Acquisition Is Initialization) in C++ - Complete Guide
 
 ## 📖 Overview

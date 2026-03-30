@@ -1,5 +1,3 @@
-# 05_Inheritance/05_Diamond_Problem.md
-
 # Diamond Problem in C++ - Complete Guide
 
 ## 📖 Overview

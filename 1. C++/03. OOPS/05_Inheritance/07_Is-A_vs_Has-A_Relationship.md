@@ -1,5 +1,3 @@
-# 05_Inheritance/07_Is-A_vs_Has-A_Relationship.md
-
 # IS-A vs HAS-A Relationship in C++ - Complete Guide
 
 ## 📖 Overview

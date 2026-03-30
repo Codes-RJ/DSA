@@ -1,5 +1,3 @@
-# 08_Advanced_OOP/08_Type_Conversion_in_OOP.md
-
 # Type Conversion in OOP - Complete Guide
 
 ## 📖 Overview

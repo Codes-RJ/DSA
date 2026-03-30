@@ -1,5 +1,3 @@
-# 06_Polymorphism/01_Compile_Time_Polymorphism/03_Overloading_Rules.md
-
 # Overloading Rules in C++ - Complete Guide
 
 ## 📖 Overview

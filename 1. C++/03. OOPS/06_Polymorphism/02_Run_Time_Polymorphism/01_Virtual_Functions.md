@@ -1,5 +1,3 @@
-# 06_Polymorphism/02_Run_Time_Polymorphism/01_Virtual_Functions.md
-
 # Virtual Functions in C++ - Complete Guide
 
 ## 📖 Overview

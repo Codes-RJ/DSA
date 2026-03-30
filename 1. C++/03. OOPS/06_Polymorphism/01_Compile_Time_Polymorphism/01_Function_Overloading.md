@@ -1,5 +1,3 @@
-# 06_Polymorphism/01_Compile_Time_Polymorphism/01_Function_Overloading.md
-
 # Function Overloading in C++ - Complete Guide
 
 ## 📖 Overview

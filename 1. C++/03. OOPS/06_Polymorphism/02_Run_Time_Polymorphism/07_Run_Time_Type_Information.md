@@ -1,5 +1,3 @@
-# 06_Polymorphism/02_Run_Time_Polymorphism/07_Run_Time_Type_Information.md
-
 # Run-Time Type Information (RTTI) in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 05_Inheritance/04_Constructor_and_Destructor_in_Inheritance.md
-
 # Constructor and Destructor in Inheritance - Complete Guide
 
 ## 📖 Overview

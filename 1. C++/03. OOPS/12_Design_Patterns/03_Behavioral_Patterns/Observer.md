@@ -1,5 +1,3 @@
-# 12_Design_Patterns/03_Behavioral_Patterns/Observer.md
-
 # Observer Pattern in C++ - Complete Guide
 
 ## 📖 Overview

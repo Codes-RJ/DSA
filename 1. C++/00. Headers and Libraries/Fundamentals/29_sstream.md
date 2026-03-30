@@ -1,4 +1,4 @@
-# sstream - String Stream Library
+# 29_sstream - String Stream Library
 
 The `sstream` header lets you treat a `std::string` as a stream, so you can use familiar `>>` and `<<` operators to parse or build strings without dealing with raw character arrays.
 

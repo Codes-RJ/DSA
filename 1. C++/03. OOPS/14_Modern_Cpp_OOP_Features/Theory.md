@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/Theory.md
-
 # Modern C++ OOP Features - Complete Guide
 
 ## 📖 Overview

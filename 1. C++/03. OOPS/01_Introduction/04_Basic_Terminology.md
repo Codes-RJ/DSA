@@ -1,5 +1,3 @@
-# 01_Introduction/04_Basic_Terminology.md
-
 # Object-Oriented Programming: Basic Terminology
 
 ## 📖 Overview

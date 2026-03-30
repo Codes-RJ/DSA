@@ -1,5 +1,3 @@
-# 14_Modern_Cpp_OOP_Features/06_Initializer_Lists.md
-
 # Initializer Lists in C++ - Complete Guide
 
 ## 📖 Overview

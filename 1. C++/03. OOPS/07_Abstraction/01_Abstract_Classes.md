@@ -1,5 +1,3 @@
-# 07_Abstraction/01_Abstract_Classes.md
-
 # Abstract Classes in C++ - Complete Guide
 
 ## 📖 Overview

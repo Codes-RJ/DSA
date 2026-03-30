@@ -1,5 +1,3 @@
-# 12_Design_Patterns/03_Behavioral_Patterns/Strategy.md
-
 # Strategy Pattern in C++ - Complete Guide
 
 ## 📖 Overview

@@ -1,5 +1,3 @@
-# 12_Design_Patterns/03_Behavioral_Patterns/Command.md
-
 # Command Pattern in C++ - Complete Guide
 
 ## 📖 Overview

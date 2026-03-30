@@ -1,5 +1,3 @@
-# 12_Design_Patterns/01_Creational_Patterns/Prototype.md
-
 # Prototype Pattern in C++ - Complete Guide
 
 ## 📖 Overview

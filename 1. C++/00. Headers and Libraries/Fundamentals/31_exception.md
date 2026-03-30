@@ -1,4 +1,4 @@
-# exception - Exception Handling Utilities
+# 31_exception - Exception Handling Utilities
 
 The `exception` header is the foundation of C++'s standard error-handling hierarchy. It defines the base exception types and the machinery for throwing, catching, and inspecting runtime errors.
 
