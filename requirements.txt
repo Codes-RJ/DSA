@@ -1,0 +1,33 @@
+# Python dependencies for DSA repository
+# This file includes dependencies for running Python examples and tools
+
+# Core Python libraries for DSA implementations
+numpy>=1.21.0
+matplotlib>=3.5.0
+networkx>=2.6.0
+
+# Testing frameworks
+pytest>=6.2.0
+pytest-cov>=2.12.0
+
+# Code formatting and linting
+black>=21.0.0
+flake8>=3.9.0
+mypy>=0.910
+
+# Documentation (MkDocs)
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
+mkdocs-mermaid2-plugin>=1.0.0
+mkdocs-glightbox>=0.3.0
+mkdocs-minify-plugin>=0.7.0
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+pymdown-extensions>=10.0.0
+
+# Development tools
+pre-commit>=2.15.0
+jupyter>=1.0.0
+
+# Optional: For advanced visualizations
+plotly>=5.0.0
+seaborn>=0.11.0
