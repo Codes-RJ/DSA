@@ -1,379 +1,429 @@
-# BST Introduction
+# Binary Search Trees - Introduction
 
-## Overview
-A Binary Search Tree (BST) is a binary tree data structure that maintains the BST property: for each node, all values in its left subtree are less than the node's value, and all values in its right subtree are greater than the node's value. This property enables efficient searching, insertion, and deletion operations.
+## 📖 Overview
 
-## BST Properties and Invariants
+A Binary Search Tree (BST) is a binary tree data structure that maintains a specific ordering property: for every node, all values in its left subtree are less than the node's value, and all values in its right subtree are greater than the node's value. This ordering property enables efficient searching, insertion, and deletion operations.
 
-### Core BST Property
-For any node `N` in the tree:
-- All keys in `N`'s left subtree < `N`'s key
-- All keys in `N`'s right subtree > `N`'s key
-- Both left and right subtrees are also BSTs
+BSTs are fundamental to computer science and serve as the foundation for more advanced data structures like AVL trees, Red-Black trees, and B-trees. They are widely used in database indexing, compiler symbol tables, file systems, and network routing algorithms.
 
-### Important Invariants
-- **No duplicate keys**: Standard BST doesn't allow duplicates (can be modified)
-- **Ordered structure**: Inorder traversal yields sorted keys
-- **Recursive property**: BST property holds recursively for all subtrees
+---
 
-## BST Node Structure
+## 🎯 BST Definition
+
+### Formal Definition
+
+A Binary Search Tree is a binary tree that satisfies the **Binary Search Property**:
+
+For every node `x` in the tree:
+- If `y` is a node in the left subtree of `x`, then `y.key ≤ x.key`
+- If `y` is a node in the right subtree of `x`, then `y.key ≥ x.key`
+
+### Visual Representation
+
+```
+        50
+       /  \
+      30   80
+     / \   / \
+    20 40 70 90
+
+Properties:
+- 30 and all its descendants (20,40) are < 50
+- 80 and all its descendants (70,90) are > 50
+- 20 < 30 ✓
+- 40 > 30 ✓
+- 70 < 80 ✓
+- 90 > 80 ✓
+```
+
+---
+
+## 📐 BST Property Explained
+
+### The Ordering Rule
+
+For any node `N` in a BST:
+
+| Condition | Requirement |
+|-----------|-------------|
+| **Left subtree** | All values < N's value |
+| **Right subtree** | All values > N's value |
+| **Recursive** | Left and right subtrees are also BSTs |
+| **Duplicates** | Typically not allowed (or handled explicitly) |
+
+### Why This Property Works
+
+The ordering property enables **binary search**:
+1. Compare target with current node
+2. If equal → found
+3. If smaller → go left (all smaller values are there)
+4. If larger → go right (all larger values are there)
+5. Repeat until found or leaf reached
+
+---
+
+## 📊 Valid vs Invalid BST
+
+### Example 1: Valid BST
+
+```
+        50
+       /  \
+      30   80
+     / \   / \
+    20 40 70 90
+
+Check each node:
+50: left(30,20,40) < 50 ✓ | right(80,70,90) > 50 ✓
+30: left(20) < 30 ✓ | right(40) > 30 ✓
+80: left(70) < 80 ✓ | right(90) > 80 ✓
+20,40,70,90: leaves (trivially valid)
+
+Result: VALID BST
+```
+
+### Example 2: Invalid BST
+
+```
+        50
+       /  \
+      30   80
+     / \   / \
+    20 60 70 90
+         ↑
+    60 > 50 but in LEFT subtree!
+
+Check: 60 is in left subtree of 50
+But 60 > 50 → violates BST property
+
+Result: INVALID BST
+```
+
+### Example 3: Another Invalid BST
+
+```
+        50
+       /  \
+      30   40
+     / \    \
+    20 25    45
+              ↑
+    45 is in right subtree of 30 (should be > 30)
+    But 45 < 50? Actually 45 is fine for 30
+    Wait, let's check root: right child is 40 (should be > 50? NO!)
+    
+    40 < 50 but is in RIGHT subtree!
+    
+Result: INVALID BST
+```
+
+---
+
+## 📈 Mathematical Properties
+
+### Height and Node Relationships
+
+| Property | Formula | Example |
+|----------|---------|---------|
+| **Minimum nodes for height h** | h + 1 | h=3 → 4 nodes (skewed) |
+| **Maximum nodes for height h** | 2^(h+1) - 1 | h=3 → 15 nodes (perfect) |
+| **Minimum height for n nodes** | ⌈log₂(n+1)⌉ - 1 | n=15 → height 3 |
+| **Maximum height for n nodes** | n - 1 | n=5 → height 4 |
+
+### Node Distribution
+
+| Level | Maximum Nodes | Cumulative |
+|-------|---------------|------------|
+| 0 (root) | 1 | 1 |
+| 1 | 2 | 3 |
+| 2 | 4 | 7 |
+| 3 | 8 | 15 |
+| h | 2^h | 2^(h+1) - 1 |
+
+### Leaf and Internal Node Relationship
+
+In a **full BST** (every node has 0 or 2 children):
+- **Leaves = Internal Nodes + 1**
+
+```
+Example:
+        50 (internal)
+       /  \
+    30    80 (internal)
+    / \   / \
+  20 40 70 90 (all leaves)
+
+Internal nodes: 3 (50, 30, 80)
+Leaves: 4 (20, 40, 70, 90)
+4 = 3 + 1 ✓
+```
+
+---
+
+## ⏱️ Complexity Analysis
+
+### Time Complexity
+
+| Operation | Average Case | Worst Case | Best Case |
+|-----------|--------------|------------|-----------|
+| **Search** | O(log n) | O(n) | O(1) |
+| **Insert** | O(log n) | O(n) | O(1) |
+| **Delete** | O(log n) | O(n) | O(1) |
+| **Find Min** | O(log n) | O(n) | O(1) |
+| **Find Max** | O(log n) | O(n) | O(1) |
+| **Inorder Traversal** | O(n) | O(n) | O(n) |
+
+### Space Complexity
+
+| Aspect | Complexity |
+|--------|------------|
+| **Tree storage** | O(n) |
+| **Recursive operations** | O(h) call stack |
+| **Iterative operations** | O(1) |
+
+### Why Worst Case O(n)?
+
+When a BST becomes **skewed** (like a linked list):
+
+```
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+
+Searching for 5 requires traversing all 5 nodes → O(n)
+```
+
+---
+
+## 🏗️ BST Terminology
+
+| Term | Definition | Example |
+|------|------------|---------|
+| **Root** | Topmost node with no parent | 50 |
+| **Parent** | Node that has children | 50 is parent of 30,80 |
+| **Child** | Node connected to parent | 30,80 are children of 50 |
+| **Leaf** | Node with no children | 20,40,70,90 |
+| **Internal Node** | Node with at least one child | 50,30,80 |
+| **Subtree** | Any node and its descendants | 30,20,40 form a subtree |
+| **Height** | Edges on longest path from node to leaf | Height of root = 3 |
+| **Depth** | Edges from root to node | Depth of 70 = 2 |
+| **Level** | Depth + 1 | Level of 70 = 3 |
+| **Successor** | Smallest node greater than current | Successor of 40 is 50 |
+| **Predecessor** | Largest node smaller than current | Predecessor of 40 is 30 |
+
+---
+
+## 🔄 BST vs Other Data Structures
+
+### Comparison Table
+
+| Feature | BST (avg) | BST (worst) | Sorted Array | Linked List | Hash Table |
+|---------|-----------|-------------|--------------|-------------|------------|
+| **Search** | O(log n) | O(n) | O(log n) | O(n) | O(1) avg |
+| **Insert** | O(log n) | O(n) | O(n) | O(1) | O(1) avg |
+| **Delete** | O(log n) | O(n) | O(n) | O(1) | O(1) avg |
+| **Find Min** | O(log n) | O(n) | O(1) | O(1) | O(n) |
+| **Find Max** | O(log n) | O(n) | O(1) | O(1) | O(n) |
+| **Sorted Traverse** | O(n) | O(n) | O(n) | O(n log n) | O(n log n) |
+| **Memory** | O(n) | O(n) | O(n) | O(n) | O(n) |
+
+### When to Use BST
+
+| Use BST When | Use Array When | Use Hash Table When |
+|--------------|----------------|---------------------|
+| Sorted order needed | Index-based access needed | Fast exact lookup needed |
+| Dynamic data | Static data | Order doesn't matter |
+| Range queries | Memory is critical | No need for ordering |
+| Predecessor/successor | Simple implementation | Keys are well-distributed |
+
+---
+
+## 🎯 Applications of BST
+
+| Application | Description |
+|-------------|-------------|
+| **Database Indexing** | B-trees and B+ trees are generalizations of BST |
+| **Compiler Symbol Tables** | Store variable names and their attributes |
+| **File Systems** | Directory structures organized as trees |
+| **Network Routing** | Routing tables use tree structures |
+| **Spell Checkers** | Dictionary words stored for quick lookup |
+| **Auto-complete** | Prefix trees (Tries) are BST-like |
+| **3D Graphics** | Binary Space Partition (BSP) trees |
+| **Priority Queues** | Can be implemented using BSTs |
+
+---
+
+## 📝 BST Node Structure
 
 ### Basic Node Implementation
+
 ```cpp
-struct BSTNode {
-    int data;
-    BSTNode* left;
-    BSTNode* right;
+template<typename T>
+class BSTNode {
+private:
+    T data_;
+    BSTNode<T>* left_;
+    BSTNode<T>* right_;
     
+public:
     // Constructor
-    BSTNode(int value) : data(value), left(nullptr), right(nullptr) {}
+    BSTNode(const T& value) : data_(value), left_(nullptr), right_(nullptr) {}
     
-    // Constructor with children
-    BSTNode(int value, BSTNode* leftChild, BSTNode* rightChild) 
-        : data(value), left(leftChild), right(rightChild) {}
+    // Getters
+    T& getData() { return data_; }
+    const T& getData() const { return data_; }
+    BSTNode<T>* getLeft() { return left_; }
+    const BSTNode<T>* getLeft() const { return left_; }
+    BSTNode<T>* getRight() { return right_; }
+    const BSTNode<T>* getRight() const { return right_; }
+    
+    // Setters
+    void setData(const T& value) { data_ = value; }
+    void setLeft(BSTNode<T>* left) { left_ = left; }
+    void setRight(BSTNode<T>* right) { right_ = right; }
+    
+    // Utility methods
+    bool isLeaf() const { return !left_ && !right_; }
+    bool hasLeft() const { return left_ != nullptr; }
+    bool hasRight() const { return right_ != nullptr; }
+    bool hasBoth() const { return left_ && right_; }
 };
 ```
 
-### Enhanced Node with Parent Pointer
-```cpp
-struct BSTNodeWithParent {
-    int data;
-    BSTNodeWithParent* left;
-    BSTNodeWithParent* right;
-    BSTNodeWithParent* parent;
-    
-    BSTNodeWithParent(int value) 
-        : data(value), left(nullptr), right(nullptr), parent(nullptr) {}
-};
+---
+
+## 🔍 Basic Operations Overview
+
+### Search Algorithm (Conceptual)
+
+```
+1. Start at root
+2. If root is null → return false
+3. If target equals root value → return true
+4. If target < root value → search left subtree
+5. If target > root value → search right subtree
+6. Repeat until found or leaf reached
 ```
 
-### Template-Based Generic Node
-```cpp
-template <typename T>
-struct GenericBSTNode {
-    T data;
-    GenericBSTNode* left;
-    GenericBSTNode* right;
-    
-    GenericBSTNode(const T& value) 
-        : data(value), left(nullptr), right(nullptr) {}
-    
-    // Comparison operators
-    bool operator<(const GenericBSTNode& other) const {
-        return data < other.data;
-    }
-    
-    bool operator>(const GenericBSTNode& other) const {
-        return data > other.data;
-    }
-    
-    bool operator==(const GenericBSTNode& other) const {
-        return data == other.data;
-    }
-};
+### Insert Algorithm (Conceptual)
+
+```
+1. If tree is empty → create root node
+2. Else:
+   a. If value < current node → go left
+   b. If value > current node → go right
+   c. If equal → return (no duplicates)
+3. When null is reached → insert new node
 ```
 
-## BST Class Structure
+### Delete Algorithm (Conceptual)
 
-### Basic BST Class
-```cpp
-class BinarySearchTree {
-private:
-    BSTNode* root;
-    
-    // Private helper methods
-    BSTNode* insert(BSTNode* node, int value);
-    BSTNode* remove(BSTNode* node, int value);
-    BSTNode* search(BSTNode* node, int value);
-    BSTNode* findMin(BSTNode* node);
-    BSTNode* findMax(BSTNode* node);
-    void inorder(BSTNode* node);
-    void preorder(BSTNode* node);
-    void postorder(BSTNode* node);
-    void destroyTree(BSTNode* node);
-    int height(BSTNode* node);
-    int size(BSTNode* node);
-    
-public:
-    // Constructor and destructor
-    BinarySearchTree() : root(nullptr) {}
-    ~BinarySearchTree() { destroyTree(root); }
-    
-    // Copy constructor and assignment operator
-    BinarySearchTree(const BinarySearchTree& other);
-    BinarySearchTree& operator=(const BinarySearchTree& other);
-    
-    // Public interface
-    void insert(int value);
-    void remove(int value);
-    bool search(int value);
-    int getMin();
-    int getMax();
-    void inorderTraversal();
-    void preorderTraversal();
-    void postorderTraversal();
-    int getHeight();
-    int getSize();
-    bool isEmpty();
-};
+Three cases:
+1. **Leaf node**: Simply remove it
+2. **Node with one child**: Replace node with its child
+3. **Node with two children**: 
+   - Find inorder successor (smallest in right subtree)
+   - Copy successor value to node
+   - Delete successor
+
+---
+
+## 🌲 Traversals Overview
+
+| Traversal | Order | Result for Example Tree |
+|-----------|-------|------------------------|
+| **Inorder** | Left → Root → Right | 20, 30, 40, 50, 70, 80, 90 |
+| **Preorder** | Root → Left → Right | 50, 30, 20, 40, 80, 70, 90 |
+| **Postorder** | Left → Right → Root | 20, 40, 30, 70, 90, 80, 50 |
+
+```
+        50
+       /  \
+      30   80
+     / \   / \
+    20 40 70 90
 ```
 
-### Template-Based BST Class
-```cpp
-template <typename T>
-class GenericBST {
-private:
-    GenericBSTNode<T>* root;
-    
-    // Helper methods
-    GenericBSTNode<T>* insert(GenericBSTNode<T>* node, const T& value);
-    GenericBSTNode<T>* remove(GenericBSTNode<T>* node, const T& value);
-    GenericBSTNode<T>* search(GenericBSTNode<T>* node, const T& value);
-    void destroyTree(GenericBSTNode<T>* node);
-    
-public:
-    GenericBST() : root(nullptr) {}
-    ~GenericBST() { destroyTree(root); }
-    
-    void insert(const T& value);
-    void remove(const T& value);
-    bool search(const T& value);
-    // ... other methods
-};
-```
+---
 
-## Key Characteristics
+## 📊 Types of Binary Search Trees
 
-### Advantages of BST
-1. **Efficient Search**: Average case O(log n) search time
-2. **Ordered Structure**: Maintains sorted order of elements
-3. **Dynamic**: Supports efficient insertions and deletions
-4. **Simple Implementation**: Relatively easy to implement
-5. **Flexible**: Can be extended to various applications
+| Type | Description | Height | Use Case |
+|------|-------------|--------|----------|
+| **Standard BST** | Basic BST with no balance guarantees | O(n) worst | Simple implementations |
+| **AVL Tree** | Height-balanced BST (|BF| ≤ 1) | O(log n) | Read-heavy workloads |
+| **Red-Black Tree** | Color-balanced BST | O(log n) | Write-heavy workloads |
+| **Treap** | BST + heap property (randomized) | O(log n) expected | Randomized algorithms |
+| **Splay Tree** | Self-adjusting with amortized analysis | Amortized O(log n) | Caching applications |
+| **B-Tree** | Generalized BST for disk storage | O(log n) | Database indexing |
 
-### Disadvantages of BST
-1. **Worst-Case Performance**: Can become skewed (O(n) operations)
-2. **No Balance Guarantee**: Height depends on insertion order
-3. **Memory Overhead**: Extra space for pointers
-4. **Duplicate Handling**: Standard implementation doesn't handle duplicates
+---
 
-### Performance Characteristics
-| Operation | Average Case | Worst Case |
-|-----------|--------------|------------|
-| Search | O(log n) | O(n) |
-| Insertion | O(log n) | O(n) |
-| Deletion | O(log n) | O(n) |
-| Traversal | O(n) | O(n) |
-| Space | O(n) | O(n) |
+## 💡 Key Insights
 
-## BST Variants and Extensions
+1. **BST property** enables binary search, eliminating half the tree at each step
+2. **Inorder traversal** of a BST produces sorted order
+3. **Height** directly affects performance: shorter = faster
+4. **Skewed trees** degenerate to linked lists (O(n) operations)
+5. **Balanced BSTs** guarantee O(log n) operations
+6. **Successor** is the smallest node larger than current
+7. **Predecessor** is the largest node smaller than current
 
-### 1. BST with Duplicate Handling
-```cpp
-class BSTWithDuplicates {
-private:
-    struct Node {
-        int data;
-        int count;
-        Node* left;
-        Node* right;
-        
-        Node(int value) : data(value), count(1), left(nullptr), right(nullptr) {}
-    };
-    
-    Node* root;
-    
-public:
-    void insert(int value);
-    void remove(int value);
-    int getCount(int value); // Returns count of occurrences
-};
-```
+---
 
-### 2. Self-Balancing BST Variants
-- **AVL Trees**: Strictly balanced, O(log n) guaranteed
-- **Red-Black Trees**: Approximately balanced, widely used
-- **Splay Trees**: Self-adjusting, amortized O(log n)
-- **B-Trees**: External memory, disk-based structures
+## 🎯 Common BST Interview Problems
 
-### 3. Specialized BSTs
-- **Interval Trees**: For interval queries
-- **Segment Trees**: For range queries
-- **Trie**: Prefix trees for strings
-- **Heap**: Priority queue variant
+| Problem | Difficulty | Solution Approach |
+|---------|------------|-------------------|
+| **Validate BST** | Medium | Inorder traversal or range check |
+| **Lowest Common Ancestor** | Easy | Recursive search |
+| **K-th Smallest Element** | Medium | Inorder traversal with counter |
+| **Convert Sorted Array to BST** | Easy | Recursive middle element |
+| **Two Sum in BST** | Medium | Inorder + two pointers |
+| **Range Sum Query** | Easy | Traverse nodes in range |
+| **BST to Greater Sum Tree** | Medium | Reverse inorder traversal |
+| **Recover BST (two swapped nodes)** | Hard | Inorder traversal to find violations |
 
-## Common Applications
+---
 
-### 1. Dictionary Implementation
-```cpp
-class Dictionary {
-private:
-    BSTNode* root;
-    
-public:
-    void insertWord(const std::string& word, const std::string& meaning);
-    std::string searchWord(const std::string& word);
-    void removeWord(const std::string& word);
-};
-```
+## ✅ Key Takeaways
 
-### 2. Database Indexing
-- **Primary Index**: Main data organization
-- **Secondary Index**: Alternative access paths
-- **Composite Index**: Multiple field indexing
+1. **BST property**: left < root < right (strict inequality typical)
+2. **Inorder traversal** gives sorted order in O(n) time
+3. **Search, insert, delete** are O(log n) average, O(n) worst case
+4. **Worst case** occurs when tree becomes skewed (like linked list)
+5. **Balanced variants** (AVL, Red-Black) guarantee O(log n) operations
+6. **Successor** and **predecessor** are important for deletion
+7. **BSTs are recursive** by nature → recursive algorithms are natural fit
 
-### 3. File Systems
-- **Directory Structure**: Hierarchical organization
-- **File Allocation**: Efficient file lookup
-- **Symbol Tables**: Compiler implementation
+---
 
-## BST Validation and Properties
+## 📚 Prerequisites
 
-### Check if Tree is Valid BST
-```cpp
-class BSTValidator {
-public:
-    // Method 1: Using min/max range
-    static bool isValidBST(BSTNode* root) {
-        return isValidBSTHelper(root, INT_MIN, INT_MAX);
-    }
-    
-private:
-    static bool isValidBSTHelper(BSTNode* node, long long min, long long max) {
-        if (node == nullptr) return true;
-        
-        if (node->data <= min || node->data >= max) {
-            return false;
-        }
-        
-        return isValidBSTHelper(node->left, min, node->data) &&
-               isValidBSTHelper(node->right, node->data, max);
-    }
-    
-    // Method 2: Using inorder traversal
-    static bool isValidBSTInorder(BSTNode* root) {
-        std::vector<int> inorder;
-        inorderTraversal(root, inorder);
-        
-        for (int i = 1; i < inorder.size(); i++) {
-            if (inorder[i] <= inorder[i - 1]) {
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    static void inorderTraversal(BSTNode* node, std::vector<int>& result) {
-        if (node == nullptr) return;
-        
-        inorderTraversal(node->left, result);
-        result.push_back(node->data);
-        inorderTraversal(node->right, result);
-    }
-};
-```
+Before proceeding, ensure you understand:
 
-## BST Properties Analysis
+- ✅ Binary tree basics
+- ✅ Recursion concepts
+- ✅ Pointers and dynamic memory
+- ✅ Basic sorting principles
+- ✅ Time and space complexity analysis
 
-### Height Analysis
-- **Best Case**: Balanced tree, height = O(log n)
-- **Worst Case**: Skewed tree, height = O(n)
-- **Average Case**: Random insertions, height = O(log n)
+---
 
-### Size and Height Relationship
-For a BST with `n` nodes:
-- **Minimum height**: ⌊log₂n⌋ (perfectly balanced)
-- **Maximum height**: n-1 (completely skewed)
-- **Average height**: ~1.39 log₂n (random BST)
+## 🚀 Next Steps
 
-### Density and Sparsity
-- **Dense BST**: Many nodes, relatively balanced
-- **Sparse BST**: Few nodes, potentially unbalanced
-- **Complete BST**: All levels filled except possibly last
+After mastering BST basics, proceed to:
 
-## Memory Management
+1. **BST_Insertion.md** - Learn to insert nodes
+2. **BST_Search.md** - Master efficient searching
+3. **BST_Deletion.md** - Handle all deletion cases
+4. **BST_Traversal.md** - Explore traversal methods
+5. **Advanced Topics** - AVL trees, Red-Black trees
 
-### Manual Memory Management
-```cpp
-class BSTMemoryManager {
-private:
-    void destroyTree(BSTNode* node) {
-        if (node == nullptr) return;
-        
-        destroyTree(node->left);
-        destroyTree(node->right);
-        delete node;
-    }
-    
-public:
-    ~BinarySearchTree() {
-        destroyTree(root);
-    }
-};
-```
-
-### Smart Pointer Implementation
-```cpp
-class ModernBST {
-private:
-    using NodePtr = std::unique_ptr<BSTNode>;
-    NodePtr root;
-    
-public:
-    void insert(int value) {
-        root = insert(std::move(root), value);
-    }
-    
-private:
-    NodePtr insert(NodePtr node, int value) {
-        if (!node) {
-            return std::make_unique<BSTNode>(value);
-        }
-        
-        if (value < node->data) {
-            node->left = insert(std::move(node->left), value);
-        } else if (value > node->data) {
-            node->right = insert(std::move(node->right), value);
-        }
-        
-        return node;
-    }
-};
-```
-
-## Best Practices
-
-### Implementation Guidelines
-1. **Handle Edge Cases**: Empty tree, single node, duplicates
-2. **Memory Management**: Proper cleanup to avoid leaks
-3. **Error Handling**: Validate inputs and handle exceptions
-4. **Consistency**: Maintain BST invariants after all operations
-5. **Testing**: Test with various tree shapes and sizes
-
-### Performance Optimization
-1. **Balancing**: Consider self-balancing variants
-2. **Memory Pool**: For frequent insertions/deletions
-3. **Iterative Methods**: Avoid recursion for deep trees
-4. **Caching**: Store frequently accessed values
-5. **Bulk Operations**: Batch insertions when possible
-
-## Common Pitfalls
-
-### Implementation Errors
-1. **Incorrect BST Property**: Not maintaining order invariant
-2. **Memory Leaks**: Forgetting to delete nodes
-3. **Null Pointer Dereference**: Not checking for null
-4. **Infinite Recursion**: Incorrect base cases
-5. **Duplicate Handling**: Inconsistent duplicate policy
-
-### Logic Errors
-1. **Wrong Comparison**: Using wrong comparison operators
-2. **Incorrect Rotation**: In self-balancing variants
-3. **Height Calculation**: Off-by-one errors
-4. **Traversal Order**: Wrong visiting sequence
-5. **Parent Pointer Updates**: Forgetting to update parents
-
-## Summary
-
-Binary Search Trees provide an efficient way to store and retrieve ordered data. While they offer excellent average-case performance, their worst-case performance can be poor without balancing. Understanding BST fundamentals is crucial before moving to more advanced balanced tree structures. Proper implementation requires careful attention to maintaining the BST property and handling edge cases.
+---

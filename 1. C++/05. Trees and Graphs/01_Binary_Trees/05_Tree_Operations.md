@@ -1,733 +1,535 @@
-# Tree Operations and Algorithms
+# Tree Operations
 
-## Introduction
-This section covers fundamental tree operations including insertion, deletion, searching, and various manipulation algorithms. Each operation is analyzed for time and space complexity.
+## 📖 Overview
 
-## Search Operations
+Tree operations are the fundamental actions performed on binary trees, including insertion, deletion, searching, and various utility operations. This guide provides complete implementations of all essential tree operations with detailed explanations and complexity analysis.
 
-### 1. Depth-First Search (DFS)
+---
+
+## 🎯 Core Operations
+
+| Operation | Description | Time Complexity |
+|-----------|-------------|-----------------|
+| **Insertion** | Add a new node to the tree | O(n) |
+| **Deletion** | Remove a node from the tree | O(n) |
+| **Search** | Find a node with specific value | O(n) |
+| **Update** | Modify a node's value | O(n) |
+| **Find Minimum** | Find node with smallest value | O(h) |
+| **Find Maximum** | Find node with largest value | O(h) |
+
+---
+
+## 📝 Insertion Operations
+
+### Level Order Insertion (Complete Tree)
+
 ```cpp
-class TreeSearch {
-public:
-    // Recursive DFS
-    static TreeNode* dfsRecursive(TreeNode* root, int value) {
-        if (root == nullptr) return nullptr;
-        if (root->data == value) return root;
-        
-        TreeNode* leftResult = dfsRecursive(root->left, value);
-        if (leftResult != nullptr) return leftResult;
-        
-        return dfsRecursive(root->right, value);
+template<typename T>
+void BinaryTree<T>::insertLevelOrder(const T& value) {
+    Node<T>* newNode = new Node<T>(value);
+    
+    if (!root_) {
+        root_ = newNode;
+        size_++;
+        return;
     }
     
-    // Iterative DFS using stack
-    static TreeNode* dfsIterative(TreeNode* root, int value) {
-        if (root == nullptr) return nullptr;
-        
-        std::stack<TreeNode*> s;
-        s.push(root);
-        
-        while (!s.empty()) {
-            TreeNode* current = s.top();
-            s.pop();
-            
-            if (current->data == value) return current;
-            
-            // Push right first so left is processed first
-            if (current->right) s.push(current->right);
-            if (current->left) s.push(current->left);
-        }
-        
-        return nullptr;
-    }
+    queue<Node<T>*> q;
+    q.push(root_);
     
-    // Find minimum value in tree
-    static TreeNode* findMin(TreeNode* root) {
-        if (root == nullptr) return nullptr;
+    while (!q.empty()) {
+        Node<T>* current = q.front();
+        q.pop();
         
-        TreeNode* current = root;
-        while (current->left != nullptr) {
-            current = current->left;
-        }
-        return current;
-    }
-    
-    // Find maximum value in tree
-    static TreeNode* findMax(TreeNode* root) {
-        if (root == nullptr) return nullptr;
-        
-        TreeNode* current = root;
-        while (current->right != nullptr) {
-            current = current->right;
-        }
-        return current;
-    }
-};
-```
-
-### 2. Breadth-First Search (BFS)
-```cpp
-class BreadthFirstSearch {
-public:
-    // Find value using BFS
-    static TreeNode* bfs(TreeNode* root, int value) {
-        if (root == nullptr) return nullptr;
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->data == value) return current;
-            
-            if (current->left) q.push(current->left);
-            if (current->right) q.push(current->right);
-        }
-        
-        return nullptr;
-    }
-    
-    // Find all nodes at given level
-    static std::vector<TreeNode*> getNodesAtLevel(TreeNode* root, int level) {
-        std::vector<TreeNode*> result;
-        if (root == nullptr || level < 0) return result;
-        
-        std::queue<std::pair<TreeNode*, int>> q;
-        q.push({root, 0});
-        
-        while (!q.empty()) {
-            auto current = q.front();
-            q.pop();
-            
-            if (current.second == level) {
-                result.push_back(current.first);
-            } else if (current.second < level) {
-                if (current.first->left) {
-                    q.push({current.first->left, current.second + 1});
-                }
-                if (current.first->right) {
-                    q.push({current.first->right, current.second + 1});
-                }
-            }
-        }
-        
-        return result;
-    }
-};
-```
-
-## Insertion Operations
-
-### 1. Level Order Insertion
-```cpp
-class TreeInsertion {
-public:
-    // Insert at first available position (complete tree approach)
-    static void insertLevelOrder(TreeNode*& root, int value) {
-        if (root == nullptr) {
-            root = new TreeNode(value);
+        if (!current->getLeft()) {
+            current->setLeft(newNode);
+            size_++;
             return;
-        }
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->left == nullptr) {
-                current->left = new TreeNode(value);
-                return;
-            } else {
-                q.push(current->left);
-            }
-            
-            if (current->right == nullptr) {
-                current->right = new TreeNode(value);
-                return;
-            } else {
-                q.push(current->right);
-            }
-        }
-    }
-    
-    // Insert as left child of specific node
-    static bool insertLeft(TreeNode* parent, int value) {
-        if (parent == nullptr || parent->left != nullptr) {
-            return false;
-        }
-        parent->left = new TreeNode(value);
-        return true;
-    }
-    
-    // Insert as right child of specific node
-    static bool insertRight(TreeNode* parent, int value) {
-        if (parent == nullptr || parent->right != nullptr) {
-            return false;
-        }
-        parent->right = new TreeNode(value);
-        return true;
-    }
-    
-    // Insert at specific position using BFS
-    static bool insertAtPosition(TreeNode*& root, int parentValue, int value, bool isLeft) {
-        TreeNode* parent = TreeSearch::dfsRecursive(root, parentValue);
-        if (parent == nullptr) return false;
-        
-        if (isLeft) {
-            return insertLeft(parent, value);
+        } else if (!current->getRight()) {
+            current->setRight(newNode);
+            size_++;
+            return;
         } else {
-            return insertRight(parent, value);
+            q.push(current->getLeft());
+            q.push(current->getRight());
         }
     }
-};
+}
 ```
 
-### 2. Custom Insertion Strategies
+### Insert at Specific Position
+
 ```cpp
-class CustomInsertion {
-public:
-    // Insert to maintain minimum height
-    static void insertMinHeight(TreeNode*& root, int value) {
-        root = insertMinHeightHelper(root, value);
+template<typename T>
+bool BinaryTree<T>::insertAt(Node<T>* parent, const T& value, bool isLeft) {
+    if (!parent) return false;
+    
+    Node<T>* newNode = new Node<T>(value);
+    
+    if (isLeft) {
+        if (parent->getLeft()) return false;
+        parent->setLeft(newNode);
+    } else {
+        if (parent->getRight()) return false;
+        parent->setRight(newNode);
     }
     
-    // Insert to create complete binary tree from array
-    static TreeNode* createCompleteFromArray(const std::vector<int>& arr) {
-        if (arr.empty()) return nullptr;
-        
-        return createCompleteHelper(arr, 0);
-    }
-    
-private:
-    static TreeNode* insertMinHeightHelper(TreeNode* node, int value) {
-        if (node == nullptr) {
-            return new TreeNode(value);
-        }
-        
-        if (height(node->left) <= height(node->right)) {
-            node->left = insertMinHeightHelper(node->left, value);
-        } else {
-            node->right = insertMinHeightHelper(node->right, value);
-        }
-        
-        return node;
-    }
-    
-    static TreeNode* createCompleteHelper(const std::vector<int>& arr, int index) {
-        if (index >= arr.size()) return nullptr;
-        
-        TreeNode* root = new TreeNode(arr[index]);
-        root->left = createCompleteHelper(arr, 2 * index + 1);
-        root->right = createCompleteHelper(arr, 2 * index + 2);
-        
-        return root;
-    }
-    
-    static int height(TreeNode* node) {
-        if (node == nullptr) return -1;
-        return 1 + std::max(height(node->left), height(node->right));
-    }
-};
+    size_++;
+    return true;
+}
 ```
 
-## Deletion Operations
+---
 
-### 1. Delete Specific Node
+## 🗑️ Deletion Operations
+
+### Delete Node (Complete Tree Deletion)
+
 ```cpp
-class TreeDeletion {
-public:
-    // Delete node with given value
-    static bool deleteNode(TreeNode*& root, int value) {
-        return deleteNodeHelper(root, value);
+template<typename T>
+bool BinaryTree<T>::deleteNode(const T& value) {
+    if (!root_) return false;
+    
+    // Find target node and deepest node
+    Node<T>* targetNode = nullptr;
+    Node<T>* deepestNode = nullptr;
+    Node<T>* parentOfDeepest = nullptr;
+    
+    queue<Node<T>*> q;
+    q.push(root_);
+    
+    while (!q.empty()) {
+        deepestNode = q.front();
+        q.pop();
+        
+        if (deepestNode->getData() == value) {
+            targetNode = deepestNode;
+        }
+        
+        if (deepestNode->getLeft()) {
+            parentOfDeepest = deepestNode;
+            q.push(deepestNode->getLeft());
+        }
+        if (deepestNode->getRight()) {
+            parentOfDeepest = deepestNode;
+            q.push(deepestNode->getRight());
+        }
     }
+    
+    if (!targetNode) return false;
+    
+    // Replace target's data with deepest node's data
+    targetNode->setData(deepestNode->getData());
     
     // Delete deepest node
-    static TreeNode* deleteDeepest(TreeNode* root) {
-        if (root == nullptr) return nullptr;
-        
-        TreeNode* deepest = nullptr;
-        TreeNode* parent = nullptr;
-        
-        std::queue<std::pair<TreeNode*, TreeNode*>> q;
-        q.push({root, nullptr});
-        
-        while (!q.empty()) {
-            auto current = q.front();
-            q.pop();
-            
-            deepest = current.first;
-            parent = current.second;
-            
-            if (current.first->left) {
-                q.push({current.first->left, current.first});
-            }
-            if (current.first->right) {
-                q.push({current.first->right, current.first});
-            }
-        }
-        
-        // Remove deepest node from its parent
-        if (parent != nullptr) {
-            if (parent->left == deepest) {
-                parent->left = nullptr;
-            } else {
-                parent->right = nullptr;
-            }
-        }
-        
-        return deepest;
-    }
-    
-    // Delete node by replacing with deepest node
-    static bool deleteByDeepestReplacement(TreeNode*& root, int value) {
-        if (root == nullptr) return false;
-        
-        // Find node to delete
-        TreeNode* nodeToDelete = TreeSearch::dfsRecursive(root, value);
-        if (nodeToDelete == nullptr) return false;
-        
-        // Find deepest node
-        TreeNode* deepest = findDeepestNode(root);
-        
-        // Replace values
-        nodeToDelete->data = deepest->data;
-        
-        // Delete deepest node
-        return deleteDeepestNode(root, deepest);
-    }
-    
-private:
-    static bool deleteNodeHelper(TreeNode*& node, int value) {
-        if (node == nullptr) return false;
-        
-        if (node->data == value) {
-            // Node found, delete it
-            if (node->left == nullptr && node->right == nullptr) {
-                delete node;
-                node = nullptr;
-            } else if (node->left == nullptr) {
-                TreeNode* temp = node->right;
-                delete node;
-                node = temp;
-            } else if (node->right == nullptr) {
-                TreeNode* temp = node->left;
-                delete node;
-                node = temp;
-            } else {
-                // Node has two children, replace with inorder successor
-                TreeNode* successor = findInorderSuccessor(node->right);
-                node->data = successor->data;
-                return deleteNodeHelper(node->right, successor->data);
-            }
-            return true;
-        }
-        
-        return deleteNodeHelper(node->left, value) || 
-               deleteNodeHelper(node->right, value);
-    }
-    
-    static TreeNode* findInorderSuccessor(TreeNode* node) {
-        while (node->left != nullptr) {
-            node = node->left;
-        }
-        return node;
-    }
-    
-    static TreeNode* findDeepestNode(TreeNode* root) {
-        if (root == nullptr) return nullptr;
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        TreeNode* deepest = nullptr;
-        
-        while (!q.empty()) {
-            deepest = q.front();
-            q.pop();
-            
-            if (deepest->left) q.push(deepest->left);
-            if (deepest->right) q.push(deepest->right);
-        }
-        
-        return deepest;
-    }
-    
-    static bool deleteDeepestNode(TreeNode* root, TreeNode* target) {
-        if (root == nullptr || target == nullptr) return false;
-        
-        if (root == target) {
-            delete root;
-            return true;
-        }
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->left == target) {
-                delete current->left;
-                current->left = nullptr;
-                return true;
-            }
-            if (current->right == target) {
-                delete current->right;
-                current->right = nullptr;
-                return true;
-            }
-            
-            if (current->left) q.push(current->left);
-            if (current->right) q.push(current->right);
-        }
-        
-        return false;
-    }
-};
-```
-
-## Tree Modification Operations
-
-### 1. Tree Pruning
-```cpp
-class TreePruning {
-public:
-    // Remove all nodes with values less than given threshold
-    static TreeNode* pruneLessThan(TreeNode* root, int threshold) {
-        if (root == nullptr) return nullptr;
-        
-        root->left = pruneLessThan(root->left, threshold);
-        root->right = pruneLessThan(root->right, threshold);
-        
-        if (root->data < threshold && root->left == nullptr && root->right == nullptr) {
-            delete root;
-            return nullptr;
-        }
-        
-        return root;
-    }
-    
-    // Remove leaf nodes
-    static TreeNode* removeLeaves(TreeNode* root) {
-        if (root == nullptr) return nullptr;
-        
-        if (root->left == nullptr && root->right == nullptr) {
-            delete root;
-            return nullptr;
-        }
-        
-        root->left = removeLeaves(root->left);
-        root->right = removeLeaves(root->right);
-        
-        return root;
-    }
-    
-    // Remove nodes at odd levels
-    static TreeNode* removeOddLevels(TreeNode* root) {
-        return removeOddLevelsHelper(root, 0);
-    }
-    
-private:
-    static TreeNode* removeOddLevelsHelper(TreeNode* node, int level) {
-        if (node == nullptr) return nullptr;
-        
-        if (level % 2 == 1) {
-            // Remove this node and return its children
-            TreeNode* leftChild = removeOddLevelsHelper(node->left, level + 1);
-            TreeNode* rightChild = removeOddLevelsHelper(node->right, level + 1);
-            delete node;
-            
-            // For odd level, we need to merge children somehow
-            // This is a simplified approach - you might want different logic
-            return leftChild ? leftChild : rightChild;
-        }
-        
-        node->left = removeOddLevelsHelper(node->left, level + 1);
-        node->right = removeOddLevelsHelper(node->right, level + 1);
-        
-        return node;
-    }
-};
-```
-
-### 2. Tree Transformation
-```cpp
-class TreeTransformation {
-public:
-    // Mirror tree (left becomes right and vice versa)
-    static TreeNode* mirrorTree(TreeNode* root) {
-        if (root == nullptr) return nullptr;
-        
-        // Swap left and right children
-        TreeNode* temp = root->left;
-        root->left = root->right;
-        root->right = temp;
-        
-        // Recursively mirror subtrees
-        mirrorTree(root->left);
-        mirrorTree(root->right);
-        
-        return root;
-    }
-    
-    // Increment all node values by given amount
-    static void incrementValues(TreeNode* root, int increment) {
-        if (root == nullptr) return;
-        
-        root->data += increment;
-        incrementValues(root->left, increment);
-        incrementValues(root->right, increment);
-    }
-    
-    // Convert tree to its sum tree (each node contains sum of its subtree)
-    static int convertToSumTree(TreeNode* root) {
-        if (root == nullptr) return 0;
-        
-        int oldValue = root->data;
-        
-        root->data = convertToSumTree(root->left) + convertToSumTree(root->right);
-        
-        return root->data + oldValue;
-    }
-    
-    // Convert to double tree (duplicate each node)
-    static void convertToDoubleTree(TreeNode* root) {
-        if (root == nullptr) return;
-        
-        convertToDoubleTree(root->left);
-        convertToDoubleTree(root->right);
-        
-        // Duplicate current node as left child
-        TreeNode* duplicate = new TreeNode(root->data);
-        duplicate->left = root->left;
-        root->left = duplicate;
-    }
-};
-```
-
-## Tree Analysis Operations
-
-### 1. Path Operations
-```cpp
-class PathOperations {
-public:
-    // Find root to leaf paths
-    static std::vector<std::vector<int>> findAllRootToLeafPaths(TreeNode* root) {
-        std::vector<std::vector<int>> result;
-        std::vector<int> currentPath;
-        
-        findAllPathsHelper(root, currentPath, result);
-        
-        return result;
-    }
-    
-    // Find path from root to given node
-    static std::vector<int> findPathToNode(TreeNode* root, int value) {
-        std::vector<int> path;
-        findPathHelper(root, value, path);
-        return path;
-    }
-    
-    // Check if path exists with given sum
-    static bool hasPathWithSum(TreeNode* root, int sum) {
-        if (root == nullptr) return sum == 0;
-        
-        return hasPathWithSum(root->left, sum - root->data) ||
-               hasPathWithSum(root->right, sum - root->data);
-    }
-    
-    // Find maximum path sum
-    static int maxPathSum(TreeNode* root) {
-        int result = INT_MIN;
-        maxPathSumHelper(root, result);
-        return result;
-    }
-    
-private:
-    static void findAllPathsHelper(TreeNode* node, std::vector<int>& currentPath, 
-                                  std::vector<std::vector<int>>& result) {
-        if (node == nullptr) return;
-        
-        currentPath.push_back(node->data);
-        
-        if (node->left == nullptr && node->right == nullptr) {
-            result.push_back(currentPath);
+    if (parentOfDeepest) {
+        if (parentOfDeepest->getLeft() == deepestNode) {
+            parentOfDeepest->setLeft(nullptr);
         } else {
-            findAllPathsHelper(node->left, currentPath, result);
-            findAllPathsHelper(node->right, currentPath, result);
+            parentOfDeepest->setRight(nullptr);
         }
-        
-        currentPath.pop_back();
     }
     
-    static bool findPathHelper(TreeNode* node, int value, std::vector<int>& path) {
-        if (node == nullptr) return false;
+    delete deepestNode;
+    size_--;
+    return true;
+}
+```
+
+### Delete Entire Subtree
+
+```cpp
+template<typename T>
+void BinaryTree<T>::deleteSubtree(Node<T>* root) {
+    if (!root) return;
+    
+    deleteSubtree(root->getLeft());
+    deleteSubtree(root->getRight());
+    delete root;
+}
+
+template<typename T>
+bool BinaryTree<T>::deleteSubtreeAt(const T& value) {
+    if (!root_) return false;
+    
+    if (root_->getData() == value) {
+        clear();
+        return true;
+    }
+    
+    queue<Node<T>*> q;
+    q.push(root_);
+    
+    while (!q.empty()) {
+        Node<T>* current = q.front();
+        q.pop();
         
-        path.push_back(node->data);
-        
-        if (node->data == value) return true;
-        
-        if (findPathHelper(node->left, value, path) || 
-            findPathHelper(node->right, value, path)) {
+        if (current->getLeft() && current->getLeft()->getData() == value) {
+            deleteSubtree(current->getLeft());
+            current->setLeft(nullptr);
+            size_ = calculateSize(root_);
             return true;
         }
         
-        path.pop_back();
-        return false;
+        if (current->getRight() && current->getRight()->getData() == value) {
+            deleteSubtree(current->getRight());
+            current->setRight(nullptr);
+            size_ = calculateSize(root_);
+            return true;
+        }
+        
+        if (current->getLeft()) q.push(current->getLeft());
+        if (current->getRight()) q.push(current->getRight());
     }
     
-    static int maxPathSumHelper(TreeNode* node, int& result) {
-        if (node == nullptr) return 0;
-        
-        int left = std::max(0, maxPathSumHelper(node->left, result));
-        int right = std::max(0, maxPathSumHelper(node->right, result));
-        
-        result = std::max(result, left + right + node->data);
-        
-        return std::max(left, right) + node->data;
-    }
-};
+    return false;
+}
 ```
 
-### 2. Tree Comparison
+### Delete Leaf Nodes
+
 ```cpp
-class TreeComparison {
-public:
-    // Check if two trees are identical
-    static bool areIdentical(TreeNode* root1, TreeNode* root2) {
-        if (root1 == nullptr && root2 == nullptr) return true;
-        if (root1 == nullptr || root2 == nullptr) return false;
-        
-        return (root1->data == root2->data) &&
-               areIdentical(root1->left, root2->left) &&
-               areIdentical(root1->right, root2->right);
+template<typename T>
+bool BinaryTree<T>::deleteLeaf(const T& value) {
+    if (!root_) return false;
+    
+    // Special case: root is leaf
+    if (root_->isLeaf() && root_->getData() == value) {
+        delete root_;
+        root_ = nullptr;
+        size_ = 0;
+        return true;
     }
     
-    // Check if two trees are mirrors
-    static bool areMirrors(TreeNode* root1, TreeNode* root2) {
-        if (root1 == nullptr && root2 == nullptr) return true;
-        if (root1 == nullptr || root2 == nullptr) return false;
+    queue<Node<T>*> q;
+    q.push(root_);
+    
+    while (!q.empty()) {
+        Node<T>* current = q.front();
+        q.pop();
         
-        return (root1->data == root2->data) &&
-               areMirrors(root1->left, root2->right) &&
-               areMirrors(root1->right, root2->left);
+        // Check left child
+        if (current->getLeft() && current->getLeft()->isLeaf() && 
+            current->getLeft()->getData() == value) {
+            delete current->getLeft();
+            current->setLeft(nullptr);
+            size_--;
+            return true;
+        }
+        
+        // Check right child
+        if (current->getRight() && current->getRight()->isLeaf() && 
+            current->getRight()->getData() == value) {
+            delete current->getRight();
+            current->setRight(nullptr);
+            size_--;
+            return true;
+        }
+        
+        if (current->getLeft()) q.push(current->getLeft());
+        if (current->getRight()) q.push(current->getRight());
     }
     
-    // Check if tree2 is subtree of tree1
-    static bool isSubtree(TreeNode* mainTree, TreeNode* subTree) {
-        if (subTree == nullptr) return true;
-        if (mainTree == nullptr) return false;
-        
-        if (areIdentical(mainTree, subTree)) return true;
-        
-        return isSubtree(mainTree->left, subTree) || 
-               isSubtree(mainTree->right, subTree);
-    }
-};
+    return false;
+}
 ```
 
-## Advanced Operations
+---
 
-### 1. Tree Serialization/Deserialization
+## 🔍 Search Operations
+
+### Basic Search
+
 ```cpp
-class TreeSerialization {
-public:
-    // Serialize tree to string (preorder with null markers)
-    static std::string serialize(TreeNode* root) {
-        std::string result;
-        serializeHelper(root, result);
-        return result;
-    }
+template<typename T>
+Node<T>* BinaryTree<T>::search(Node<T>* node, const T& value) const {
+    if (!node) return nullptr;
+    if (node->getData() == value) return node;
     
-    // Deserialize tree from string
-    static TreeNode* deserialize(const std::string& data) {
-        std::stringstream ss(data);
-        return deserializeHelper(ss);
-    }
+    Node<T>* leftResult = search(node->getLeft(), value);
+    if (leftResult) return leftResult;
     
-    // Serialize to vector (level order)
-    static std::vector<int> serializeToVector(TreeNode* root) {
-        std::vector<int> result;
-        if (root == nullptr) return result;
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current != nullptr) {
-                result.push_back(current->data);
-                q.push(current->left);
-                q.push(current->right);
-            } else {
-                result.push_back(INT_MIN); // Use INT_MIN as null marker
-            }
-        }
-        
-        return result;
-    }
+    return search(node->getRight(), value);
+}
+
+template<typename T>
+bool BinaryTree<T>::contains(const T& value) const {
+    return search(root_, value) != nullptr;
+}
+```
+
+### Find Parent of a Node
+
+```cpp
+template<typename T>
+Node<T>* BinaryTree<T>::findParent(Node<T>* node, const T& value) const {
+    if (!node) return nullptr;
     
-private:
-    static void serializeHelper(TreeNode* node, std::string& result) {
-        if (node == nullptr) {
-            result += "null,";
-            return;
-        }
-        
-        result += std::to_string(node->data) + ",";
-        serializeHelper(node->left, result);
-        serializeHelper(node->right, result);
-    }
-    
-    static TreeNode* deserializeHelper(std::stringstream& ss) {
-        std::string val;
-        std::getline(ss, val, ',');
-        
-        if (val == "null" || val.empty()) {
-            return nullptr;
-        }
-        
-        TreeNode* node = new TreeNode(std::stoi(val));
-        node->left = deserializeHelper(ss);
-        node->right = deserializeHelper(ss);
-        
+    if ((node->getLeft() && node->getLeft()->getData() == value) ||
+        (node->getRight() && node->getRight()->getData() == value)) {
         return node;
     }
-};
+    
+    Node<T>* leftResult = findParent(node->getLeft(), value);
+    if (leftResult) return leftResult;
+    
+    return findParent(node->getRight(), value);
+}
 ```
 
-## Complexity Analysis
+### Find Level of a Node
+
+```cpp
+template<typename T>
+int BinaryTree<T>::findLevel(Node<T>* node, const T& value, int level) const {
+    if (!node) return -1;
+    if (node->getData() == value) return level;
+    
+    int leftLevel = findLevel(node->getLeft(), value, level + 1);
+    if (leftLevel != -1) return leftLevel;
+    
+    return findLevel(node->getRight(), value, level + 1);
+}
+
+template<typename T>
+int BinaryTree<T>::getLevel(const T& value) const {
+    return findLevel(root_, value, 0);
+}
+```
+
+---
+
+## 📈 Min/Max Operations
+
+### Find Minimum Value
+
+```cpp
+template<typename T>
+T BinaryTree<T>::findMin() const {
+    if (!root_) throw runtime_error("Tree is empty");
+    
+    Node<T>* current = root_;
+    while (current->getLeft()) {
+        current = current->getLeft();
+    }
+    return current->getData();
+}
+
+template<typename T>
+Node<T>* BinaryTree<T>::findMinNode(Node<T>* node) const {
+    if (!node) return nullptr;
+    
+    Node<T>* current = node;
+    while (current->getLeft()) {
+        current = current->getLeft();
+    }
+    return current;
+}
+```
+
+### Find Maximum Value
+
+```cpp
+template<typename T>
+T BinaryTree<T>::findMax() const {
+    if (!root_) throw runtime_error("Tree is empty");
+    
+    Node<T>* current = root_;
+    while (current->getRight()) {
+        current = current->getRight();
+    }
+    return current->getData();
+}
+
+template<typename T>
+Node<T>* BinaryTree<T>::findMaxNode(Node<T>* node) const {
+    if (!node) return nullptr;
+    
+    Node<T>* current = node;
+    while (current->getRight()) {
+        current = current->getRight();
+    }
+    return current;
+}
+```
+
+---
+
+## 🔄 Update Operations
+
+### Update Node Value
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::update(const T& oldValue, const T& newValue) {
+    Node<T>* node = search(root_, oldValue);
+    if (!node) return false;
+    
+    node->setData(newValue);
+    return true;
+}
+```
+
+### Swap Subtrees
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::swapSubtrees(const T& value) {
+    Node<T>* node = search(root_, value);
+    if (!node) return false;
+    
+    Node<T>* temp = node->getLeft();
+    node->setLeft(node->getRight());
+    node->setRight(temp);
+    
+    return true;
+}
+```
+
+---
+
+## 📏 Utility Operations
+
+### Calculate Size (Number of Nodes)
+
+```cpp
+template<typename T>
+int BinaryTree<T>::calculateSize(Node<T>* node) const {
+    if (!node) return 0;
+    return 1 + calculateSize(node->getLeft()) + calculateSize(node->getRight());
+}
+```
+
+### Calculate Diameter
+
+```cpp
+template<typename T>
+int BinaryTree<T>::calculateDiameter(Node<T>* node, int& height) const {
+    if (!node) {
+        height = -1;
+        return 0;
+    }
+    
+    int leftHeight = 0, rightHeight = 0;
+    int leftDiameter = calculateDiameter(node->getLeft(), leftHeight);
+    int rightDiameter = calculateDiameter(node->getRight(), rightHeight);
+    
+    height = 1 + max(leftHeight, rightHeight);
+    
+    return max({leftDiameter, rightDiameter, leftHeight + rightHeight + 2});
+}
+
+template<typename T>
+int BinaryTree<T>::diameter() const {
+    int height = 0;
+    return calculateDiameter(root_, height);
+}
+```
+
+### Check if Two Trees are Identical
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::isIdentical(Node<T>* node1, Node<T>* node2) const {
+    if (!node1 && !node2) return true;
+    if (!node1 || !node2) return false;
+    
+    return (node1->getData() == node2->getData()) &&
+           isIdentical(node1->getLeft(), node2->getLeft()) &&
+           isIdentical(node1->getRight(), node2->getRight());
+}
+```
+
+### Check if Tree is a Subtree
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::isSubtree(Node<T>* tree, Node<T>* subtree) const {
+    if (!subtree) return true;
+    if (!tree) return false;
+    
+    if (isIdentical(tree, subtree)) return true;
+    
+    return isSubtree(tree->getLeft(), subtree) || 
+           isSubtree(tree->getRight(), subtree);
+}
+```
+
+---
+
+## 🧪 Example Usage
+
+```cpp
+int main() {
+    BinaryTree<int> tree;
+    
+    // Insert nodes
+    tree.insertLevelOrder(1);
+    tree.insertLevelOrder(2);
+    tree.insertLevelOrder(3);
+    tree.insertLevelOrder(4);
+    tree.insertLevelOrder(5);
+    tree.insertLevelOrder(6);
+    tree.insertLevelOrder(7);
+    
+    cout << "Tree structure:" << endl;
+    tree.printPretty();
+    
+    // Search operations
+    cout << "\nContains 5: " << (tree.contains(5) ? "Yes" : "No") << endl;
+    cout << "Level of 5: " << tree.getLevel(5) << endl;
+    
+    // Min/Max
+    cout << "\nMinimum value: " << tree.findMin() << endl;
+    cout << "Maximum value: " << tree.findMax() << endl;
+    
+    // Update
+    tree.update(5, 50);
+    cout << "\nAfter updating 5 to 50:" << endl;
+    tree.printPretty();
+    
+    // Swap subtrees
+    tree.swapSubtrees(2);
+    cout << "\nAfter swapping subtrees of node 2:" << endl;
+    tree.printPretty();
+    
+    // Diameter
+    cout << "\nTree diameter: " << tree.diameter() << endl;
+    
+    // Delete operations
+    tree.deleteLeaf(50);
+    cout << "\nAfter deleting leaf 50:" << endl;
+    tree.printPretty();
+    
+    return 0;
+}
+```
+
+---
+
+## 📊 Complexity Summary
 
 | Operation | Time Complexity | Space Complexity |
 |-----------|----------------|------------------|
-| Search (DFS) | O(n) | O(h) |
-| Search (BFS) | O(n) | O(w) |
-| Insert (Level Order) | O(n) | O(w) |
-| Delete (Specific Node) | O(n) | O(h) |
-| Mirror Tree | O(n) | O(h) |
-| Find Paths | O(n) | O(h) |
-| Serialize | O(n) | O(h) |
-| Deserialize | O(n) | O(h) |
+| Insert (level order) | O(n) | O(n) |
+| Delete (any node) | O(n) | O(n) |
+| Search | O(n) | O(h) |
+| Find Min/Max | O(h) | O(1) |
+| Update | O(n) | O(h) |
+| Swap Subtrees | O(n) | O(h) |
+| Diameter | O(n) | O(h) |
+| Identical Check | O(n) | O(h) |
 
-Where:
-- n = number of nodes
-- h = height of tree
-- w = maximum width of tree
+---
 
-## Best Practices
+## ✅ Key Takeaways
 
-1. **Always handle nullptr cases** - Check for null before dereferencing
-2. **Use recursion carefully** - Deep trees can cause stack overflow
-3. **Memory management** - Properly delete nodes to avoid leaks
-4. **Iterative alternatives** - Consider stack/queue based implementations for deep trees
-5. **Input validation** - Validate parameters before operations
+1. **Insertion** in general binary tree is O(n) (no ordering property)
+2. **Deletion** requires finding deepest node for replacement
+3. **Search** traverses entire tree in worst case
+4. **Min/Max** operations are O(h) when following left/right pointers
+5. **Update** is search + modification
+6. **Swap subtrees** is constant time after finding target
+7. **Diameter** calculation uses post-order traversal
 
-## Summary
-
-These tree operations form the foundation for tree manipulation and are essential building blocks for more complex tree algorithms and data structures. Understanding these operations is crucial before moving to specialized tree types like BSTs and AVL trees.
+---

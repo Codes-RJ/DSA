@@ -1,272 +1,450 @@
 # BST Insertion
 
-## Overview
-Insertion in a Binary Search Tree maintains the BST property while adding a new element. The algorithm finds the appropriate position for the new node based on its value and inserts it as a leaf node.
+## 📖 Overview
 
-## Insertion Algorithm
+Insertion in a Binary Search Tree (BST) involves adding a new node while maintaining the BST property: for every node, all values in the left subtree are less than the node's value, and all values in the right subtree are greater. This guide covers both recursive and iterative insertion algorithms with complete implementations and complexity analysis.
 
-### Basic Insertion Process
+---
+
+## 🎯 Insertion Algorithm
+
+### Basic Principle
+
+The insertion algorithm follows the BST property to find the correct position for the new node:
+
+```
 1. Start at the root
-2. If tree is empty, new node becomes root
-3. Compare new value with current node:
-   - If less, go to left child
-   - If greater, go to right child
-   - If equal, handle based on duplicate policy
-4. Repeat until reaching null position
-5. Insert new node at that position
+2. Compare new value with current node's value
+3. If new value < current value → go left
+4. If new value > current value → go right
+5. If equal → handle duplicate (typically ignore or count)
+6. Repeat until a null position is found
+7. Insert new node at that position
+```
 
-### Recursive Implementation
+### Visual Example
+
+```
+Insert 50:                Insert 30:                Insert 80:
+    50                        50                        50
+                             /                         / \
+                            30                        30  80
+
+Insert 20:                Insert 40:                Insert 70:
+    50                        50                        50
+   / \                       / \                       / \
+  30  80                    30  80                    30  80
+ /                         / \                       / \   \
+20                        20 40                     20 40   70
+
+Insert 90:
+    50
+   / \
+  30  80
+ / \   \
+20 40   90
+```
+
+---
+
+## 📝 Recursive Insertion
+
+### Implementation
+
 ```cpp
-class BSTInsertion {
+template<typename T>
+class BSTNode {
+public:
+    T data;
+    BSTNode* left;
+    BSTNode* right;
+    
+    BSTNode(const T& value) : data(value), left(nullptr), right(nullptr) {}
+};
+
+template<typename T>
+class BinarySearchTree {
 private:
-    BSTNode* insertRecursive(BSTNode* node, int value) {
-        // Base case: reached null position
+    BSTNode<T>* root;
+    
+    // Recursive insert helper
+    BSTNode<T>* insertRecursive(BSTNode<T>* node, const T& value) {
+        // Base case: found empty spot
         if (node == nullptr) {
-            return new BSTNode(value);
+            return new BSTNode<T>(value);
         }
         
-        // Recursive case: go left or right
+        // Recursive cases
         if (value < node->data) {
             node->left = insertRecursive(node->left, value);
-        } else if (value > node->data) {
+        } 
+        else if (value > node->data) {
             node->right = insertRecursive(node->right, value);
-        } else {
-            // Handle duplicate (ignore in this case)
-            return node;
         }
+        // If equal, do nothing (no duplicates)
         
         return node;
     }
     
 public:
-    void insert(int value) {
+    BinarySearchTree() : root(nullptr) {}
+    
+    void insert(const T& value) {
         root = insertRecursive(root, value);
     }
 };
 ```
 
-### Iterative Implementation
+### Step-by-Step Execution
+
+```
+Insert 50 into empty tree:
+    insertRecursive(nullptr, 50) → create node → return node → root = node
+
+Insert 30 into tree with root 50:
+    insertRecursive(50, 30):
+        30 < 50 → go left (null)
+        insertRecursive(nullptr, 30) → create node
+        50->left = node
+        return 50
+
+Insert 80 into tree with root 50:
+    insertRecursive(50, 80):
+        80 > 50 → go right (null)
+        insertRecursive(nullptr, 80) → create node
+        50->right = node
+        return 50
+```
+
+---
+
+## 🔄 Iterative Insertion
+
+### Implementation
+
 ```cpp
-class BSTInsertionIterative {
-private:
-    BSTNode* root;
+template<typename T>
+void BinarySearchTree<T>::insertIterative(const T& value) {
+    BSTNode<T>* newNode = new BSTNode<T>(value);
     
-public:
-    void insert(int value) {
-        BSTNode* newNode = new BSTNode(value);
+    // Case 1: Empty tree
+    if (root == nullptr) {
+        root = newNode;
+        return;
+    }
+    
+    // Case 2: Non-empty tree
+    BSTNode<T>* current = root;
+    BSTNode<T>* parent = nullptr;
+    
+    while (current != nullptr) {
+        parent = current;
         
-        // Empty tree case
-        if (root == nullptr) {
-            root = newNode;
+        if (value < current->data) {
+            current = current->left;
+        } 
+        else if (value > current->data) {
+            current = current->right;
+        } 
+        else {
+            // Duplicate found - handle appropriately
+            delete newNode;  // or increment count
             return;
         }
-        
-        BSTNode* current = root;
-        BSTNode* parent = nullptr;
-        
-        // Find insertion position
-        while (current != nullptr) {
-            parent = current;
-            
-            if (value < current->data) {
-                current = current->left;
-            } else if (value > current->data) {
-                current = current->right;
-            } else {
-                // Duplicate found - handle based on policy
-                delete newNode; // Clean up
-                return;
-            }
-        }
-        
-        // Insert new node
-        if (value < parent->data) {
-            parent->left = newNode;
-        } else {
-            parent->right = newNode;
-        }
     }
-};
+    
+    // Insert at the correct position
+    if (value < parent->data) {
+        parent->left = newNode;
+    } else {
+        parent->right = newNode;
+    }
+}
 ```
 
-## Duplicate Handling Strategies
+### Visual Walkthrough
 
-### 1. Ignore Duplicates
+```
+Insert 30 into existing tree:
+
+Step 1: current = root(50), parent = null
+        30 < 50 → go left
+
+Step 2: current = 30, parent = 50
+        30 equals 30? No
+        30 < 30? No
+        30 > 30? No → duplicate found
+
+Result: Do not insert (or increment count)
+
+Insert 25 into tree:
+
+Step 1: current = 50, parent = null
+        25 < 50 → go left
+
+Step 2: current = 30, parent = 50
+        25 < 30 → go left
+
+Step 3: current = 20, parent = 30
+        25 > 20 → go right
+
+Step 4: current = null, parent = 20
+        Insert 25 as right child of 20
+```
+
+---
+
+## 📊 Handling Duplicates
+
+### Method 1: Count Duplicates
+
 ```cpp
-class BSTIgnoreDuplicates {
+template<typename T>
+class BSTNodeWithCount {
 public:
-    BSTNode* insert(BSTNode* node, int value) {
-        if (node == nullptr) {
-            return new BSTNode(value);
-        }
-        
-        if (value < node->data) {
-            node->left = insert(node->left, value);
-        } else if (value > node->data) {
-            node->right = insert(node->right, value);
-        }
-        // If equal, ignore (do nothing)
-        
-        return node;
-    }
-};
-```
-
-### 2. Count Duplicates
-```cpp
-struct BSTNodeWithCount {
-    int data;
+    T data;
     int count;
     BSTNodeWithCount* left;
     BSTNodeWithCount* right;
     
-    BSTNodeWithCount(int value) : data(value), count(1), left(nullptr), right(nullptr) {}
+    BSTNodeWithCount(const T& value) 
+        : data(value), count(1), left(nullptr), right(nullptr) {}
 };
 
-class BSTWithCount {
-public:
-    BSTNodeWithCount* insert(BSTNodeWithCount* node, int value) {
-        if (node == nullptr) {
-            return new BSTNodeWithCount(value);
-        }
-        
-        if (value < node->data) {
-            node->left = insert(node->left, value);
-        } else if (value > node->data) {
-            node->right = insert(node->right, value);
-        } else {
-            node->count++; // Increment count for duplicate
-        }
-        
-        return node;
+template<typename T>
+void insertWithCount(BSTNodeWithCount<T>*& node, const T& value) {
+    if (node == nullptr) {
+        node = new BSTNodeWithCount<T>(value);
+        return;
     }
-};
+    
+    if (value < node->data) {
+        insertWithCount(node->left, value);
+    } 
+    else if (value > node->data) {
+        insertWithCount(node->right, value);
+    } 
+    else {
+        node->count++;  // Increment count for duplicates
+    }
+}
 ```
 
-### 3. Allow Duplicates (Left or Right Bias)
+### Method 2: Store Duplicates in Right Subtree
+
 ```cpp
-class BSTAllowDuplicates {
-private:
-    bool insertLeft; // Policy: insert duplicates to left or right
-    
-public:
-    BSTNode* insert(BSTNode* node, int value) {
-        if (node == nullptr) {
-            return new BSTNode(value);
-        }
-        
-        if (value < node->data) {
-            node->left = insert(node->left, value);
-        } else if (value > node->data) {
-            node->right = insert(node->right, value);
-        } else {
-            // Equal - insert based on policy
-            if (insertLeft) {
-                node->left = insert(node->left, value);
-            } else {
-                node->right = insert(node->right, value);
-            }
-        }
-        
-        return node;
+template<typename T>
+void insertWithDuplicatesRight(BSTNode<T>*& node, const T& value) {
+    if (node == nullptr) {
+        node = new BSTNode<T>(value);
+        return;
     }
-};
+    
+    if (value <= node->data) {  // Allow duplicates in left
+        insertWithDuplicatesRight(node->left, value);
+    } else {
+        insertWithDuplicatesRight(node->right, value);
+    }
+}
 ```
 
-## Special Insertion Cases
+### Method 3: Store Duplicates in Left Subtree
 
-### 1. Bulk Insertion
 ```cpp
-class BSTBulkInsertion {
-public:
-    // Insert from array (maintains BST property)
-    void insertFromArray(const std::vector<int>& arr) {
-        for (int value : arr) {
-            insert(value);
-        }
+template<typename T>
+void insertWithDuplicatesLeft(BSTNode<T>*& node, const T& value) {
+    if (node == nullptr) {
+        node = new BSTNode<T>(value);
+        return;
     }
     
-    // Insert to create balanced BST from sorted array
-    BSTNode* insertFromSorted(const std::vector<int>& sorted, int start, int end) {
-        if (start > end) return nullptr;
-        
-        int mid = start + (end - start) / 2;
-        BSTNode* root = new BSTNode(sorted[mid]);
-        
-        root->left = insertFromSorted(sorted, start, mid - 1);
-        root->right = insertFromSorted(sorted, mid + 1, end);
-        
-        return root;
+    if (value < node->data) {
+        insertWithDuplicatesLeft(node->left, value);
+    } else {  // Allow duplicates in right
+        insertWithDuplicatesLeft(node->right, value);
     }
-    
-    void createBalancedFromSorted(const std::vector<int>& sorted) {
-        root = insertFromSorted(sorted, 0, sorted.size() - 1);
-    }
-};
+}
 ```
 
-### 2. Insertion with Height Tracking
-```cpp
-struct BSTNodeWithHeight {
-    int data;
-    int height;
-    BSTNodeWithHeight* left;
-    BSTNodeWithHeight* right;
-    
-    BSTNodeWithHeight(int value) : data(value), height(1), left(nullptr), right(nullptr) {}
-};
+---
 
-class BSTWithHeight {
-private:
-    int getHeight(BSTNodeWithHeight* node) {
-        return node ? node->height : 0;
-    }
-    
-    void updateHeight(BSTNodeWithHeight* node) {
-        if (node) {
-            node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
-        }
-    }
-    
-public:
-    BSTNodeWithHeight* insert(BSTNodeWithHeight* node, int value) {
-        if (node == nullptr) {
-            return new BSTNodeWithHeight(value);
-        }
-        
-        if (value < node->data) {
-            node->left = insert(node->left, value);
-        } else if (value > node->data) {
-            node->right = insert(node->right, value);
-        }
-        
-        updateHeight(node);
-        return node;
-    }
-};
+## 📈 Complexity Analysis
+
+### Time Complexity
+
+| Case | Complexity | Description |
+|------|------------|-------------|
+| **Best Case** | O(1) | Inserting at root (empty tree) |
+| **Average Case** | O(log n) | Tree is reasonably balanced |
+| **Worst Case** | O(n) | Tree is skewed (like linked list) |
+
+### Space Complexity
+
+| Implementation | Space | Description |
+|----------------|-------|-------------|
+| **Recursive** | O(h) | Call stack depth equals height |
+| **Iterative** | O(1) | No recursion overhead |
+
+### Height Analysis
+
+```
+Perfect tree of height 3:
+        50
+       /  \
+      30   80
+     / \   / \
+    20 40 70 90
+
+Insert operations: O(log n) where n = 15, log₂(15) ≈ 4
+
+Skewed tree:
+    1
+     \
+      2
+       \
+        3
+         \
+          4
+           \
+            5
+
+Insert operations: O(n) where n = 5
 ```
 
-### 3. Insertion with Parent Pointers
+---
+
+## 🎯 Edge Cases
+
+### Case 1: Empty Tree
+
 ```cpp
-class BSTWithParentPointers {
+// Initial state: root = nullptr
+bst.insert(50);
+// Result: root becomes new node with value 50
+```
+
+### Case 2: Duplicate Value
+
+```cpp
+bst.insert(50);
+bst.insert(50);  // Duplicate
+
+// Option A: Ignore (no change)
+// Option B: Increment count
+// Option C: Insert in left/right subtree
+```
+
+### Case 3: Inserting Minimum Value
+
+```cpp
+// Tree:    50
+//         /  \
+//        30   80
+
+bst.insert(10);
+// Result: 10 becomes left child of 30
+```
+
+### Case 4: Inserting Maximum Value
+
+```cpp
+// Tree:    50
+//         /  \
+//        30   80
+
+bst.insert(100);
+// Result: 100 becomes right child of 80
+```
+
+### Case 5: Inserting Between Values
+
+```cpp
+// Tree:    50
+//         /  \
+//        30   80
+
+bst.insert(60);
+// Result: 60 becomes left child of 80
+```
+
+---
+
+## 💻 Complete Implementation
+
+```cpp
+#include <iostream>
+#include <queue>
+#include <stack>
+using namespace std;
+
+template<typename T>
+class BST {
 private:
     struct Node {
-        int data;
+        T data;
         Node* left;
         Node* right;
-        Node* parent;
         
-        Node(int value) : data(value), left(nullptr), right(nullptr), parent(nullptr) {}
+        Node(const T& value) : data(value), left(nullptr), right(nullptr) {}
     };
     
     Node* root;
+    size_t nodeCount;
+    
+    // Recursive insert helper
+    Node* insertRecursive(Node* node, const T& value) {
+        if (node == nullptr) {
+            nodeCount++;
+            return new Node(value);
+        }
+        
+        if (value < node->data) {
+            node->left = insertRecursive(node->left, value);
+        } else if (value > node->data) {
+            node->right = insertRecursive(node->right, value);
+        }
+        // Duplicate: ignore
+        
+        return node;
+    }
+    
+    // Inorder traversal helper
+    void inorderRecursive(Node* node) {
+        if (node == nullptr) return;
+        
+        inorderRecursive(node->left);
+        cout << node->data << " ";
+        inorderRecursive(node->right);
+    }
+    
+    // Print tree structure
+    void printTree(Node* node, int space, int indent) {
+        if (node == nullptr) return;
+        
+        space += indent;
+        
+        printTree(node->right, space, indent);
+        
+        cout << endl;
+        for (int i = indent; i < space; i++) cout << " ";
+        cout << node->data << endl;
+        
+        printTree(node->left, space, indent);
+    }
     
 public:
-    void insert(int value) {
+    BST() : root(nullptr), nodeCount(0) {}
+    
+    void insert(const T& value) {
+        root = insertRecursive(root, value);
+    }
+    
+    void insertIterative(const T& value) {
         Node* newNode = new Node(value);
         
         if (root == nullptr) {
             root = newNode;
+            nodeCount++;
             return;
         }
         
@@ -281,272 +459,119 @@ public:
             } else if (value > current->data) {
                 current = current->right;
             } else {
-                delete newNode; // Handle duplicate
+                delete newNode;  // Duplicate
                 return;
             }
         }
         
-        // Set parent pointer
-        newNode->parent = parent;
-        
-        // Link to parent
         if (value < parent->data) {
             parent->left = newNode;
         } else {
             parent->right = newNode;
         }
+        nodeCount++;
     }
+    
+    void inorder() {
+        inorderRecursive(root);
+        cout << endl;
+    }
+    
+    void print() {
+        printTree(root, 0, 5);
+        cout << endl;
+    }
+    
+    size_t size() const { return nodeCount; }
+    bool empty() const { return root == nullptr; }
 };
+
+int main() {
+    BST<int> bst;
+    
+    cout << "Inserting values: 50, 30, 80, 20, 40, 70, 90\n\n";
+    
+    bst.insert(50);
+    bst.insert(30);
+    bst.insert(80);
+    bst.insert(20);
+    bst.insert(40);
+    bst.insert(70);
+    bst.insert(90);
+    
+    cout << "Tree structure:\n";
+    bst.print();
+    
+    cout << "Inorder traversal (sorted): ";
+    bst.inorder();
+    
+    cout << "Tree size: " << bst.size() << endl;
+    
+    cout << "\nInserting duplicate 50 (ignored)\n";
+    bst.insert(50);
+    cout << "Tree size after duplicate: " << bst.size() << endl;
+    
+    return 0;
+}
 ```
 
-## Performance Analysis
+---
 
-### Time Complexity
-| Case | Time Complexity | Description |
-|------|-----------------|-------------|
-| Best | O(log n) | Balanced tree, insert at leaf |
-| Average | O(log n) | Random insertions |
-| Worst | O(n) | Skewed tree, insert at end |
+## 📊 Performance Comparison
 
-### Space Complexity
-- **Recursive**: O(h) call stack space
-- **Iterative**: O(1) auxiliary space
-- **Overall**: O(n) for storing nodes
+### Recursive vs Iterative
 
-### Factors Affecting Performance
-1. **Tree Balance**: More balanced = better performance
-2. **Insertion Order**: Sorted order creates worst case
-3. **Duplicate Handling**: Affects tree structure
-4. **Node Size**: Larger nodes = more memory overhead
+| Aspect | Recursive | Iterative |
+|--------|-----------|-----------|
+| **Code Simplicity** | Cleaner, more elegant | More verbose |
+| **Space Complexity** | O(h) stack space | O(1) extra space |
+| **Risk** | Stack overflow for deep trees | No recursion risk |
+| **Performance** | Slightly slower due to calls | Slightly faster |
+| **Debugging** | Easier to understand | Harder to trace |
 
-## Insertion Order Impact
+### When to Use Each
 
-### Best Case (Balanced Tree)
-```cpp
-// Insertion order that creates balanced tree
-std::vector<int> balancedOrder = {50, 30, 70, 20, 40, 60, 80};
-// Results in tree with height ~log n
-```
+| Use Recursive When | Use Iterative When |
+|--------------------|--------------------|
+| Tree is relatively balanced | Tree may be very deep |
+| Code readability is priority | Stack space is limited |
+| Learning/teaching | Production code |
+| Small to medium datasets | Large datasets |
 
-### Worst Case (Skewed Tree)
-```cpp
-// Insertion order that creates skewed tree
-std::vector<int> skewedOrder = {10, 20, 30, 40, 50, 60, 70};
-// Results in tree with height = n
-```
+---
 
-### Random Order
-```cpp
-// Random insertion typically creates reasonably balanced tree
-std::vector<int> randomOrder = {45, 23, 67, 12, 34, 56, 78, 89, 1};
-// Expected height: O(log n)
-```
+## 🎯 Common Pitfalls
 
-## Advanced Insertion Techniques
+| Pitfall | Consequence | Solution |
+|---------|-------------|----------|
+| **Not updating parent links** | Broken tree structure | Always track parent in iterative |
+| **Memory leak on duplicate** | Wasted memory | Delete or reuse duplicate node |
+| **Stack overflow** | Program crash | Use iterative for deep trees |
+| **Not handling empty tree** | Null pointer access | Check root == nullptr |
+| **Incorrect comparison** | Violates BST property | Use consistent comparison logic |
 
-### 1. Insertion with Rebalancing
-```cpp
-class BSTWithRebalancing {
-private:
-    BSTNode* insertAndBalance(BSTNode* node, int value) {
-        node = insert(node, value);
-        
-        // Check if rebalancing is needed
-        if (isUnbalanced(node)) {
-            node = rebalance(node);
-        }
-        
-        return node;
-    }
-    
-    bool isUnbalanced(BSTNode* node) {
-        int leftHeight = height(node->left);
-        int rightHeight = height(node->right);
-        return abs(leftHeight - rightHeight) > 1;
-    }
-    
-    BSTNode* rebalance(BSTNode* node) {
-        // Simple rebalancing: rebuild from sorted array
-        std::vector<int> values;
-        inorderTraversal(node, values);
-        return buildBalanced(values, 0, values.size() - 1);
-    }
-};
-```
+---
 
-### 2. Insertion with Statistics
-```cpp
-class BSTWithStats {
-private:
-    struct StatsNode {
-        int data;
-        int size; // Size of subtree
-        int height;
-        StatsNode* left;
-        StatsNode* right;
-        
-        StatsNode(int value) : data(value), size(1), height(1), left(nullptr), right(nullptr) {}
-    };
-    
-    void updateStats(StatsNode* node) {
-        if (node) {
-            node->size = 1 + getSize(node->left) + getSize(node->right);
-            node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
-        }
-    }
-    
-public:
-    StatsNode* insert(StatsNode* node, int value) {
-        if (node == nullptr) {
-            return new StatsNode(value);
-        }
-        
-        if (value < node->data) {
-            node->left = insert(node->left, value);
-        } else if (value > node->data) {
-            node->right = insert(node->right, value);
-        }
-        
-        updateStats(node);
-        return node;
-    }
-    
-    int getRank(StatsNode* root, int value) {
-        // Find rank (number of elements <= value)
-        int rank = 0;
-        StatsNode* current = root;
-        
-        while (current != nullptr) {
-            if (value < current->data) {
-                current = current->left;
-            } else {
-                rank += 1 + getSize(current->left);
-                current = current->right;
-            }
-        }
-        
-        return rank;
-    }
-};
-```
+## 💡 Best Practices
 
-## Common Insertion Patterns
+1. **Always maintain BST property** during insertion
+2. **Handle duplicates explicitly** based on requirements
+3. **Prefer iterative** for deep trees to avoid stack overflow
+4. **Use recursion** for clarity when tree is balanced
+5. **Update size counter** correctly on successful insertion
+6. **Delete duplicate nodes** to prevent memory leaks
+7. **Test edge cases**: empty tree, duplicates, min, max
 
-### 1. Sequential Insertion
-```cpp
-class SequentialInsertion {
-public:
-    void insertSequential(int start, int end) {
-        for (int i = start; i <= end; i++) {
-            insert(i);
-        }
-    }
-    
-    void insertSequentialReverse(int start, int end) {
-        for (int i = end; i >= start; i--) {
-            insert(i);
-        }
-    }
-};
-```
+---
 
-### 2. Range Insertion
-```cpp
-class RangeInsertion {
-public:
-    void insertRange(int min, int max, int step = 1) {
-        for (int i = min; i <= max; i += step) {
-            insert(i);
-        }
-    }
-    
-    void insertRandomRange(int count, int min, int max) {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(min, max);
-        
-        for (int i = 0; i < count; i++) {
-            insert(dis(gen));
-        }
-    }
-};
-```
+## ✅ Key Takeaways
 
-## Error Handling and Validation
+1. **Insertion follows BST property**: left < root < right
+2. **Two approaches**: recursive (simpler) and iterative (safer)
+3. **Time complexity**: O(log n) average, O(n) worst case
+4. **Space complexity**: O(h) recursive, O(1) iterative
+5. **Duplicates** can be handled by ignoring, counting, or storing
+6. **Empty tree** is a valid state (insert becomes root)
+7. **Skewed trees** cause worst-case O(n) performance
 
-### 1. Input Validation
-```cpp
-class SafeBSTInsertion {
-public:
-    bool insert(int value) {
-        try {
-            // Validate input
-            if (!isValidValue(value)) {
-                return false;
-            }
-            
-            root = insertRecursive(root, value);
-            return true;
-        } catch (const std::exception& e) {
-            // Handle memory allocation failure
-            std::cerr << "Insertion failed: " << e.what() << std::endl;
-            return false;
-        }
-    }
-    
-private:
-    bool isValidValue(int value) {
-        // Add any validation logic
-        return true; // For now, accept all integers
-    }
-};
-```
-
-### 2. Memory Management
-```cpp
-class MemorySafeBST {
-private:
-    std::vector<BSTNode*> allocatedNodes;
-    
-public:
-    ~MemorySafeBST() {
-        for (BSTNode* node : allocatedNodes) {
-            delete node;
-        }
-    }
-    
-    void insert(int value) {
-        BSTNode* newNode = new BSTNode(value);
-        allocatedNodes.push_back(newNode);
-        
-        // Insert into tree...
-    }
-};
-```
-
-## Best Practices
-
-### 1. Implementation Guidelines
-- Choose appropriate duplicate handling strategy
-- Consider iterative version for deep trees
-- Validate input before insertion
-- Handle memory allocation failures
-- Maintain tree invariants
-
-### 2. Performance Optimization
-- Use bulk insertion for sorted data
-- Consider rebalancing for skewed trees
-- Optimize for common insertion patterns
-- Cache frequently accessed nodes
-- Use memory pools for frequent operations
-
-### 3. Testing Strategies
-- Test with various insertion orders
-- Verify BST property after insertion
-- Test edge cases (empty tree, duplicates)
-- Measure performance with large datasets
-- Test memory usage and leaks
-
-## Summary
-
-BST insertion is a fundamental operation that maintains the ordered property of the tree. The choice between recursive and iterative implementations, duplicate handling strategies, and performance optimizations depends on the specific use case. Understanding insertion patterns and their impact on tree structure is crucial for maintaining efficient BST operations.
+---

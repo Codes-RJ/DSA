@@ -1,92 +1,579 @@
-# AVL Tree Rotations: The Mechanics of Balance
+# AVL Tree Rotations
 
-## Overview
-Rotations are the fundamental operations that re-balance an AVL tree while preserving its Binary Search Tree (BST) properties. A rotation changes the tree structure by moving nodes up or down, effectively shifting the height from a taller subtree to a shorter one.
+## 📖 Overview
+
+Rotations are the fundamental operations that maintain balance in AVL trees. When a node becomes unbalanced (balance factor becomes -2 or 2), rotations are performed to restore balance. There are four types of rotations: Right Rotation, Left Rotation, Left-Right Rotation, and Right-Left Rotation. Each rotation operation runs in O(1) time.
 
 ---
 
-## 1. Single Rotations (LL and RR Cases)
+## 🎯 Why Rotations?
 
-### Right Rotation (LL Case)
-Triggered when the **Left Child of the Left Child** causes an imbalance in ancestral node $Z$.
+### The Problem
 
-**Visual Representation:**
-```text
-      Z (BF=2)           Y
-     / \                / \
-    Y   T4      --->   X   Z
-   / \                / \ / \
-  X   T3             T1 T2 T3 T4
- / \
-T1 T2
+When nodes are inserted or deleted, the balance factor of some nodes may become -2 or 2, violating the AVL property:
+
+```
+Unbalanced Tree:
+        50 (BF = 2) ← Violation!
+       /
+      30 (BF = 1)
+     /
+    20
+
+This tree is left-heavy and needs rebalancing.
 ```
 
-**C++ Subtree Reattachment Logic:**
-```cpp
-Node* rightRotate(Node* z) {
-    Node* y = z->left;
-    Node* T3 = y->right;
+### The Solution
 
+Rotations restructure the tree while preserving the BST property:
+
+```
+After Right Rotation:
+        30
+       /  \
+      20   50
+
+Tree is balanced again!
+```
+
+---
+
+## 🔄 Right Rotation (LL Case)
+
+### When to Use
+
+Used when a node becomes left-heavy (BF = 2) and its left child is also left-heavy (BF ≥ 0). This is the **Left-Left (LL)** case.
+
+### Visual Transformation
+
+```
+Before Rotation:              After Rotation:
+        z (BF = 2)                   y (BF = 0)
+       /                           /   \
+      y (BF = 1)                  x     z
+     /
+    x
+
+Where:
+- x is left child of y
+- y is left child of z
+```
+
+### Step-by-Step Process
+
+```
+Step 1: Identify nodes
+        z
+       /
+      y
+     /
+    x
+
+Step 2: Make y the new root
+        y
+       / \
+      x   z
+
+Step 3: Update heights
+        y (height updated)
+       / \
+      x   z (heights updated)
+```
+
+### Implementation
+
+```cpp
+AVLNode* rightRotate(AVLNode* y) {
+    AVLNode* x = y->left;
+    AVLNode* T2 = x->right;
+    
     // Perform rotation
-    y->right = z;
-    z->left = T3;
-
-    // Update heights (order matters! Update 'z' first as it's now a child of 'y')
-    z->height = 1 + max(getHeight(z->left), getHeight(z->right));
-    y->height = 1 + max(getHeight(y->left), getHeight(y->right));
-
-    return y; // New root of this subtree
+    x->right = y;
+    y->left = T2;
+    
+    // Update heights
+    updateHeight(y);
+    updateHeight(x);
+    
+    return x; // New root
 }
 ```
 
-### Left Rotation (RR Case)
-Triggered when the **Right Child of the Right Child** causes an imbalance in node $Z$. Symmetric to Right Rotation.
+### Example
+
+```
+Before:                       After:
+        50 (BF = 2)                 30 (BF = 0)
+       /                          /   \
+      30 (BF = 1)                20    50
+     /
+    20
+
+Balance restored!
+```
 
 ---
 
-## 2. Double Rotations (LR and RL Cases)
+## 🔄 Left Rotation (RR Case)
 
-### Left-Right Rotation (LR Case)
-Triggered when the **Right Child of the Left Child** causes an imbalance. A single rotation is not enough because the inner subtree is too tall. We first turn it into an LL Case, then rotate.
+### When to Use
 
-**Algorithm:**
-1. Perform **Left Rotation** on the Left Child (`z->left`).
-2. Perform **Right Rotation** on the root node $Z$.
+Used when a node becomes right-heavy (BF = -2) and its right child is also right-heavy (BF ≤ 0). This is the **Right-Right (RR)** case.
+
+### Visual Transformation
+
+```
+Before Rotation:              After Rotation:
+z (BF = -2)                         y (BF = 0)
+ \                               /   \
+  y (BF = -1)                   z     x
+   \
+    x
+
+Where:
+- x is right child of y
+- y is right child of z
+```
+
+### Step-by-Step Process
+
+```
+Step 1: Identify nodes
+z
+ \
+  y
+   \
+    x
+
+Step 2: Make y the new root
+        y
+       / \
+      z   x
+
+Step 3: Update heights
+        y (height updated)
+       / \
+      z   x (heights updated)
+```
+
+### Implementation
 
 ```cpp
-// Logic inside balance() function
-if (balance > 1 && key > root->left->data) {
-    root->left = leftRotate(root->left); // Convert LR to LL
-    return rightRotate(root);            // Solve LL
+AVLNode* leftRotate(AVLNode* x) {
+    AVLNode* y = x->right;
+    AVLNode* T2 = y->left;
+    
+    // Perform rotation
+    y->left = x;
+    x->right = T2;
+    
+    // Update heights
+    updateHeight(x);
+    updateHeight(y);
+    
+    return y; // New root
 }
 ```
 
-### Right-Left Rotation (RL Case)
-Triggered when the **Left Child of the Right Child** causes an imbalance. Symmetric to LR.
+### Example
+
+```
+Before:                       After:
+50 (BF = -2)                       80 (BF = 0)
+ \                               /   \
+  80 (BF = -1)                  50    90
+   \
+    90
+
+Balance restored!
+```
 
 ---
 
-## 3. The "Why" Behind Subtree Reattachment
-Notice `T3` in the Right Rotation. It was the right child of `Y` (values $> Y$ and $< Z$). After `Z` becomes the right child of `Y`, $T3$ must be reattached to `Z` as its **new left child** to maintain the BST property ($Y < T3 < Z$).
+## 🔄 Left-Right Rotation (LR Case)
+
+### When to Use
+
+Used when a node becomes left-heavy (BF = 2) but its left child is right-heavy (BF = -1). This is the **Left-Right (LR)** case.
+
+### Visual Transformation
+
+```
+Before Rotation:              After Rotation:
+        z (BF = 2)                   x (BF = 0)
+       /                           /   \
+      y (BF = -1)                  y     z
+       \
+        x
+
+Step 1: Left rotate on y
+        z
+       /
+      x
+     /
+    y
+
+Step 2: Right rotate on z
+        x
+       / \
+      y   z
+```
+
+### Implementation
+
+```cpp
+AVLNode* leftRightRotate(AVLNode* z) {
+    z->left = leftRotate(z->left);
+    return rightRotate(z);
+}
+```
+
+### Example
+
+```
+Before:                       After:
+        50 (BF = 2)                 40 (BF = 0)
+       /                          /   \
+      30 (BF = -1)               30    50
+       \
+        40
+
+Balance restored!
+```
 
 ---
 
-## 4. Complexity and Performance
+## 🔄 Right-Left Rotation (RL Case)
 
-| Feature | Complexity | Rationale |
-|---------|------------|-----------|
-| **Time**| $O(1)$ | Only involves updating 3-4 pointers and 2 height values. |
-| **Space**| $O(1)$ | No extra memory used (performed in-place). |
+### When to Use
 
-### Comparison: AVL vs. Red-Black Rotations
-- **AVL Insertion**: At most 2 rotations (1 single or 1 double) to fix balance.
-- **AVL Deletion**: Might require $O(\log N)$ rotations in the worst case as balance cascades up.
-- **Red-Black Tree**: Guaranteed at most 2 rotations for insertion and 3 for deletion.
+Used when a node becomes right-heavy (BF = -2) but its right child is left-heavy (BF = 1). This is the **Right-Left (RL)** case.
+
+### Visual Transformation
+
+```
+Before Rotation:              After Rotation:
+z (BF = -2)                         x (BF = 0)
+ \                                 / \
+  y (BF = 1)                       z   y
+ /
+x
+
+Step 1: Right rotate on y
+z
+ \
+  x
+   \
+    y
+
+Step 2: Left rotate on z
+        x
+       / \
+      z   y
+```
+
+### Implementation
+
+```cpp
+AVLNode* rightLeftRotate(AVLNode* z) {
+    z->right = rightRotate(z->right);
+    return leftRotate(z);
+}
+```
+
+### Example
+
+```
+Before:                       After:
+50 (BF = -2)                       70 (BF = 0)
+ \                               /   \
+  80 (BF = 1)                   50    80
+ /
+70
+
+Balance restored!
+```
 
 ---
 
-## 5. Critical Verification Checklist
-- [ ] Is the inorder traversal (`T1 < X < T2 < Y < T3 < Z < T4`) identical before and after?
-- [ ] Are heights updated for **both** nodes involved in the rotation?
-- [ ] Is the height updated for the *lower* node before the *upper* node?
-- [ ] Does the function return the *new* root of the subtree to the parent?
+## 📊 Rotation Summary Table
+
+| Case | Pattern | Balance Factors | Rotation | Steps |
+|------|---------|-----------------|----------|-------|
+| **LL** | Left-Left | BF(z)=2, BF(y)≥0 | Right | Single |
+| **RR** | Right-Right | BF(z)=-2, BF(y)≤0 | Left | Single |
+| **LR** | Left-Right | BF(z)=2, BF(y)=-1 | Left-Right | Double |
+| **RL** | Right-Left | BF(z)=-2, BF(y)=1 | Right-Left | Double |
+
+---
+
+## 💻 Complete Rotation Implementation
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+template<typename T>
+class AVLNode {
+public:
+    T data;
+    AVLNode* left;
+    AVLNode* right;
+    int height;
+    
+    AVLNode(const T& value) 
+        : data(value), left(nullptr), right(nullptr), height(0) {}
+};
+
+template<typename T>
+class AVLTree {
+private:
+    AVLNode<T>* root;
+    
+    int getHeight(AVLNode<T>* node) {
+        return node ? node->height : -1;
+    }
+    
+    int getBalanceFactor(AVLNode<T>* node) {
+        return node ? getHeight(node->left) - getHeight(node->right) : 0;
+    }
+    
+    void updateHeight(AVLNode<T>* node) {
+        if (node) {
+            node->height = 1 + max(getHeight(node->left), getHeight(node->right));
+        }
+    }
+    
+    // Right Rotation (LL Case)
+    AVLNode<T>* rightRotate(AVLNode<T>* y) {
+        cout << "Performing Right Rotation on " << y->data << endl;
+        
+        AVLNode<T>* x = y->left;
+        AVLNode<T>* T2 = x->right;
+        
+        // Perform rotation
+        x->right = y;
+        y->left = T2;
+        
+        // Update heights
+        updateHeight(y);
+        updateHeight(x);
+        
+        return x;
+    }
+    
+    // Left Rotation (RR Case)
+    AVLNode<T>* leftRotate(AVLNode<T>* x) {
+        cout << "Performing Left Rotation on " << x->data << endl;
+        
+        AVLNode<T>* y = x->right;
+        AVLNode<T>* T2 = y->left;
+        
+        // Perform rotation
+        y->left = x;
+        x->right = T2;
+        
+        // Update heights
+        updateHeight(x);
+        updateHeight(y);
+        
+        return y;
+    }
+    
+    // Left-Right Rotation (LR Case)
+    AVLNode<T>* leftRightRotate(AVLNode<T>* z) {
+        cout << "Performing Left-Right Rotation on " << z->data << endl;
+        z->left = leftRotate(z->left);
+        return rightRotate(z);
+    }
+    
+    // Right-Left Rotation (RL Case)
+    AVLNode<T>* rightLeftRotate(AVLNode<T>* z) {
+        cout << "Performing Right-Left Rotation on " << z->data << endl;
+        z->right = rightRotate(z->right);
+        return leftRotate(z);
+    }
+    
+    // Balance the node
+    AVLNode<T>* balance(AVLNode<T>* node) {
+        if (node == nullptr) return nullptr;
+        
+        updateHeight(node);
+        int bf = getBalanceFactor(node);
+        
+        // Left Heavy
+        if (bf > 1) {
+            if (getBalanceFactor(node->left) >= 0) {
+                // LL Case
+                return rightRotate(node);
+            } else {
+                // LR Case
+                return leftRightRotate(node);
+            }
+        }
+        
+        // Right Heavy
+        if (bf < -1) {
+            if (getBalanceFactor(node->right) <= 0) {
+                // RR Case
+                return leftRotate(node);
+            } else {
+                // RL Case
+                return rightLeftRotate(node);
+            }
+        }
+        
+        return node;
+    }
+    
+    // Insert helper
+    AVLNode<T>* insert(AVLNode<T>* node, const T& value) {
+        if (node == nullptr) {
+            return new AVLNode<T>(value);
+        }
+        
+        if (value < node->data) {
+            node->left = insert(node->left, value);
+        } else if (value > node->data) {
+            node->right = insert(node->right, value);
+        } else {
+            return node; // Duplicate not allowed
+        }
+        
+        return balance(node);
+    }
+    
+    // Inorder traversal
+    void inorder(AVLNode<T>* node) {
+        if (node == nullptr) return;
+        inorder(node->left);
+        cout << node->data << " ";
+        inorder(node->right);
+    }
+    
+    // Print tree structure
+    void printTree(AVLNode<T>* node, int space, int indent) {
+        if (node == nullptr) return;
+        
+        space += indent;
+        
+        printTree(node->right, space, indent);
+        
+        cout << endl;
+        for (int i = indent; i < space; i++) cout << " ";
+        cout << node->data << "(BF=" << getBalanceFactor(node) << ")" << endl;
+        
+        printTree(node->left, space, indent);
+    }
+    
+public:
+    AVLTree() : root(nullptr) {}
+    
+    void insert(const T& value) {
+        root = insert(root, value);
+    }
+    
+    void inorder() {
+        inorder(root);
+        cout << endl;
+    }
+    
+    void print() {
+        printTree(root, 0, 5);
+        cout << endl;
+    }
+};
+
+int main() {
+    AVLTree<int> avl;
+    
+    cout << "=== AVL Tree Rotations Demo ===" << endl;
+    
+    cout << "\n1. LL Case - Insert 50, 30, 20 (Right Rotation):" << endl;
+    avl.insert(50);
+    avl.insert(30);
+    avl.insert(20);
+    avl.print();
+    
+    cout << "\n2. RR Case - Insert 20, 30, 50 (Left Rotation):" << endl;
+    AVLTree<int> avl2;
+    avl2.insert(20);
+    avl2.insert(30);
+    avl2.insert(50);
+    avl2.print();
+    
+    cout << "\n3. LR Case - Insert 50, 30, 40 (Left-Right Rotation):" << endl;
+    AVLTree<int> avl3;
+    avl3.insert(50);
+    avl3.insert(30);
+    avl3.insert(40);
+    avl3.print();
+    
+    cout << "\n4. RL Case - Insert 20, 50, 30 (Right-Left Rotation):" << endl;
+    AVLTree<int> avl4;
+    avl4.insert(20);
+    avl4.insert(50);
+    avl4.insert(30);
+    avl4.print();
+    
+    cout << "\n5. Complete AVL Tree:" << endl;
+    AVLTree<int> avl5;
+    int values[] = {50, 30, 80, 20, 40, 70, 90, 10, 25, 35, 45, 65, 75};
+    for (int v : values) {
+        avl5.insert(v);
+    }
+    avl5.print();
+    
+    cout << "Inorder traversal: ";
+    avl5.inorder();
+    
+    return 0;
+}
+```
+
+---
+
+## 🎯 Rotation Decision Tree
+
+```
+Check Balance Factor at node:
+
+If BF > 1 (Left Heavy):
+    If BF(left child) ≥ 0:
+        → Right Rotation (LL Case)
+    Else:
+        → Left-Right Rotation (LR Case)
+
+If BF < -1 (Right Heavy):
+    If BF(right child) ≤ 0:
+        → Left Rotation (RR Case)
+    Else:
+        → Right-Left Rotation (RL Case)
+```
+
+---
+
+## 📊 Complexity Analysis
+
+| Operation | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| **Right Rotation** | O(1) | O(1) |
+| **Left Rotation** | O(1) | O(1) |
+| **Left-Right Rotation** | O(1) | O(1) |
+| **Right-Left Rotation** | O(1) | O(1) |
+
+---
+
+## ✅ Key Takeaways
+
+1. **Rotations** restore balance in O(1) time
+2. **Four types**: LL, RR, LR, RL
+3. **LL and RR** are single rotations
+4. **LR and RL** are double rotations
+5. **Right rotation** fixes left-heavy trees
+6. **Left rotation** fixes right-heavy trees
+7. **Balance factor** determines which rotation to use
+8. **Height updates** must occur after rotations
+
+---

@@ -1,666 +1,672 @@
 # Binary Tree Implementation
 
-## Introduction
-This section provides a complete implementation of binary trees in C++, including creation, manipulation, and utility functions. We'll cover both basic and advanced implementations with proper memory management.
+## 📖 Overview
 
-## Basic Binary Tree Class
+This guide provides complete implementation of a binary tree data structure in C++, including all fundamental operations, constructors, destructors, and utility functions. A binary tree is a tree where each node has at most two children (left and right).
 
-### 1. Simple Implementation
+---
+
+## 🎯 Complete Implementation
+
+### Node Structure
+
 ```cpp
 #include <iostream>
 #include <queue>
 #include <stack>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
+template<typename T>
+class BinaryTree;
+
+template<typename T>
+class Node {
+private:
+    T data_;
+    Node<T>* left_;
+    Node<T>* right_;
+    
+public:
+    Node(const T& data) : data_(data), left_(nullptr), right_(nullptr) {}
+    
+    T& getData() { return data_; }
+    const T& getData() const { return data_; }
+    void setData(const T& data) { data_ = data; }
+    
+    Node<T>* getLeft() { return left_; }
+    const Node<T>* getLeft() const { return left_; }
+    void setLeft(Node<T>* left) { left_ = left; }
+    
+    Node<T>* getRight() { return right_; }
+    const Node<T>* getRight() const { return right_; }
+    void setRight(Node<T>* right) { right_ = right; }
+    
+    bool isLeaf() const { return left_ == nullptr && right_ == nullptr; }
+    bool hasLeft() const { return left_ != nullptr; }
+    bool hasRight() const { return right_ != nullptr; }
+    
+    friend class BinaryTree<T>;
+};
+```
+
+---
+
+## 🏗️ Binary Tree Class
+
+### Class Declaration
+
+```cpp
+template<typename T>
 class BinaryTree {
 private:
-    struct TreeNode {
-        int data;
-        TreeNode* left;
-        TreeNode* right;
-        
-        TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-    };
+    Node<T>* root_;
+    size_t size_;
     
-    TreeNode* root;
-    
-    // Helper function to delete tree
-    void deleteTree(TreeNode* node) {
-        if (node == nullptr) return;
-        deleteTree(node->left);
-        deleteTree(node->right);
-        delete node;
-    }
-    
-public:
-    // Constructor
-    BinaryTree() : root(nullptr) {}
-    
-    // Destructor
-    ~BinaryTree() {
-        deleteTree(root);
-    }
-    
-    // Copy constructor (deep copy)
-    BinaryTree(const BinaryTree& other) {
-        root = copyTree(other.root);
-    }
-    
-    // Assignment operator
-    BinaryTree& operator=(const BinaryTree& other) {
-        if (this != &other) {
-            deleteTree(root);
-            root = copyTree(other.root);
-        }
-        return *this;
-    }
-    
-private:
-    // Helper for deep copy
-    TreeNode* copyTree(TreeNode* node) {
-        if (node == nullptr) return nullptr;
-        
-        TreeNode* newNode = new TreeNode(node->data);
-        newNode->left = copyTree(node->left);
-        newNode->right = copyTree(node->right);
-        return newNode;
-    }
+    // Private helper methods
+    void clear(Node<T>* node);
+    Node<T>* copy(Node<T>* node);
+    int getHeight(Node<T>* node) const;
+    void preorder(Node<T>* node, vector<T>& result) const;
+    void inorder(Node<T>* node, vector<T>& result) const;
+    void postorder(Node<T>* node, vector<T>& result) const;
+    void levelOrder(Node<T>* node, vector<T>& result) const;
+    bool isFull(Node<T>* node) const;
+    bool isComplete(Node<T>* node) const;
+    bool isPerfect(Node<T>* node) const;
+    bool isBalanced(Node<T>* node) const;
+    int getLeafCount(Node<T>* node) const;
+    int getInternalCount(Node<T>* node) const;
+    Node<T>* find(Node<T>* node, const T& value) const;
     
 public:
-    // Get root
-    TreeNode* getRoot() const { return root; }
+    // Constructors and Destructor
+    BinaryTree();
+    BinaryTree(const BinaryTree& other);
+    BinaryTree(BinaryTree&& other) noexcept;
+    ~BinaryTree();
     
-    // Check if tree is empty
-    bool isEmpty() const { return root == nullptr; }
-};
-```
-
-### 2. Enhanced Implementation with Utilities
-```cpp
-class EnhancedBinaryTree {
-private:
-    struct TreeNode {
-        int data;
-        TreeNode* left;
-        TreeNode* right;
-        
-        TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-    };
-    
-    TreeNode* root;
-    
-    // Helper functions
-    void deleteTree(TreeNode* node);
-    TreeNode* copyTree(TreeNode* node);
-    int height(TreeNode* node) const;
-    int size(TreeNode* node) const;
-    
-public:
-    // Constructors and destructor
-    EnhancedBinaryTree() : root(nullptr) {}
-    ~EnhancedBinaryTree() { deleteTree(root); }
-    EnhancedBinaryTree(const EnhancedBinaryTree& other);
-    EnhancedBinaryTree& operator=(const EnhancedBinaryTree& other);
+    // Assignment operators
+    BinaryTree& operator=(const BinaryTree& other);
+    BinaryTree& operator=(BinaryTree&& other) noexcept;
     
     // Basic operations
-    void insert(int value);
-    bool search(int value) const;
-    void remove(int value);
+    void insert(const T& value);
+    bool remove(const T& value);
+    bool search(const T& value) const;
+    void clear();
     
-    // Tree properties
-    int getHeight() const { return height(root); }
-    int getSize() const { return size(root); }
-    bool isEmpty() const { return root == nullptr; }
+    // Properties
+    bool isEmpty() const { return root_ == nullptr; }
+    size_t size() const { return size_; }
+    int height() const { return getHeight(root_); }
+    int leafCount() const { return getLeafCount(root_); }
+    int internalCount() const { return getInternalCount(root_); }
+    
+    // Tree classification
+    bool isFull() const { return isFull(root_); }
+    bool isComplete() const { return isComplete(root_); }
+    bool isPerfect() const { return isPerfect(root_); }
+    bool isBalanced() const { return isBalanced(root_); }
     
     // Traversals
-    void inorder() const;
-    void preorder() const;
-    void postorder() const;
-    void levelOrder() const;
+    vector<T> preorder() const;
+    vector<T> inorder() const;
+    vector<T> postorder() const;
+    vector<T> levelOrder() const;
     
-    // Utility functions
-    void clear();
-    bool isBalanced() const;
-    int diameter() const;
+    // Display
+    void printTree() const;
+    void printPretty() const;
 };
 ```
 
-## Tree Creation Methods
+---
 
-### 1. Manual Creation
+## 📝 Implementation
+
+### Constructors and Destructor
+
 ```cpp
-class TreeCreator {
-public:
-    static TreeNode* createSampleTree() {
-        TreeNode* root = new TreeNode(1);
-        root->left = new TreeNode(2);
-        root->right = new TreeNode(3);
-        root->left->left = new TreeNode(4);
-        root->left->right = new TreeNode(5);
-        root->right->left = new TreeNode(6);
-        root->right->right = new TreeNode(7);
-        return root;
+template<typename T>
+BinaryTree<T>::BinaryTree() : root_(nullptr), size_(0) {}
+
+template<typename T>
+BinaryTree<T>::BinaryTree(const BinaryTree& other) 
+    : root_(copy(other.root_)), size_(other.size_) {}
+
+template<typename T>
+BinaryTree<T>::BinaryTree(BinaryTree&& other) noexcept
+    : root_(other.root_), size_(other.size_) {
+    other.root_ = nullptr;
+    other.size_ = 0;
+}
+
+template<typename T>
+BinaryTree<T>::~BinaryTree() {
+    clear();
+}
+
+template<typename T>
+void BinaryTree<T>::clear(Node<T>* node) {
+    if (node) {
+        clear(node->getLeft());
+        clear(node->getRight());
+        delete node;
     }
-    
-    static TreeNode* createSkewedTree() {
-        TreeNode* root = new TreeNode(1);
-        root->right = new TreeNode(2);
-        root->right->right = new TreeNode(3);
-        root->right->right->right = new TreeNode(4);
-        return root;
-    }
-    
-    static TreeNode* createBalancedTree() {
-        TreeNode* root = new TreeNode(10);
-        root->left = new TreeNode(5);
-        root->right = new TreeNode(15);
-        root->left->left = new TreeNode(3);
-        root->left->right = new TreeNode(7);
-        root->right->left = new TreeNode(12);
-        root->right->right = new TreeNode(18);
-        return root;
-    }
-};
+}
+
+template<typename T>
+void BinaryTree<T>::clear() {
+    clear(root_);
+    root_ = nullptr;
+    size_ = 0;
+}
 ```
 
-### 2. Creation from Array
+### Copy and Move Operations
+
 ```cpp
-class ArrayToTree {
-public:
-    // Create complete binary tree from array (level order)
-    static TreeNode* createCompleteTree(const std::vector<int>& arr) {
-        if (arr.empty()) return nullptr;
-        
-        TreeNode* root = new TreeNode(arr[0]);
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        int i = 1;
-        while (!q.empty() && i < arr.size()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            // Left child
-            if (i < arr.size()) {
-                current->left = new TreeNode(arr[i]);
-                q.push(current->left);
-                i++;
-            }
-            
-            // Right child
-            if (i < arr.size()) {
-                current->right = new TreeNode(arr[i]);
-                q.push(current->right);
-                i++;
-            }
-        }
-        
-        return root;
-    }
+template<typename T>
+Node<T>* BinaryTree<T>::copy(Node<T>* node) {
+    if (!node) return nullptr;
     
-    // Create BST from sorted array
-    static TreeNode* createBSTFromSorted(const std::vector<int>& arr, int start, int end) {
-        if (start > end) return nullptr;
-        
-        int mid = start + (end - start) / 2;
-        TreeNode* root = new TreeNode(arr[mid]);
-        
-        root->left = createBSTFromSorted(arr, start, mid - 1);
-        root->right = createBSTFromSorted(arr, mid + 1, end);
-        
-        return root;
-    }
+    Node<T>* newNode = new Node<T>(node->getData());
+    newNode->setLeft(copy(node->getLeft()));
+    newNode->setRight(copy(node->getRight()));
     
-    static TreeNode* createBSTFromSorted(const std::vector<int>& arr) {
-        return createBSTFromSorted(arr, 0, arr.size() - 1);
+    return newNode;
+}
+
+template<typename T>
+BinaryTree<T>& BinaryTree<T>::operator=(const BinaryTree& other) {
+    if (this != &other) {
+        clear();
+        root_ = copy(other.root_);
+        size_ = other.size_;
     }
-};
+    return *this;
+}
+
+template<typename T>
+BinaryTree<T>& BinaryTree<T>::operator=(BinaryTree&& other) noexcept {
+    if (this != &other) {
+        clear();
+        root_ = other.root_;
+        size_ = other.size_;
+        other.root_ = nullptr;
+        other.size_ = 0;
+    }
+    return *this;
+}
 ```
 
-### 3. User Input Creation
+### Insertion Operation
+
 ```cpp
-class InteractiveTreeCreator {
-public:
-    // Create tree from user input (level order)
-    static TreeNode* createFromUserInput() {
-        std::cout << "Enter root value: ";
-        int rootVal;
-        std::cin >> rootVal;
-        
-        TreeNode* root = new TreeNode(rootVal);
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            // Left child
-            std::cout << "Enter left child of " << current->data << " (-1 for none): ";
-            int leftVal;
-            std::cin >> leftVal;
-            if (leftVal != -1) {
-                current->left = new TreeNode(leftVal);
-                q.push(current->left);
-            }
-            
-            // Right child
-            std::cout << "Enter right child of " << current->data << " (-1 for none): ";
-            int rightVal;
-            std::cin >> rightVal;
-            if (rightVal != -1) {
-                current->right = new TreeNode(rightVal);
-                q.push(current->right);
-            }
-        }
-        
-        return root;
+template<typename T>
+void BinaryTree<T>::insert(const T& value) {
+    Node<T>* newNode = new Node<T>(value);
+    
+    if (!root_) {
+        root_ = newNode;
+        size_++;
+        return;
     }
     
-    // Create tree from preorder and inorder traversals
-    static TreeNode* createFromTraversals(const std::vector<int>& preorder, 
-                                         const std::vector<int>& inorder) {
-        std::unordered_map<int, int> inorderMap;
-        for (int i = 0; i < inorder.size(); i++) {
-            inorderMap[inorder[i]] = i;
-        }
-        
-        return buildTree(preorder, 0, preorder.size() - 1,
-                        inorder, 0, inorder.size() - 1, inorderMap);
-    }
+    queue<Node<T>*> q;
+    q.push(root_);
     
-private:
-    static TreeNode* buildTree(const std::vector<int>& preorder, int preStart, int preEnd,
-                              const std::vector<int>& inorder, int inStart, int inEnd,
-                              const std::unordered_map<int, int>& inorderMap) {
-        if (preStart > preEnd || inStart > inEnd) return nullptr;
+    while (!q.empty()) {
+        Node<T>* current = q.front();
+        q.pop();
         
-        int rootVal = preorder[preStart];
-        TreeNode* root = new TreeNode(rootVal);
-        
-        int rootPos = inorderMap.at(rootVal);
-        int leftSize = rootPos - inStart;
-        
-        root->left = buildTree(preorder, preStart + 1, preStart + leftSize,
-                              inorder, inStart, rootPos - 1, inorderMap);
-        root->right = buildTree(preorder, preStart + leftSize + 1, preEnd,
-                               inorder, rootPos + 1, inEnd, inorderMap);
-        
-        return root;
-    }
-};
-```
-
-## Tree Operations Implementation
-
-### 1. Insertion Operations
-```cpp
-class TreeOperations {
-public:
-    // Insert at first available position (level order)
-    static void insertLevelOrder(TreeNode*& root, int value) {
-        if (root == nullptr) {
-            root = new TreeNode(value);
+        if (!current->getLeft()) {
+            current->setLeft(newNode);
+            size_++;
             return;
-        }
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->left == nullptr) {
-                current->left = new TreeNode(value);
-                return;
-            } else {
-                q.push(current->left);
-            }
-            
-            if (current->right == nullptr) {
-                current->right = new TreeNode(value);
-                return;
-            } else {
-                q.push(current->right);
-            }
+        } else if (!current->getRight()) {
+            current->setRight(newNode);
+            size_++;
+            return;
+        } else {
+            q.push(current->getLeft());
+            q.push(current->getRight());
         }
     }
+}
+```
+
+### Deletion Operation
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::remove(const T& value) {
+    if (!root_) return false;
     
-    // Insert as left child of given node
-    static bool insertLeft(TreeNode* parent, int value) {
-        if (parent == nullptr || parent->left != nullptr) return false;
-        parent->left = new TreeNode(value);
+    if (root_->getData() == value && !root_->getLeft() && !root_->getRight()) {
+        delete root_;
+        root_ = nullptr;
+        size_--;
         return true;
     }
     
-    // Insert as right child of given node
-    static bool insertRight(TreeNode* parent, int value) {
-        if (parent == nullptr || parent->right != nullptr) return false;
-        parent->right = new TreeNode(value);
-        return true;
-    }
-};
-```
-
-### 2. Search Operations
-```cpp
-class TreeSearch {
-public:
-    // Depth-first search
-    static TreeNode* dfs(TreeNode* root, int value) {
-        if (root == nullptr) return nullptr;
-        if (root->data == value) return root;
+    queue<Node<T>*> q;
+    q.push(root_);
+    Node<T>* targetNode = nullptr;
+    Node<T>* deepestNode = nullptr;
+    Node<T>* parentOfDeepest = nullptr;
+    
+    // Find target node and deepest node
+    while (!q.empty()) {
+        deepestNode = q.front();
+        q.pop();
         
-        TreeNode* leftResult = dfs(root->left, value);
-        if (leftResult != nullptr) return leftResult;
+        if (deepestNode->getData() == value) {
+            targetNode = deepestNode;
+        }
         
-        return dfs(root->right, value);
+        if (deepestNode->getLeft()) {
+            parentOfDeepest = deepestNode;
+            q.push(deepestNode->getLeft());
+        }
+        if (deepestNode->getRight()) {
+            parentOfDeepest = deepestNode;
+            q.push(deepestNode->getRight());
+        }
     }
     
-    // Breadth-first search
-    static TreeNode* bfs(TreeNode* root, int value) {
-        if (root == nullptr) return nullptr;
+    if (!targetNode) return false;
+    
+    // Replace target node's data with deepest node's data
+    targetNode->setData(deepestNode->getData());
+    
+    // Delete deepest node
+    if (parentOfDeepest) {
+        if (parentOfDeepest->getLeft() == deepestNode) {
+            parentOfDeepest->setLeft(nullptr);
+        } else {
+            parentOfDeepest->setRight(nullptr);
+        }
+    }
+    
+    delete deepestNode;
+    size_--;
+    return true;
+}
+```
+
+### Search Operation
+
+```cpp
+template<typename T>
+Node<T>* BinaryTree<T>::find(Node<T>* node, const T& value) const {
+    if (!node) return nullptr;
+    if (node->getData() == value) return node;
+    
+    Node<T>* leftResult = find(node->getLeft(), value);
+    if (leftResult) return leftResult;
+    
+    return find(node->getRight(), value);
+}
+
+template<typename T>
+bool BinaryTree<T>::search(const T& value) const {
+    return find(root_, value) != nullptr;
+}
+```
+
+### Height Calculation
+
+```cpp
+template<typename T>
+int BinaryTree<T>::getHeight(Node<T>* node) const {
+    if (!node) return -1;
+    return 1 + max(getHeight(node->getLeft()), getHeight(node->getRight()));
+}
+```
+
+### Leaf and Internal Node Count
+
+```cpp
+template<typename T>
+int BinaryTree<T>::getLeafCount(Node<T>* node) const {
+    if (!node) return 0;
+    if (node->isLeaf()) return 1;
+    return getLeafCount(node->getLeft()) + getLeafCount(node->getRight());
+}
+
+template<typename T>
+int BinaryTree<T>::getInternalCount(Node<T>* node) const {
+    if (!node || node->isLeaf()) return 0;
+    return 1 + getInternalCount(node->getLeft()) + getInternalCount(node->getRight());
+}
+```
+
+---
+
+## 🌲 Tree Classifications
+
+### Full Binary Tree Check
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::isFull(Node<T>* node) const {
+    if (!node) return true;
+    
+    if (node->getLeft() && !node->getRight()) return false;
+    if (!node->getLeft() && node->getRight()) return false;
+    
+    return isFull(node->getLeft()) && isFull(node->getRight());
+}
+```
+
+### Complete Binary Tree Check
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::isComplete(Node<T>* node) const {
+    if (!node) return true;
+    
+    queue<Node<T>*> q;
+    q.push(node);
+    bool hasNull = false;
+    
+    while (!q.empty()) {
+        Node<T>* current = q.front();
+        q.pop();
         
-        std::queue<TreeNode*> q;
-        q.push(root);
+        if (!current) {
+            hasNull = true;
+        } else {
+            if (hasNull) return false;
+            q.push(current->getLeft());
+            q.push(current->getRight());
+        }
+    }
+    return true;
+}
+```
+
+### Perfect Binary Tree Check
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::isPerfect(Node<T>* node) const {
+    if (!node) return true;
+    
+    int leftHeight = getHeight(node->getLeft());
+    int rightHeight = getHeight(node->getRight());
+    
+    if (leftHeight != rightHeight) return false;
+    
+    return isPerfect(node->getLeft()) && isPerfect(node->getRight());
+}
+```
+
+### Balanced Tree Check
+
+```cpp
+template<typename T>
+bool BinaryTree<T>::isBalanced(Node<T>* node) const {
+    if (!node) return true;
+    
+    int leftHeight = getHeight(node->getLeft());
+    int rightHeight = getHeight(node->getRight());
+    
+    if (abs(leftHeight - rightHeight) > 1) return false;
+    
+    return isBalanced(node->getLeft()) && isBalanced(node->getRight());
+}
+```
+
+---
+
+## 🔄 Traversals
+
+### Preorder Traversal (Root → Left → Right)
+
+```cpp
+template<typename T>
+void BinaryTree<T>::preorder(Node<T>* node, vector<T>& result) const {
+    if (!node) return;
+    
+    result.push_back(node->getData());
+    preorder(node->getLeft(), result);
+    preorder(node->getRight(), result);
+}
+
+template<typename T>
+vector<T> BinaryTree<T>::preorder() const {
+    vector<T> result;
+    preorder(root_, result);
+    return result;
+}
+```
+
+### Inorder Traversal (Left → Root → Right)
+
+```cpp
+template<typename T>
+void BinaryTree<T>::inorder(Node<T>* node, vector<T>& result) const {
+    if (!node) return;
+    
+    inorder(node->getLeft(), result);
+    result.push_back(node->getData());
+    inorder(node->getRight(), result);
+}
+
+template<typename T>
+vector<T> BinaryTree<T>::inorder() const {
+    vector<T> result;
+    inorder(root_, result);
+    return result;
+}
+```
+
+### Postorder Traversal (Left → Right → Root)
+
+```cpp
+template<typename T>
+void BinaryTree<T>::postorder(Node<T>* node, vector<T>& result) const {
+    if (!node) return;
+    
+    postorder(node->getLeft(), result);
+    postorder(node->getRight(), result);
+    result.push_back(node->getData());
+}
+
+template<typename T>
+vector<T> BinaryTree<T>::postorder() const {
+    vector<T> result;
+    postorder(root_, result);
+    return result;
+}
+```
+
+### Level Order Traversal (BFS)
+
+```cpp
+template<typename T>
+void BinaryTree<T>::levelOrder(Node<T>* node, vector<T>& result) const {
+    if (!node) return;
+    
+    queue<Node<T>*> q;
+    q.push(node);
+    
+    while (!q.empty()) {
+        Node<T>* current = q.front();
+        q.pop();
         
-        while (!q.empty()) {
-            TreeNode* current = q.front();
+        result.push_back(current->getData());
+        
+        if (current->getLeft()) q.push(current->getLeft());
+        if (current->getRight()) q.push(current->getRight());
+    }
+}
+
+template<typename T>
+vector<T> BinaryTree<T>::levelOrder() const {
+    vector<T> result;
+    levelOrder(root_, result);
+    return result;
+}
+```
+
+---
+
+## 🖨️ Display Methods
+
+### Basic Tree Display
+
+```cpp
+template<typename T>
+void BinaryTree<T>::printTree() const {
+    if (!root_) {
+        cout << "Tree is empty" << endl;
+        return;
+    }
+    
+    queue<Node<T>*> q;
+    q.push(root_);
+    
+    while (!q.empty()) {
+        int levelSize = q.size();
+        
+        for (int i = 0; i < levelSize; i++) {
+            Node<T>* current = q.front();
             q.pop();
             
-            if (current->data == value) return current;
+            cout << current->getData() << " ";
             
-            if (current->left) q.push(current->left);
-            if (current->right) q.push(current->right);
+            if (current->getLeft()) q.push(current->getLeft());
+            if (current->getRight()) q.push(current->getRight());
         }
-        
-        return nullptr;
+        cout << endl;
     }
-    
-    // Find parent of a node
-    static TreeNode* findParent(TreeNode* root, TreeNode* child) {
-        if (root == nullptr || child == nullptr || root == child) return nullptr;
-        
-        if (root->left == child || root->right == child) return root;
-        
-        TreeNode* leftResult = findParent(root->left, child);
-        if (leftResult != nullptr) return leftResult;
-        
-        return findParent(root->right, child);
-    }
-};
+}
 ```
 
-### 3. Deletion Operations
+### Pretty Print (Visual Tree)
+
 ```cpp
-class TreeDeletion {
-public:
-    // Delete leaf node
-    static bool deleteLeaf(TreeNode*& root, int value) {
-        if (root == nullptr) return false;
-        
-        if (root->data == value && root->left == nullptr && root->right == nullptr) {
-            delete root;
-            root = nullptr;
-            return true;
-        }
-        
-        return deleteLeaf(root->left, value) || deleteLeaf(root->right, value);
+template<typename T>
+void printSpaces(int count) {
+    for (int i = 0; i < count; i++) {
+        cout << " ";
     }
+}
+
+template<typename T>
+void printPretty(Node<T>* node, int space, int indent = 5) {
+    if (!node) return;
     
-    // Delete node with one child
-    static bool deleteNodeWithOneChild(TreeNode*& root, int value) {
-        if (root == nullptr) return false;
-        
-        if (root->data == value) {
-            TreeNode* child = (root->left != nullptr) ? root->left : root->right;
-            delete root;
-            root = child;
-            return true;
-        }
-        
-        return deleteNodeWithOneChild(root->left, value) || 
-               deleteNodeWithOneChild(root->right, value);
-    }
+    space += indent;
     
-    // Delete node with two children (replace with inorder successor)
-    static bool deleteNodeWithTwoChildren(TreeNode*& root, int value) {
-        if (root == nullptr) return false;
-        
-        if (root->data == value) {
-            TreeNode* successor = findMin(root->right);
-            root->data = successor->data;
-            return deleteNode(root->right, successor->data);
-        }
-        
-        return deleteNodeWithTwoChildren(root->left, value) || 
-               deleteNodeWithTwoChildren(root->right, value);
-    }
+    printPretty(node->getRight(), space);
     
-private:
-    static TreeNode* findMin(TreeNode* node) {
-        while (node->left != nullptr) {
-            node = node->left;
-        }
-        return node;
-    }
+    cout << endl;
+    printSpaces(space - indent);
+    cout << node->getData() << endl;
     
-    static bool deleteNode(TreeNode*& node, int value) {
-        if (node == nullptr) return false;
-        
-        if (node->data == value) {
-            if (node->left == nullptr && node->right == nullptr) {
-                delete node;
-                node = nullptr;
-            } else if (node->left == nullptr) {
-                TreeNode* temp = node->right;
-                delete node;
-                node = temp;
-            } else if (node->right == nullptr) {
-                TreeNode* temp = node->left;
-                delete node;
-                node = temp;
-            } else {
-                TreeNode* successor = findMin(node->right);
-                node->data = successor->data;
-                return deleteNode(node->right, successor->data);
-            }
-            return true;
-        }
-        
-        return deleteNode(node->left, value) || deleteNode(node->right, value);
-    }
-};
+    printPretty(node->getLeft(), space);
+}
+
+template<typename T>
+void BinaryTree<T>::printPretty() const {
+    printPretty(root_, 0);
+    cout << endl;
+}
 ```
 
-## Utility Functions
+---
 
-### 1. Tree Analysis
-```cpp
-class TreeAnalysis {
-public:
-    // Calculate height
-    static int height(TreeNode* root) {
-        if (root == nullptr) return -1;
-        return 1 + std::max(height(root->left), height(root->right));
-    }
-    
-    // Count nodes
-    static int countNodes(TreeNode* root) {
-        if (root == nullptr) return 0;
-        return 1 + countNodes(root->left) + countNodes(root->right);
-    }
-    
-    // Count leaf nodes
-    static int countLeaves(TreeNode* root) {
-        if (root == nullptr) return 0;
-        if (root->left == nullptr && root->right == nullptr) return 1;
-        return countLeaves(root->left) + countLeaves(root->right);
-    }
-    
-    // Count internal nodes
-    static int countInternalNodes(TreeNode* root) {
-        if (root == nullptr || (root->left == nullptr && root->right == nullptr)) {
-            return 0;
-        }
-        return 1 + countInternalNodes(root->left) + countInternalNodes(root->right);
-    }
-    
-    // Check if tree is balanced
-    static bool isBalanced(TreeNode* root) {
-        return checkBalance(root).first;
-    }
-    
-    // Calculate diameter
-    static int diameter(TreeNode* root) {
-        return calculateDiameter(root).first;
-    }
-    
-private:
-    static std::pair<bool, int> checkBalance(TreeNode* node) {
-        if (node == nullptr) return {true, -1};
-        
-        auto left = checkBalance(node->left);
-        auto right = checkBalance(node->right);
-        
-        if (!left.first || !right.first) return {false, 0};
-        if (abs(left.second - right.second) > 1) return {false, 0};
-        
-        return {true, std::max(left.second, right.second) + 1};
-    }
-    
-    static std::pair<int, int> calculateDiameter(TreeNode* node) {
-        if (node == nullptr) return {0, -1};
-        
-        auto left = calculateDiameter(node->left);
-        auto right = calculateDiameter(node->right);
-        
-        int currentDiameter = std::max({left.first, right.first, 
-                                       left.second + right.second + 2});
-        int currentHeight = std::max(left.second, right.second) + 1;
-        
-        return {currentDiameter, currentHeight};
-    }
-};
-```
-
-### 2. Tree Validation
-```cpp
-class TreeValidation {
-public:
-    // Check if tree is full
-    static bool isFull(TreeNode* root) {
-        if (root == nullptr) return true;
-        if (root->left == nullptr && root->right == nullptr) return true;
-        if (root->left != nullptr && root->right != nullptr) {
-            return isFull(root->left) && isFull(root->right);
-        }
-        return false;
-    }
-    
-    // Check if tree is complete
-    static bool isComplete(TreeNode* root) {
-        if (root == nullptr) return true;
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        bool flag = false;
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->left) {
-                if (flag) return false;
-                q.push(current->left);
-            } else {
-                flag = true;
-            }
-            
-            if (current->right) {
-                if (flag) return false;
-                q.push(current->right);
-            } else {
-                flag = true;
-            }
-        }
-        
-        return true;
-    }
-    
-    // Check if tree is perfect
-    static bool isPerfect(TreeNode* root) {
-        if (root == nullptr) return true;
-        
-        int depth = getDepth(root);
-        return isPerfectRec(root, depth, 0);
-    }
-    
-private:
-    static int getDepth(TreeNode* node) {
-        int depth = 0;
-        while (node != nullptr) {
-            depth++;
-            node = node->left;
-        }
-        return depth;
-    }
-    
-    static bool isPerfectRec(TreeNode* root, int depth, int level) {
-        if (root == nullptr) return true;
-        
-        if (root->left == nullptr && root->right == nullptr) {
-            return (depth == level + 1);
-        }
-        
-        if (root->left == nullptr || root->right == nullptr) {
-            return false;
-        }
-        
-        return isPerfectRec(root->left, depth, level + 1) &&
-               isPerfectRec(root->right, depth, level + 1);
-    }
-};
-```
-
-## Complete Example Usage
+## 🧪 Example Usage
 
 ```cpp
 int main() {
-    // Create tree from array
-    std::vector<int> arr = {1, 2, 3, 4, 5, 6, 7};
-    TreeNode* root = ArrayToTree::createCompleteTree(arr);
+    BinaryTree<int> tree;
     
-    // Analyze tree
-    std::cout << "Tree height: " << TreeAnalysis::height(root) << std::endl;
-    std::cout << "Number of nodes: " << TreeAnalysis::countNodes(root) << std::endl;
-    std::cout << "Number of leaves: " << TreeAnalysis::countLeaves(root) << std::endl;
-    std::cout << "Is balanced: " << (TreeValidation::isBalanced(root) ? "Yes" : "No") << std::endl;
+    // Insert elements
+    tree.insert(1);
+    tree.insert(2);
+    tree.insert(3);
+    tree.insert(4);
+    tree.insert(5);
+    tree.insert(6);
+    tree.insert(7);
     
-    // Search operations
-    TreeNode* found = TreeSearch::bfs(root, 5);
-    if (found) {
-        std::cout << "Found node with value 5" << std::endl;
-    }
+    // Display
+    cout << "Tree size: " << tree.size() << endl;
+    cout << "Tree height: " << tree.height() << endl;
+    cout << "Leaf count: " << tree.leafCount() << endl;
+    cout << "Internal count: " << tree.internalCount() << endl;
     
-    // Insert new node
-    TreeOperations::insertLevelOrder(root, 8);
+    cout << "\nTree structure:" << endl;
+    tree.printPretty();
     
-    // Cleanup
-    // Note: In real implementation, use proper destructor or smart pointers
+    // Traversals
+    cout << "\nPreorder: ";
+    for (int x : tree.preorder()) cout << x << " ";
+    cout << endl;
+    
+    cout << "Inorder: ";
+    for (int x : tree.inorder()) cout << x << " ";
+    cout << endl;
+    
+    cout << "Postorder: ";
+    for (int x : tree.postorder()) cout << x << " ";
+    cout << endl;
+    
+    cout << "Level order: ";
+    for (int x : tree.levelOrder()) cout << x << " ";
+    cout << endl;
+    
+    // Search
+    cout << "\nSearch 5: " << (tree.search(5) ? "Found" : "Not found") << endl;
+    cout << "Search 10: " << (tree.search(10) ? "Found" : "Not found") << endl;
+    
+    // Remove
+    tree.remove(3);
+    cout << "\nAfter removing 3:" << endl;
+    tree.printPretty();
+    
+    // Classification
+    cout << "\nisFull: " << (tree.isFull() ? "Yes" : "No") << endl;
+    cout << "isComplete: " << (tree.isComplete() ? "Yes" : "No") << endl;
+    cout << "isPerfect: " << (tree.isPerfect() ? "Yes" : "No") << endl;
+    cout << "isBalanced: " << (tree.isBalanced() ? "Yes" : "No") << endl;
     
     return 0;
 }
 ```
 
-## Best Practices
+---
 
-1. **Memory Management**: Always clean up dynamically allocated nodes
-2. **Error Handling**: Check for nullptr before dereferencing
-3. **Copy Semantics**: Implement proper copy constructor and assignment operator
-4. **Recursive Depth**: Be aware of stack overflow for very deep trees
-5. **Const Correctness**: Use const methods for read-only operations
+## 📊 Complexity Summary
 
-## Summary
+| Operation | Time | Space |
+|-----------|------|-------|
+| Insert | O(n) | O(1) |
+| Delete | O(n) | O(1) |
+| Search | O(n) | O(1) |
+| Preorder | O(n) | O(h) |
+| Inorder | O(n) | O(h) |
+| Postorder | O(n) | O(h) |
+| Level Order | O(n) | O(n) |
+| Height | O(n) | O(h) |
+| Clear | O(n) | O(h) |
 
-This implementation provides a complete foundation for binary tree operations in C++. The modular design allows for easy extension and customization based on specific requirements.
+---
+
+## ✅ Key Takeaways
+
+1. **Complete implementation** includes all standard operations
+2. **Traversals** are essential for processing tree data
+3. **Properties** help classify and analyze trees
+4. **Queue-based insertion** maintains level order
+5. **Deep copy** ensures independent tree copies
+6. **Proper cleanup** prevents memory leaks
+
+---

@@ -1,430 +1,280 @@
-# Tree Properties and Mathematical Relationships
+# Tree Properties
 
-## Introduction
-Understanding tree properties is crucial for analyzing tree algorithms and choosing appropriate tree structures. This section covers the mathematical properties, relationships, and characteristics of binary trees.
+## 📖 Overview
 
-## Fundamental Properties
+Understanding tree properties is essential for analyzing tree performance, implementing algorithms, and choosing the right tree structure for specific problems. This guide covers all fundamental properties of trees, including height, depth, size, balance factors, and their mathematical relationships.
 
-### Height and Depth Definitions
-- **Height of Node**: Number of edges on longest path from node to leaf
-- **Depth of Node**: Number of edges from root to node
-- **Level of Node**: Depth + 1 (root is at level 1)
-- **Height of Tree**: Height of root node
+---
 
-### Basic Relationships
+## 🎯 Core Properties
+
+| Property | Definition | Symbol |
+|----------|------------|--------|
+| **Size** | Total number of nodes in the tree | n |
+| **Height** | Maximum number of edges from root to leaf | h |
+| **Depth** | Number of edges from root to a specific node | d |
+| **Level** | Depth + 1 | L |
+| **Degree** | Number of children a node has | deg(node) |
+| **Leaf Count** | Number of nodes with degree 0 | L |
+| **Internal Nodes** | Nodes with at least one child | I |
+
+---
+
+## 📐 Height and Depth
+
+### Height Definition
+
 ```
-Height of tree = Maximum height of any node
-Depth of root = 0
-Height of leaf node = 0
-Level = Depth + 1
+Tree height = length of longest path from root to leaf (in edges)
+
+        Root (height = 2)
+        / \
+    Node1   Node2 (height = 1)
+    /         \
+  Leaf       Leaf (height = 0)
+
+Height = 2 (edges: Root → Node1 → Leaf)
 ```
 
-## Mathematical Properties of Binary Trees
+### Depth Definition
 
-### 1. Maximum Number of Nodes
+```
+Depth of Root = 0
+Depth of children = parent depth + 1
 
-#### At Each Level
-- Maximum nodes at level `i`: `2^(i-1)`
-- Where level starts from 1 (root is level 1)
+        Root (depth = 0)
+        / \
+    Node1   Node2 (depth = 1)
+    /         \
+  Leaf       Leaf (depth = 2)
+```
+
+### Height vs Depth Relationship
+
+| Relationship | Formula |
+|--------------|---------|
+| Node height | max(child heights) + 1 |
+| Leaf height | 0 |
+| Tree height | height(root) |
+| Node depth | parent depth + 1 |
+| Root depth | 0 |
+
+---
+
+## 📊 Size Properties
+
+### Node Count Relationships
+
+| Property | Formula | Example |
+|----------|---------|---------|
+| **Maximum nodes at level L** | 2^L | Level 3 → 8 nodes |
+| **Maximum nodes in tree of height h** | 2^(h+1) - 1 | h=3 → 15 nodes |
+| **Minimum nodes in tree of height h** | h + 1 | h=3 → 4 nodes (skewed) |
+| **Minimum height for n nodes** | ⌈log₂(n+1)⌉ - 1 | n=15 → height=3 |
+| **Maximum height for n nodes** | n - 1 | n=5 → height=4 (skewed) |
+
+### Complete Binary Tree Properties
 
 ```cpp
-// Function to calculate maximum nodes at given level
-int maxNodesAtLevel(int level) {
-    if (level < 1) return 0;
-    return (1 << (level - 1));  // 2^(level-1)
+// For a complete binary tree with n nodes:
+// Height = floor(log₂(n))
+// Leaves = ceil(n/2)
+// Internal nodes = floor(n/2)
+
+int getHeightFromNodes(int n) {
+    return floor(log2(n));
+}
+
+int getLeavesFromNodes(int n) {
+    return (n + 1) / 2;
 }
 ```
 
-#### In Complete Tree of Height h
-- Maximum nodes: `2^(h+1) - 1`
-- Where height is number of edges from root to deepest leaf
+---
+
+## 🔢 Degree and Leaf Relationships
+
+### Full Binary Tree Property
+
+```
+In a full binary tree (every node has 0 or 2 children):
+    Leaves = Internal Nodes + 1
+    
+    Example:
+        Root (internal)
+        / \
+     Node   Node (internal)
+     / \   / \
+   L   L L   L
+    
+    Internal nodes = 3
+    Leaves = 4
+    4 = 3 + 1 ✓
+```
+
+### Proof: L = I + 1
+
+```
+Total edges = n - 1
+Total edges also = sum of degrees = 2I + L (since leaves have degree 0)
+n = I + L
+
+Therefore:
+2I + L = (I + L) - 1
+2I + L = I + L - 1
+I = L - 1
+L = I + 1
+```
+
+---
+
+## ⚖️ Balance Properties
+
+### Balance Factor
+
+```
+Balance Factor = height(left subtree) - height(right subtree)
+
+Values: -1, 0, 1 for AVL trees
+```
+
+### Balance Types
+
+| Type | Condition | Height Difference |
+|------|-----------|-------------------|
+| **Perfectly Balanced** | All levels completely filled | 0 |
+| **Height-Balanced** | |BF| ≤ 1 for all nodes | ≤ 1 |
+| **Weight-Balanced** | Left and right sizes are proportional | Varies |
+| **Skewed** | All nodes on one side | n-1 |
+
+---
+
+## 📈 Path Properties
+
+### Internal Path Length (IPL)
+
+```
+IPL = sum of depths of all nodes
+
+For a perfect binary tree of height h:
+IPL = ∑(i * 2^i) for i = 0 to h
+
+Example (h=2):
+Level 0: 1 node × 0 = 0
+Level 1: 2 nodes × 1 = 2
+Level 2: 4 nodes × 2 = 8
+IPL = 10
+```
+
+### External Path Length (EPL)
+
+```
+EPL = IPL + 2n (for full binary trees)
+
+Or directly: EPL = sum of depths of all null pointers
+```
+
+---
+
+## 🎯 Level Properties
+
+### Level Numbering
+
+```
+Level 0 (root):     1 node
+Level 1:            2 nodes
+Level 2:            4 nodes
+Level L:            2^L nodes (maximum)
+```
+
+### Array Indexing (for complete binary trees)
+
+```
+For node at index i (0-based):
+    Left child index  = 2i + 1
+    Right child index = 2i + 2
+    Parent index      = (i - 1) / 2
+
+Example (index 0 = root):
+    Left child: 1
+    Right child: 2
+```
+
+---
+
+## 📊 Complexity Analysis
+
+### Operation Complexities
+
+| Operation | Best Case | Average Case | Worst Case |
+|-----------|-----------|--------------|------------|
+| **Search** | O(1) at root | O(log n) balanced | O(n) skewed |
+| **Insert** | O(1) at root | O(log n) balanced | O(n) skewed |
+| **Delete** | O(1) at root | O(log n) balanced | O(n) skewed |
+| **Traversal** | O(n) | O(n) | O(n) |
+
+### Space Complexity
+
+```
+Space = O(n) for storing n nodes
+Plus recursion stack for traversals: O(h)
+```
+
+---
+
+## 🔧 Useful Formulas
 
 ```cpp
-// Function to calculate maximum nodes in tree of given height
-int maxNodesInTree(int height) {
-    if (height < 0) return 0;
-    return (1 << (height + 1)) - 1;  // 2^(height+1) - 1
+// Calculate tree height recursively
+int getHeight(Node* root) {
+    if (!root) return -1;  // or 0 depending on definition
+    return 1 + max(getHeight(root->left), getHeight(root->right));
+}
+
+// Calculate tree size recursively
+int getSize(Node* root) {
+    if (!root) return 0;
+    return 1 + getSize(root->left) + getSize(root->right);
+}
+
+// Calculate number of leaves
+int getLeafCount(Node* root) {
+    if (!root) return 0;
+    if (!root->left && !root->right) return 1;
+    return getLeafCount(root->left) + getLeafCount(root->right);
+}
+
+// Calculate number of internal nodes
+int getInternalCount(Node* root) {
+    if (!root || (!root->left && !root->right)) return 0;
+    return 1 + getInternalCount(root->left) + getInternalCount(root->right);
 }
 ```
 
-### 2. Minimum Height for Given Nodes
+---
 
-For a binary tree with `n` nodes, minimum height is:
-```
-h_min = ⌊log₂(n+1)⌋ - 1
-```
+## 📝 Quick Reference Table
 
-```cpp
-// Function to calculate minimum height for given number of nodes
-int minHeightForNodes(int n) {
-    if (n <= 0) return -1;
-    return floor(log2(n + 1)) - 1;
-}
-```
+| Property | Formula | When to Use |
+|----------|---------|-------------|
+| **Height** | max(child heights) + 1 | Complexity analysis |
+| **Size** | 1 + left size + right size | Memory estimation |
+| **Leaves** | nodes with no children | Tree classification |
+| **Internal nodes** | nodes with children | Tree classification |
+| **Balance factor** | left height - right height | AVL tree validation |
+| **IPL** | sum of all depths | Average search time |
+| **Max nodes at level L** | 2^L | Capacity planning |
 
-### 3. Minimum Nodes for Given Height
+---
 
-For a binary tree of height `h`, minimum nodes is:
-```
-n_min = h + 1
-```
+## ✅ Key Takeaways
 
-```cpp
-// Function to calculate minimum nodes for given height
-int minNodesForHeight(int height) {
-    if (height < 0) return 0;
-    return height + 1;
-}
-```
+1. **Height** = longest path from root to leaf (in edges)
+2. **Depth** = distance from root to node
+3. **Size** = total number of nodes
+4. **Full binary tree**: L = I + 1
+5. **Complete binary tree**: Can be stored in array
+6. **Perfect binary tree**: All levels completely filled
+7. **Skewed tree**: Worst-case for operations
 
-## Properties of Specific Tree Types
-
-### Full Binary Trees
-Every node has either 0 or 2 children.
-
-#### Properties:
-- Number of leaf nodes = Number of internal nodes + 1
-- Total nodes = 2 × leaf nodes - 1
-- Total nodes = 2 × internal nodes + 1
-
-```cpp
-class FullBinaryTreeProperties {
-public:
-    static int countLeaves(TreeNode* root) {
-        if (root == nullptr) return 0;
-        if (root->left == nullptr && root->right == nullptr) return 1;
-        return countLeaves(root->left) + countLeaves(root->right);
-    }
-    
-    static int countInternalNodes(TreeNode* root) {
-        if (root == nullptr || (root->left == nullptr && root->right == nullptr)) {
-            return 0;
-        }
-        return 1 + countInternalNodes(root->left) + countInternalNodes(root->right);
-    }
-    
-    static bool isFullBinaryTree(TreeNode* root) {
-        if (root == nullptr) return true;
-        if (root->left == nullptr && root->right == nullptr) return true;
-        if (root->left != nullptr && root->right != nullptr) {
-            return isFullBinaryTree(root->left) && isFullBinaryTree(root->right);
-        }
-        return false;  // Only one child
-    }
-};
-```
-
-### Complete Binary Trees
-All levels except possibly the last are completely filled, and all nodes are as far left as possible.
-
-#### Properties:
-- Can be efficiently represented in arrays
-- Parent-child relationships follow simple index formulas
-- No gaps in the array representation
-
-```cpp
-class CompleteBinaryTreeProperties {
-private:
-    std::vector<int> tree;
-    
-public:
-    // Index relationships (0-based indexing)
-    int parent(int i) { return (i > 0) ? (i - 1) / 2 : -1; }
-    int leftChild(int i) { return 2 * i + 1; }
-    int rightChild(int i) { return 2 * i + 2; }
-    
-    bool isComplete(TreeNode* root) {
-        if (root == nullptr) return true;
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        bool flag = false;  // Flag to mark non-full node seen
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->left) {
-                if (flag) return false;  // Non-full node seen before
-                q.push(current->left);
-            } else {
-                flag = true;  // Mark non-full node
-            }
-            
-            if (current->right) {
-                if (flag) return false;  // Non-full node seen before
-                q.push(current->right);
-            } else {
-                flag = true;  // Mark non-full node
-            }
-        }
-        
-        return true;
-    }
-};
-```
-
-### Perfect Binary Trees
-All internal nodes have 2 children and all leaves are at the same level.
-
-#### Properties:
-- Number of nodes = `2^(h+1) - 1`
-- Number of leaves = `2^h`
-- Number of internal nodes = `2^h - 1`
-
-```cpp
-class PerfectBinaryTreeProperties {
-public:
-    static bool isPerfectBinaryTree(TreeNode* root) {
-        if (root == nullptr) return true;
-        
-        int depth = getDepth(root);
-        return isPerfectRec(root, depth, 0);
-    }
-    
-private:
-    static int getDepth(TreeNode* node) {
-        int depth = 0;
-        while (node != nullptr) {
-            depth++;
-            node = node->left;
-        }
-        return depth;
-    }
-    
-    static bool isPerfectRec(TreeNode* root, int depth, int level) {
-        if (root == nullptr) return true;
-        
-        if (root->left == nullptr && root->right == nullptr) {
-            return (depth == level + 1);
-        }
-        
-        if (root->left == nullptr || root->right == nullptr) {
-            return false;
-        }
-        
-        return isPerfectRec(root->left, depth, level + 1) &&
-               isPerfectRec(root->right, depth, level + 1);
-    }
-};
-```
-
-## Tree Balance Properties
-
-### Balanced Binary Tree
-A tree is balanced if for every node, the height difference between left and right subtrees is at most 1.
-
-```cpp
-class BalancedTreeProperties {
-public:
-    static bool isBalanced(TreeNode* root) {
-        return checkBalance(root).first;
-    }
-    
-private:
-    static std::pair<bool, int> checkBalance(TreeNode* node) {
-        if (node == nullptr) {
-            return {true, -1};  // height of empty tree is -1
-        }
-        
-        auto left = checkBalance(node->left);
-        auto right = checkBalance(node->right);
-        
-        if (!left.first || !right.first) {
-            return {false, 0};
-        }
-        
-        if (abs(left.second - right.second) > 1) {
-            return {false, 0};
-        }
-        
-        return {true, std::max(left.second, right.second) + 1};
-    }
-};
-```
-
-## Tree Traversal Properties
-
-### Traversal Order Properties
-
-#### Inorder Traversal (Left → Root → Right)
-- For BST: Produces sorted order
-- Time Complexity: O(n)
-- Space Complexity: O(h) for recursion stack
-
-#### Preorder Traversal (Root → Left → Right)
-- Useful for tree copying
-- Used in expression tree evaluation
-- Time Complexity: O(n)
-
-#### Postorder Traversal (Left → Right → Root)
-- Useful for tree deletion
-- Used in expression tree evaluation
-- Time Complexity: O(n)
-
-#### Level Order Traversal
-- Breadth-first traversal
-- Uses queue for implementation
-- Time Complexity: O(n)
-
-## Path Properties
-
-### Longest Path (Diameter)
-The diameter of a tree is the number of edges on the longest path between any two nodes.
-
-```cpp
-class TreePathProperties {
-public:
-    static int diameter(TreeNode* root) {
-        return calculateDiameter(root).first;
-    }
-    
-private:
-    static std::pair<int, int> calculateDiameter(TreeNode* node) {
-        if (node == nullptr) {
-            return {0, -1};  // {diameter, height}
-        }
-        
-        auto left = calculateDiameter(node->left);
-        auto right = calculateDiameter(node->right);
-        
-        int currentDiameter = std::max({
-            left.first,
-            right.first,
-            left.second + right.second + 2
-        });
-        
-        int currentHeight = std::max(left.second, right.second) + 1;
-        
-        return {currentDiameter, currentHeight};
-    }
-};
-```
-
-### Maximum Path Sum
-Maximum sum of values along any path in the tree.
-
-```cpp
-class TreePathSumProperties {
-public:
-    static int maxPathSum(TreeNode* root) {
-        int result = INT_MIN;
-        maxPathDown(root, result);
-        return result;
-    }
-    
-private:
-    static int maxPathDown(TreeNode* node, int& result) {
-        if (node == nullptr) return 0;
-        
-        int left = std::max(0, maxPathDown(node->left, result));
-        int right = std::max(0, maxPathDown(node->right, result));
-        
-        result = std::max(result, left + right + node->data);
-        
-        return std::max(left, right) + node->data;
-    }
-};
-```
-
-## Width Properties
-
-### Maximum Width
-Maximum number of nodes at any level of the tree.
-
-```cpp
-class TreeWidthProperties {
-public:
-    static int maxWidth(TreeNode* root) {
-        if (root == nullptr) return 0;
-        
-        std::queue<TreeNode*> q;
-        q.push(root);
-        int result = 0;
-        
-        while (!q.empty()) {
-            int count = q.size();
-            result = std::max(result, count);
-            
-            while (count--) {
-                TreeNode* current = q.front();
-                q.pop();
-                
-                if (current->left) q.push(current->left);
-                if (current->right) q.push(current->right);
-            }
-        }
-        
-        return result;
-    }
-};
-```
-
-## Density Properties
-
-### Tree Density
-Ratio of number of nodes to maximum possible nodes for given height.
-
-```cpp
-class TreeDensityProperties {
-public:
-    static double density(TreeNode* root) {
-        int nodes = countNodes(root);
-        int height = treeHeight(root);
-        int maxNodes = (1 << (height + 1)) - 1;  // 2^(height+1) - 1
-        
-        return static_cast<double>(nodes) / maxNodes;
-    }
-    
-private:
-    static int countNodes(TreeNode* root) {
-        if (root == nullptr) return 0;
-        return 1 + countNodes(root->left) + countNodes(root->right);
-    }
-    
-    static int treeHeight(TreeNode* root) {
-        if (root == nullptr) return -1;
-        return 1 + std::max(treeHeight(root->left), treeHeight(root->right));
-    }
-};
-```
-
-## Complexity Analysis Summary
-
-| Property | Time Complexity | Space Complexity |
-|----------|----------------|------------------|
-| Height Calculation | O(n) | O(h) |
-| Node Count | O(n) | O(h) |
-| Balance Check | O(n) | O(h) |
-| Diameter | O(n) | O(h) |
-| Max Width | O(n) | O(w) |
-| Density | O(n) | O(h) |
-
-Where:
-- n = number of nodes
-- h = height of tree
-- w = maximum width of tree
-
-## Practical Applications
-
-### 1. Algorithm Selection
-- Use height to decide between recursive and iterative approaches
-- Use balance factor to determine if rebalancing is needed
-
-### 2. Performance Optimization
-- Complete trees enable array representation with better cache performance
-- Balanced trees ensure O(log n) operations
-
-### 3. Memory Planning
-- Density helps estimate memory efficiency
-- Width helps plan queue sizes for level-order traversal
-
-## Summary
-
-Understanding tree properties is essential for:
-- Choosing appropriate tree structures
-- Analyzing algorithm performance
-- Optimizing memory usage
-- Debugging tree-related issues
-
-These mathematical relationships provide the foundation for advanced tree algorithms and data structure selection.
+---
