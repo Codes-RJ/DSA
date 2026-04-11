@@ -46,7 +46,6 @@ DP is essential for:
 | 22 | Probability DP | `22_Probability_DP.md` |
 | 23 | DP on DAGs | `23_DP_on_DAGs.md` |
 | 24 | Optimization Techniques | `24_Optimization_Techniques.md` |
-| 25 | Problems | `Problems.md` |
 
 ## DP Classification by Problem Type
 
