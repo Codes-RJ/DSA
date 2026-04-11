@@ -1,98 +1,498 @@
 # Adjacency List Representation
 
-## Introduction
-An adjacency list represents a graph as an array of lists. Each element of the array represents a vertex, and the list at that index contains all the vertices to which it is connected.
+## 📖 Overview
 
-## Implementation Concept
+The adjacency list is a space-efficient graph representation where each vertex maintains a list (or vector) of its neighboring vertices. It's the most commonly used representation for real-world graphs because most graphs are sparse (E ≈ V), making it memory-efficient and fast for neighbor iteration.
 
-### Dynamic Array (vector) or Linked List
-In C++, adjacency lists are most efficiently implemented using `std::vector<int> adj[V]` or `std::vector<std::vector<int>>`. Each vector stores the neighbors of a vertex.
+---
 
-### Undirected Graph
-An edge between `u` and `v` is stored twice: `v` is added to `adj[u]` and `u` is added to `adj[v]`.
+## 🎯 What is an Adjacency List?
 
-### Directed Graph
-An edge from `u` to `v` is stored once: `v` is added to `adj[u]`.
+### Definition
 
-## C++ Implementation
+For a graph with V vertices, we maintain an array of V lists, where `list[i]` contains all vertices adjacent to vertex i.
+
+### Visual Example (Undirected Graph)
+
+```
+Graph:                    Adjacency List:
+    1 --- 2               1: 2, 3, 4
+    |     |               2: 1, 3, 4
+    |     |               3: 1, 2, 4
+    4 --- 3               4: 1, 2, 3
+
+Each edge appears twice (once for each endpoint)
+```
+
+### Visual Example (Directed Graph)
+
+```
+Graph:                    Adjacency List:
+    1 → 2                1: 2
+    ↑   ↓                2: 3
+    |   ↓                3: 4
+    4 ← 3                4: 1
+
+Each directed edge appears once (from source to destination)
+```
+
+---
+
+## 📝 Implementation
+
+### Basic Adjacency List (Unweighted)
 
 ```cpp
 #include <iostream>
 #include <vector>
 #include <list>
-
+#include <algorithm>
 using namespace std;
 
-class Graph {
+class AdjacencyList {
 private:
-    int V;
-    vector<vector<int>> adjList;
-
+    vector<list<int>> adj;
+    int vertices;
+    bool isDirected;
+    
 public:
-    Graph(int V) {
-        this->V = V;
-        adjList.resize(V);
+    // Constructor
+    AdjacencyList(int v, bool directed = false) 
+        : vertices(v), isDirected(directed) {
+        adj.resize(v);
     }
-
-    // Add edge for undirected graph
+    
+    // Add edge
     void addEdge(int u, int v) {
-        adjList[u].push_back(v);
-        adjList[v].push_back(u); // For undirected
-    }
-
-    // Display the adjacency list
-    void display() {
-        for (int i = 0; i < V; i++) {
-            cout << "Vertex " << i << ": ";
-            for (int neighbor : adjList[i]) {
-                cout << neighbor << " -> ";
-            }
-            cout << "NULL" << endl;
+        if (u < 0 || u >= vertices || v < 0 || v >= vertices) {
+            cout << "Invalid vertex!" << endl;
+            return;
+        }
+        
+        adj[u].push_back(v);
+        if (!isDirected) {
+            adj[v].push_back(u);
         }
     }
-
+    
+    // Remove edge
+    void removeEdge(int u, int v) {
+        if (u < 0 || u >= vertices || v < 0 || v >= vertices) {
+            cout << "Invalid vertex!" << endl;
+            return;
+        }
+        
+        adj[u].remove(v);
+        if (!isDirected) {
+            adj[v].remove(u);
+        }
+    }
+    
     // Check if edge exists
     bool hasEdge(int u, int v) {
-        for (int neighbor : adjList[u]) {
+        if (u < 0 || u >= vertices) return false;
+        
+        for (int neighbor : adj[u]) {
             if (neighbor == v) return true;
         }
         return false;
     }
+    
+    // Get degree of vertex
+    int getDegree(int u) {
+        if (u < 0 || u >= vertices) return -1;
+        
+        int degree = adj[u].size();
+        
+        if (!isDirected) return degree;
+        
+        // For directed graph, also count incoming edges
+        int indegree = 0;
+        for (int i = 0; i < vertices; i++) {
+            for (int neighbor : adj[i]) {
+                if (neighbor == u) indegree++;
+            }
+        }
+        return degree + indegree;
+    }
+    
+    // Get out-degree (for directed graphs)
+    int getOutDegree(int u) {
+        return adj[u].size();
+    }
+    
+    // Get in-degree (for directed graphs)
+    int getInDegree(int u) {
+        int indegree = 0;
+        for (int i = 0; i < vertices; i++) {
+            for (int neighbor : adj[i]) {
+                if (neighbor == u) indegree++;
+            }
+        }
+        return indegree;
+    }
+    
+    // Get neighbors of vertex
+    vector<int> getNeighbors(int u) {
+        vector<int> neighbors;
+        if (u < 0 || u >= vertices) return neighbors;
+        
+        for (int neighbor : adj[u]) {
+            neighbors.push_back(neighbor);
+        }
+        return neighbors;
+    }
+    
+    // Display adjacency list
+    void display() {
+        cout << "Adjacency List:" << endl;
+        for (int i = 0; i < vertices; i++) {
+            cout << i << ": ";
+            for (int neighbor : adj[i]) {
+                cout << neighbor << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+```
+
+---
+
+## 💪 Weighted Adjacency List
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <list>
+#include <utility>
+using namespace std;
+
+class WeightedAdjacencyList {
+private:
+    struct Edge {
+        int destination;
+        int weight;
+        
+        Edge(int dest, int w) : destination(dest), weight(w) {}
+    };
+    
+    vector<list<Edge>> adj;
+    int vertices;
+    bool isDirected;
+    
+public:
+    WeightedAdjacencyList(int v, bool directed = false) 
+        : vertices(v), isDirected(directed) {
+        adj.resize(v);
+    }
+    
+    void addEdge(int u, int v, int weight) {
+        if (u < 0 || u >= vertices || v < 0 || v >= vertices) {
+            cout << "Invalid vertex!" << endl;
+            return;
+        }
+        
+        adj[u].push_back(Edge(v, weight));
+        if (!isDirected) {
+            adj[v].push_back(Edge(u, weight));
+        }
+    }
+    
+    void removeEdge(int u, int v) {
+        if (u < 0 || u >= vertices) return;
+        
+        adj[u].remove_if([v](const Edge& e) { return e.destination == v; });
+        
+        if (!isDirected) {
+            adj[v].remove_if([u](const Edge& e) { return e.destination == u; });
+        }
+    }
+    
+    bool hasEdge(int u, int v) {
+        if (u < 0 || u >= vertices) return false;
+        
+        for (const Edge& e : adj[u]) {
+            if (e.destination == v) return true;
+        }
+        return false;
+    }
+    
+    int getWeight(int u, int v) {
+        if (u < 0 || u >= vertices) return -1;
+        
+        for (const Edge& e : adj[u]) {
+            if (e.destination == v) return e.weight;
+        }
+        return -1;
+    }
+    
+    vector<pair<int, int>> getNeighbors(int u) {
+        vector<pair<int, int>> neighbors;
+        if (u < 0 || u >= vertices) return neighbors;
+        
+        for (const Edge& e : adj[u]) {
+            neighbors.push_back({e.destination, e.weight});
+        }
+        return neighbors;
+    }
+    
+    void display() {
+        cout << "Weighted Adjacency List:" << endl;
+        for (int i = 0; i < vertices; i++) {
+            cout << i << ": ";
+            for (const Edge& e : adj[i]) {
+                cout << "(" << e.destination << "," << e.weight << ") ";
+            }
+            cout << endl;
+        }
+    }
+};
+```
+
+---
+
+## 📊 Complete Example
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+class Graph {
+private:
+    vector<list<int>> adj;
+    int vertices;
+    bool isDirected;
+    
+public:
+    Graph(int v, bool directed = false) : vertices(v), isDirected(directed) {
+        adj.resize(v);
+    }
+    
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        if (!isDirected) adj[v].push_back(u);
+    }
+    
+    void removeEdge(int u, int v) {
+        adj[u].remove(v);
+        if (!isDirected) adj[v].remove(u);
+    }
+    
+    bool hasEdge(int u, int v) {
+        for (int neighbor : adj[u]) {
+            if (neighbor == v) return true;
+        }
+        return false;
+    }
+    
+    int getDegree(int u) {
+        int deg = adj[u].size();
+        if (!isDirected) return deg;
+        
+        int indeg = 0;
+        for (int i = 0; i < vertices; i++) {
+            for (int neighbor : adj[i]) {
+                if (neighbor == u) indeg++;
+            }
+        }
+        return deg + indeg;
+    }
+    
+    int getOutDegree(int u) {
+        return adj[u].size();
+    }
+    
+    int getInDegree(int u) {
+        int indeg = 0;
+        for (int i = 0; i < vertices; i++) {
+            for (int neighbor : adj[i]) {
+                if (neighbor == u) indeg++;
+            }
+        }
+        return indeg;
+    }
+    
+    vector<int> getNeighbors(int u) {
+        vector<int> neighbors;
+        for (int neighbor : adj[u]) {
+            neighbors.push_back(neighbor);
+        }
+        return neighbors;
+    }
+    
+    void display() {
+        cout << "\nAdjacency List:" << endl;
+        for (int i = 0; i < vertices; i++) {
+            cout << i << ": ";
+            // Sort neighbors for consistent display
+            vector<int> neighbors = getNeighbors(i);
+            sort(neighbors.begin(), neighbors.end());
+            for (int n : neighbors) {
+                cout << n << " ";
+            }
+            cout << endl;
+        }
+    }
+    
+    void printGraph() {
+        cout << "\nGraph Details:" << endl;
+        cout << "Type: " << (isDirected ? "Directed" : "Undirected") << endl;
+        cout << "Vertices: " << vertices << endl;
+        
+        int edges = 0;
+        for (int i = 0; i < vertices; i++) {
+            edges += adj[i].size();
+        }
+        if (!isDirected) edges /= 2;
+        cout << "Edges: " << edges << endl;
+        
+        cout << "\nVertex Information:" << endl;
+        for (int i = 0; i < vertices; i++) {
+            cout << "Vertex " << i << ": ";
+            if (isDirected) {
+                cout << "out-degree = " << getOutDegree(i);
+                cout << ", in-degree = " << getInDegree(i);
+                cout << ", degree = " << getDegree(i);
+            } else {
+                cout << "degree = " << getDegree(i);
+            }
+            cout << ", neighbors: ";
+            vector<int> neighbors = getNeighbors(i);
+            sort(neighbors.begin(), neighbors.end());
+            for (int n : neighbors) {
+                cout << n << " ";
+            }
+            cout << endl;
+        }
+    }
 };
 
 int main() {
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 3);
+    cout << "=== Adjacency List Representation ===" << endl;
     
-    g.display();
+    // Undirected graph
+    cout << "\n1. Undirected Graph:" << endl;
+    Graph g1(4, false);
+    g1.addEdge(0, 1);
+    g1.addEdge(0, 2);
+    g1.addEdge(0, 3);
+    g1.addEdge(1, 2);
+    g1.addEdge(1, 3);
+    g1.addEdge(2, 3);
+    
+    g1.display();
+    g1.printGraph();
+    
+    // Directed graph
+    cout << "\n2. Directed Graph:" << endl;
+    Graph g2(4, true);
+    g2.addEdge(0, 1);
+    g2.addEdge(0, 2);
+    g2.addEdge(1, 2);
+    g2.addEdge(2, 3);
+    g2.addEdge(3, 0);
+    
+    g2.display();
+    g2.printGraph();
+    
+    // Operations demonstration
+    cout << "\n3. Testing Operations:" << endl;
+    Graph g3(3, false);
+    g3.addEdge(0, 1);
+    g3.addEdge(1, 2);
+    
+    cout << "Initial graph:" << endl;
+    g3.display();
+    
+    cout << "\nCheck edge (0,1): " << (g3.hasEdge(0, 1) ? "Yes" : "No") << endl;
+    cout << "Check edge (0,2): " << (g3.hasEdge(0, 2) ? "Yes" : "No") << endl;
+    
+    g3.addEdge(0, 2);
+    cout << "\nAfter adding edge (0,2):" << endl;
+    g3.display();
+    
+    g3.removeEdge(1, 2);
+    cout << "\nAfter removing edge (1,2):" << endl;
+    g3.display();
+    
     return 0;
 }
 ```
 
-## Space and Time Complexity
+---
 
-| Aspect | Complexity |
-|--------|------------|
-| Space Complexity | O(V + E) |
-| Add Edge | O(1) (average) |
-| Remove Edge | O(E/V) (average) |
-| Check Edge | O(V) (worst case) |
-| Find Neighbors | O(degree(V)) |
+## 📊 Complexity Analysis
 
-## Advantages
-1. **Space Efficient**: Uses memory proportional to the actual number of edges and vertices. Ideal for sparse graphs.
-2. **Fast Neighbor Retrieval**: Finding neighbors of a vertex takes time proportional to the number of neighbors, not total vertices.
-3. **Easy Vertex Addition**: Adding new vertices or edges is straightforward.
+| Operation | Time Complexity | Space Complexity |
+|-----------|----------------|------------------|
+| **Add Edge** | O(1) | O(1) |
+| **Remove Edge** | O(V) (worst) | O(1) |
+| **Check Edge** | O(V) | O(1) |
+| **Get Degree** | O(1) | O(1) |
+| **Get Neighbors** | O(degree) | O(degree) |
+| **Space** | O(V+E) | O(V+E) |
 
-## Disadvantages
-1. **Slow Edge Check**: Checking if an edge exists between two specific vertices takes O(V) in the worst case (or degree of node).
-2. **Pointer Overhead**: If implemented with linked lists, there is additional memory for pointers.
+---
 
-## Use Cases
-- Most real-world graphs (social networks, web graphs) which are typically sparse.
-- Large graphs where V² memory is not feasible.
-- Graph traversal algorithms like BFS and DFS.
-- Finding connected components or shortest paths in sparse graphs.
+## ✅ Advantages and Disadvantages
+
+### Advantages
+
+| Advantage | Description |
+|-----------|-------------|
+| **Space efficient** | O(V+E) space for sparse graphs |
+| **Fast neighbor iteration** | O(degree) to traverse neighbors |
+| **Dynamic** | Easy to add/remove vertices |
+| **Good for BFS/DFS** | Efficient graph traversal |
+| **Most common** | Used in real-world applications |
+
+### Disadvantages
+
+| Disadvantage | Description |
+|--------------|-------------|
+| **Slow edge check** | O(V) to check if edge exists |
+| **Not cache-friendly** | Pointers scattered in memory |
+| **Overhead** | Extra space for pointers |
+
+---
+
+## 🎯 When to Use Adjacency List
+
+| Use When | Avoid When |
+|----------|------------|
+| Graph is sparse (E ≈ V) | Graph is dense (E ≈ V²) |
+| Frequent neighbor iteration | Frequent edge existence checks |
+| Memory is limited | V is very small |
+| BFS, DFS, Dijkstra | Floyd-Warshall algorithm |
+| Real-world graphs | Complete graphs |
+
+---
+
+## 📊 Representation Comparison
+
+| Feature | Adjacency Matrix | Adjacency List |
+|---------|-----------------|----------------|
+| **Space** | O(V²) | O(V+E) |
+| **Edge Check** | O(1) | O(V) |
+| **Add Edge** | O(1) | O(1) |
+| **Remove Edge** | O(1) | O(V) |
+| **Neighbors** | O(V) | O(degree) |
+| **Best for** | Dense graphs | Sparse graphs |
+
+---
+
+## ✅ Key Takeaways
+
+1. **Adjacency list** uses O(V+E) space - optimal for sparse graphs
+2. **Fast neighbor iteration** - O(degree) to traverse neighbors
+3. **Slower edge lookup** - O(V) in worst case
+4. **Most common representation** for real-world graphs
+5. **Good for BFS, DFS, Dijkstra** - algorithms that explore neighbors
+6. **Dynamic** - easy to add/remove vertices
+7. **Memory efficient** for sparse graphs (E ≈ V)
+
+---
