@@ -59,7 +59,6 @@ Backtracking is suitable when:
 | 18 | Crossword Puzzle | `18_Crossword_Puzzle.md` |
 | 19 | Backtracking vs Brute Force | `19_Backtracking_vs_Brute_Force.md` |
 | 20 | Backtracking vs DP | `20_Backtracking_vs_DP.md` |
-| 21 | Problems | `Problems.md` |
 
 ### Classification by Problem Type
 
