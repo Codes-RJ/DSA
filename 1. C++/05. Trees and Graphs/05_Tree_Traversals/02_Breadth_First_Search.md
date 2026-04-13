@@ -1,4 +1,4 @@
-# Graph Traversal - BFS (Breadth-First Search)
+﻿# Graph Traversal - BFS (Breadth-First Search)
 
 ## 📖 Overview
 
@@ -337,3 +337,8 @@ int main() {
 7. **Disconnected graphs** require multiple BFS runs
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Inorder_Traversal.md](03_Inorder_Traversal.md) to continue with Inorder Traversal.

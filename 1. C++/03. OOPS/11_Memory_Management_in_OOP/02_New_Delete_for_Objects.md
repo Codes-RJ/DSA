@@ -1,4 +1,4 @@
-# new and delete for Objects - Complete Guide
+﻿# new and delete for Objects - Complete Guide
 
 ## 📖 Overview
 
@@ -631,3 +631,8 @@ int main() {
 6. **Smart pointers** are preferred over raw pointers
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Placement_New.md](03_Placement_New.md) to continue with Placement New.

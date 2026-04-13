@@ -1,4 +1,4 @@
-# Mutable Keyword in C++ - Complete Guide
+﻿# Mutable Keyword in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -714,3 +714,8 @@ int main() {
 7. **Document** why mutable is used
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Explicit_Keyword.md](03_Explicit_Keyword.md) to continue with Explicit Keyword.

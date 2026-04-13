@@ -1,4 +1,4 @@
-# Operator Overloading in C++ - Complete Guide
+﻿# Operator Overloading in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -962,3 +962,8 @@ int main() {
 5. **Follow natural semantics** - overloaded operators should be intuitive
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Overloading_Rules.md](03_Overloading_Rules.md) to continue with Overloading Rules.

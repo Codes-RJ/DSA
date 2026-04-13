@@ -1,4 +1,4 @@
-# C++ Best Practices and Coding Standards
+﻿# C++ Best Practices and Coding Standards
 
 This guide covers essential C++ best practices, coding standards, and conventions that will help you write clean, efficient, and maintainable code.
 
@@ -654,3 +654,8 @@ public:
 ---
 
 **This guide covers the essential best practices for writing modern, safe, and efficient C++ code. Follow these guidelines to improve code quality and maintainability.**
+---
+
+## Next Step
+
+- Go to [concurrency.md](concurrency.md) to continue with concurrency.

@@ -1,4 +1,4 @@
-# GCD and LCM
+﻿# GCD and LCM
 
 ## Introduction
 Greatest Common Divisor (GCD) and Least Common Multiple (LCM) are fundamental in number theory.
@@ -66,3 +66,8 @@ int extendedGCD(int a, int b, int &x, int &y) {
 ## Complexity
 - **Time**: O(log(min(a, b))) for Euclidean Algorithm.
 - **Space**: O(1) or O(log N) for recursion stack.
+---
+
+## Next Step
+
+- Go to [05_Modular_Arithmetic.md](05_Modular_Arithmetic.md) to continue with Modular Arithmetic.

@@ -1,4 +1,4 @@
-# Inheriting Constructors in C++ - Complete Guide
+﻿# Inheriting Constructors in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -638,3 +638,8 @@ int main() {
 7. **Reduces code duplication** in hierarchies
 
 ---
+---
+
+## Next Step
+
+- Go to [09_Override_and_Final.md](09_Override_and_Final.md) to continue with Override and Final.

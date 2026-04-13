@@ -1,4 +1,4 @@
-# Lambda Expressions in C++ - Complete Guide
+﻿# Lambda Expressions in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -645,3 +645,8 @@ int main() {
 8. **Use with STL algorithms** for concise code
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Smart_Pointers.md](04_Smart_Pointers.md) to continue with Smart Pointers.

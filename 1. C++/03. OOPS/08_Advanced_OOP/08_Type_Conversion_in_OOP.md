@@ -1,4 +1,4 @@
-# Type Conversion in OOP - Complete Guide
+﻿# Type Conversion in OOP - Complete Guide
 
 ## 📖 Overview
 
@@ -686,3 +686,8 @@ int main() {
 7. **User-defined conversions** provide type flexibility
 
 ---
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

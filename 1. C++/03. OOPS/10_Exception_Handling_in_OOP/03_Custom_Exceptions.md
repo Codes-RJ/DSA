@@ -1,4 +1,4 @@
-# Custom Exceptions
+﻿# Custom Exceptions
 
 ## 📖 Overview
 
@@ -1537,3 +1537,8 @@ Continue learning about:
 - **Error Handling Strategies**: When to use exceptions vs error codes
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Exception_Specifications.md](04_Exception_Specifications.md) to continue with Exception Specifications.

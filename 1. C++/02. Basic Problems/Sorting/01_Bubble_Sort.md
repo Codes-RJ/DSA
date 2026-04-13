@@ -1,4 +1,4 @@
-# Bubble Sort in C++
+﻿# Bubble Sort in C++
 
 ## Overview
 Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. It's named for the way smaller or larger elements "bubble" to their correct position.
@@ -977,3 +977,8 @@ Bubble sort is the simplest sorting algorithm, making it excellent for education
 - Stable: ✅
 - In-place: ✅
 - Best for: Small datasets, educational purposes, nearly sorted data
+---
+
+## Next Step
+
+- Go to [02_Insertion_Sort.md](02_Insertion_Sort.md) to continue with Insertion Sort.

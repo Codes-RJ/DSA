@@ -1,4 +1,4 @@
-# auto and decltype in C++ - Complete Guide
+﻿# auto and decltype in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -436,3 +436,8 @@ int main() {
 8. **Be aware** of pitfalls with proxy types
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Range_Based_For_Loops.md](02_Range_Based_For_Loops.md) to continue with Range Based For Loops.

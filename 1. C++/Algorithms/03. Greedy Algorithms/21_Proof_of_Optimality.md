@@ -1,4 +1,4 @@
-# 21_Proof_of_Optimality.md
+﻿# 21_Proof_of_Optimality.md
 
 ## Proof of Optimality for Greedy Algorithms
 
@@ -237,3 +237,8 @@ Therefore, greedy is not optimal for 0/1 knapsack.
 | Job Sequencing | Exchange | Highest profit first |
 
 ---
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

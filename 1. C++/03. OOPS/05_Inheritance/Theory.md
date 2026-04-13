@@ -1,4 +1,4 @@
-# Inheritance in C++ - Complete Guide
+﻿# Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -620,3 +620,8 @@ int main() {
 6. **Prefer composition over inheritance** when relationship is "has-a" not "is-a"
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

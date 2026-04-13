@@ -1,4 +1,4 @@
-# Number Puzzles
+﻿# Number Puzzles
 
 ## Introduction
 Number puzzles focus on the properties of integers, arithmetic, and mathematical induction.
@@ -33,3 +33,8 @@ Number puzzles focus on the properties of integers, arithmetic, and mathematical
 
 ## Summary
 Number puzzles are effective for building mathematical intuition and performance optimizing through algebraic shortcuts.
+---
+
+## Next Step
+
+- Go to [04_Array_Puzzles.md](04_Array_Puzzles.md) to continue with Array Puzzles.

@@ -1,4 +1,4 @@
-# Multiple Inheritance in C++ - Complete Guide
+﻿# Multiple Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -724,3 +724,8 @@ int main() {
 | **Slicing** | Loss of derived data | Use pointers/references |
 
 ---
+---
+
+## Next Step
+
+- Go to [3_Multilevel_Inheritance.md](3_Multilevel_Inheritance.md) to continue with Multilevel Inheritance.

@@ -1,4 +1,4 @@
-# 15_Lexicographically_Smallest_Sequence.md
+﻿# 15_Lexicographically_Smallest_Sequence.md
 
 ## Lexicographically Smallest Sequence
 
@@ -237,3 +237,8 @@ string smallestStringAfterSwaps(string s, vector<pair<int, int>>& allowedSwaps) 
 ### Time Complexity
 
 Typically O(n²) for simple greedy, O(n log n) with optimizations
+---
+
+## Next Step
+
+- Go to [16_Maximum_Sum_after_K_Negations.md](16_Maximum_Sum_after_K_Negations.md) to continue with Maximum Sum after K Negations.

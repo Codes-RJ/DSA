@@ -1,4 +1,4 @@
-# Delegating Constructors in C++ - Complete Guide
+﻿# Delegating Constructors in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -675,3 +675,8 @@ int main() {
 7. **Reduces code duplication** significantly
 
 ---
+---
+
+## Next Step
+
+- Go to [08_Inheriting_Constructors.md](08_Inheriting_Constructors.md) to continue with Inheriting Constructors.

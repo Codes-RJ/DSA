@@ -1,4 +1,4 @@
-# Graph Algorithm - Johnson's Algorithm (All-Pairs Shortest Path)
+﻿# Graph Algorithm - Johnson's Algorithm (All-Pairs Shortest Path)
 
 ## 📖 Overview
 
@@ -365,3 +365,8 @@ int main() {
 6. **Detects negative cycles**
 
 ---
+---
+
+## Next Step
+
+- Go to [16_Tarjan_LCA.md](16_Tarjan_LCA.md) to continue with Tarjan LCA.

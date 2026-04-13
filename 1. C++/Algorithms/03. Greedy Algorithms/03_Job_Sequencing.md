@@ -1,4 +1,4 @@
-# 03_Job_Sequencing.md
+﻿# 03_Job_Sequencing.md
 
 ## Job Sequencing with Deadlines
 
@@ -273,3 +273,8 @@ But profit(j) > profit(k) because greedy takes highest profit first.
 Swapping j and k would increase profit, contradicting optimality of O.
 
 Therefore, greedy must be optimal.
+---
+
+## Next Step
+
+- Go to [04_Fractional_Knapsack.md](04_Fractional_Knapsack.md) to continue with Fractional Knapsack.

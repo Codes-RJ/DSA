@@ -1,4 +1,4 @@
-# Memory Management in OOP - Complete Guide
+﻿# Memory Management in OOP - Complete Guide
 
 ## 📖 Overview
 
@@ -586,3 +586,8 @@ int main() {
 | **Stack overflow** | Large stack allocation | Use heap for large objects |
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

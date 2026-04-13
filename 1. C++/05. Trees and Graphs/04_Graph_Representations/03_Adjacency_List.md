@@ -1,4 +1,4 @@
-# Adjacency List Representation
+﻿# Adjacency List Representation
 
 ## 📖 Overview
 
@@ -496,3 +496,8 @@ int main() {
 7. **Memory efficient** for sparse graphs (E ≈ V)
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Edge_List.md](04_Edge_List.md) to continue with Edge List.

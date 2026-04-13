@@ -1,4 +1,4 @@
-# Graph Traversal - BFS (Breadth-First Search) - Complete Guide
+﻿# Graph Traversal - BFS (Breadth-First Search) - Complete Guide
 
 ## 📖 Overview
 
@@ -458,3 +458,8 @@ int main() {
 8. **Bipartite check** uses 2-coloring via BFS
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Graph_Traversal_DFS.md](02_Graph_Traversal_DFS.md) to continue with Graph Traversal DFS.

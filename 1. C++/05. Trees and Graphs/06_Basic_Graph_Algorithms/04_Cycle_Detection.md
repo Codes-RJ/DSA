@@ -1,4 +1,4 @@
-# Cycle Detection in Graphs
+﻿# Cycle Detection in Graphs
 
 ## 📖 Overview
 
@@ -506,3 +506,8 @@ int main() {
 7. **Cycle length** can be found using BFS from each vertex
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Topological_Sort.md](05_Topological_Sort.md) to continue with Topological Sort.

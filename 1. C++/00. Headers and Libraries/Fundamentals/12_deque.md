@@ -1,4 +1,4 @@
-# 12_deque.md - Double-Ended Queue Container
+﻿# 12_deque.md - Double-Ended Queue Container
 
 The `deque` header provides `std::deque`, a sequence container that supports efficient insertion and deletion at both ends. It stands for "double-ended queue."
 
@@ -986,10 +986,8 @@ dq.insert(dq.begin() + 1000, 42);  // This is O(n), not O(1)
 - Frequent random insertions in middle
 - Cache locality is critical
 - Memory is extremely constrained
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `push_front()`, `push_back()`, `pop_front()`, `pop_back()`, `front()`, `back()`  
-**Time Complexity**: O(1) end operations, O(n) middle insertions  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [13_list.md](13_list.md) to continue with list.

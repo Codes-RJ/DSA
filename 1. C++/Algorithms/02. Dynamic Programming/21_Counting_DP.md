@@ -1,4 +1,4 @@
-# 21_Counting_DP.md
+﻿# 21_Counting_DP.md
 
 ## Counting DP
 
@@ -348,3 +348,8 @@ dp[i] = (dp[i] + dp[i-2]) % MOD;
 3. Incorrect base cases (dp[0] = 0 vs dp[0] = 1)
 4. Integer overflow before modulo
 5. Not handling large numbers with long long
+---
+
+## Next Step
+
+- Go to [22_Probability_DP.md](22_Probability_DP.md) to continue with Probability DP.

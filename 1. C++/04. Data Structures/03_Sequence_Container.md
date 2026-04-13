@@ -1,4 +1,4 @@
-# Sequence Containers in C++
+﻿# Sequence Containers in C++
 
 ## Overview
 Sequence containers store elements in a linear sequence. C++ provides four main sequence containers: `std::vector` (dynamic array), `std::deque` (double-ended queue), `std::list` (doubly-linked list), and `std::forward_list` (singly-linked list). Each has different performance characteristics and use cases.
@@ -1117,3 +1117,8 @@ void demonstrateForwardList() {
 7. **Not reserving capacity** - Can cause multiple reallocations
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Container_Adapters.md](04_Container_Adapters.md) to continue with Container Adapters.

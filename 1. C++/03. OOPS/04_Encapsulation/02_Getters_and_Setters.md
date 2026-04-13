@@ -1,4 +1,4 @@
-# Getters and Setters in C++ - Complete Guide
+﻿# Getters and Setters in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -1037,3 +1037,8 @@ int main() {
 6. **Return const references** for large objects to avoid copying
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Access_Control.md](03_Access_Control.md) to continue with Access Control.

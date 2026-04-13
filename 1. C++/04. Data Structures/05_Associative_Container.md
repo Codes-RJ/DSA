@@ -1,4 +1,4 @@
-# Associative Containers in C++
+﻿# Associative Containers in C++
 
 ## Overview
 Associative containers store elements in a sorted order, allowing fast retrieval based on keys. They are typically implemented as balanced binary search trees (Red-Black Trees), providing logarithmic time complexity for most operations. C++ provides four main associative containers: `std::set`, `std::multiset`, `std::map`, and `std::multimap`.
@@ -1427,3 +1427,8 @@ void demonstrateMultimap() {
 8. **Modifying map while iterating** - Can invalidate iterators
 
 ---
+---
+
+## Next Step
+
+- Go to [06_Unassociative_Container.md](06_Unassociative_Container.md) to continue with Unassociative Container.

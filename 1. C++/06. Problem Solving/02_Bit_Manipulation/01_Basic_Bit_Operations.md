@@ -1,4 +1,4 @@
-# Basic Bit Operations
+﻿# Basic Bit Operations
 
 ## Introduction
 Bit manipulation involves directly working with the binary representation of numbers. Understanding bitwise operations is essential for optimization, low-level programming, and solving many algorithmic problems efficiently.
@@ -672,3 +672,8 @@ public:
 ## Summary
 
 Bit manipulation is a powerful technique for writing efficient and optimized code. Understanding bitwise operations, their properties, and common patterns enables developers to solve complex problems elegantly and efficiently. Mastering bit operations is essential for systems programming, competitive programming, and performance-critical applications.
+---
+
+## Next Step
+
+- Go to [02_Bit_Tricks.md](02_Bit_Tricks.md) to continue with Bit Tricks.

@@ -1,4 +1,4 @@
-# 02_Activity_Selection.md
+﻿# 02_Activity_Selection.md
 
 ## Activity Selection Problem
 
@@ -182,3 +182,8 @@ Replace a with g in O. The new solution O' is still valid because:
 - The number of activities in O' is same as O
 
 By induction, the greedy solution is optimal.
+---
+
+## Next Step
+
+- Go to [03_Job_Sequencing.md](03_Job_Sequencing.md) to continue with Job Sequencing.

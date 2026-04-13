@@ -1,4 +1,4 @@
-# 10_Median_of_Two_Sorted_Arrays.md
+﻿# 10_Median_of_Two_Sorted_Arrays.md
 
 ## Median of Two Sorted Arrays
 
@@ -223,3 +223,8 @@ double findMedianMerge(vector<int>& nums1, vector<int>& nums2) {
 3. Find median of k sorted arrays
 4. Find median of two sorted arrays of different sizes
 5. Find median of two sorted arrays with duplicates
+---
+
+## Next Step
+
+- Go to [11_Inversion_Count.md](11_Inversion_Count.md) to continue with Inversion Count.

@@ -1,4 +1,4 @@
-# Bitonic Sort
+﻿# Bitonic Sort
 
 ## Overview
 Bitonic Sort is a parallel sorting algorithm that works particularly well on parallel architectures. It sorts by creating bitonic sequences (sequences that are first increasing then decreasing) and then merging them.
@@ -436,3 +436,9 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Bitonic Sort with parallel processing capabilities and hardware optimization strategies.*
+
+---
+
+## Next Step
+
+- Go to [18_Pancake_Sort.md](18_Pancake_Sort.md) to continue with Pancake Sort.

@@ -1,4 +1,4 @@
-# 20_Backtracking_vs_DP.md
+﻿# 20_Backtracking_vs_DP.md
 
 ## Backtracking vs Dynamic Programming
 
@@ -182,3 +182,8 @@ Does the problem have optimal substructure?
 3. Solve coin change (minimum coins) using both
 4. Determine which problems are better suited for backtracking vs DP
 5. Implement memoized backtracking for a problem
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

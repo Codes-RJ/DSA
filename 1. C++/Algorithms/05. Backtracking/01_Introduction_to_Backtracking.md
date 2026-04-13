@@ -1,4 +1,4 @@
-# 01_Introduction_to_Backtracking.md
+﻿# 01_Introduction_to_Backtracking.md
 
 ## Introduction to Backtracking
 
@@ -218,3 +218,8 @@ void backtrack(parameters) {
     }
 }
 ```
+---
+
+## Next Step
+
+- Go to [02_Recursive_Backtracking.md](02_Recursive_Backtracking.md) to continue with Recursive Backtracking.

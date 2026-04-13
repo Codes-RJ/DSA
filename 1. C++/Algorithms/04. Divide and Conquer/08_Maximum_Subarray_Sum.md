@@ -1,4 +1,4 @@
-# 08_Maximum_Subarray_Sum.md
+﻿# 08_Maximum_Subarray_Sum.md
 
 ## Maximum Subarray Sum (Kadane's Algorithm and Divide and Conquer)
 
@@ -192,3 +192,8 @@ Result: 6
 4. Find maximum subarray sum with at least k elements
 5. Find maximum subarray sum with at most k elements
 6. Find two non-overlapping subarrays with maximum sum
+---
+
+## Next Step
+
+- Go to [09_Karatsuba_Algorithm.md](09_Karatsuba_Algorithm.md) to continue with Karatsuba Algorithm.

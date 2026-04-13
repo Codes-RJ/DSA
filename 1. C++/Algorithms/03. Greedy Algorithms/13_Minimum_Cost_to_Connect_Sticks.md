@@ -1,4 +1,4 @@
-# 13_Minimum_Cost_to_Connect_Sticks.md
+﻿# 13_Minimum_Cost_to_Connect_Sticks.md
 
 ## Minimum Cost to Connect Sticks
 
@@ -141,3 +141,8 @@ When you can merge k sticks at a time, use k-ary Huffman coding.
 | Cable connections | Join cables with minimum cost |
 | Pipeline construction | Connect pipes with minimum welding cost |
 | Data compression | Huffman coding (same principle) |
+---
+
+## Next Step
+
+- Go to [14_Gas_Station_Problem.md](14_Gas_Station_Problem.md) to continue with Gas Station Problem.

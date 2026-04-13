@@ -1,4 +1,4 @@
-# Subarray Problems
+﻿# Subarray Problems
 
 ## Introduction
 A subarray is a **contiguous** part of an array. Subarray problems are very common and often require clever optimization to avoid O(N²) or O(N³) brute-force solutions.
@@ -51,3 +51,8 @@ Used when the subarray must meet certain conditions (e.g., maximum length with s
 - [ ] Does it have negative numbers? (Changes Kadane's logic)
 - [ ] Are multiple queries involved? (Consider Prefix Sums)
 - [ ] Is a constant window size given? (Sliding Window)
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

@@ -1,4 +1,4 @@
-# Interpolation Search in C++
+﻿# Interpolation Search in C++
 
 ## Overview
 Interpolation search is an improved variant of binary search for uniformly distributed sorted arrays. It estimates the position of the target value based on its value relative to the endpoints.
@@ -747,3 +747,8 @@ Interpolation search is an excellent choice when you know your data is uniformly
 - Best for uniformly distributed data
 - Can be worse than binary search for non-uniform data
 - Requires arithmetic operations on data type
+---
+
+## Next Step
+
+- Go to [05_Exponential_Search.md](05_Exponential_Search.md) to continue with Exponential Search.

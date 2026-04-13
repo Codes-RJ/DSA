@@ -1,4 +1,4 @@
-# 16_unordered_set.md - Hash-Based Unique Container
+﻿# 16_unordered_set.md - Hash-Based Unique Container
 
 The `unordered_set` header provides `std::unordered_set`, an associative container that stores unique elements in a hash table for average constant-time lookup.
 
@@ -1285,10 +1285,8 @@ std::set<int> ordered_set;  // Maintains order
 - Memory is severely constrained
 - Need range queries
 - Worst-case performance is critical
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `insert()`, `find()`, `erase()`, `count()`, `contains()`, `rehash()`, `reserve()`  
-**Time Complexity**: Average O(1), Worst-case O(n)  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [17_map.md](17_map.md) to continue with map.

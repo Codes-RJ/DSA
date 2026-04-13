@@ -1,4 +1,4 @@
-# Range-Based For Loops in C++ - Complete Guide
+﻿# Range-Based For Loops in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -508,3 +508,8 @@ int main() {
 7. **C++20** adds initializers and ranges support
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Lambda_Expressions.md](03_Lambda_Expressions.md) to continue with Lambda Expressions.

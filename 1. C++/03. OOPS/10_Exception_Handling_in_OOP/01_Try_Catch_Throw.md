@@ -1,4 +1,4 @@
-# Try, Catch, and Throw
+﻿# Try, Catch, and Throw
 
 ## 📖 Overview
 
@@ -1091,3 +1091,8 @@ Continue learning about:
 - **RAII Pattern**: Resource management with exceptions
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Standard_Exceptions.md](02_Standard_Exceptions.md) to continue with Standard Exceptions.

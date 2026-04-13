@@ -1,4 +1,4 @@
-# Tree Properties
+﻿# Tree Properties
 
 ## 📖 Overview
 
@@ -278,3 +278,8 @@ int getInternalCount(Node* root) {
 7. **Skewed tree**: Worst-case for operations
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Binary_Tree_Implementation.md](04_Binary_Tree_Implementation.md) to continue with Binary Tree Implementation.

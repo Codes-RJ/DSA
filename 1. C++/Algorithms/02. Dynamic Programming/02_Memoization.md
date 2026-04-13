@@ -1,4 +1,4 @@
-# 02_Memoization.md
+﻿# 02_Memoization.md
 
 ## Memoization (Top-Down DP)
 
@@ -165,3 +165,8 @@ int solve(int i, int j) {
 5. Not handling invalid states in cache check
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Tabulation.md](03_Tabulation.md) to continue with Tabulation.

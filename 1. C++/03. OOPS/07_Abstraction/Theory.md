@@ -1,4 +1,4 @@
-# Abstraction in C++ - Complete Guide
+﻿# Abstraction in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -602,3 +602,8 @@ int main() {
 6. **Consider PIMPL idiom** for complete implementation hiding
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

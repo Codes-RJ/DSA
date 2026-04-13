@@ -1,4 +1,4 @@
-# 10_tuple.md - Fixed-Size Heterogeneous Container
+﻿# 10_tuple.md - Fixed-Size Heterogeneous Container
 
 The `tuple` header provides a fixed-size container that can hold elements of different types. It's an extension of `std::pair` that can handle any number of elements.
 
@@ -1033,10 +1033,8 @@ struct Data {
 - Many elements (consider custom type)
 - Performance-critical inner loops
 - Need runtime type information
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `make_tuple()`, `get()`, `tie()`, `tuple_cat()`  
-**Time Complexity**: O(1) for access, O(n) for concatenation  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [11_array.md](11_array.md) to continue with array.

@@ -1,4 +1,4 @@
-# Graph Algorithm - Prim's Algorithm (Minimum Spanning Tree)
+﻿# Graph Algorithm - Prim's Algorithm (Minimum Spanning Tree)
 
 ## 📖 Overview
 
@@ -468,3 +468,8 @@ int main() {
 7. **Can start from any vertex** (result same weight, different edges)
 
 ---
+---
+
+## Next Step
+
+- Go to [06_A_Star_Algorithm.md](06_A_Star_Algorithm.md) to continue with A Star Algorithm.

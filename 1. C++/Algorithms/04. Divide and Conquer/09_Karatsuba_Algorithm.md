@@ -1,4 +1,4 @@
-# 09_Karatsuba_Algorithm.md
+﻿# 09_Karatsuba_Algorithm.md
 
 ## Karatsuba Algorithm for Fast Multiplication
 
@@ -257,3 +257,8 @@ T(n) = O(n^(log₂3)) ≈ O(n^1.585)
 3. Compare performance of Karatsuba vs grade school
 4. Implement Karatsuba with base case using grade school
 5. Extend Karatsuba to handle negative numbers
+---
+
+## Next Step
+
+- Go to [10_Median_of_Two_Sorted_Arrays.md](10_Median_of_Two_Sorted_Arrays.md) to continue with Median of Two Sorted Arrays.

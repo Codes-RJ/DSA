@@ -1,4 +1,4 @@
-# 04_N_Queens.md
+﻿# 04_N_Queens.md
 
 ## N-Queens Problem
 
@@ -274,3 +274,8 @@ Queens also attack across board edges.
 3. Find one solution for n=20
 4. Implement N-Queens with bitmask optimization
 5. Solve N-Queens for n=1000 using heuristic (not exact)
+---
+
+## Next Step
+
+- Go to [05_Sudoku_Solver.md](05_Sudoku_Solver.md) to continue with Sudoku Solver.

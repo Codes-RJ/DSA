@@ -1,4 +1,4 @@
-# Graph Algorithm - Bipartite Graph
+﻿# Graph Algorithm - Bipartite Graph
 
 ## 📖 Overview
 
@@ -503,3 +503,8 @@ int main() {
 5. **Hopcroft-Karp** is efficient for large bipartite graphs
 
 ---
+---
+
+## Next Step
+
+- Go to [11_Articulation_Points.md](11_Articulation_Points.md) to continue with Articulation Points.

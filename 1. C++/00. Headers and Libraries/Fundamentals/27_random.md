@@ -1,4 +1,4 @@
-# 27_random - Random Number Generation Library
+﻿# 27_random - Random Number Generation Library
 
 The `random` header provides a modern, flexible, and statistically robust framework for random number generation in C++, replacing the old `rand()` / `srand()` approach.
 
@@ -308,15 +308,8 @@ std::mt19937_64 gen(seed);
 - [`cstdlib.md`](06_cstdlib.md) — Legacy `rand()` / `srand()`
 - [`numeric.md`](24_numeric.md) — Numeric algorithms that pair well with random data
 
-## 🚀 Next Steps
-
-1. Experiment with different distributions and observe the output histograms
-2. Try writing a simple simulation (coin flips, random walks)
-3. Learn about `seed_seq` for high-quality seeding
-4. Explore `std::sample` (C++17) for random subset selection
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Components**: `mt19937`, `random_device`, `uniform_int_distribution`, `uniform_real_distribution`, `shuffle()`  
-**Common Use Cases**: Games, simulations, testing, cryptography (use OS APIs for crypto)
+## Next Step
+
+- Go to [28_fstream.md](28_fstream.md) to continue with fstream.

@@ -1,4 +1,4 @@
-# Basics of Inheritance in C++ - Complete Guide
+﻿# Basics of Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -705,3 +705,8 @@ int main() {
 7. **Virtual functions** enable polymorphic behavior
 
 ---
+---
+
+## Next Step
+
+- Go to [Types of Inheritance](./02_Types_of_Inheritance/README.md) to understand different types of Inheritance.

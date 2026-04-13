@@ -1,4 +1,4 @@
-# IS-A vs HAS-A Relationship in C++ - Complete Guide
+﻿# IS-A vs HAS-A Relationship in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -885,3 +885,8 @@ int main() {
 6. **Both have their place** in good OOP design
 
 ---
+---
+
+## Next Step
+
+- Go to [Polymorphism](/1.%20C++/03.%20OOPS/06_Polymorphism/README.md) to understand about naming of classes and its meaningful explanations.

@@ -1,4 +1,4 @@
-# Graph Algorithm - Prim's Algorithm (Minimum Spanning Tree)
+﻿# Graph Algorithm - Prim's Algorithm (Minimum Spanning Tree)
 
 ## 📖 Overview
 
@@ -468,3 +468,8 @@ int main() {
 7. **Can start from any vertex** (result same weight, different edges)
 
 ---
+---
+
+## Next Step
+
+- Go to [12_Kruskal_Algorithm.md](12_Kruskal_Algorithm.md) to continue with Kruskal Algorithm.

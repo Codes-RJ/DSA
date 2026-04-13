@@ -1,4 +1,4 @@
-# Observer Pattern in C++ - Complete Guide
+﻿# Observer Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -804,3 +804,8 @@ int main() {
 6. **Can be implemented** with weak_ptr to avoid leaks
 
 ---
+---
+
+## Next Step
+
+- Go to [State.md](State.md) to continue with State.

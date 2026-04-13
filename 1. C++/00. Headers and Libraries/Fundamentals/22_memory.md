@@ -1,4 +1,4 @@
-# 22_memory.md - Smart Pointer and Memory Utilities
+﻿# 22_memory.md - Smart Pointer and Memory Utilities
 
 The `memory` header provides modern C++ tools for resource management, including smart pointers and memory allocation utilities.
 
@@ -893,10 +893,8 @@ std::unique_ptr<int> smart_ptr = std::make_unique<int>(42);
 - References are more appropriate
 - Performance is extremely critical
 - Ownership is unclear
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Components**: `unique_ptr`, `shared_ptr`, `weak_ptr`, `make_unique`, `make_shared`  
-**Memory Management**: Automatic RAII-based cleanup  
-**Thread Safety**: Reference counting is thread-safe
+## Next Step
+
+- Go to [23_iterator.md](23_iterator.md) to continue with iterator.

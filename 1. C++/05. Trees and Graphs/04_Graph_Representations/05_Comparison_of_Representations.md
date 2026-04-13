@@ -1,4 +1,4 @@
-# Comparison of Graph Representations
+﻿# Comparison of Graph Representations
 
 ## 📖 Overview
 
@@ -513,3 +513,8 @@ int main() {
 | Bellman-Ford algorithm | Edge List |
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

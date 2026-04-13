@@ -1,4 +1,4 @@
-# Exception Specifications
+﻿# Exception Specifications
 
 ## 📖 Overview
 
@@ -1431,3 +1431,8 @@ Continue learning about:
 - **Template Metaprogramming**: Advanced noexcept techniques
 
 ---
+---
+
+## Next Step
+
+- Go to [05_RAII.md](05_RAII.md) to continue with RAII.

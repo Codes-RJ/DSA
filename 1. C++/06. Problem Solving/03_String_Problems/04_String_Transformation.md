@@ -1,4 +1,4 @@
-# String Transformations and Operations
+﻿# String Transformations and Operations
 
 ## Introduction
 String transformations involve modifying a string to achieve a specific target or perform a specific task like reversing, rotating, or rearranging.
@@ -55,3 +55,8 @@ Reverse words in a sentence but not the letters themselves.
 - **ASCII and Encoding**: Understanding that characters are integers under the hood.
 - **Two-Pointers**: Essential for palindromes, reversals, and specific rearrangements.
 - **Frequency Arrays**: Great for anagram and character-counting problems.
+---
+
+## Next Step
+
+- Go to [05_Advanced_String_Problems.md](05_Advanced_String_Problems.md) to continue with Advanced String Problems.

@@ -1,4 +1,4 @@
-# 34_limits - Numeric Limits
+﻿# 34_limits - Numeric Limits
 
 The `limits` header provides a uniform, type-safe way to query the minimum, maximum, and special properties of every arithmetic type, replacing the macro-based approach of C's `<climits>` and `<cfloat>`.
 
@@ -321,16 +321,8 @@ T myMax() { return std::numeric_limits<T>::max(); }
 - [`cmath.md`](05_cmath.md) — `INFINITY`, `NAN` and functions like `isinf()`, `isnan()`
 - [`numeric.md`](24_numeric.md) — Algorithms that operate on numeric ranges
 
-## 🚀 Next Steps
-
-1. Write a generic `findMin` / `findMax` using `numeric_limits<T>::lowest()` and `max()`
-2. Implement an overflow-safe arithmetic library using limits checks
-3. Explore `std::numeric_limits<T>::epsilon()` for robust floating-point unit tests
-4. Investigate `<cstdint>` fixed-width types (`int8_t`, `uint64_t`) and their limits
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Type**: `std::numeric_limits<T>`  
-**Key Members**: `min()`, `max()`, `lowest()`, `epsilon()`, `infinity()`, `quiet_NaN()`, `digits10`  
-**Common Use Cases**: Overflow protection, float comparison, generic algorithms, sentinel values
+## Next Step
+
+- Go to [README.md](README.md) to continue.

@@ -1,4 +1,4 @@
-# 16_Hamiltonian_Cycle.md
+﻿# 16_Hamiltonian_Cycle.md
 
 ## Hamiltonian Cycle
 
@@ -248,3 +248,8 @@ For a Hamiltonian cycle to exist:
 3. Find all Hamiltonian cycles in a graph
 4. Find the shortest Hamiltonian cycle (TSP)
 5. Determine if a graph is Hamiltonian (Dirac/Ore conditions)
+---
+
+## Next Step
+
+- Go to [17_Tug_of_War.md](17_Tug_of_War.md) to continue with Tug of War.

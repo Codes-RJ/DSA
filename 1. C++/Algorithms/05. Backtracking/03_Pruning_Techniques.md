@@ -1,4 +1,4 @@
-# 03_Pruning_Techniques.md
+﻿# 03_Pruning_Techniques.md
 
 ## Pruning Techniques in Backtracking
 
@@ -280,3 +280,8 @@ bool exist(vector<vector<char>>& board, string word, int i, int j, int pos) {
 3. Add bound pruning to Subset Sum (stop if sum exceeds target)
 4. Implement Warnsdorff's rule for Knight Tour
 5. Add symmetry pruning to Generate Permutations (skip duplicates)
+---
+
+## Next Step
+
+- Go to [04_N_Queens.md](04_N_Queens.md) to continue with N Queens.

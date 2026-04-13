@@ -1,4 +1,4 @@
-# 02_Merge_Sort.md
+﻿# 02_Merge_Sort.md
 
 ## Merge Sort
 
@@ -240,3 +240,8 @@ void iterativeMergeSort(vector<int>& arr) {
 3. Count inversions using merge sort (see Inversion Count file)
 4. Merge two sorted arrays
 5. Sort an array of strings using merge sort
+---
+
+## Next Step
+
+- Go to [03_Quick_Sort.md](03_Quick_Sort.md) to continue with Quick Sort.

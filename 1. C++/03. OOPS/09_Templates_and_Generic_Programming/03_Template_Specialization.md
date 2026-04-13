@@ -1,4 +1,4 @@
-# Template Specialization
+﻿# Template Specialization
 
 ## 📖 Overview
 
@@ -958,3 +958,8 @@ Continue learning about:
 - **Advanced Template Techniques**: SFINAE, tag dispatch, and more
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Variadic_Templates.md](04_Variadic_Templates.md) to continue with Variadic Templates.

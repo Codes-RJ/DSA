@@ -1,4 +1,4 @@
-# Fibonacci Search
+﻿# Fibonacci Search
 
 ## Overview
 Fibonacci search is a comparison-based search algorithm that uses Fibonacci numbers to divide the array into sections. It's similar to binary search but avoids division operations, making it useful in systems where division is expensive.
@@ -248,3 +248,8 @@ int fibonacciSearch(const std::vector<T>& arr, const T& target, Compare comp) {
 ---
 
 *This implementation provides a comprehensive guide to Fibonacci search with practical examples and performance considerations.*
+---
+
+## Next Step
+
+- Go to [07_Ternary_Search.md](07_Ternary_Search.md) to continue with Ternary Search.

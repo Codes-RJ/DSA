@@ -1,4 +1,4 @@
-# 13_Longest_Common_Subsequence.md
+﻿# 13_Longest_Common_Subsequence.md
 
 ## Longest Common Subsequence (LCS)
 
@@ -305,3 +305,8 @@ This becomes exponential and is often solved with DP state dp[i1][i2][...][ik] w
 | Basic 2D DP | O(m × n) | O(m × n) |
 | Space Optimized | O(m × n) | O(min(m, n)) |
 | Recursive with Memo | O(m × n) | O(m × n) + stack |
+---
+
+## Next Step
+
+- Go to [14_Longest_Increasing_Subsequence.md](14_Longest_Increasing_Subsequence.md) to continue with Longest Increasing Subsequence.

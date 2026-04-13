@@ -1,4 +1,4 @@
-# Factorial and Combinatorics
+﻿# Factorial and Combinatorics
 
 ## Introduction
 Factorial and combinatorics are foundational in calculating possibilities and permutations for various problem-solving tasks.
@@ -58,3 +58,8 @@ long long nCr(int n, int r) {
 ## Time and Space Complexity
 - **Iterative Factorial**: O(n) Time, O(1) Space.
 - **nCr calculation**: O(r) Time, O(1) Space.
+---
+
+## Next Step
+
+- Go to [04_GCD_LCM.md](04_GCD_LCM.md) to continue with GCD LCM.

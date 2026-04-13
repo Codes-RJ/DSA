@@ -1,4 +1,4 @@
-# Class Templates
+﻿# Class Templates
 
 ## 📖 Overview
 
@@ -839,3 +839,8 @@ Continue learning about:
 - **Advanced Template Techniques**: SFINAE, concepts, and more
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Template_Specialization.md](03_Template_Specialization.md) to continue with Template Specialization.

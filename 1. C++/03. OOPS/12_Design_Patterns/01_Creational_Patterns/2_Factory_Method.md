@@ -1,4 +1,4 @@
-# Factory Method Pattern in C++ - Complete Guide
+﻿# Factory Method Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -826,3 +826,8 @@ int main() {
 6. **Object pooling** can be combined with factory pattern
 
 ---
+---
+
+## Next Step
+
+- Go to [3_Abstract_Factory.md](3_Abstract_Factory.md) to continue with Abstract Factory.

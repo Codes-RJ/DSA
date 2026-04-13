@@ -560,3 +560,7 @@ int main() {
 6. **Use smart pointers** for polymorphic objects
 
 ---
+
+## Next Steps
+
+- Visit [Compile Time Polymorphism](./01_Compile_Time_Polymorphism/README.md) to learn about the topic.

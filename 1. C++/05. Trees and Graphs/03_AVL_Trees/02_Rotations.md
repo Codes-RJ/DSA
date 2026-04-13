@@ -1,4 +1,4 @@
-# AVL Tree Rotations
+﻿# AVL Tree Rotations
 
 ## 📖 Overview
 
@@ -577,3 +577,8 @@ If BF < -1 (Right Heavy):
 8. **Height updates** must occur after rotations
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Balancing_Factor.md](03_Balancing_Factor.md) to continue with Balancing Factor.

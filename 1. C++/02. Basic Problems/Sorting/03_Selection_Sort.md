@@ -1,4 +1,4 @@
-# Selection Sort in C++
+﻿# Selection Sort in C++
 
 ## Overview
 Selection sort is a simple comparison-based sorting algorithm that divides the input into sorted and unsorted regions, repeatedly selecting the smallest element from the unsorted region and moving it to the sorted region.
@@ -943,3 +943,8 @@ Selection sort is one of the simplest sorting algorithms, making it excellent fo
 - In-place: ✅
 - Best for: Small datasets, educational purposes, minimizing swaps
 - Consistent performance regardless of input order
+---
+
+## Next Step
+
+- Go to [04_Merge_Sort.md](04_Merge_Sort.md) to continue with Merge Sort.

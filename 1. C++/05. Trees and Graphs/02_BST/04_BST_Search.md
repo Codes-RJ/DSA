@@ -1,4 +1,4 @@
-# BST Search
+﻿# BST Search
 
 ## 📖 Overview
 
@@ -669,3 +669,8 @@ int main() {
 8. **Recursive search** is elegant but uses stack space
 
 ---
+---
+
+## Next Step
+
+- Go to [05_BST_Traversal.md](05_BST_Traversal.md) to continue with BST Traversal.

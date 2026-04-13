@@ -1,4 +1,4 @@
-# 11_array.md - Fixed-Size Sequence Container
+﻿# 11_array.md - Fixed-Size Sequence Container
 
 The `array` header provides `std::array`, a container that encapsulates fixed-size arrays with the performance of a C-style array but with the benefits of a standard container.
 
@@ -1331,10 +1331,8 @@ try {
 - Size needs to change at runtime (use `std::vector`)
 - You need very large arrays (consider heap allocation)
 - You need dynamic resizing
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `at()`, `fill()`, `size()`, `data()`, `begin()/end()`  
-**Time Complexity**: O(1) access, O(n) fill/transform  
-**Space Complexity**: O(n) where n is array size
+## Next Step
+
+- Go to [12_deque.md](12_deque.md) to continue with deque.

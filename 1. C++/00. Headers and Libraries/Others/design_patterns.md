@@ -1,4 +1,4 @@
-# Design Patterns - Common C++ Design Patterns
+﻿# Design Patterns - Common C++ Design Patterns
 
 Design patterns are proven, reusable solutions to recurring software design problems. They are blueprints — not code — that you adapt to your specific situation.
 
@@ -549,10 +549,8 @@ public:
 2. Build a Builder for a complex configuration object in your project
 3. Read "Design Patterns" (GoF) for the original 23 patterns with UML diagrams
 4. Explore modern C++ pattern implementations in "Hands-On Design Patterns with C++" by Fedor Pikus
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Patterns Covered**: Singleton, Factory, Builder, Observer, Strategy, Command, Decorator, PIMPL, Visitor  
-**Key Tools**: Virtual functions, `unique_ptr`, lambdas, `std::function`, CRTP  
-**Common Use Cases**: Plugin systems, event handling, undo/redo, configuration, ABI stability
+## Next Step
+
+- Go to [filesystem.md](filesystem.md) to continue with filesystem.

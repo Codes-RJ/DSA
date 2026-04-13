@@ -1,4 +1,4 @@
-# Search Algorithms in C++
+﻿# Search Algorithms in C++
 
 ## Overview
 This document provides comprehensive theoretical foundations for various search algorithms implemented in C++. From fundamental linear search to advanced searching techniques, each algorithm includes detailed explanations, complexity analysis, pseudocode, and best practices.
@@ -861,45 +861,6 @@ FUNCTION sublistSearch(mainList, pattern):
 ---
 
 *This comprehensive guide provides the theoretical foundation for understanding and implementing search algorithms effectively in C++. The choice of algorithm depends on your specific requirements, data characteristics, and performance constraints.*
-        cout << "STL Find:         " << benchmarkSTLFind(targetPresent) << " ns" << endl;
-        
-        // Test with absent element
-        cout << "\nSearching for ABSENT element:" << endl;
-        cout << "Linear Search:    " << benchmarkLinearSearch(targetAbsent) << " ns" << endl;
-        cout << "Binary Search:    " << benchmarkBinarySearch(targetAbsent) << " ns" << endl;
-        cout << "Hash Table:       " << benchmarkHashSearch(targetAbsent) << " ns" << endl;
-        cout << "STL Find:         " << benchmarkSTLFind(targetAbsent) << " ns" << endl;
-    }
-};
-
-int main() {
-    SearchBenchmark benchmark(100000);  // 100k elements
-    benchmark.runBenchmark();
-    
-    return 0;
-}
-```
-
-**Sample Output:**
-```
-Search Algorithm Performance Comparison
-Dataset size: 100000
-Target (present): 100000
-Target (absent): -1
-----------------------------------------
-
-Searching for PRESENT element:
-Linear Search:    125000 ns
-Binary Search:    3500 ns
-Hash Table:       150 ns
-STL Find:         124000 ns
-
-Searching for ABSENT element:
-Linear Search:    250000 ns
-Binary Search:    3500 ns
-Hash Table:       200 ns
-STL Find:         250000 ns
-```
 
 ---
 
@@ -977,3 +938,8 @@ Search algorithms are fundamental to computer science, and choosing the right on
 - Hash tables for O(1) average lookups
 - Specialized searches for specific distributions
 - Always consider the trade-offs between time and space complexity
+---
+
+## Next Step
+
+- Go to [Linear Search](./01_Linear_Search.md) to continue.

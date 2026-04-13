@@ -1,4 +1,4 @@
-# Insertion Sort in C++
+﻿# Insertion Sort in C++
 
 ## Overview
 Insertion sort builds the final sorted array one item at a time, by repeatedly inserting the next element into the already-sorted portion. It's simple, efficient for small datasets, and adaptive to nearly sorted data.
@@ -1314,3 +1314,8 @@ Insertion sort is an excellent choice for small datasets and nearly sorted data.
 - In-place: ✅
 - Best for: Small datasets, nearly sorted data, online sorting
 - Often used in hybrid algorithms with quick/merge sort
+---
+
+## Next Step
+
+- Go to [03_Selection_Sort.md](03_Selection_Sort.md) to continue with Selection Sort.

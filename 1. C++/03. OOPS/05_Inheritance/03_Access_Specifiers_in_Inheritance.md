@@ -1,4 +1,4 @@
-# Access Specifiers in Inheritance - Complete Guide
+﻿# Access Specifiers in Inheritance - Complete Guide
 
 ## 📖 Overview
 
@@ -647,3 +647,8 @@ int main() {
 6. **Access levels**: public > protected > private in terms of visibility
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Constructor_and_Destructor_in_Inheritance.md](04_Constructor_and_Destructor_in_Inheritance.md) to continue with Constructor and Destructor in Inheritance.

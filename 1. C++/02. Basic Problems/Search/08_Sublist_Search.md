@@ -1,4 +1,4 @@
-# Sublist Search
+﻿# Sublist Search
 
 ## Overview
 Sublist search is an algorithm used to find a pattern list (sublist) within a larger list. It's commonly used in pattern matching, string searching, and sequence detection applications.
@@ -375,3 +375,8 @@ int sublistSearchRabinKarp(const std::vector<int>& mainList, const std::vector<i
 ---
 
 *This implementation provides a comprehensive guide to sublist search with various optimization strategies and real-world applications.*
+---
+
+## Next Step
+
+- Go to [09_Hash_Search.md](09_Hash_Search.md) to continue with Hash Search.

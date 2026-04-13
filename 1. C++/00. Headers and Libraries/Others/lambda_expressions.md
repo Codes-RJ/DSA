@@ -1,4 +1,4 @@
-# Lambda Expressions - Inline Anonymous Functions
+﻿# Lambda Expressions - Inline Anonymous Functions
 
 Lambda expressions (introduced in C++11) let you define small, anonymous function objects inline, right where they are used — perfect for callbacks, predicates, and short-lived operations.
 
@@ -396,10 +396,8 @@ std::function<int(int)> fib = [&fib](int n) -> int {
 2. Implement a simple event system with `std::vector<std::function<void()>>`
 3. Explore C++20 lambda improvements: template lambdas, `[=, this]` capture
 4. Study `std::bind` vs lambdas — when each is appropriate
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Syntax**: `[capture](params) -> type { body }`, `mutable`, `constexpr`  
-**Key Patterns**: Callback, factory, IIFE, recursive lambda, init capture  
-**Common Use Cases**: STL predicates, event handlers, deferred execution, closures
+## Next Step
+
+- Go to [memory_management.md](memory_management.md) to continue with memory management.

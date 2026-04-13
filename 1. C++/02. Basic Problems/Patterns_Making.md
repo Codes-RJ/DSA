@@ -1255,9 +1255,13 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            int wave = (int)(abs(sin((i + j) * 3.14159 / 4) * 2));
-            if (wave > 1) cout << "* ";
-            else cout << "  ";
+            double value = sin((i + j) * M_PI / 4);
+            int wave = (int)(abs(value) * 2);
+
+            if (wave > 1)
+                cout << "* ";
+            else
+                cout << "  ";
         }
         cout << endl;
     }
@@ -1268,14 +1272,14 @@ int main() {
 
 ```
 Enter number of rows: 8
-      *       
-    *   *     
-  *       *   
-*           * 
-  *       *   
-    *   *     
-      *       
-    *   *     
+    *       *   
+  *       *     
+*       *       
+      *       * 
+    *       *   
+  *       *     
+*       *       
+      *       * 
 ```
 
 ### 8.2 Recursive Tree Pattern
@@ -1505,3 +1509,7 @@ int main() {
   *   *   
 *       * 
 ```
+
+## Next Steps
+
+- Go to [Search](./Search/README.md) to understand different `searching algorithms`.

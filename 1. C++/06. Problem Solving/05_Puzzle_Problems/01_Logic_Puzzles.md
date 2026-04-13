@@ -1,4 +1,4 @@
-# Logic Puzzles
+﻿# Logic Puzzles
 
 ## Introduction
 Logic puzzles are challenges that require using deduction, inference, and reasoning to solve. They are popular in interviews to test problem-solving skills outside of pure coding.
@@ -34,3 +34,8 @@ Logic puzzles are challenges that require using deduction, inference, and reason
 - **Identify invariants**: What stays the same even as variables change?
 - **Use analogies**: Relate it to known problems.
 - **Think as an adversary**: How would you break your own solution?
+---
+
+## Next Step
+
+- Go to [02_Pattern_Puzzles.md](02_Pattern_Puzzles.md) to continue with Pattern Puzzles.

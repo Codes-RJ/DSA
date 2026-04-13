@@ -1,4 +1,4 @@
-# Functions and Scope
+﻿# Functions and Scope
 
 ## Overview
 Functions are fundamental building blocks in C++ that allow code reuse, modularization, and abstraction. They encapsulate specific tasks and can be called multiple times with different inputs.
@@ -542,3 +542,8 @@ int finiteRecursion(int n) {
 ---
 
 *This guide provides a comprehensive overview of functions and scope in C++, covering fundamental concepts and advanced techniques for effective function design and usage.*
+---
+
+## Next Step
+
+- Go to [05_Arrays_and_Strings.md](05_Arrays_and_Strings.md) to continue with Arrays and Strings.

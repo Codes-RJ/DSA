@@ -1,4 +1,4 @@
-# 08_Interval_Scheduling.md
+﻿# 08_Interval_Scheduling.md
 
 ## Interval Scheduling
 
@@ -230,3 +230,8 @@ int minRemoveIntervals(vector<Interval>& intervals) {
 | Hotel room booking | Maximize bookings |
 | Exam scheduling | Schedule exams without conflict |
 | Flight scheduling | Assign runways to flights |
+---
+
+## Next Step
+
+- Go to [09_Interval_Partitioning.md](09_Interval_Partitioning.md) to continue with Interval Partitioning.

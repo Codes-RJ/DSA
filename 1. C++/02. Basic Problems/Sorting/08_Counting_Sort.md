@@ -1,4 +1,4 @@
-# Counting Sort in C++
+﻿# Counting Sort in C++
 
 ## Overview
 Counting sort is a non-comparison-based sorting algorithm that works by counting the number of occurrences of each distinct element. It's efficient when the range of input data is not significantly larger than the number of elements.
@@ -1178,3 +1178,8 @@ Counting sort is an excellent choice when sorting integers with a limited range.
 - In-place: ❌
 - Best for: Small integer ranges, characters, when k = O(n)
 - Not suitable for large ranges or floating-point numbers
+---
+
+## Next Step
+
+- Go to [09_Bucket_Sort.md](09_Bucket_Sort.md) to continue with Bucket Sort.

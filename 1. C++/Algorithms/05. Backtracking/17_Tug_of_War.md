@@ -1,4 +1,4 @@
-# 17_Tug_of_War.md
+﻿# 17_Tug_of_War.md
 
 ## Tug of War
 
@@ -265,3 +265,8 @@ Any size allowed, just minimize sum difference.
 3. Partition array into k subsets with equal sum
 4. Divide players into two teams of equal size with minimum strength difference
 5. Partition array into two subsets with minimum product difference
+---
+
+## Next Step
+
+- Go to [18_Crossword_Puzzle.md](18_Crossword_Puzzle.md) to continue with Crossword Puzzle.

@@ -1,4 +1,4 @@
-# Virtual Functions in C++ - Complete Guide
+﻿# Virtual Functions in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -759,3 +759,8 @@ int main() {
 6. **Never call virtual** in constructor or destructor
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Override_Specifier.md](02_Override_Specifier.md) to continue with Override Specifier.

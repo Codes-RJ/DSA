@@ -1,4 +1,4 @@
-# 28_fstream - File Stream Library
+﻿# 28_fstream - File Stream Library
 
 The `fstream` header provides input and output file streams in C++, letting you read from and write to files using the same familiar stream syntax as `iostream`.
 
@@ -345,16 +345,8 @@ while (file >> value) { /* safe */ }
 - [`sstream.md`](29_sstream.md) — In-memory string streams
 - [`iomanip.md`](30_iomanip.md) — Formatting manipulators for file output
 
-## 🚀 Next Steps
-
-1. Write a simple diary/log application that appends entries with timestamps
-2. Build a CSV reader/writer for a student grade tracker
-3. Explore binary serialization for structs
-4. Learn about `memory-mapped files` for very large files
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Classes**: `ifstream`, `ofstream`, `fstream`  
-**Key Methods**: `open()`, `close()`, `is_open()`, `getline()`, `read()`, `write()`, `seekg()`, `tellg()`  
-**Common Use Cases**: Config files, logs, CSV data, binary serialization
+## Next Step
+
+- Go to [29_sstream.md](29_sstream.md) to continue with sstream.

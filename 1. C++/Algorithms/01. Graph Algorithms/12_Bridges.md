@@ -1,4 +1,4 @@
-# Graph Algorithm - Bridges (Cut Edges)
+﻿# Graph Algorithm - Bridges (Cut Edges)
 
 ## 📖 Overview
 
@@ -511,3 +511,8 @@ int main() {
 6. **2-edge connected components** are maximal subgraphs without bridges
 
 ---
+---
+
+## Next Step
+
+- Go to [13_Bipartite_Matching.md](13_Bipartite_Matching.md) to continue with Bipartite Matching.

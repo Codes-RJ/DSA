@@ -1,4 +1,4 @@
-# Diamond Problem in C++ - Complete Guide
+﻿# Diamond Problem in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -662,3 +662,8 @@ int main() {
 7. **Use sparingly** - prefer composition over complex inheritance
 
 ---
+---
+
+## Next Step
+
+- Go to [06_Virtual_Inheritance.md](06_Virtual_Inheritance.md) to continue with Virtual Inheritance.

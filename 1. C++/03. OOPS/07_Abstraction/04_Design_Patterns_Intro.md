@@ -1,4 +1,4 @@
-# Design Patterns Introduction in C++ - Complete Guide
+﻿# Design Patterns Introduction in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -728,3 +728,8 @@ int main() {
 6. **Don't force patterns** - use when appropriate
 
 ---
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

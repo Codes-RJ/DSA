@@ -1,4 +1,4 @@
-# 09_Interval_Partitioning.md
+﻿# 09_Interval_Partitioning.md
 
 ## Interval Partitioning (Minimum Number of Rooms)
 
@@ -216,3 +216,8 @@ int minColors(vector<Interval>& intervals) {
 | Airline gates | Minimum gates for flights |
 | Hospital beds | Minimum beds for patients |
 | CPU scheduling | Minimum cores for processes |
+---
+
+## Next Step
+
+- Go to [10_Dijkstra_Algorithm.md](10_Dijkstra_Algorithm.md) to continue with Dijkstra Algorithm.

@@ -1,4 +1,4 @@
-# Flyweight Pattern in C++ - Complete Guide
+﻿# Flyweight Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -831,3 +831,8 @@ int main() {
 6. **Often combined** with Factory pattern
 
 ---
+---
+
+## Next Step
+
+- Go to [Proxy.md](Proxy.md) to continue with Proxy.

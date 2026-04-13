@@ -1,4 +1,4 @@
-# Debugging - Practical Debugging Techniques in C++
+﻿# Debugging - Practical Debugging Techniques in C++
 
 Debugging is the systematic process of finding and fixing bugs. C++ offers compile-time checks, assertions, sanitisers, and interactive debuggers to help you locate problems efficiently.
 
@@ -412,10 +412,8 @@ g++ -Wall -Wextra -Wshadow -Wnull-dereference -Wformat=2 prog.cpp
 2. Learn 10 essential GDB commands by debugging a program with a deliberate bug
 3. Write a failing test *before* fixing the bug (TDD-style)
 4. Explore Valgrind for comprehensive memory analysis: `valgrind --leak-check=full`
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Macros**: `assert`, `static_assert`, `NDEBUG`, `__FILE__`, `__LINE__`, `__func__`  
-**Key Tools**: GDB, ASan (`-fsanitize=address`), UBSan (`-fsanitize=undefined`), Valgrind  
-**Common Use Cases**: Crash diagnosis, memory errors, undefined behaviour, data races, hangs
+## Next Step
+
+- Go to [design_patterns.md](design_patterns.md) to continue with design patterns.

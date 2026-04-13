@@ -1,4 +1,4 @@
-# 14_forward_list.md - Singly Linked List
+﻿# 14_forward_list.md - Singly Linked List
 
 The `forward_list` header provides `std::forward_list`, a singly linked list container that supports only forward iteration with minimal memory overhead.
 
@@ -1280,10 +1280,8 @@ auto it = flist.end();
 - Need random access (use `vector`)
 - Need size() frequently (use `list` or track manually)
 - Need to insert/erase at arbitrary positions frequently
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `push_front()`, `pop_front()`, `insert_after()`, `erase_after()`, `before_begin()`, `splice_after()`  
-**Time Complexity**: O(1) for front operations, O(n) for search  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [15_set.md](15_set.md) to continue with set.

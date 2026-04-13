@@ -1,4 +1,4 @@
-# Theory.md
+﻿# Theory.md
 
 ## Greedy Algorithms Theory
 
@@ -199,3 +199,8 @@ Greedy fails because larger coin doesn't always lead to optimal.
 | Dynamic Programming | Multiple | No | Guaranteed |
 | Divide and Conquer | Multiple | No | Guaranteed |
 | Backtracking | Multiple | Yes | Guaranteed |
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

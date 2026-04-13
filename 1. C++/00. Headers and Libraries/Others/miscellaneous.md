@@ -1,4 +1,4 @@
-# Miscellaneous - Practical C++ Utilities and Modern Features
+﻿# Miscellaneous - Practical C++ Utilities and Modern Features
 
 A collection of essential modern C++ features and small utilities that don't belong to a single header but appear constantly in real-world code.
 
@@ -465,10 +465,8 @@ bool elem2 = vb[0];
 2. Convert all plain `enum` to `enum class` in an existing codebase
 3. Use `std::variant` to implement a simple expression tree (int, +, *, variables)
 4. Explore C++20 `std::format` for type-safe, Python-style string formatting
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Features**: `enum class`, `auto`/`decltype`, structured bindings, `if constexpr`, `optional`, `variant`, `string_view`, `span`, bit ops  
-**Standards Coverage**: C++11, C++14, C++17, C++20  
-**Common Use Cases**: Type-safe APIs, nullable returns, compile-time dispatch, non-owning views, bitmask flags
+## Next Step
+
+- Go to [move_semantics.md](move_semantics.md) to continue with move semantics.

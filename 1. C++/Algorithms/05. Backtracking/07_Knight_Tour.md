@@ -1,4 +1,4 @@
-# 07_Knight_Tour.md
+﻿# 07_Knight_Tour.md
 
 ## Knight Tour Problem
 
@@ -259,3 +259,8 @@ Extend to rectangular boards (m×n).
 3. Determine if a knight tour exists for a given board size
 4. Find a closed knight tour
 5. Implement Warnsdorff's rule for 8×8 board
+---
+
+## Next Step
+
+- Go to [08_Generate_Parentheses.md](08_Generate_Parentheses.md) to continue with Generate Parentheses.

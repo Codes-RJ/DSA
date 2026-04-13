@@ -1,4 +1,4 @@
-# 20_Reconstruct_String_from_Adjacent_Pairs.md
+﻿# 20_Reconstruct_String_from_Adjacent_Pairs.md
 
 ## Reconstruct String from Adjacent Pairs
 
@@ -245,3 +245,8 @@ If pairs indicate direction (a before b), use topological sort.
 | String reconstruction | Recover original string from adjacent pairs |
 | Puzzle solving | Reconstruct chain from neighboring pieces |
 | Travel route | Reconstruct path from adjacent city pairs |
+---
+
+## Next Step
+
+- Go to [21_Proof_of_Optimality.md](21_Proof_of_Optimality.md) to continue with Proof of Optimality.

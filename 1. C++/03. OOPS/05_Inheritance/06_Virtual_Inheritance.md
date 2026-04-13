@@ -1,4 +1,4 @@
-# Virtual Inheritance in C++ - Complete Guide
+﻿# Virtual Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -817,3 +817,8 @@ int main() {
 7. **Performance overhead** minimal compared to correctness
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Is-A_vs_Has-A_Relationship.md](07_Is-A_vs_Has-A_Relationship.md) to continue with Is-A vs Has-A Relationship.

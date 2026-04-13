@@ -1,4 +1,4 @@
-# Standard Exceptions
+﻿# Standard Exceptions
 
 ## 📖 Overview
 
@@ -866,3 +866,8 @@ Continue learning about:
 - **Advanced Exception Handling**: Exception-safe design patterns
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Custom_Exceptions.md](03_Custom_Exceptions.md) to continue with Custom Exceptions.

@@ -1,0 +1,8 @@
+﻿# debugging
+
+This file mirrors the C++ repository structure for Java.
+
+Content for this topic can be expanded here while keeping naming and traversal aligned across languages.
+## Next Step
+
+- Go to [design_patterns.md](design_patterns.md) to understand design patterns.

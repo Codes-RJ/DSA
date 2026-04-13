@@ -1,4 +1,4 @@
-# 29_sstream - String Stream Library
+﻿# 29_sstream - String Stream Library
 
 The `sstream` header lets you treat a `std::string` as a stream, so you can use familiar `>>` and `<<` operators to parse or build strings without dealing with raw character arrays.
 
@@ -333,16 +333,8 @@ oss << 3.14; // always "3.14"
 - [`iomanip.md`](30_iomanip.md) — Formatting manipulators (work inside `ostringstream`)
 - [`string.md`](03_string.md) — Underlying string type
 
-## 🚀 Next Steps
-
-1. Use `istringstream` to write a robust CSV parser
-2. Build a logging class that uses `ostringstream` internally
-3. Write a template `toString`/`fromString` utility and test it on custom types
-4. Explore `std::format` (C++20) as a modern alternative for formatting
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Classes**: `istringstream`, `ostringstream`, `stringstream`  
-**Key Methods**: `str()`, `clear()`, `<<`, `>>`  
-**Common Use Cases**: Parsing, string building, type conversion, tokenization
+## Next Step
+
+- Go to [30_iomanip.md](30_iomanip.md) to continue with iomanip.

@@ -1,4 +1,4 @@
-# Friend Functions and Classes in C++ - Complete Guide
+﻿# Friend Functions and Classes in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -741,3 +741,8 @@ int main() {
 6. **Break encapsulation deliberately** - use with caution
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Mutable_Keyword.md](02_Mutable_Keyword.md) to continue with Mutable Keyword.

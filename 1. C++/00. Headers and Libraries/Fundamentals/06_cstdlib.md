@@ -1,4 +1,4 @@
-# cstdlib - C++ Standard General Utilities Library
+﻿# cstdlib - C++ Standard General Utilities Library
 
 The `cstdlib` header (C++ version of C's `stdlib.h`) provides general-purpose functions for memory management, program control, random number generation, searching, sorting, and numeric conversions.
 
@@ -738,3 +738,8 @@ buffer[sizeof(buffer) - 1] = '\0';  // Ensure null termination
 6. **Seed random number generator** with `srand(time(nullptr))` for different sequences
 7. **Use `strtol()` for error detection** in string-to-number conversion
 8. **Register cleanup functions** with `atexit()` when needed
+---
+
+## Next Step
+
+- Go to [07_cctype.md](07_cctype.md) to continue with cctype.

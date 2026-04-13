@@ -1,4 +1,4 @@
-# Abstract Classes in C++ - Complete Guide
+﻿# Abstract Classes in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -1025,3 +1025,8 @@ int main() {
 7. **Factory pattern** often uses abstract classes for products
 
 ---
+---
+
+## Next Step
+
+- Go to [06_Virtual_Table.md](06_Virtual_Table.md) to continue with Virtual Table.

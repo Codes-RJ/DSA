@@ -1,4 +1,4 @@
-# Bit Manipulation Problems: From Basic to Expert
+﻿# Bit Manipulation Problems: From Basic to Expert
 
 ## Introduction
 Bit manipulation problems often have "magical" $O(1)$ or $O(N)$ solutions that bypass traditional loops and conditions. This guide covers the most common patterns and advanced challenges.
@@ -119,3 +119,8 @@ vector<int> generateGrayCode(int n) {
 - [ ] Used `long long` for shifts $>30$?
 - [ ] Accounted for negative numbers (Two's complement)?
 - [ ] Considered `__builtin_popcount` for counting bits?
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

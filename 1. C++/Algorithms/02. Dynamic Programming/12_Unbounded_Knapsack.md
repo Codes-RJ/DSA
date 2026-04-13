@@ -1,4 +1,4 @@
-# 12_Unbounded_Knapsack.md
+﻿# 12_Unbounded_Knapsack.md
 
 ## Unbounded Knapsack (Complete Knapsack)
 
@@ -264,3 +264,8 @@ int combinationSumCount(vector<int>& candidates, int target) {
 | Loop direction | Reverse (W to w) | Forward (w to W) |
 | Time complexity | O(n × W) | O(n × W) |
 | Space complexity | O(W) | O(W) |
+---
+
+## Next Step
+
+- Go to [13_Longest_Common_Subsequence.md](13_Longest_Common_Subsequence.md) to continue with Longest Common Subsequence.

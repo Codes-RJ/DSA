@@ -1,4 +1,4 @@
-I'll continue with the missing Graph Algorithms. Let me start with the next one in sequence.
+﻿I'll continue with the missing Graph Algorithms. Let me start with the next one in sequence.
 
 ---
 
@@ -424,3 +424,8 @@ int main() {
 7. **Time complexity** O((V+E) log V) with binary heap
 
 ---
+---
+
+## Next Step
+
+- Go to [11_Prim_Algorithm.md](11_Prim_Algorithm.md) to continue with Prim Algorithm.

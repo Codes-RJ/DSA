@@ -1,4 +1,4 @@
-# Adapter Pattern in C++ - Complete Guide
+﻿# Adapter Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -723,3 +723,8 @@ int main() {
 6. **Follows** Open/Closed Principle - add adapters without changing existing code
 
 ---
+---
+
+## Next Step
+
+- Go to [Bridge.md](Bridge.md) to continue with Bridge.

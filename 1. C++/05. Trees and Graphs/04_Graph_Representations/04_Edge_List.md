@@ -1,4 +1,4 @@
-# Edge List Representation
+﻿# Edge List Representation
 
 ## 📖 Overview
 
@@ -457,3 +457,8 @@ int main() {
 7. **Use for** edge-centric algorithms, not vertex-centric
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Comparison_of_Representations.md](05_Comparison_of_Representations.md) to continue with Comparison of Representations.

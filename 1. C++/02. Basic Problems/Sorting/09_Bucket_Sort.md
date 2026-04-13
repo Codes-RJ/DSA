@@ -1,4 +1,4 @@
-# Bucket Sort in C++
+﻿# Bucket Sort in C++
 
 ## Overview
 Bucket sort is a distribution sort that distributes elements into buckets, sorts each bucket individually, and then concatenates the buckets. It's particularly effective for uniformly distributed data.
@@ -1377,3 +1377,8 @@ Bucket sort is an excellent choice for uniformly distributed data, offering line
 - In-place: ❌
 - Best for: Uniformly distributed data, floating-point numbers
 - Performance highly dependent on data distribution
+---
+
+## Next Step
+
+- Go to [10_Shell_Sort.md](10_Shell_Sort.md) to continue with Shell Sort.

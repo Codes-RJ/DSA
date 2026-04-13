@@ -1,4 +1,4 @@
-# Object Creation in C++ - Complete Guide
+﻿# Object Creation in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -689,3 +689,8 @@ public:
 7. **Object lifecycle**: Constructor → use → destructor
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Access_Specifiers.md](03_Access_Specifiers.md) to continue with Access Specifiers.

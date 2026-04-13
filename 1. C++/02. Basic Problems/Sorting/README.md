@@ -32,28 +32,30 @@ Sorting/
 
 ## 📊 Complete List of Sorting Algorithms
 
+### Sorting Algorithms Comparison Table
+
 | Algorithm | Best Case | Average Case | Worst Case | Space | Stable | Use Case |
 |-----------|-----------|--------------|------------|-------|--------|----------|
-| Bubble Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Small datasets, educational |
-| Selection Sort | O(n²) | O(n²) | O(n²) | O(1) | No | Small datasets, minimal swaps |
-| Insertion Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Nearly sorted data, small n |
-| Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | Large datasets, stable sort |
-| Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) | No | General purpose, in-place |
-| Heap Sort | O(n log n) | O(n log n) | O(n log n) | O(1) | No | In-place, guaranteed time |
-| Counting Sort | O(n+k) | O(n+k) | O(n+k) | O(k) | Yes | Small integer range |
-| Radix Sort | O(d*(n+k)) | O(d*(n+k)) | O(d*(n+k)) | O(n+k) | Yes | Integer keys |
-| Bucket Sort | O(n+k) | O(n+k) | O(n²) | O(n+k) | Yes | Uniformly distributed data |
-| Shell Sort | O(n log n) | O(n(log n)²) | O(n²) | O(1) | No | Improvement over insertion |
-| Tim Sort | O(n) | O(n log n) | O(n log n) | O(n) | Yes | Python's default, real-world data |
-| Intro Sort | O(n log n) | O(n log n) | O(n log n) | O(log n) | No | C++'s std::sort |
-| Cocktail Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Bidirectional bubble sort |
-| Comb Sort | O(n log n) | O(n²/2^p) | O(n²) | O(1) | No | Improved bubble sort |
-| Gnome Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Simple, similar to insertion |
-| Odd-Even Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Parallel processing |
-| Bogo Sort | O(n) | O(n × n!) | O(∞) | O(1) | No | Educational, impractical |
-| Bitonic Sort | O(log² n) | O(log² n) | O(log² n) | O(n log² n) | No | Parallel sorting |
-| Pancake Sort | O(n) | O(n²) | O(n²) | O(1) | No | Pancake flipping analogy |
-| Cycle Sort | O(n²) | O(n²) | O(n²) | O(1) | No | Minimal writes |
+| [01_Bubble_Sort.md](01_Bubble_Sort.md) | O(n) | O(n²) | O(n²) | O(1) | Yes | Small datasets, educational |
+| [02_Insertion_Sort.md](02_Insertion_Sort.md) | O(n) | O(n²) | O(n²) | O(1) | Yes | Nearly sorted data, small n |
+| [03_Selection_Sort.md](03_Selection_Sort.md) | O(n²) | O(n²) | O(n²) | O(1) | No | Small datasets, minimal swaps |
+| [04_Merge_Sort.md](04_Merge_Sort.md) | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | Large datasets, stable sort |
+| [05_Quick_Sort.md](05_Quick_Sort.md) | O(n log n) | O(n log n) | O(n²) | O(log n) | No | General purpose, in-place |
+| [06_Heap_Sort.md](06_Heap_Sort.md) | O(n log n) | O(n log n) | O(n log n) | O(1) | No | In-place, guaranteed time |
+| [07_Radix_Sort.md](07_Radix_Sort.md) | O(d×(n+k)) | O(d×(n+k)) | O(d×(n+k)) | O(n+k) | Yes | Integer keys |
+| [08_Counting_Sort.md](08_Counting_Sort.md) | O(n+k) | O(n+k) | O(n+k) | O(k) | Yes | Small integer range |
+| [09_Bucket_Sort.md](09_Bucket_Sort.md) | O(n+k) | O(n+k) | O(n²) | O(n+k) | Yes | Uniformly distributed data |
+| [10_Shell_Sort.md](10_Shell_Sort.md) | O(n log n) | O(n(log n)²) | O(n²) | O(1) | No | Improvement over insertion |
+| [11_Tim_Sort.md](11_Tim_Sort.md) | O(n) | O(n log n) | O(n log n) | O(n) | Yes | Python's default, real-world data |
+| [12_Intro_Sort.md](12_Intro_Sort.md) | O(n log n) | O(n log n) | O(n log n) | O(log n) | No | C++'s std::sort |
+| [13_Cocktail_Sort.md](13_Cocktail_Sort.md) | O(n) | O(n²) | O(n²) | O(1) | Yes | Bidirectional bubble sort |
+| [14_Comb_Sort.md](14_Comb_Sort.md) | O(n log n) | O(n²/2^p) | O(n²) | O(1) | No | Improved bubble sort |
+| [15_Gnome_Sort.md](15_Gnome_Sort.md) | O(n) | O(n²) | O(n²) | O(1) | Yes | Simple, similar to insertion |
+| [16_Odd_Even_Sort.md](16_Odd_Even_Sort.md) | O(n) | O(n²) | O(n²) | O(1) | Yes | Parallel processing |
+| [17_Bitonic_Sort.md](17_Bitonic_Sort.md) | O(log² n) | O(log² n) | O(log² n) | O(n log² n) | No | Parallel sorting |
+| [18_Pancake_Sort.md](18_Pancake_Sort.md) | O(n) | O(n²) | O(n²) | O(1) | No | Pancake flipping analogy |
+| [19_Cycle_Sort.md](19_Cycle_Sort.md) | O(n²) | O(n²) | O(n²) | O(1) | No | Minimal writes |
+| [20_Bogo_Sort.md](20_Bogo_Sort.md) | O(n) | O(n × n!) | O(∞) | O(1) | No | Educational, impractical |
 
 ## Available Algorithms
 
@@ -421,10 +423,6 @@ When adding new sorting algorithms:
 - [Introduction to Algorithms (CLRS)](https://en.wikipedia.org/wiki/Introduction_to_Algorithms)
 - [The Art of Computer Programming - Volume 3](https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming)
 
-## Quick Start
+## Next Step
 
-1. **Begin with Bubble Sort** - Simple and educational
-2. **Move to Insertion Sort** - Good for nearly sorted data
-3. **Learn Quick Sort** - Most practical algorithm
-4. **Explore Merge Sort** - When stability is needed
-5. **Study advanced algorithms** - For specific use cases
+- Mone to [Theory.md](Theory.md) before starting with dive to understand basics.

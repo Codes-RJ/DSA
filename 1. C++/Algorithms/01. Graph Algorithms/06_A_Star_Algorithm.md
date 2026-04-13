@@ -1,4 +1,4 @@
-# Graph Algorithm - A* Search Algorithm
+﻿# Graph Algorithm - A* Search Algorithm
 
 ## 📖 Overview
 
@@ -487,3 +487,8 @@ int main() {
 7. **Widely used** in games and real-time applications
 
 ---
+---
+
+## Next Step
+
+- Go to [07_SCC.md](07_SCC.md) to continue with SCC.

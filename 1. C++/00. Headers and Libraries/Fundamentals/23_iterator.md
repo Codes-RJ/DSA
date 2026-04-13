@@ -1,4 +1,4 @@
-# 23_iterator.md - Iterator Utilities
+﻿# 23_iterator.md - Iterator Utilities
 
 The `iterator` header provides helper utilities for working with iterators, including iterator adapters, distance calculations, and iterator category support.
 
@@ -1122,10 +1122,8 @@ auto it3 = std::next(fwd.begin(), 2);  // Also works
 - Performance-critical inner loops
 - Working with raw arrays exclusively
 - Simple container traversal (use range-based for)
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `advance`, `distance`, `next`, `prev`, `back_inserter`, `front_inserter`  
-**Iterator Categories**: Input, Output, Forward, Bidirectional, Random Access  
-**Performance**: Category-dependent operations
+## Next Step
+
+- Go to [24_numeric.md](24_numeric.md) to continue with numeric.

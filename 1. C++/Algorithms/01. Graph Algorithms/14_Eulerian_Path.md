@@ -1,4 +1,4 @@
-# Graph Algorithm - Eulerian Path and Circuit
+﻿# Graph Algorithm - Eulerian Path and Circuit
 
 ## 📖 Overview
 
@@ -508,3 +508,8 @@ int main() {
 5. **Connectedness** is essential (ignoring isolated vertices)
 
 ---
+---
+
+## Next Step
+
+- Go to [15_Johnson_Algorithm.md](15_Johnson_Algorithm.md) to continue with Johnson Algorithm.

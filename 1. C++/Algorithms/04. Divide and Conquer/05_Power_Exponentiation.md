@@ -1,4 +1,4 @@
-# 05_Power_Exponentiation.md
+﻿# 05_Power_Exponentiation.md
 
 ## Power Exponentiation (Binary Exponentiation)
 
@@ -227,3 +227,8 @@ long long fibonacci(long long n) {
 4. Find nth Fibonacci number using matrix exponentiation
 5. Compute sum of geometric series using exponentiation
 6. Find modular inverse using Fermat's theorem
+---
+
+## Next Step
+
+- Go to [06_Strassens_Matrix_Multiplication.md](06_Strassens_Matrix_Multiplication.md) to continue with Strassens Matrix Multiplication.

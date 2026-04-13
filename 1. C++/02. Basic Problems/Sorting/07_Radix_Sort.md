@@ -1,4 +1,4 @@
-# Radix Sort in C++
+﻿# Radix Sort in C++
 
 ## Overview
 Radix sort is a non-comparison-based sorting algorithm that sorts integers by processing individual digits. It works by sorting the numbers digit by digit, from least significant to most significant.
@@ -1131,3 +1131,8 @@ Radix sort is an excellent non-comparison-based sorting algorithm that achieves 
 - In-place: ❌ (but in-place variants exist)
 - Best for: Fixed-size integers, strings, when k is small
 - Excellent alternative to comparison-based sorts for suitable data
+---
+
+## Next Step
+
+- Go to [08_Counting_Sort.md](08_Counting_Sort.md) to continue with Counting Sort.

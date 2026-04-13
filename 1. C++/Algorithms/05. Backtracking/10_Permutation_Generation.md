@@ -1,4 +1,4 @@
-# 10_Permutation_Generation.md
+﻿# 10_Permutation_Generation.md
 
 ## Permutation Generation
 
@@ -304,3 +304,8 @@ void nextPermutation(vector<int>& nums) {
 3. Generate all unique permutations of an array with duplicates
 4. Generate all permutations of size k
 5. Find the next permutation in lexicographic order
+---
+
+## Next Step
+
+- Go to [11_Combination_Generation.md](11_Combination_Generation.md) to continue with Combination Generation.

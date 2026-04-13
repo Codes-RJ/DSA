@@ -1,4 +1,4 @@
-# State Pattern in C++ - Complete Guide
+﻿# State Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -907,3 +907,8 @@ int main() {
 6. **Follows** Open/Closed Principle
 
 ---
+---
+
+## Next Step
+
+- Go to [Strategy.md](Strategy.md) to continue with Strategy.

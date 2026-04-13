@@ -1,4 +1,4 @@
-# Templates and Generic Programming in C++ - Complete Guide
+﻿# Templates and Generic Programming in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -575,3 +575,8 @@ After mastering templates, explore:
 - **Metaprogramming Techniques**: Advanced compile-time programming
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

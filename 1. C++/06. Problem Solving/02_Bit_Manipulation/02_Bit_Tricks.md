@@ -1,4 +1,4 @@
-# Bit Manipulation Tricks
+﻿# Bit Manipulation Tricks
 
 ## Introduction
 Bit manipulation allows us to perform operations at a very low level, directly on bits, leading to extremely fast and memory-efficient algorithms.
@@ -49,3 +49,8 @@ int abs_n = (n + sign) ^ sign;
 - Graphics and compression.
 - State machines.
 - Memory-efficient data structures.
+---
+
+## Next Step
+
+- Go to [03_Bit_Masks.md](03_Bit_Masks.md) to continue with Bit Masks.

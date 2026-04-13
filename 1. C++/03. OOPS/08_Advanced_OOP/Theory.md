@@ -1,4 +1,4 @@
-# Advanced OOP in C++ - Complete Guide
+﻿# Advanced OOP in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -616,3 +616,8 @@ int main() {
 6. **Use covariant returns** for factory methods
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

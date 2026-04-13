@@ -1,4 +1,4 @@
-# 30_iomanip - I/O Stream Manipulators
+﻿# 30_iomanip - I/O Stream Manipulators
 
 The `iomanip` header provides a set of *manipulators* — special objects you insert into a stream with `<<` or extract with `>>` — that control how subsequent data is formatted.
 
@@ -336,16 +336,8 @@ std::cout << std::fixed << std::setprecision(3) << pi << "\n"; // 3.142 (3 decim
 - [`sstream.md`](29_sstream.md) — String streams (manipulators work there too)
 - [`fstream.md`](28_fstream.md) — File streams (manipulators work there too)
 
-## 🚀 Next Steps
-
-1. Build a pretty-print table function that auto-aligns any vector of structs
-2. Write a hex dump utility for debugging binary data
-3. Explore `std::format` (C++20) — a safer, faster alternative to manipulators
-4. Investigate `std::put_money` and `std::put_time` from `<iomanip>` for locale-aware output
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Manipulators**: `setw`, `setprecision`, `setfill`, `fixed`, `scientific`, `left`, `right`, `hex`, `oct`, `dec`, `boolalpha`  
-**Sticky vs Non-sticky**: `setw` is non-sticky; all others are sticky  
-**Common Use Cases**: Tables, reports, receipts, hex dumps, scientific output
+## Next Step
+
+- Go to [31_exception.md](31_exception.md) to continue with exception.

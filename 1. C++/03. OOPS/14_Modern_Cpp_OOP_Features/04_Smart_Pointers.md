@@ -1,4 +1,4 @@
-# Smart Pointers in C++ - Complete Guide
+﻿# Smart Pointers in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -596,3 +596,8 @@ int main() {
 7. **Custom deleters** provide flexibility
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Move_Semantics.md](05_Move_Semantics.md) to continue with Move Semantics.

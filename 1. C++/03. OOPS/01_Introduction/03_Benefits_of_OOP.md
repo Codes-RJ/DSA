@@ -1,4 +1,4 @@
-# Benefits of Object-Oriented Programming
+﻿# Benefits of Object-Oriented Programming
 
 ## 📖 Overview
 
@@ -669,3 +669,8 @@ int main() {
 6. **Productivity**: Faster development through code reuse and modular design
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Basic_Terminology.md](04_Basic_Terminology.md) to continue with Basic Terminology.

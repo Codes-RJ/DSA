@@ -1,4 +1,4 @@
-# 09_DP_on_Trees.md
+﻿# 09_DP_on_Trees.md
 
 ## DP on Trees
 
@@ -319,3 +319,8 @@ void dfsUp(int u, int parent, vector<vector<int>>& adj) {
 | Longest Path in Tree | For each node, longest path from it |
 
 ---
+---
+
+## Next Step
+
+- Go to [10_DP_on_Grids.md](10_DP_on_Grids.md) to continue with DP on Grids.

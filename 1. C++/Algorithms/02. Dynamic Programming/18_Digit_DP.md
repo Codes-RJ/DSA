@@ -1,4 +1,4 @@
-# 18_Digit_DP.md
+﻿# 18_Digit_DP.md
 
 ## Digit DP
 
@@ -398,3 +398,8 @@ int countDigitProduct(int N, int K) {
 | No Consecutive 1s | pos, tight, prevDigit |
 | Even/Odd Digits | pos, tight, started, parity |
 | Digit Product | pos, tight, started, product |
+---
+
+## Next Step
+
+- Go to [19_DP_with_State_Compression.md](19_DP_with_State_Compression.md) to continue with DP with State Compression.

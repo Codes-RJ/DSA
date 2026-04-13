@@ -1,4 +1,4 @@
-# Smart Pointers Introduction - Complete Guide
+﻿# Smart Pointers Introduction - Complete Guide
 
 ## 📖 Overview
 
@@ -621,3 +621,8 @@ int main() {
 6. **Smart pointers are RAII** - resources automatically managed
 
 ---
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

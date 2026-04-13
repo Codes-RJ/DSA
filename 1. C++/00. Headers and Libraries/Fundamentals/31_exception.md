@@ -1,4 +1,4 @@
-# 31_exception - Exception Handling Utilities
+﻿# 31_exception - Exception Handling Utilities
 
 The `exception` header is the foundation of C++'s standard error-handling hierarchy. It defines the base exception types and the machinery for throwing, catching, and inspecting runtime errors.
 
@@ -370,16 +370,8 @@ catch (const std::exception& e) {
 - [`memory.md`](22_memory.md) — `std::bad_alloc` from failed `new`
 - [`type_traits.md`](33_type_traits.md) — Compile-time checks that help avoid runtime exceptions
 
-## 🚀 Next Steps
-
-1. Write a custom exception hierarchy for a domain (e.g., `NetworkError`, `TimeoutError`)
-2. Study the three exception safety levels: basic, strong, and no-throw
-3. Learn about `std::nested_exception` for chaining exceptions (C++11)
-4. Explore `std::exception_ptr` for passing exceptions across threads
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Types**: `std::exception`, `std::runtime_error`, `std::logic_error`, `std::out_of_range`, `std::invalid_argument`  
-**Key Concepts**: `try`/`catch`/`throw`, `noexcept`, `what()`, exception safety  
-**Common Use Cases**: Error propagation, input validation, resource failure handling
+## Next Step
+
+- Go to [32_typeinfo.md](32_typeinfo.md) to continue with typeinfo.

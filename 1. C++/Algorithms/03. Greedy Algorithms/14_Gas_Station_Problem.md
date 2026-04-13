@@ -1,4 +1,4 @@
-# 14_Gas_Station_Problem.md
+﻿# 14_Gas_Station_Problem.md
 
 ## Gas Station Problem
 
@@ -184,3 +184,8 @@ Different problem requiring DP.
 | Electric vehicles | Finding charging stations for long trips |
 | Logistics | Fuel consumption optimization |
 | Robotics | Energy management for autonomous robots |
+---
+
+## Next Step
+
+- Go to [15_Lexicographically_Smallest_Sequence.md](15_Lexicographically_Smallest_Sequence.md) to continue with Lexicographically Smallest Sequence.

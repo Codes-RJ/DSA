@@ -1,4 +1,4 @@
-# Initializer Lists in C++ - Complete Guide
+﻿# Initializer Lists in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -592,3 +592,8 @@ int main() {
 7. **Nested initializer lists** create hierarchies
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Delegating_Constructors.md](07_Delegating_Constructors.md) to continue with Delegating Constructors.

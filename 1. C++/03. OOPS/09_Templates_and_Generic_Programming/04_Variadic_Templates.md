@@ -1,4 +1,4 @@
-# Variadic Templates
+﻿# Variadic Templates
 
 ## 📖 Overview
 
@@ -929,3 +929,8 @@ Continue learning about:
 - **STL Implementation**: Understanding how variadic templates power the STL
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Template_Metaprogramming.md](05_Template_Metaprogramming.md) to continue with Template Metaprogramming.

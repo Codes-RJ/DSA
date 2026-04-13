@@ -1,4 +1,4 @@
-# Binary Search in C++
+﻿# Binary Search in C++
 
 ## Overview
 Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing the search interval in half.
@@ -813,3 +813,8 @@ Binary search is a fundamental algorithm that provides O(log n) time complexity 
 - Requires sorted data
 - Use for large, static datasets
 - Multiple variants for different use cases
+---
+
+## Next Step
+
+- Go to [03_Jump_Search.md](03_Jump_Search.md) to continue with Jump Search.

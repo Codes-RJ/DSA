@@ -1,4 +1,4 @@
-# 16_Recurrence_Relations.md
+﻿# 16_Recurrence_Relations.md
 
 ## Recurrence Relations
 
@@ -184,3 +184,8 @@ Solve the following recurrences:
 8. Θ(log n)
 9. Θ(n log n)
 10. Case 2: Θ(√n log n)
+---
+
+## Next Step
+
+- Go to [17_When_to_Use_Divide_and_Conquer.md](17_When_to_Use_Divide_and_Conquer.md) to continue with When to Use Divide and Conquer.

@@ -1,4 +1,4 @@
-# 16_Maximum_Sum_after_K_Negations.md
+﻿# 16_Maximum_Sum_after_K_Negations.md
 
 ## Maximum Sum after K Negations
 
@@ -197,3 +197,8 @@ Different problem where you can swap elements.
 **After all negatives are gone:** Negating a positive number reduces sum by 2×value
 - To minimize loss, choose smallest positive number
 - If K is even, we can negate same number twice → no net loss
+---
+
+## Next Step
+
+- Go to [17_Candy_Distribution.md](17_Candy_Distribution.md) to continue with Candy Distribution.

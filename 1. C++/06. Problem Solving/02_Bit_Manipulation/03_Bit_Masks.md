@@ -1,4 +1,4 @@
-# Bit Masks and Bit Manipulation
+﻿# Bit Masks and Bit Manipulation
 
 ## Introduction
 A bitmask is a string of bits (usually an integer) used to select or modify specific bits in another integer. It's an efficient way to represent and process collections of flags.
@@ -54,3 +54,8 @@ for (int i = 0; i < (1 << n); i++) {
 - Game states (e.g., Chess piece positions).
 - Data compression and protocols.
 - Graph theory (representing adjacency matrices within bits for very small graphs).
+---
+
+## Next Step
+
+- Go to [04_Binary_Representation.md](04_Binary_Representation.md) to continue with Binary Representation.

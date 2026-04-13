@@ -1,4 +1,4 @@
-# 08_DP_on_Strings.md
+﻿# 08_DP_on_Strings.md
 
 ## DP on Strings
 
@@ -323,3 +323,8 @@ bool isInterleave(string s1, string s2, string s3) {
 | Longest Palindromic Substring | O(n²) | O(n²) |
 | Distinct Subsequences | O(m × n) | O(m × n) |
 | Interleaving String | O(m × n) | O(m × n) |
+---
+
+## Next Step
+
+- Go to [09_DP_on_Trees.md](09_DP_on_Trees.md) to continue with DP on Trees.

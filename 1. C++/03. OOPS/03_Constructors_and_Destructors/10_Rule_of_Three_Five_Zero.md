@@ -1,4 +1,4 @@
-# Rule of Three, Five, and Zero in C++ - Complete Guide
+﻿# Rule of Three, Five, and Zero in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -860,3 +860,8 @@ int main() {
 6. **Use `= default` and `= delete`** to control special members
 
 ---
+---
+
+## Next Step
+
+- Go to [Encapsulation](../04_Encapsulation/README.md) to continue with Encapsulation.

@@ -1,4 +1,4 @@
-# Strings in C++
+﻿# Strings in C++
 
 ## Overview
 Strings are sequences of characters used to represent text. C++ provides two types of strings: C-style strings (character arrays) and the modern `std::string` class. `std::string` is part of the STL and provides dynamic memory management, rich member functions, and safety features.
@@ -900,3 +900,8 @@ void demonstrateAdvancedStrings() {
 6. **Iterator invalidation** - Modifying string may invalidate iterators
 7. **Assuming `.data()` returns null-terminated** - C++11 guarantees this
 8. **Unicode handling** - `std::string` works with UTF-8 but length is bytes, not characters
+---
+
+## Next Step
+
+- Go to [03_Sequence_Container.md](03_Sequence_Container.md) to continue with Sequence Container.

@@ -1,4 +1,4 @@
-# Virtual Table (vtable) in C++ - Complete Guide
+﻿# Virtual Table (vtable) in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -607,3 +607,8 @@ int main() {
 7. **Virtual inheritance**: Additional pointer overhead
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Run_Time_Type_Information.md](07_Run_Time_Type_Information.md) to continue with Run Time Type Information.

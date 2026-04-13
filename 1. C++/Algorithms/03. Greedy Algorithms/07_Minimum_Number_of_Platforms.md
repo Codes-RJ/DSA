@@ -1,4 +1,4 @@
-# 07_Minimum_Number_of_Platforms.md
+﻿# 07_Minimum_Number_of_Platforms.md
 
 ## Minimum Number of Platforms
 
@@ -237,3 +237,8 @@ int findMinPlatformsWithBuffer(vector<int>& arr, vector<int>& dep, int buffer) {
 | Airport gates | Assign arrival/departure gates |
 | Hospital emergency | Assign beds to patients |
 | Call centers | Assign agents to calls |
+---
+
+## Next Step
+
+- Go to [08_Interval_Scheduling.md](08_Interval_Scheduling.md) to continue with Interval Scheduling.

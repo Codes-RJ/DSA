@@ -1,4 +1,4 @@
-# 13_Combination_Sum.md
+﻿# 13_Combination_Sum.md
 
 ## Combination Sum
 
@@ -266,3 +266,8 @@ O(k) for recursion stack + O(number of solutions × k) for storing results
 3. Find all combinations of k numbers from 1-9 that sum to n
 4. Count number of combinations that sum to target (order matters)
 5. Find all combinations that sum to target with a given length constraint
+---
+
+## Next Step
+
+- Go to [14_Palindrome_Partitioning.md](14_Palindrome_Partitioning.md) to continue with Palindrome Partitioning.

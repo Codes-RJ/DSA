@@ -1,4 +1,4 @@
-# 19_stack.md - LIFO Container Adapter
+﻿# 19_stack.md - LIFO Container Adapter
 
 The `stack` header provides `std::stack`, a container adapter that provides last-in, first-out (LIFO) access to elements.
 
@@ -1109,10 +1109,8 @@ std::stack<int, std::vector<int>> s;  // Better for cache locality
 - Need to iterate through all elements
 - Need to access elements other than top
 - Need to remove elements from middle
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `push()`, `pop()`, `top()`, `empty()`, `size()`, `emplace()`  
-**Time Complexity**: O(1) for all operations  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [20_queue.md](20_queue.md) to continue with queue.

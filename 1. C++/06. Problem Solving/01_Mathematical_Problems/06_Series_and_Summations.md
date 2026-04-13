@@ -1,4 +1,4 @@
-# Series and Summations
+﻿# Series and Summations
 
 ## Introduction
 Problems often require calculating the sum of a sequence of numbers (Arithmetic Progression, Geometric Progression, etc.).
@@ -32,3 +32,8 @@ The sum of reciprocal of integers: `1 + 1/2 + 1/3 + ... + 1/n ≈ ln(n) + γ` (w
 - Formulas are O(1) Time and Space.
 - Iterative calculation is O(n) Time.
 - Matrix Exponentiation for Fibonacci/Linear Recurrences is O(log n) Time.
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

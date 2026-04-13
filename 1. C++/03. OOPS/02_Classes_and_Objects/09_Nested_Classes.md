@@ -1,4 +1,4 @@
-# Nested Classes in C++ - Complete Guide
+﻿# Nested Classes in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -884,3 +884,8 @@ class Database {
 6. **Common uses**: Iterators, helpers, implementation details
 
 ---
+---
+
+## Next Step
+
+- Go to [Constructors and Destructor](../03_Constructors_and_Destructors/README.md) to continue with Theory.

@@ -1,4 +1,4 @@
-# 17_When_to_Use_Divide_and_Conquer.md
+﻿# 17_When_to_Use_Divide_and_Conquer.md
 
 ## When to Use Divide and Conquer
 
@@ -157,3 +157,8 @@ Determine if D&C is appropriate for these problems:
 6. Yes (binary search on partitions)
 7. No (two-pointer is simpler and O(n))
 8. No (hash map is simpler and O(n))
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

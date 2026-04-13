@@ -1,4 +1,4 @@
-# Utility Data Structures in C++
+﻿# Utility Data Structures in C++
 
 ## Overview
 Utility data structures are helper types that provide additional functionality for storing and manipulating data. C++ provides several utility structures: `std::pair` for storing two related values, `std::tuple` for storing multiple values, `std::optional` for optional values, `std::variant` for type-safe unions, and `std::any` for type-safe containers of any type.
@@ -1493,3 +1493,8 @@ void demonstrateAny() {
 5. **Assuming tuple types are ordered** - They are ordered lexicographically
 6. **Forgetting `std::tie` for unpacking** - Use structured binding in C++17
 7. **Not handling variant visitation exhaustively** - Use `std::visit` with generic lambda
+---
+
+## Next Step
+
+- Go to [08_SpecializedContainers.md](08_SpecializedContainers.md) to continue with SpecializedContainers.

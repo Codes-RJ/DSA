@@ -1,4 +1,4 @@
-# RAII (Resource Acquisition Is Initialization) in C++ - Complete Guide
+﻿# RAII (Resource Acquisition Is Initialization) in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -880,3 +880,8 @@ int main() {
 7. **File streams** implement RAII for files
 
 ---
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

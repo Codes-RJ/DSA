@@ -1,4 +1,4 @@
-# Array Basics in C++
+﻿# Array Basics in C++
 
 ## Introduction
 An array is a collection of elements of the same type stored in contiguous memory locations. It's the most basic and frequently used data structure.
@@ -56,3 +56,8 @@ In a 1D array of type `T`, the address of element `arr[i]` is:
 - [ ] Be aware of index-out-of-bounds errors.
 - [ ] Using zero-indexing (0 to N-1).
 - [ ] Considering 2D arrays for grid/matrix problems.
+---
+
+## Next Step
+
+- Go to [02_Two_Pointer_Technique.md](02_Two_Pointer_Technique.md) to continue with Two Pointer Technique.

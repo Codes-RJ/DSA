@@ -1,4 +1,4 @@
-# 06_Coin_Change_Greedy.md
+﻿# 06_Coin_Change_Greedy.md
 
 ## Coin Change (Greedy Approach)
 
@@ -223,3 +223,8 @@ Common failing systems:
 - {1, 3, 4} (counterexample: 6)
 - {1, 5, 10, 25} (works actually, this is US)
 - {1, 6, 10} (counterexample: 12 → greedy: 10+1+1=3, optimal: 6+6=2)
+---
+
+## Next Step
+
+- Go to [07_Minimum_Number_of_Platforms.md](07_Minimum_Number_of_Platforms.md) to continue with Minimum Number of Platforms.

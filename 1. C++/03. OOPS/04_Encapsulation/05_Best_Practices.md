@@ -1,4 +1,4 @@
-# Encapsulation Best Practices
+﻿# Encapsulation Best Practices
 
 ## 📖 Overview
 
@@ -591,3 +591,8 @@ public:
 10. **Document clearly** - Explain interface and usage
 
 ---
+---
+
+## Next Step
+
+- Go to [Inheritance](../05_Inheritance/README.md) to continue with OOPS Concepts.

@@ -1,4 +1,4 @@
-# Singleton Pattern in C++ - Complete Guide
+﻿# Singleton Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -707,3 +707,8 @@ int main() {
 6. **Use sparingly** - singletons can make code harder to test
 
 ---
+---
+
+## Next Step
+
+- Go to [2_Factory_Method.md](2_Factory_Method.md) to continue with Factory Method.

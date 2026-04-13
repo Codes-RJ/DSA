@@ -1,4 +1,4 @@
-# 10_DP_on_Grids.md
+﻿# 10_DP_on_Grids.md
 
 ## DP on Grids
 
@@ -359,3 +359,8 @@ int cherryPickup(vector<vector<int>>& grid) {
 | Dungeon Game | dp[i][j] | Bottom-right to top-left | max(1, min(down, right) - grid[i][j]) |
 | Maximal Square | dp[i][j] | Top-left to bottom-right | 1 + min(up, left, diagonal) |
 | Triangle | dp[i][j] | Top to bottom | triangle[i][j] + min(prev[j-1], prev[j]) |
+---
+
+## Next Step
+
+- Go to [11_Knapsack_Problems.md](11_Knapsack_Problems.md) to continue with Knapsack Problems.

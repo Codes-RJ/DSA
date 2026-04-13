@@ -1,4 +1,4 @@
-# Graph Algorithm - Tarjan's LCA (Lowest Common Ancestor)
+﻿# Graph Algorithm - Tarjan's LCA (Lowest Common Ancestor)
 
 ## 📖 Overview
 
@@ -354,3 +354,8 @@ int main() {
 5. **Color marking** tracks visited nodes
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

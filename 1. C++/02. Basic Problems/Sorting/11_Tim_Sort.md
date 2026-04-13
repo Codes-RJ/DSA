@@ -1,4 +1,4 @@
-# Tim Sort
+﻿# Tim Sort
 
 ## Overview
 Tim Sort is a hybrid stable sorting algorithm derived from merge sort and insertion sort, designed to perform well on real-world data. It's the default sorting algorithm in Python and Java.
@@ -439,3 +439,8 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Tim Sort with adaptive sorting capabilities and real-world optimizations.*
+---
+
+## Next Step
+
+- Go to [12_Intro_Sort.md](12_Intro_Sort.md) to continue with Intro Sort.

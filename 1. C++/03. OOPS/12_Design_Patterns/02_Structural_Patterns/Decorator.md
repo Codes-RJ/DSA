@@ -1,4 +1,4 @@
-# Decorator Pattern in C++ - Complete Guide
+﻿# Decorator Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -878,3 +878,8 @@ int main() {
 6. **Enables** composition of behaviors at runtime
 
 ---
+---
+
+## Next Step
+
+- Go to [Facade.md](Facade.md) to continue with Facade.

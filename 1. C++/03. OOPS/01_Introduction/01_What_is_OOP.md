@@ -1,4 +1,4 @@
-# What is Object-Oriented Programming (OOP)?
+﻿# What is Object-Oriented Programming (OOP)?
 
 ## 📖 Overview
 
@@ -419,3 +419,8 @@ ID: 103, Name: Keyboard, Price: $79.99, Stock: 29
 7. **Understanding OOP is essential** for modern software development
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Procedural_vs_OOP.md](02_Procedural_vs_OOP.md) to continue with Procedural vs OOP.

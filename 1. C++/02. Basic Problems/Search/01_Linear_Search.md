@@ -1,4 +1,4 @@
-# Linear Search in C++
+﻿# Linear Search in C++
 
 ## Overview
 Linear search is the simplest searching algorithm that sequentially checks each element in a container until a match is found or the entire container has been searched. It works on both sorted and unsorted data structures and is the foundation for understanding more complex searching algorithms.
@@ -912,3 +912,8 @@ Linear search is the most fundamental searching algorithm. While it's simple and
 - Works on unsorted data
 - Simple to implement
 - Use for small datasets or when data is unsorted
+---
+
+## Next Step
+
+- Go to [02_Binary_Search.md](02_Binary_Search.md) to continue with Binary Search.

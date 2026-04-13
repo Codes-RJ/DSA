@@ -1,4 +1,4 @@
-# 20_DP_on_Intervals.md
+﻿# 20_DP_on_Intervals.md
 
 ## DP on Intervals
 
@@ -321,3 +321,8 @@ int strangePrinter(string s) {
 | Merge Stones | dp[i][j] | O(n) per state |
 | Remove Boxes | dp[i][j][k] | O(n) per state |
 | Strange Printer | dp[i][j] | O(n) per state |
+---
+
+## Next Step
+
+- Go to [21_Counting_DP.md](21_Counting_DP.md) to continue with Counting DP.

@@ -1,4 +1,4 @@
-# Parameterized Constructor in C++ - Complete Guide
+﻿# Parameterized Constructor in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -943,3 +943,8 @@ Balance: $0.00
 6. **Delegating constructors** reduce code duplication
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Copy_Constructor.md](03_Copy_Constructor.md) to continue with Copy Constructor.

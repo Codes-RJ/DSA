@@ -1,4 +1,4 @@
-# Binary Representation
+﻿# Binary Representation
 
 ## Introduction
 Binary representation is the way data is stored in computers using only two digits: 0 and 1. Understanding how integers are represented is crucial for low-level programming and bitwise manipulation.
@@ -53,3 +53,8 @@ Sum the powers of 2 for every bit that is 1.
 
 ## Space and Time Efficiency
 Computers process binary data natively. Converting to binary for operations (shifts, masks) can reduce complex operations (multiplication, modulo) to simple, fast instructions.
+---
+
+## Next Step
+
+- Go to [05_Bit_Manipulation_Problems.md](05_Bit_Manipulation_Problems.md) to continue with Bit Manipulation Problems.

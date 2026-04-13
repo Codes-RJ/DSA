@@ -1,4 +1,4 @@
-# Pure Virtual Functions in C++ - Complete Guide
+﻿# Pure Virtual Functions in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -823,3 +823,8 @@ int main() {
 6. **Template method pattern** uses pure virtual functions for customizable steps
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Abstract_Classes.md](05_Abstract_Classes.md) to continue with Abstract Classes.

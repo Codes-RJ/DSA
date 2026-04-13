@@ -1,4 +1,4 @@
-# 05_Sudoku_Solver.md
+﻿# 05_Sudoku_Solver.md
 
 ## Sudoku Solver
 
@@ -309,3 +309,8 @@ Same logic with different board size.
 3. Generate a valid Sudoku puzzle
 4. Solve Sudoku with diagonal constraint (both main diagonals also unique)
 5. Count number of solutions for a given puzzle
+---
+
+## Next Step
+
+- Go to [06_Rat_in_a_Maze.md](06_Rat_in_a_Maze.md) to continue with Rat in a Maze.

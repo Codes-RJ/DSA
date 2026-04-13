@@ -1,4 +1,4 @@
-# Modular Arithmetic
+﻿# Modular Arithmetic
 
 ## Introduction
 Modular arithmetic is a system of arithmetic for integers, where numbers "wrap around" when reaching a certain value, called the **modulus**.
@@ -51,3 +51,8 @@ In competitive programming, the most common modulus is **10^9 + 7** because:
 - Hash functions.
 - Combinatorics calculations for large numbers.
 - Preventing integer overflow.
+---
+
+## Next Step
+
+- Go to [06_Series_and_Summations.md](06_Series_and_Summations.md) to continue with Series and Summations.

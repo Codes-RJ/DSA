@@ -1,4 +1,4 @@
-# C++ Loops and Iteration
+﻿# C++ Loops and Iteration
 
 ## Overview
 
@@ -870,3 +870,9 @@ void safeModification() {
 ## Conclusion
 
 Loops are fundamental to programming and C++ provides various iteration mechanisms optimized for different scenarios. Understanding the relationship between loops and data structures, along with modern C++ features, enables writing efficient, readable, and maintainable code. The choice of loop type and iteration method can significantly impact both performance and code clarity.
+
+---
+
+## Next Step
+
+- Go to [04_Functions_and_Scope.md](04_Functions_and_Scope.md) to continue with Functions and Scope.

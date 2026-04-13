@@ -1,4 +1,4 @@
-# filesystem - File System Utilities (`<filesystem>`)
+﻿# filesystem - File System Utilities (`<filesystem>`)
 
 The `<filesystem>` header (C++17) provides a portable, object-oriented API for path manipulation, file/directory queries, iteration, and file operations — replacing fragile platform-specific code with a single clean interface.
 
@@ -449,11 +449,8 @@ for (const auto& p : toDelete) fs::remove(p);
 2. Build a recursive file search CLI tool using `recursive_directory_iterator`
 3. Explore `std::filesystem::space()` to query disk usage
 4. Implement a log rotator that deletes files older than N days using `last_write_time()`
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Type**: `std::filesystem::path`  
-**Key Functions**: `exists`, `is_regular_file`, `is_directory`, `file_size`, `copy`, `remove_all`, `rename`, `create_directories`  
-**Key Iterators**: `directory_iterator`, `recursive_directory_iterator`  
-**Common Use Cases**: File search, backup, directory stats, file watching, path manipulation
+## Next Step
+
+- Go to [lambda_expressions.md](lambda_expressions.md) to continue with lambda expressions.

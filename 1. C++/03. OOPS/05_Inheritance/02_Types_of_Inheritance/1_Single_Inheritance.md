@@ -1,4 +1,4 @@
-# Single Inheritance in C++ - Complete Guide
+﻿# Single Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -527,3 +527,8 @@ int main() {
 6. **Protected members** are accessible in derived classes
 
 ---
+---
+
+## Next Step
+
+- Go to [2_Multiple_Inheritance.md](2_Multiple_Inheritance.md) to continue with Multiple Inheritance.

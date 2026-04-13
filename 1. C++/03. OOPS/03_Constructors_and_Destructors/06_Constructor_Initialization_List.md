@@ -1,4 +1,4 @@
-# Constructor Initialization List in C++ - Complete Guide
+﻿# Constructor Initialization List in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -746,3 +746,8 @@ int main() {
 6. **Base classes** must be initialized before derived members
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Delegating_Constructors.md](07_Delegating_Constructors.md) to continue with Delegating Constructors.

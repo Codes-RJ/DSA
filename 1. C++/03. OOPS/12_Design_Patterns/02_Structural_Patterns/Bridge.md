@@ -1,4 +1,4 @@
-# Bridge Pattern in C++ - Complete Guide
+﻿# Bridge Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -1010,3 +1010,8 @@ int main() {
 6. **Reduces** class explosion from combinatorial growth
 
 ---
+---
+
+## Next Step
+
+- Go to [Composite.md](Composite.md) to continue with Composite.

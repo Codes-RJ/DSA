@@ -1,4 +1,4 @@
-# Static Members in C++ - Complete Guide
+﻿# Static Members in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -788,3 +788,8 @@ public:
 6. **Thread safety**: Consider synchronization for static members in multithreaded code
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Const_Members.md](07_Const_Members.md) to continue with Const Members.

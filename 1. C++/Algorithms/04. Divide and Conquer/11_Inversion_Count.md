@@ -1,4 +1,4 @@
-# 11_Inversion_Count.md
+﻿# 11_Inversion_Count.md
 
 ## Inversion Count
 
@@ -257,3 +257,8 @@ long long inversionCountFenwick(vector<int>& arr) {
 3. Count inversions in a string (character comparisons)
 4. Count inversions after K swaps
 5. Count inversions in a circular array
+---
+
+## Next Step
+
+- Go to [12_Majority_Element.md](12_Majority_Element.md) to continue with Majority Element.

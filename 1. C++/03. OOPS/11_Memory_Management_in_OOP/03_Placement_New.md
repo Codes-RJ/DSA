@@ -1,4 +1,4 @@
-# Placement New in C++ - Complete Guide
+﻿# Placement New in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -709,3 +709,8 @@ int main() {
 7. **Combine with RAII** for safety
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Memory_Pools.md](04_Memory_Pools.md) to continue with Memory Pools.

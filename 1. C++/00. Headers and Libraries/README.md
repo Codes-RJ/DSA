@@ -14,7 +14,8 @@ This section contains the C++ header and library notes that are actually present
 |   |-- 03_string.md
 |   |-- 04_algorithm.md
 |   |-- 05_cmath.md
-|   `-- 06_cstdlib.md
+|   |-- 06_cstdlib.md
+|   |-- 07_utility.md
 `-- Others/
     |-- README.md
     |-- best_practices.md

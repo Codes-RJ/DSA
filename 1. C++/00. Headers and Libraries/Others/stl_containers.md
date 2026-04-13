@@ -1,4 +1,4 @@
-# STL Containers - Comprehensive Guide
+﻿# STL Containers - Comprehensive Guide
 
 This guide provides a comprehensive overview of all STL containers, their characteristics, use cases, and performance considerations.
 
@@ -460,10 +460,8 @@ int main() {
 3. **Iterator invalidation** during modifications
 4. **Using ordered containers** when unordered would be better
 5. **Memory leaks** with raw pointers in containers
-
 ---
 
-**Examples in this file**: 3 comprehensive programs  
-**Key Concepts**: Container selection, performance optimization, advanced techniques  
-**Time Complexity**: Varies by container and operation  
-**Space Complexity**: Varies by container
+## Next Step
+
+- Go to [templates.md](templates.md) to continue with templates.

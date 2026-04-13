@@ -1,4 +1,4 @@
-# Topological Sort
+﻿# Topological Sort
 
 ## 📖 Overview
 
@@ -563,3 +563,8 @@ int main() {
 7. **Cycle detection** is essential before topological sort
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

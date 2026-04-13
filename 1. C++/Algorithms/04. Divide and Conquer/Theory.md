@@ -1,4 +1,4 @@
-# Theory.md
+﻿# Theory.md
 
 ## Divide and Conquer Theory
 
@@ -212,4 +212,8 @@ Combine with arithmetic
 3. Write recurrence for quick sort (best, worst, average)
 4. Compare divide and conquer vs dynamic programming for Fibonacci
 5. Identify which problems are suitable for divide and conquer
+---
 
+## Next Step
+
+- Go to [README.md](README.md) to continue.

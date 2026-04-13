@@ -1,4 +1,4 @@
-# Abstract Factory Pattern in C++ - Complete Guide
+﻿# Abstract Factory Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -971,3 +971,8 @@ int main() {
 6. **Combines well** with Singleton and Factory Method
 
 ---
+---
+
+## Next Step
+
+- Go to [4_Builder.md](4_Builder.md) to continue with Builder.

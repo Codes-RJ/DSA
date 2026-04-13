@@ -1,4 +1,4 @@
-# Array Puzzles
+﻿# Array Puzzles
 
 ## Introduction
 Array-based puzzles require rearranging, selecting, or processing array elements in non-trivial ways, often without extra memory.
@@ -31,3 +31,8 @@ Array-based puzzles require rearranging, selecting, or processing array elements
 
 ## Complexity
 - Most puzzles aim for **O(N)** or **O(N log N)** time and **O(1)** extra space if possible.
+---
+
+## Next Step
+
+- Go to [05_Recreational_Problems.md](05_Recreational_Problems.md) to continue with Recreational Problems.

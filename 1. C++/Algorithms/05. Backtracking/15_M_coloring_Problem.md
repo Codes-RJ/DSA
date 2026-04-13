@@ -1,4 +1,4 @@
-# 15_M_coloring_Problem.md
+﻿# 15_M_coloring_Problem.md
 
 ## M-Coloring Problem
 
@@ -244,3 +244,8 @@ Any planar graph can be colored with at most 4 colors. This was the first major 
 3. Find all possible colorings of a graph with m colors
 4. Color a map (planar graph) with 4 colors
 5. Determine if a graph is bipartite (2-colorable)
+---
+
+## Next Step
+
+- Go to [16_Hamiltonian_Cycle.md](16_Hamiltonian_Cycle.md) to continue with Hamiltonian Cycle.

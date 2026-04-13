@@ -1,4 +1,4 @@
-# string - String Handling Library
+﻿# string - String Handling Library
 
 The `string` library provides a powerful and flexible way to handle text in C++. It's much safer and more convenient than C-style character arrays.
 
@@ -466,10 +466,8 @@ bool is_space = isspace(' ');    // true
 - Need maximum performance (use string_view in C++17)
 - Working with read-only string data
 - Need substring references without copying
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Methods**: `length()`, `substr()`, `find()`, `replace()`, `append()`  
-**Time Complexity**: O(n) for most operations  
-**Space Complexity**: O(n)
+## Next Step
+
+- Go to [04_algorithm.md](04_algorithm.md) to continue with algorithm.

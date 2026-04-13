@@ -1,4 +1,4 @@
-# Copy Constructor in C++ - Complete Guide
+﻿# Copy Constructor in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -815,3 +815,8 @@ int main() {
 7. **Inheritance** requires calling base copy constructor
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Move_Constructor.md](04_Move_Constructor.md) to continue with Move Constructor.

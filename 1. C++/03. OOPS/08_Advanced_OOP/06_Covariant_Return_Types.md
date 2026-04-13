@@ -1,4 +1,4 @@
-# Covariant Return Types in C++ - Complete Guide
+﻿# Covariant Return Types in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -713,3 +713,8 @@ int main() {
 7. **Follows** Liskov Substitution Principle
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Placement_New.md](07_Placement_New.md) to continue with Placement New.

@@ -1,4 +1,4 @@
-# Arrays and Strings
+﻿# Arrays and Strings
 
 ## Overview
 Arrays and strings are fundamental data structures in C++ that store collections of elements. Arrays provide fixed-size sequential storage, while strings are specialized arrays for character data.
@@ -594,3 +594,8 @@ std::string goodStringFunction() {
 ---
 
 *This guide provides a comprehensive overview of arrays and strings in C++, covering fundamental operations, advanced algorithms, and best practices for effective usage.*
+---
+
+## Next Step
+
+- Go to [06_Pointers_and_Memory_Management.md](06_Pointers_and_Memory_Management.md) to continue with Pointers and Memory Management.

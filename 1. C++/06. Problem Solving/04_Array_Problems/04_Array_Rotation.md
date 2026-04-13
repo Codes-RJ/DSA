@@ -1,4 +1,4 @@
-# Array Rotation
+﻿# Array Rotation
 
 ## Introduction
 Array rotation involves shifting the elements of an array to the left or right by `k` positions.
@@ -52,3 +52,8 @@ A more mathematical approach using the GCD of `n` and `k`. It shifts elements in
 - Scheduling and round-robin tasks.
 - Image processing (shifting pixels).
 - Cryptographic permutations.
+---
+
+## Next Step
+
+- Go to [05_Subarray_Problems.md](05_Subarray_Problems.md) to continue with Subarray Problems.

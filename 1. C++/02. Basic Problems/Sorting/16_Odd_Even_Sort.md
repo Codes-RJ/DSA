@@ -1,4 +1,4 @@
-# Odd-Even Sort
+﻿# Odd-Even Sort
 
 ## Overview
 Odd-Even Sort, also known as Brick Sort, is a parallel sorting algorithm that works by repeatedly comparing and swapping adjacent elements in alternating odd and even phases. It's particularly useful for parallel processing environments.
@@ -441,3 +441,9 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Odd-Even Sort with parallel processing capabilities and performance optimization strategies.*
+
+---
+
+## Next Step
+
+- Go to [17_Bitonic_Sort.md](17_Bitonic_Sort.md) to continue with Bitonic Sort.

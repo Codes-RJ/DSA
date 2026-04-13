@@ -1,4 +1,4 @@
-# 18_unordered_map.md - Hash-Based Key-Value Container
+﻿# 18_unordered_map.md - Hash-Based Key-Value Container
 
 The `unordered_map` header provides `std::unordered_map`, an associative container that stores key-value pairs in a hash table for average constant-time lookup.
 
@@ -1113,10 +1113,8 @@ std::map<int, std::string> ordered_map;  // Maintains order
 - Memory is severely constrained
 - Need range queries by key
 - Worst-case performance is critical
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `operator[]`, `at()`, `find()`, `insert()`, `erase()`, `rehash()`, `reserve()`  
-**Time Complexity**: Average O(1), Worst-case O(n)  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [19_stack.md](19_stack.md) to continue with stack.

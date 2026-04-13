@@ -1,4 +1,4 @@
-# Shell Sort in C++
+﻿# Shell Sort in C++
 
 ## Overview
 Shell sort is an in-place comparison sort that generalizes insertion sort by allowing the exchange of items that are far apart. It's named after its inventor, Donald Shell.
@@ -1293,3 +1293,8 @@ Shell sort is an excellent intermediate sorting algorithm that bridges the gap b
 - Best for: Medium-sized arrays (100-5000 elements)
 - Performance highly depends on gap sequence choice
 - Great improvement over insertion sort for larger arrays
+---
+
+## Next Step
+
+- Go to [11_Tim_Sort.md](11_Tim_Sort.md) to continue with Tim Sort.

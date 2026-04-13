@@ -1,4 +1,4 @@
-# 05_Huffman_Coding.md
+﻿# 05_Huffman_Coding.md
 
 ## Huffman Coding
 
@@ -260,3 +260,8 @@ When all frequencies are equal, all codes have same length.
 - Therefore, there exists an optimal tree where they are siblings
 
 **Optimal Substructure:** After merging x and y into a new node with frequency x+y, the problem reduces to building a Huffman tree for n-1 nodes.
+---
+
+## Next Step
+
+- Go to [06_Coin_Change_Greedy.md](06_Coin_Change_Greedy.md) to continue with Coin Change Greedy.

@@ -1,4 +1,4 @@
-# 11_Combination_Generation.md
+﻿# 11_Combination_Generation.md
 
 ## Combination Generation
 
@@ -299,3 +299,8 @@ vector<string> letterCombinations(string digits) {
 3. Generate all combinations with duplicates (unique combinations)
 4. Generate all combinations with repetition allowed
 5. Generate all combinations that sum to a target (Combination Sum)
+---
+
+## Next Step
+
+- Go to [12_Word_Search.md](12_Word_Search.md) to continue with Word Search.

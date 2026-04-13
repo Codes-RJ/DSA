@@ -1,4 +1,4 @@
-# Tree Basics
+﻿# Tree Basics
 
 ## 📖 Overview
 
@@ -164,3 +164,8 @@ After understanding tree basics, proceed to:
 5. **Advanced Tree Structures** - B-trees, Segment trees
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Tree_Node_Structure.md](02_Tree_Node_Structure.md) to continue with Tree Node Structure.

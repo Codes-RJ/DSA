@@ -1,4 +1,4 @@
-# Advanced String Problems
+﻿# Advanced String Problems
 
 ## High-Level Topics
 
@@ -37,3 +37,8 @@ Representing a string as a unique number using polynomial hashing.
 
 ## Summary
 Advanced string algorithms often bridge strings with tree structures or number theory (hashing) to solve problems that would otherwise be inefficient.
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

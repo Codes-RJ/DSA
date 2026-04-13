@@ -1,4 +1,4 @@
-# Exponential Search
+﻿# Exponential Search
 
 ## Overview
 Exponential search is an algorithm for searching in sorted, unbounded, or infinite arrays. It works by finding a range containing the target and then performing binary search within that range.
@@ -170,3 +170,8 @@ int exponentialSearchUnbounded(const std::vector<int>& arr, int target) {
 ---
 
 *This implementation provides a comprehensive guide to exponential search with practical examples and best practices.*
+---
+
+## Next Step
+
+- Go to [06_Fibonacci_Search.md](06_Fibonacci_Search.md) to continue with Fibonacci Search.

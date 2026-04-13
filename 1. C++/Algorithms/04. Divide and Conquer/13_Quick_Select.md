@@ -1,4 +1,4 @@
-# 13_Quick_Select.md
+﻿# 13_Quick_Select.md
 
 ## Quick Select (Kth Smallest Element)
 
@@ -239,3 +239,8 @@ int quickSelectIterative(vector<int>& arr, int k) {
 4. Find k closest elements to a given value
 5. Find k smallest elements (not just the kth)
 6. Find kth smallest in two sorted arrays
+---
+
+## Next Step
+
+- Go to [14_Convex_Hull.md](14_Convex_Hull.md) to continue with Convex Hull.

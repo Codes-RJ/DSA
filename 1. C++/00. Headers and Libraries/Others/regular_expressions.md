@@ -1,4 +1,4 @@
-# Regular Expressions - Pattern Matching with `<regex>`
+﻿# Regular Expressions - Pattern Matching with `<regex>`
 
 The `<regex>` header (C++11) provides a full regular expression engine with support for matching, searching, iterating over all matches, and replacing substrings.
 
@@ -420,10 +420,8 @@ try {
 2. Write an email/URL sanitiser using `regex_replace`
 3. Build a simple lexer / tokeniser using `sregex_token_iterator`
 4. Benchmark `<regex>` vs manual `string::find` for your specific use case
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `regex_match`, `regex_search`, `regex_replace`  
-**Key Types**: `std::regex`, `std::smatch`, `std::sregex_iterator`, `std::sregex_token_iterator`  
-**Common Use Cases**: Input validation, log parsing, text extraction, tokenisation, URL parsing
+## Next Step
+
+- Go to [smart_pointers.md](smart_pointers.md) to continue with smart pointers.

@@ -1,4 +1,4 @@
-# 25_functional.md - Function Objects and Call Wrappers
+﻿# 25_functional.md - Function Objects and Call Wrappers
 
 The `functional` header provides predicates, comparators, and callable wrappers for functional programming patterns in C++.
 
@@ -1191,10 +1191,8 @@ funcs.push_back(std::move(heavy_func)); // Move instead of copy
 - No need for type erasure
 - Template functions can solve the problem
 - Compile-time polymorphism is sufficient
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Components**: `std::function`, `std::bind`, standard function objects, `std::not_fn`  
-**Performance**: Type erasure overhead vs direct calls  
-**Flexibility**: Runtime polymorphism for callable objects
+## Next Step
+
+- Go to [26_chrono.md](26_chrono.md) to continue with chrono.

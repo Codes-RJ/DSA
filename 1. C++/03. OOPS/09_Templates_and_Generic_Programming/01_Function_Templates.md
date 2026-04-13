@@ -1,4 +1,4 @@
-# Function Templates
+﻿# Function Templates
 
 ## 📖 Overview
 
@@ -466,3 +466,8 @@ Continue learning about:
 - **Advanced Template Techniques**: SFINAE, concepts, and metaprogramming
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Class_Templates.md](02_Class_Templates.md) to continue with Class Templates.

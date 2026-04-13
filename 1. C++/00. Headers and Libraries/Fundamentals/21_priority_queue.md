@@ -1,4 +1,4 @@
-# 21_priority_queue.md - Ordered Access Container Adapter
+﻿# 21_priority_queue.md - Ordered Access Container Adapter
 
 The `priority_queue` header provides `std::priority_queue`, a container adapter that provides access to the highest priority element first (max-heap by default).
 
@@ -1028,10 +1028,8 @@ if (!pq.empty()) {
 - Need to modify arbitrary elements
 - Need to find elements by value
 - Need FIFO or LIFO behavior (use `queue` or `stack`)
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `push()`, `pop()`, `top()`, `empty()`, `size()`, `emplace()`  
-**Time Complexity**: O(1) for top(), O(log n) for push/pop  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [22_memory.md](22_memory.md) to continue with memory.

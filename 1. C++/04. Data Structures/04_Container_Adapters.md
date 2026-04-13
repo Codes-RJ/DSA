@@ -1,4 +1,4 @@
-# Container Adapters in C++
+﻿# Container Adapters in C++
 
 ## Overview
 Container adapters are specialized containers that provide restricted interfaces to underlying containers. They are not full-fledged containers but rather wrappers that modify the behavior of sequence containers to implement specific data structures. C++ provides three container adapters: `std::stack` (LIFO), `std::queue` (FIFO), and `std::priority_queue` (heap-based priority queue).
@@ -1013,3 +1013,8 @@ void demonstratePriorityQueue() {
 6. **Not reserving capacity** - Underlying container may reallocate (but adapters don't expose reserve)
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Associative_Container.md](05_Associative_Container.md) to continue with Associative Container.

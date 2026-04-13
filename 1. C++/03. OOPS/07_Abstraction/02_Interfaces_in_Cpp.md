@@ -1,4 +1,4 @@
-# Interfaces in C++ - Complete Guide
+﻿# Interfaces in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -889,3 +889,8 @@ int main() {
 7. **Virtual destructor** ensures proper cleanup
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Abstract_vs_Concrete.md](03_Abstract_vs_Concrete.md) to continue with Abstract vs Concrete.

@@ -1,4 +1,4 @@
-# Command Pattern in C++ - Complete Guide
+﻿# Command Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -895,3 +895,8 @@ int main() {
 6. **Useful for** transaction systems, editors, automation
 
 ---
+---
+
+## Next Step
+
+- Go to [Observer.md](Observer.md) to continue with Observer.

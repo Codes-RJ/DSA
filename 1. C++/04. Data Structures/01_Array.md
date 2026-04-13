@@ -1,4 +1,4 @@
-# Arrays in C++
+﻿# Arrays in C++
 
 ## Overview
 Arrays are the most fundamental data structure in C++ that store elements of the same data type in contiguous memory locations. They provide O(1) access time to elements using index-based addressing. C++ offers three types of arrays: C-style arrays, `std::array` (fixed-size), and `std::vector` (dynamic-size). This comprehensive guide covers all operations, functions, and advanced techniques for working with arrays.
@@ -1161,3 +1161,8 @@ void demonstrateVector() {
 8. **Not reserving capacity** - Can cause multiple reallocations
 9. **Using vector for frequent insertions at front** - Use `std::deque` instead
 10. **Assuming contiguous memory for all containers** - Only vector and array guarantee this
+---
+
+## Next Step
+
+- Go to [02_String.md](02_String.md) to continue with String.

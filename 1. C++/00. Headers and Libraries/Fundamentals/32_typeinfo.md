@@ -1,4 +1,4 @@
-# 32_typeinfo - Runtime Type Information (RTTI)
+﻿# 32_typeinfo - Runtime Type Information (RTTI)
 
 The `typeinfo` header provides access to runtime type metadata through the `typeid` operator and the `std::type_info` class, allowing programs to query the actual type of an object at runtime.
 
@@ -368,16 +368,8 @@ std::cout << typeid(int).name(); // "i" on GCC, "int" on MSVC
 - [`type_traits.md`](33_type_traits.md) — Compile-time type inspection (prefer over RTTI when possible)
 - [`memory.md`](22_memory.md) — Smart pointers that pair with polymorphic hierarchies
 
-## 🚀 Next Steps
-
-1. Experiment with `typeid` on your own class hierarchy and observe name mangling
-2. Rewrite a `dynamic_cast`-heavy code path using the Visitor design pattern
-3. Build a simple factory that uses `std::type_index` to map types to creator functions
-4. Learn about `std::any` (C++17) — a type-erased container that uses RTTI internally
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Types**: `std::type_info`, `std::type_index`, `std::bad_cast`, `std::bad_typeid`  
-**Key Operators**: `typeid`, `dynamic_cast`  
-**Common Use Cases**: Event dispatching, type registries, safe downcasting, plugin systems
+## Next Step
+
+- Go to [33_type_traits.md](33_type_traits.md) to continue with type traits.

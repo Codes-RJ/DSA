@@ -1,4 +1,4 @@
-# Access Specifiers in C++ - Complete Guide
+﻿# Access Specifiers in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -553,3 +553,8 @@ private:
 6. **Inheritance access**: Specifies how base members are inherited
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Data_Members.md](04_Data_Members.md) to continue with Data Members.

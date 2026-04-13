@@ -1,4 +1,4 @@
-# Override Specifier in C++ - Complete Guide
+﻿# Override Specifier in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -853,3 +853,8 @@ int main() {
 6. **Combines well** with `final` for inheritance control
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Final_Specifier.md](03_Final_Specifier.md) to continue with Final Specifier.

@@ -1,4 +1,4 @@
-# Modern C++ OOP Features - Complete Guide
+﻿# Modern C++ OOP Features - Complete Guide
 
 ## 📖 Overview
 
@@ -606,3 +606,8 @@ int main() {
 8. **Modern C++** is safer and more expressive
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

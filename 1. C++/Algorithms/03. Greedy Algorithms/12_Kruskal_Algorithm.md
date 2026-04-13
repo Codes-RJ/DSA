@@ -1,4 +1,4 @@
-# Graph Algorithm - Kruskal's Algorithm (Minimum Spanning Tree)
+﻿# Graph Algorithm - Kruskal's Algorithm (Minimum Spanning Tree)
 
 ## 📖 Overview
 
@@ -442,3 +442,8 @@ Where α(V) is the inverse Ackermann function (practically constant)
 7. **Maximum spanning tree** uses same algorithm with descending weights
 
 ---
+---
+
+## Next Step
+
+- Go to [13_Minimum_Cost_to_Connect_Sticks.md](13_Minimum_Cost_to_Connect_Sticks.md) to continue with Minimum Cost to Connect Sticks.

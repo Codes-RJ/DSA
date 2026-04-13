@@ -1,4 +1,4 @@
-# Object-Oriented Programming: Basic Terminology
+﻿# Object-Oriented Programming: Basic Terminology
 
 ## 📖 Overview
 
@@ -816,3 +816,7 @@ int main() {
 9. **Abstraction**: Hide complexity, show essentials
 
 ---
+
+## Next Step
+
+- Go to [Class and Object](../02_Classes_and_Objects/README.md) to continue with Theory.

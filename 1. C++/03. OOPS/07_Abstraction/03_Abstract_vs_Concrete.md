@@ -1,4 +1,4 @@
-# Abstract vs Concrete Classes in C++ - Complete Guide
+﻿# Abstract vs Concrete Classes in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -711,3 +711,8 @@ int main() {
 6. **Abstract classes** define interfaces for polymorphism
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Design_Patterns_Intro.md](04_Design_Patterns_Intro.md) to continue with Design Patterns Intro.

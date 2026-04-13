@@ -40,41 +40,6 @@ A comprehensive learning workspace for **Data Structures and Algorithms** with t
 
 ## 📚 Repository Overview
 
-<div align="center">
-
-```mermaid
-graph TD
-    A[DSA Repository] --> B[Theory Notes]
-    A --> C[Language Implementations]
-    A --> D[Practice Problems]
-    A --> E[Templates & Resources]
-    
-    B --> B1[Learning Basics]
-    B --> B2[Data Structures]
-    B --> B3[Algorithms]
-    B --> B4[Advanced Topics]
-    
-    C --> C1[C++]
-    C --> C2[Java]
-    C --> C3[Python]
-    
-    D --> D1[Patterns]
-    D --> D2[Algorithm Problems]
-    D --> D3[Interview Questions]
-    
-    E --> E1[Code Templates]
-    E --> E2[Study Plans]
-    E --> E3[Revision Notes]
-    
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style E fill:#fce4ec
-```
-
-</div>
-
 This repository combines:
 - 📖 **theory notes by topic**
 - 💻 **starter code in C++, Java, and Python**
@@ -86,41 +51,56 @@ This repository combines:
 
 ```text
 DSA/
-├── � README.md                 # This file
-├── � LICENSE                   # MIT License
-├── 📄 CONTRIBUTING.md           # Contribution guidelines
-├── 📄 CODE_OF_CONDUCT.md        # Community guidelines
-├── � SECURITY.md               # Security policy
-├── � .github/                  # GitHub templates
+├── 📄 README.md                       # This file
+├── 📄 LICENSE                          # MIT License
+├── 📄 CONTRIBUTING.md                  # Contribution guidelines
+├── 📄 CODE_OF_CONDUCT.md               # Community guidelines
+├── 📄 SECURITY.md                      # Security policy
+├── 📁 .github/                         # GitHub templates
 │   ├── 📄 PULL_REQUEST_TEMPLATE.md
 │   └── 📁 ISSUE_TEMPLATE/
-├── 📁 docs/                     # MkDocs documentation
+├── 📁 docs/                            # MkDocs documentation site
 │   ├── 📄 mkdocs.yml
+│   ├── 📄 requirements.txt
 │   └── 📁 docs/
-├── 📁 1. C++/                   # C++ implementations
-│   ├── 📁 01. Basics/
-│   ├── 📁 02. Basic Problems/
-│   └── 📁 03. OOPS/
-├── 📁 2. Java/                  # Java implementations
-│   ├── 📁 01. Basics/
-│   ├── 📁 02. Basic Problems/
-│   └── 📁 03. OOPS/
-├── 📁 3. Python/                # Python implementations
-│   ├── 📁 01. Basics/
-│   ├── 📁 02. Basic Problems/
-│   └── 📁 03. OOPS/
-├── 📁 Theory/                   # Theory notes and concepts
-│   ├── 📁 01. Learning Basics/
-│   ├── 📁 02. Complexity and Terms/
-│   ├── 📁 03. Patterns and Problem Solving/
-│   ├── 📁 04. Linear Data Structures/
-│   ├── 📁 05. Non-Linear Data Structures/
-│   ├── 📁 06. Algorithms/
-│   └── 📁 07. Advanced Topics/
-├── 📁 Problems/                 # Practice problems
-├── 📁 Resources/                # Additional learning resources
-└── 📁 Templates/                # Code templates
+├── 📁 1. C++/
+│   ├── 📄 README.md
+│   ├── 📁 00. Headers and Libraries/   # STL & standard library coverage
+│   ├── 📁 01. Basics/                  # Fundamental C++ concepts
+│   ├── 📁 02. Basic Problems/          # Search, Sorting, Patterns
+│   ├── 📁 03. OOPS/                    # Object-Oriented Programming
+│   ├── 📁 04. Data Structures/         # Arrays, Linked Lists, Stacks, etc.
+│   ├── 📁 05. Trees and Graphs/        # Tree & Graph data structures
+│   ├── 📁 06. Problem Solving/         # Math, Bit Manipulation, Strings
+│   └── 📁 Algorithms/                  # Graph Algorithms, DP, Greedy, etc.
+├── 📁 2. Java/
+│   ├── 📄 README.md
+│   ├── 📁 00. Headers and Libraries/   # Java standard library coverage
+│   ├── 📁 01. Basics/                  # Fundamental Java concepts
+│   ├── 📁 02. Basic Problems/          # Search, Sorting, Patterns
+│   ├── 📁 03. OOPS/                    # Object-Oriented Programming
+│   ├── 📁 04. Data Structures/         # Java Collections Framework
+│   ├── 📁 05. Trees and Graphs/        # Tree & Graph implementations
+│   ├── 📁 06. Problem Solving/         # Algorithm problem solving
+│   └── 📁 Algorithms/                  # Advanced algorithm topics
+└── 📁 3. Python/
+│   ├── 📄 README.md
+    ├── 📁 00. Modules/                 # Python standard library modules
+    ├── 📁 00. Headers and Libraries/   # Python library coverage
+    ├── 📁 01. Basics/                  # Fundamental Python concepts
+    ├── 📁 02. Basic Problems/          # Search, Sorting, Patterns
+    ├── 📁 03. OOPS/                    # Object-Oriented Programming
+    ├── 📁 04. Data Structures/         # Python built-in data structures
+    ├── 📁 05. Trees and Graphs/        # Tree & Graph implementations
+    ├── 📁 06. Problem Solving/         # Algorithm problem solving
+    └── 📁 Algorithms/                  # Advanced algorithm topics
 ```
+
+| # | Folder / File | Description | Link |
+|---|---------------|-------------|------|
+| 1 | `1. C++/` | C++ implementations | [Browse](1.%20C%2B%2B/README.md) |
+| 2 | `2. Java/` | Java implementations | [Browse](2.%20Java/README.md) |
+| 3 | `3. Python/` | Python implementations | [Browse](3.%20Python/README.md) |
 
 ## 📋 Table of Contents
 
@@ -220,22 +200,28 @@ DSA/
 - monotonic stack and queue
 - advanced DP states
 
-## 💻 Language Tracks {#-language-tracks}
+## 💻 Language Tracks
 
-Each language folder is organized into:
+Each language folder (C++, Java, Python) is organized into the same 8 sections:
 
-- `01. Basics`
-- `02. Patterns`
-- `03. Data Structures`
-- `04. Algorithms`
+| Section | Folder | Description |
+|---------|--------|-------------|
+| 0 | `00. Headers and Libraries` | Standard library and built-in modules |
+| 1 | `01. Basics` | Variables, control flow, functions, memory |
+| 2 | `02. Basic Problems` | Search algorithms, sorting, pattern printing |
+| 3 | `03. OOPS` | Classes, inheritance, polymorphism, design patterns |
+| 4 | `04. Data Structures` | Arrays, linked lists, stacks, queues, maps |
+| 5 | `05. Trees and Graphs` | Binary trees, BSTs, graphs |
+| 6 | `06. Problem Solving` | Math, bit manipulation, strings, arrays |
+| 7 | `Algorithms` | Graph algorithms, DP, greedy, divide & conquer |
 
 Recommended order:
 
-1. Learn theory from the `Theory/` folder.
-2. Practice patterns and basic logic.
-3. Implement the same concept in all three languages.
-4. Solve topic-based problems.
-5. Track mistakes and revise weak areas.
+1. Learn basics in your preferred language (`01. Basics`).
+2. Practice patterns and core problem types (`02. Basic Problems`).
+3. Study data structures in depth (`04. Data Structures`).
+4. Implement the same concept in all three languages.
+5. Solve topic-based problems and revise weak areas.
 
 ## Learning Roadmap
 
@@ -275,7 +261,7 @@ Recommended order:
 - maintain templates
 - analyze mistakes
 
-## 📖 What to Study in Every Topic {#-what-to-study-in-every-topic}
+## 📖 What to Study in Every Topic
 
 For each topic, cover:
 
@@ -310,7 +296,9 @@ java FileName
 python file.py
 ```
 
-## 🎯 Practice Strategy {#practice-strategy}
+
+
+## 🎯 Practice Strategy
 
 - start with brute force
 - understand why it works
@@ -318,7 +306,8 @@ python file.py
 - test with edge cases
 - write the final clean version
 
-## 🎯 Repository Goal {#repository-goal}
+
+## 🎯 Repository Goal
 
 The goal of this repository is not just to collect code. It is to build:
 
@@ -328,17 +317,17 @@ The goal of this repository is not just to collect code. It is to build:
 - pattern recognition
 - interview-level DSA confidence
 
-## 📚 Expanded Content Map {#expanded-content-map}
+## 📚 Expanded Content Map
 
 The repository now contains:
 
-- theory indexes and note files under `Theory/*/Notes`
-- starter implementations in C++, Java, and Python
-- separate areas for linear and non-linear data structures
-- algorithm examples for recursion, searching, sorting, and sliding window
-- trackers, study plans, and revision support files
+- starter implementations in C++, Java, and Python across all 8 sections
+- separate coverage for linear and non-linear data structures
+- algorithm examples for recursion, searching, sorting, dynamic programming, and sliding window
+- detailed OOP coverage with design patterns across all three languages
+- MkDocs-powered documentation site for interactive exploration
 
-## 📖 Documentation with MkDocs {#-documentation-with-mkdocs}
+## 📖 Documentation with MkDocs
 
 <div align="center">
 
@@ -578,13 +567,13 @@ This repository is licensed under the MIT License - see the [LICENSE](LICENSE) f
 - Hold the original author liable for any damages
 - Use the author's name for endorsement without permission
 
-## 📞 Contact & Support {#contact--support}
+## 📞 Contact & Support
 
 - **Issues**: Report bugs or request features via GitHub Issues
 - **Discussions**: Ask questions and share insights
 - **Pull Requests**: Contribute code and improvements
 
-## 🙏 Acknowledgments {#-acknowledgments}
+## 🙏 Acknowledgments
 
 - All contributors who help improve this repository
 - The open-source community for valuable resources

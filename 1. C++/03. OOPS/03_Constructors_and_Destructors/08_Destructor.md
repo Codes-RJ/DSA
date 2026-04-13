@@ -1,4 +1,4 @@
-# Destructor in C++ - Complete Guide
+﻿# Destructor in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -735,3 +735,8 @@ int main() {
 6. **Smart pointers** automate resource management
 
 ---
+---
+
+## Next Step
+
+- Go to [09_Virtual_Destructor.md](09_Virtual_Destructor.md) to continue with Virtual Destructor.

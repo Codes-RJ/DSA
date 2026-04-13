@@ -1,4 +1,4 @@
-# Templates - Generic Programming in C++
+﻿# Templates - Generic Programming in C++
 
 Templates are one of C++'s most powerful features, allowing you to write code once and use it with any type — achieving zero-cost abstraction and maximum code reuse.
 
@@ -427,10 +427,8 @@ void process(T&& container) { /* ... */ }
 2. Write a type-safe heterogeneous container using variadic templates
 3. Explore CRTP to add mixin behaviour without virtual functions
 4. Learn C++20 Concepts for expressive, readable template constraints
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Keywords**: `template`, `typename`, `class`, `auto`, `if constexpr`, `static_assert`  
-**Key Patterns**: CRTP, variadic templates, specialisation, non-type parameters  
-**Common Use Cases**: Containers, algorithms, policies, mixins, metaprogramming
+## Next Step
+
+- Go to [README.md](README.md) to continue.

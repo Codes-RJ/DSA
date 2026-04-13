@@ -1,4 +1,4 @@
-# Graph Algorithm - Floyd-Warshall Algorithm
+﻿# Graph Algorithm - Floyd-Warshall Algorithm
 
 ## 📖 Overview
 
@@ -452,3 +452,8 @@ int main() {
 7. **Best for dense graphs** with small vertex count
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Kruskal_Algorithm.md](04_Kruskal_Algorithm.md) to continue with Kruskal Algorithm.

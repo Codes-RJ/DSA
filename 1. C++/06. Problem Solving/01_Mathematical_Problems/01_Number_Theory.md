@@ -1,4 +1,4 @@
-# Number Theory Fundamentals
+﻿# Number Theory Fundamentals
 
 ## Introduction
 Number theory is the branch of mathematics that studies properties of integers. It forms the foundation for many algorithms in computer science, cryptography, and competitive programming. This section covers fundamental concepts and their practical applications.
@@ -521,3 +521,8 @@ public:
 ## Summary
 
 Number theory provides essential tools for algorithmic problem-solving. Understanding these concepts enables efficient solutions to many computational problems and forms the foundation for advanced algorithms in cryptography and computer science.
+---
+
+## Next Step
+
+- Go to [02_Prime_Numbers.md](02_Prime_Numbers.md) to continue with Prime Numbers.

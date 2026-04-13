@@ -1,4 +1,4 @@
-# 24_Optimization_Techniques.md
+﻿# 24_Optimization_Techniques.md
 
 ## Optimization Techniques for Dynamic Programming
 
@@ -405,3 +405,8 @@ void solveSubtree(int centroid, vector<vector<int>>& adj) {
 | Centroid Decomposition | O(n²) | O(n log n) | Tree problems |
 
 ---
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

@@ -1,4 +1,4 @@
-# Gnome Sort
+﻿# Gnome Sort
 
 ## Overview
 Gnome Sort is a simple sorting algorithm similar to insertion sort but with a different approach. It moves elements back to their correct position by swapping adjacent elements, similar to how a garden gnome sorts flower pots.
@@ -355,3 +355,9 @@ The name "Gnome Sort" comes from the analogy of a garden gnome sorting flower po
 ---
 
 *This implementation provides a comprehensive guide to Gnome Sort with its intuitive garden gnome analogy and various optimization strategies.*
+
+---
+
+## Next Step
+
+- Go to [16_Odd_Even_Sort.md](16_Odd_Even_Sort.md) to continue with Odd Even Sort.

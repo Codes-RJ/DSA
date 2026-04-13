@@ -1,4 +1,4 @@
-# new and delete Operators in C++ - Complete Guide
+﻿# new and delete Operators in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -531,3 +531,8 @@ int main() {
 7. **Smart pointers** are preferred in modern C++
 
 ---
+---
+
+## Next Step
+
+- Go to [02_New_Delete_for_Objects.md](02_New_Delete_for_Objects.md) to continue with New Delete for Objects.

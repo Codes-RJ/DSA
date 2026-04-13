@@ -1,4 +1,4 @@
-# Graph Algorithm - Kruskal's Algorithm (Minimum Spanning Tree)
+﻿# Graph Algorithm - Kruskal's Algorithm (Minimum Spanning Tree)
 
 ## 📖 Overview
 
@@ -442,3 +442,8 @@ Where α(V) is the inverse Ackermann function (practically constant)
 7. **Maximum spanning tree** uses same algorithm with descending weights
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Prim_Algorithm.md](05_Prim_Algorithm.md) to continue with Prim Algorithm.

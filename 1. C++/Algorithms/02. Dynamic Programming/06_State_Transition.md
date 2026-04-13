@@ -1,4 +1,4 @@
-# 06_State_Transition.md
+﻿# 06_State_Transition.md
 
 ## State Transition in Dynamic Programming
 
@@ -200,3 +200,8 @@ for (int j = 0; j < i; j++) {
     }
 }
 ```
+---
+
+## Next Step
+
+- Go to [07_DP_on_Subsequences.md](07_DP_on_Subsequences.md) to continue with DP on Subsequences.

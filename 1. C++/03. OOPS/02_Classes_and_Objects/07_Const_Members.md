@@ -1,4 +1,4 @@
-# Const Members in C++ - Complete Guide
+﻿# Const Members in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -814,3 +814,8 @@ void process(const LargeObject& obj) {  // ✓ No copy, no modification
 6. **Const correctness**: Essential for safe, maintainable code
 
 ---
+---
+
+## Next Step
+
+- Go to [08_Inline_Functions.md](08_Inline_Functions.md) to continue with Inline Functions.

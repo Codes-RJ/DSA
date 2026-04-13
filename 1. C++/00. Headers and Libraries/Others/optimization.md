@@ -1,4 +1,4 @@
-# Optimization - Performance Tuning in C++
+﻿# Optimization - Performance Tuning in C++
 
 C++ gives you the tools to write code that runs at near-hardware speed. Effective optimisation starts with measurement, focuses on algorithmic complexity, then applies language-level techniques.
 
@@ -440,10 +440,8 @@ void process(std::vector<int>&& v);       // GOOD: move-only
 2. Use `valgrind --tool=callgrind` to find which function consumes the most time
 3. Experiment with `std::sort` vs hand-written sort on real data
 4. Read "Computer Architecture: A Quantitative Approach" for cache and pipeline fundamentals
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Rules**: Measure first, fix algorithms, then micro-optimise  
-**Key Techniques**: `reserve`, `emplace_back`, move semantics, cache-friendly access, `const&`  
-**Common Use Cases**: High-throughput data processing, game engines, real-time systems, competitive programming
+## Next Step
+
+- Go to [regular_expressions.md](regular_expressions.md) to continue with regular expressions.

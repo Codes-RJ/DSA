@@ -1,4 +1,4 @@
-# Jump Search in C++
+﻿# Jump Search in C++
 
 ## Overview
 Jump search is an algorithm for searching in sorted arrays. It jumps ahead by fixed steps and then performs linear search within the block where the element might be located.
@@ -627,3 +627,8 @@ Jump search provides a middle ground between linear and binary search. While not
 - Requires sorted data
 - Optimal block size: √n
 - Bridge between linear and binary search
+---
+
+## Next Step
+
+- Go to [04_Interpolation_Search.md](04_Interpolation_Search.md) to continue with Interpolation Search.

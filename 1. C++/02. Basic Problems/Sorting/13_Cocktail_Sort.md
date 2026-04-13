@@ -1,4 +1,4 @@
-# Cocktail Sort
+﻿# Cocktail Sort
 
 ## Overview
 Cocktail Sort, also known as Bidirectional Bubble Sort or Shaker Sort, is a variation of bubble sort that sorts in both directions on each pass through the list. This bidirectional approach can be more efficient than standard bubble sort.
@@ -389,3 +389,9 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Cocktail Sort with bidirectional sorting capabilities and optimization strategies.*
+
+---
+
+## Next Step
+
+- Go to [14_Comb_Sort.md](14_Comb_Sort.md) to continue with Comb Sort.

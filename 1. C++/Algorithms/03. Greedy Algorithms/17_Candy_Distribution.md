@@ -1,4 +1,4 @@
-# 17_Candy_Distribution.md
+﻿# 17_Candy_Distribution.md
 
 ## Candy Distribution Problem
 
@@ -215,3 +215,8 @@ If equal rating, neighbors can have same candies (already handled).
 | Grade distribution | Fairly assign rewards based on performance |
 | Salary increments | Distribute raises based on performance ranking |
 | Resource allocation | Distribute resources based on priority |
+---
+
+## Next Step
+
+- Go to [18_Jump_Game.md](18_Jump_Game.md) to continue with Jump Game.

@@ -1,4 +1,4 @@
-# Prime Numbers
+﻿# Prime Numbers
 
 ## Introduction
 Prime numbers are natural numbers greater than 1 that have exactly two distinct positive divisors: 1 and themselves. They are fundamental building blocks in number theory and have numerous applications in cryptography, computer science, and mathematics.
@@ -539,3 +539,8 @@ public:
 ## Summary
 
 Prime numbers are fundamental to number theory and have extensive applications in computer science. Understanding various prime algorithms, their complexities, and optimizations is crucial for solving many computational problems efficiently. Mastering prime number techniques provides a strong foundation for advanced algorithmic problem-solving.
+---
+
+## Next Step
+
+- Go to [03_Factorial_and_Combinatorics.md](03_Factorial_and_Combinatorics.md) to continue with Factorial and Combinatorics.

@@ -1,4 +1,4 @@
-# Sliding Window: Masterclass in Multi-Point Navigation
+﻿# Sliding Window: Masterclass in Multi-Point Navigation
 
 ## Overview
 A sliding window is a powerful optimization pattern that reduces the number of operations in problems involving sub-ranges or subarrays. The main goal is to reuse the mathematical or logical state of the previous window to calculate the next one in $O(1)$ time, thereby reducing a global $O(N^2)$ problem down to $O(N)$.
@@ -112,3 +112,8 @@ string minWindow(string s, string t) {
 - [ ] Is the update logic for the **outbound** element correct?
 - [ ] Is the `left` pointer correctly advanced when the condition is violated?
 - [ ] Handled edge cases: `k > n`, `empty string`, `target not in source`.
+---
+
+## Next Step
+
+- Go to [04_Array_Rotation.md](04_Array_Rotation.md) to continue with Array Rotation.

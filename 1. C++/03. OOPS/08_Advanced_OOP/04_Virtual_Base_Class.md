@@ -1,4 +1,4 @@
-# Virtual Base Class in C++ - Complete Guide
+﻿# Virtual Base Class in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -576,3 +576,8 @@ int main() {
 7. **Performance overhead** minimal compared to correctness
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Object_Slicing.md](05_Object_Slicing.md) to continue with Object Slicing.

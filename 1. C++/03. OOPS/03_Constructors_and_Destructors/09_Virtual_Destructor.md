@@ -1,4 +1,4 @@
-# Virtual Destructor in C++ - Complete Guide
+﻿# Virtual Destructor in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -881,3 +881,8 @@ int main() {
 6. **Rule of Thumb**: If any virtual function → virtual destructor
 
 ---
+---
+
+## Next Step
+
+- Go to [10_Rule_of_Three_Five_Zero.md](10_Rule_of_Three_Five_Zero.md) to continue with Rule of Three Five Zero.

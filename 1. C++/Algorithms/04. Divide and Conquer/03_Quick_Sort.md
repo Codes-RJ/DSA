@@ -1,4 +1,4 @@
-# 03_Quick_Sort.md
+﻿# 03_Quick_Sort.md
 
 ## Quick Sort
 
@@ -300,3 +300,8 @@ void iterativeQuickSort(vector<int>& arr, int low, int high) {
 3. Implement quick sort with median-of-three pivot
 4. Sort an array of strings using quick sort
 5. Implement iterative quick sort
+---
+
+## Next Step
+
+- Go to [04_Binary_Search.md](04_Binary_Search.md) to continue with Binary Search.

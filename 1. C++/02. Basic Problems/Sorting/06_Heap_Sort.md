@@ -1,4 +1,4 @@
-# Heap Sort in C++
+﻿# Heap Sort in C++
 
 ## Overview
 Heap sort is a comparison-based sorting algorithm that uses a binary heap data structure. It's an in-place algorithm with guaranteed O(n log n) time complexity in all cases.
@@ -1280,3 +1280,8 @@ Heap sort is a reliable sorting algorithm with guaranteed O(n log n) performance
 - In-place: ✅
 - Best for: Worst-case guarantees, memory constraints, priority queues
 - Excellent for systems where predictable performance is critical
+---
+
+## Next Step
+
+- Go to [07_Radix_Sort.md](07_Radix_Sort.md) to continue with Radix Sort.

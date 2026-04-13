@@ -1,4 +1,4 @@
-# 01_Introduction_to_Divide_and_Conquer.md
+﻿# 01_Introduction_to_Divide_and_Conquer.md
 
 ## Introduction to Divide and Conquer
 
@@ -175,3 +175,8 @@ ResultType divideAndConquer(ProblemType problem) {
 5. Find power of a number
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Merge_Sort.md](02_Merge_Sort.md) to continue with Merge Sort.

@@ -24,16 +24,16 @@ Search/
 
 | Algorithm | Best Case | Average Case | Worst Case | Space | Stable | Use Case |
 |-----------|-----------|--------------|------------|-------|--------|----------|
-| Linear Search | O(1) | O(n) | O(n) | O(1) | N/A | Unsorted small data |
-| Binary Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data |
-| Jump Search | O(1) | O(√n) | O(√n) | O(1) | N/A | Sorted data, better than linear |
-| Interpolation Search | O(1) | O(log log n) | O(n) | O(1) | N/A | Uniformly distributed data |
-| Exponential Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Unlimited sorted data |
-| Fibonacci Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data, division-free |
-| Ternary Search | O(1) | O(log n) | O(log n) | O(1) | N/A | Unimodal functions |
-| Sublist Search | O(1) | O(m+n) | O(m*n) | O(1) | N/A | Pattern matching in lists |
-| Hashing | O(1) | O(1) | O(n) | O(n) | N/A | Fast lookup with keys |
-| Tree Search (BST) | O(log n) | O(log n) | O(n) | O(1) | N/A | Dynamic data |
+| [Linear Search](01_Linear_Search.md) | O(1) | O(n) | O(n) | O(1) | N/A | Unsorted small data |
+| [Binary Search](01_Binary_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data |
+| [Jump Search](03_Jump_Search.md) | O(1) | O(√n) | O(√n) | O(1) | N/A | Sorted data, better than linear |
+| [Interpolation Search](04_Interpolation_Search.md) | O(1) | O(log log n) | O(n) | O(1) | N/A | Uniformly distributed data |
+| [Exponential Search](05_Exponential_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Unlimited sorted data |
+| [Fibonacci Search](06_Fibonacci_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data, division-free |
+| [Ternary Search](07_Ternary_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Unimodal functions |
+| [Sublist Search](08_Sublist_Search.md) | O(1) | O(m+n) | O(m*n) | O(1) | N/A | Pattern matching in lists |
+| [Hash Search](09_Hash_Search.md) | O(1) | O(1) | O(n) | O(n) | N/A | Fast lookup with keys |
+| [Tree Search (BST)](10_Tree_Search.md) | O(log n) | O(log n) | O(n) | O(1) | N/A | Dynamic data |
 
 ## Available Algorithms
 
@@ -109,7 +109,7 @@ Search/
 | Fibonacci Search | O(log n) | O(1) | Sorted | Division-free operations | N/A |
 | Ternary Search | O(log n) | O(1) | Sorted | Unimodal functions | N/A |
 | Sublist Search | O(m+n) avg, O(m*n) worst | O(1) | Any | Pattern matching | N/A |
-| Hash Table Search | O(1) avg, O(n) worst | O(n) | Any | Frequent lookups | N/A |
+| Hash Search | O(1) avg, O(n) worst | O(n) | Any | Frequent lookups | N/A |
 | Tree Search (BST) | O(log n) avg, O(n) worst | O(1) | Sorted | Dynamic data | N/A |
 
 ## Choosing the Right Algorithm
@@ -275,11 +275,8 @@ When adding new search algorithms:
 - [CPPReference - Algorithms](https://en.cppreference.com/w/cpp/algorithm)
 - [Introduction to Algorithms (CLRS)](https://en.wikipedia.org/wiki/Introduction_to_Algorithms)
 
-## Quick Start
+## Next Steps
 
-1. **Begin with Linear Search** - Simple and works everywhere
-2. **Move to Binary Search** - Most common for sorted data
-3. **Explore specialized searches** - Jump, Interpolation for specific cases
-4. **Practice with problems** - Implement variations and optimizations
+- Go to [Theory](Theory.md) to understand the basics before starting.
 
 Happy searching! 🚀

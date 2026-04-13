@@ -1,4 +1,4 @@
-# 03_Tabulation.md
+﻿# 03_Tabulation.md
 
 ## Tabulation (Bottom-Up DP)
 
@@ -199,3 +199,8 @@ return dp[m][n];
 | Stack overflow risk | Yes | No |
 | Speed | Slower | Faster |
 | Ease of coding | Easier | Harder |
+---
+
+## Next Step
+
+- Go to [04_1D_DP.md](04_1D_DP.md) to continue with 1D DP.

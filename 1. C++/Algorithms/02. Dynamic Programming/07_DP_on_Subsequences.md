@@ -1,4 +1,4 @@
-# 07_DP_on_Subsequences.md
+﻿# 07_DP_on_Subsequences.md
 
 ## DP on Subsequences
 
@@ -344,3 +344,8 @@ int findTargetSumWays(vector<int>& nums, int target) {
 | Subset Sum | dp[i][s] | O(1) per state |
 | Count Subsets | dp[i][s] | O(1) per state |
 | LCS | dp[i][j] | O(1) per state |
+---
+
+## Next Step
+
+- Go to [08_DP_on_Strings.md](08_DP_on_Strings.md) to continue with DP on Strings.

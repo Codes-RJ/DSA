@@ -1,4 +1,4 @@
-# 15_set.md - Ordered Unique Container
+﻿# 15_set.md - Ordered Unique Container
 
 The `set` header provides `std::set`, an associative container that stores unique elements in sorted order. It implements a balanced binary search tree (typically Red-Black Tree).
 
@@ -1319,10 +1319,8 @@ struct GoodComparator {
 - Order doesn't matter (use `unordered_set`)
 - Duplicates are allowed (use `multiset`)
 - Need random access (use `vector`)
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `insert()`, `find()`, `erase()`, `lower_bound()`, `upper_bound()`  
-**Time Complexity**: O(log n) for most operations  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [16_unordered_set.md](16_unordered_set.md) to continue with unordered set.

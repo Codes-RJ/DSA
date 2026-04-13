@@ -1,4 +1,4 @@
-# Graph Algorithm - Minimum Cut
+﻿# Graph Algorithm - Minimum Cut
 
 ## 📖 Overview
 
@@ -458,3 +458,8 @@ int main() {
 6. **Cut edges** form the minimum capacity boundary
 
 ---
+---
+
+## Next Step
+
+- Go to [10_Bipartite_Graph.md](10_Bipartite_Graph.md) to continue with Bipartite Graph.

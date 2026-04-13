@@ -1,4 +1,4 @@
-# Graph Traversal - DFS (Depth-First Search)
+﻿# Graph Traversal - DFS (Depth-First Search)
 
 ## 📖 Overview
 
@@ -378,3 +378,8 @@ int main() {
 7. **Connected components** found by running DFS on all unvisited vertices
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Breadth_First_Search.md](02_Breadth_First_Search.md) to continue with Breadth First Search.

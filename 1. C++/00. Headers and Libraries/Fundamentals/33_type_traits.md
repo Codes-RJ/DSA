@@ -1,4 +1,4 @@
-# 33_type_traits - Compile-Time Type Utilities
+﻿# 33_type_traits - Compile-Time Type Utilities
 
 The `type_traits` header is the backbone of C++ template metaprogramming. It provides a rich set of compile-time predicates and transformations that let you inspect and manipulate types without any runtime cost.
 
@@ -385,16 +385,8 @@ using T = std::conditional_t<someCondition, SafeType, EvilType>;
 - [`utility.md`](09_utility.md) — `std::declval` — used with type traits in SFINAE
 - [`limits.md`](34_limits.md) — Runtime numeric limits that complement compile-time type info
 
-## 🚀 Next Steps
-
-1. Write a `TypePrinter<T>` that uses traits to describe any type in readable English
-2. Implement a trait-constrained `sum()` function that only works on arithmetic types
-3. Explore C++20 `<concepts>` (`std::integral`, `std::floating_point`) — traits in a cleaner syntax
-4. Study `std::void_t` and detection idiom for advanced SFINAE patterns
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Predicates**: `is_integral`, `is_floating_point`, `is_same`, `is_pointer`, `is_constructible`  
-**Key Transformations**: `remove_const`, `remove_reference`, `decay`, `conditional`, `enable_if`  
-**Common Use Cases**: Template constraints, overload selection, compile-time dispatch, generic programming
+## Next Step
+
+- Go to [34_limits.md](34_limits.md) to continue with limits.

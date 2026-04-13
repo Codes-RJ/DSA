@@ -1,4 +1,4 @@
-# Hash Table Search
+﻿# Hash Table Search
 
 ## Overview
 Hash table search is a highly efficient search algorithm that uses hash functions to map keys to array indices, providing average O(1) time complexity for search operations.
@@ -472,3 +472,8 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to hash table search with various collision resolution strategies and optimization techniques.*
+---
+
+## Next Step
+
+- Go to [10_Tree_Search.md](10_Tree_Search.md) to continue with Tree Search.

@@ -1,4 +1,4 @@
-# Abstract Classes in C++ - Complete Guide
+﻿# Abstract Classes in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -731,3 +731,8 @@ int main() {
 7. **Factory pattern** often uses abstract classes for products
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Interfaces_in_Cpp.md](02_Interfaces_in_Cpp.md) to continue with Interfaces in Cpp.

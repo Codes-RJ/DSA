@@ -1,4 +1,4 @@
-# Facade Pattern in C++ - Complete Guide
+﻿# Facade Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -938,3 +938,8 @@ int main() {
 6. **Follows** Law of Demeter (principle of least knowledge)
 
 ---
+---
+
+## Next Step
+
+- Go to [Flyweight.md](Flyweight.md) to continue with Flyweight.

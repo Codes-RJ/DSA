@@ -1,4 +1,4 @@
-# 17_map.md - Ordered Key-Value Container
+﻿# 17_map.md - Ordered Key-Value Container
 
 The `map` header provides `std::map`, an associative container that stores key-value pairs in sorted order by key. It implements a balanced binary search tree (typically Red-Black Tree).
 
@@ -1536,10 +1536,8 @@ m.emplace(key, std::move(obj));
 - Order doesn't matter (use `unordered_map`)
 - Need duplicate keys (use `multimap`)
 - Keys are expensive to compare
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `operator[]`, `at()`, `find()`, `insert()`, `erase()`, `lower_bound()`  
-**Time Complexity**: O(log n) for most operations  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [18_unordered_map.md](18_unordered_map.md) to continue with unordered map.

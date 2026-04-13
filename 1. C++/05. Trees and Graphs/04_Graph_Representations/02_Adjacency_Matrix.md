@@ -1,4 +1,4 @@
-# Adjacency Matrix Representation
+﻿# Adjacency Matrix Representation
 
 ## 📖 Overview
 
@@ -459,3 +459,8 @@ int main() {
 7. **Good for** Floyd-Warshall, transitive closure
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Adjacency_List.md](03_Adjacency_List.md) to continue with Adjacency List.

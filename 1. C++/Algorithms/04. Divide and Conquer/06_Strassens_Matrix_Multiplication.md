@@ -1,4 +1,4 @@
-# 06_Strassens_Matrix_Multiplication.md
+﻿# 06_Strassens_Matrix_Multiplication.md
 
 ## Strassen's Matrix Multiplication
 
@@ -237,3 +237,8 @@ O(n²) for storing submatrices
 3. Compare performance of naive vs Strassen for various n
 4. Extend Strassen to handle matrices of any size (pad with zeros)
 5. Implement Strassen for integer matrices (no precision issues)
+---
+
+## Next Step
+
+- Go to [07_Closest_Pair_of_Points.md](07_Closest_Pair_of_Points.md) to continue with Closest Pair of Points.

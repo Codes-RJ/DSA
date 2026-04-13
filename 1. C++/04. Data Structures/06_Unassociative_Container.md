@@ -1,4 +1,4 @@
-# Unordered Associative Containers in C++
+﻿# Unordered Associative Containers in C++
 
 ## Overview
 Unordered associative containers are hash-based containers that provide average constant-time complexity for insertion, deletion, and lookup. Unlike ordered associative containers (set, map), they do not maintain elements in sorted order. C++ provides four unordered containers: `std::unordered_set`, `std::unordered_multiset`, `std::unordered_map`, and `std::unordered_multimap`.
@@ -1375,3 +1375,8 @@ void demonstrateUnorderedMultimap() {
 8. **Modifying keys** - Keys are immutable; must remove and reinsert
 
 ---
+---
+
+## Next Step
+
+- Go to [07_Utility.md](07_Utility.md) to continue with Utility.

@@ -1,4 +1,4 @@
-# Tree Traversal - Inorder Traversal
+﻿# Tree Traversal - Inorder Traversal
 
 ## 📖 Overview
 
@@ -419,3 +419,8 @@ Where h = height of tree
 7. **Time complexity** O(n) for all implementations
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Preorder_Traversal.md](04_Preorder_Traversal.md) to continue with Preorder Traversal.

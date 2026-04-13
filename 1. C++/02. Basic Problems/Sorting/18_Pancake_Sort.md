@@ -1,4 +1,4 @@
-# Pancake Sort
+﻿# Pancake Sort
 
 ## Overview
 Pancake Sort is a sorting algorithm that uses only the operation of flipping (reversing) prefixes of the array, similar to flipping a stack of pancakes with a spatula. It's the only sorting algorithm that uses this unique operation.
@@ -431,3 +431,9 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Pancake Sort with its unique flip-based approach and educational value.*
+
+---
+
+## Next Step
+
+- Go to [19_Cycle_Sort.md](19_Cycle_Sort.md) to continue with Cycle Sort.

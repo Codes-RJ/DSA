@@ -1,4 +1,4 @@
-# Final Specifier in C++ - Complete Guide
+﻿# Final Specifier in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -689,3 +689,8 @@ int main() {
 ---
 
 **Next file:** `04_Pure_Virtual_Functions.md`. Type **"next"** to continue.
+---
+
+## Next Step
+
+- Go to [04_Pure_Virtual_Functions.md](04_Pure_Virtual_Functions.md) to continue with Pure Virtual Functions.

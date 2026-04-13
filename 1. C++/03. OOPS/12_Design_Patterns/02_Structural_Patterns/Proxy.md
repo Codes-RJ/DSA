@@ -1,4 +1,4 @@
-# Proxy Pattern in C++ - Complete Guide
+﻿# Proxy Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -748,3 +748,8 @@ int main() {
 7. **Same interface** as RealSubject
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

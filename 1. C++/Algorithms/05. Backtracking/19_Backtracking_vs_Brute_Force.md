@@ -1,4 +1,4 @@
-# 19_Backtracking_vs_Brute_Force.md
+﻿# 19_Backtracking_vs_Brute_Force.md
 
 ## Backtracking vs Brute Force
 
@@ -180,3 +180,8 @@ if (n <= 10) {
 3. Implement both for generating all permutations of n elements
 4. Compare performance for n=10
 5. Determine when brute force is better than backtracking
+---
+
+## Next Step
+
+- Go to [20_Backtracking_vs_DP.md](20_Backtracking_vs_DP.md) to continue with Backtracking vs DP.

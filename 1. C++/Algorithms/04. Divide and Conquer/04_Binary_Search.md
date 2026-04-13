@@ -1,4 +1,4 @@
-# 04_Binary_Search.md
+﻿# 04_Binary_Search.md
 
 ## Binary Search
 
@@ -310,3 +310,8 @@ int binarySearchOnAnswer(int low, int high) {
 7. Find the largest element smaller than target
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Power_Exponentiation.md](05_Power_Exponentiation.md) to continue with Power Exponentiation.

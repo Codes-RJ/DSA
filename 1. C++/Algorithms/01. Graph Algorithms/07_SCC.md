@@ -1,4 +1,4 @@
-# Strongly Connected Components (Kosaraju's Algorithm)
+﻿# Strongly Connected Components (Kosaraju's Algorithm)
 
 ## 📖 Overview
 
@@ -279,3 +279,8 @@ int main() {
 5. **Low-link values** are key to Tarjan's algorithm
 
 ---
+---
+
+## Next Step
+
+- Go to [08_Maximum_Flow.md](08_Maximum_Flow.md) to continue with Maximum Flow.

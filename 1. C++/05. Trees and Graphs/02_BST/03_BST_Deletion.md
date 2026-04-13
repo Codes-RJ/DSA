@@ -1,4 +1,4 @@
-# BST Deletion
+﻿# BST Deletion
 
 ## 📖 Overview
 
@@ -576,3 +576,8 @@ int main() {
 9. **Space complexity**: O(h) recursive, O(1) iterative
 
 ---
+---
+
+## Next Step
+
+- Go to [04_BST_Search.md](04_BST_Search.md) to continue with BST Search.

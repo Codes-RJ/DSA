@@ -1,4 +1,4 @@
-# Constructor and Destructor in Inheritance - Complete Guide
+﻿# Constructor and Destructor in Inheritance - Complete Guide
 
 ## 📖 Overview
 
@@ -818,3 +818,8 @@ int main() {
 7. **Virtual inheritance**: Virtual base constructed first
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Diamond_Problem.md](05_Diamond_Problem.md) to continue with Diamond Problem.

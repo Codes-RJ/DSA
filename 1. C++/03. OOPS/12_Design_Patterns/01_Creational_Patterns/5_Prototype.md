@@ -1,4 +1,4 @@
-# Prototype Pattern in C++ - Complete Guide
+﻿# Prototype Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -738,3 +738,8 @@ int main() {
 6. **Supports** dynamic object creation at runtime
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

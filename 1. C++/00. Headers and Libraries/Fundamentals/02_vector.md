@@ -1,4 +1,4 @@
-# 02_vector.md - Vector Container
+﻿# 02_vector.md - Vector Container
 
 The `vector` is one of the most commonly used containers in C++ STL. It provides a dynamic array that can grow or shrink in size.
 
@@ -396,10 +396,8 @@ for (auto& ptr : ptr_vec) {
 - You need guaranteed reference stability
 - Memory overhead is critical
 - You need O(1) insertion at front
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Methods**: `push_back()`, `pop_back()`, `size()`, `resize()`, `reserve()`  
-**Time Complexity**: O(1) access, O(1) amortized push/pop back  
-**Space Complexity**: O(n)
+## Next Step
+
+- Go to [03_string.md](03_string.md) to continue with string.

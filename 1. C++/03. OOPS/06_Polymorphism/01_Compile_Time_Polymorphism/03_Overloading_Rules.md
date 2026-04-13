@@ -1,4 +1,4 @@
-# Overloading Rules in C++ - Complete Guide
+﻿# Overloading Rules in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -564,3 +564,8 @@ int main() {
 7. **Use explicit casts** to resolve ambiguity
 
 ---
+---
+
+## Next Step
+
+- Go to [Run Time Polymorphism](../02_Run_Time_Polymorphism/README.md) to continue forward.

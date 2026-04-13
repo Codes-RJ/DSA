@@ -1,4 +1,4 @@
-# Composite Pattern in C++ - Complete Guide
+﻿# Composite Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -867,3 +867,8 @@ int main() {
 6. **Simplifies** client code by treating objects uniformly
 
 ---
+---
+
+## Next Step
+
+- Go to [Decorator.md](Decorator.md) to continue with Decorator.

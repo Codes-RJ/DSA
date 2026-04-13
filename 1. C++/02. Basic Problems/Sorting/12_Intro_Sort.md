@@ -1,4 +1,4 @@
-# Intro Sort
+﻿# Intro Sort
 
 ## Overview
 Intro Sort (Introspective Sort) is a hybrid sorting algorithm that combines quick sort, heap sort, and insertion sort to provide optimal performance with guaranteed O(n log n) worst-case complexity. It's the algorithm used in C++'s `std::sort`.
@@ -544,4 +544,6 @@ public:
 
 ---
 
-*This implementation provides a comprehensive guide to Intro Sort with guaranteed worst-case performance and hybrid optimization strategies.*
+## Next Step
+
+- Go to [13_Cocktail_Sort.md](13_Cocktail_Sort.md) to continue with Cocktail Sort.

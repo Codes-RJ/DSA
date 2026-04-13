@@ -1,4 +1,4 @@
-# cmath - Mathematical Functions Library
+﻿# cmath - Mathematical Functions Library
 
 The `cmath` header provides essential mathematical functions for C++ programming, including trigonometric, exponential, logarithmic, and power functions.
 
@@ -530,10 +530,8 @@ const double SQRT1_2 = M_SQRT1_2; // 1/sqrt(2) = 0.707...
 - Simple integer arithmetic is sufficient
 - Performance is critical and you can use approximations
 - You need arbitrary precision arithmetic
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `sqrt`, `pow`, `sin`, `cos`, `log`, `exp`, `round`, `floor`, `ceil`  
-**Time Complexity**: Varies by function (O(1) for most)  
-**Space Complexity**: O(1)
+## Next Step
+
+- Go to [06_cstdlib.md](06_cstdlib.md) to continue with cstdlib.

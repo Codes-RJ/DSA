@@ -1,4 +1,4 @@
-# 16_Matrix_Chain_Multiplication.md
+﻿# 16_Matrix_Chain_Multiplication.md
 
 ## Matrix Chain Multiplication
 
@@ -297,3 +297,8 @@ int eggDrop(int eggs, int floors) {
 | Cut Stick | O(m³) | O(m²) |
 | Optimal BST | O(n³) | O(n²) |
 | Egg Dropping (Naive) | O(eggs × floors²) | O(eggs × floors) |
+---
+
+## Next Step
+
+- Go to [17_DP_with_Bitmasks.md](17_DP_with_Bitmasks.md) to continue with DP with Bitmasks.

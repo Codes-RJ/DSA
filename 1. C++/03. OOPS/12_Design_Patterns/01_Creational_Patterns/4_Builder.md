@@ -1,4 +1,4 @@
-# Builder Pattern in C++ - Complete Guide
+﻿# Builder Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -926,3 +926,8 @@ int main() {
 6. **Improves** code readability and maintainability
 
 ---
+---
+
+## Next Step
+
+- Go to [5_Prototype.md](5_Prototype.md) to continue with Prototype.

@@ -1,4 +1,4 @@
-# Move Semantics - Transfer of Ownership
+﻿# Move Semantics - Transfer of Ownership
 
 Move semantics (C++11) allow resources — heap memory, file handles, network connections — to be *transferred* rather than *copied*, eliminating expensive deep copies and enabling types that cannot be copied at all.
 
@@ -425,10 +425,8 @@ for (auto& item : collection) {
 2. Profile `push_back` vs `emplace_back` in a tight loop
 3. Explore `std::exchange` — a utility that moves a new value in and returns the old one
 4. Study Copy-and-Swap idiom and how move semantics simplify it
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Tools**: `std::move`, `std::forward`, `noexcept`, `= delete`, `= default`  
-**Key Patterns**: Rule of Five, NRVO, perfect forwarding, move-only types  
-**Common Use Cases**: Resource ownership, high-performance containers, factory functions
+## Next Step
+
+- Go to [multithreading.md](multithreading.md) to continue with multithreading.

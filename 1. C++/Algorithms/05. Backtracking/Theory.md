@@ -1,4 +1,4 @@
-# Theory.md
+﻿# Theory.md
 
 ## Backtracking Theory
 
@@ -243,3 +243,8 @@ Backtracking complexity depends on:
 3. Analyze branching factor for Sudoku
 4. Explain how pruning works in N-Queens
 5. Compare backtracking and DP for subset sum problem
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

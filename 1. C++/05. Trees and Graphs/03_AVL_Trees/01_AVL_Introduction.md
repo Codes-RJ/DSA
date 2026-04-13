@@ -1,4 +1,4 @@
-# AVL Trees - Introduction
+﻿# AVL Trees - Introduction
 
 ## 📖 Overview
 
@@ -324,3 +324,8 @@ After understanding AVL basics, proceed to:
 7. **More balanced** than Red-Black trees (but more rotations)
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Rotations.md](02_Rotations.md) to continue with Rotations.

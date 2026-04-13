@@ -1,4 +1,4 @@
-# 19_DP_with_State_Compression.md
+﻿# 19_DP_with_State_Compression.md
 
 ## DP with State Compression
 
@@ -355,3 +355,8 @@ vector<int> lehmerToPermutation(vector<int>& lehmer) {
 | HashMap | O(N×M) to O(K) | O(K) | Sparse reachable states |
 | Meet-in-Middle | O(2^n) to O(2^(n/2)) | O(2^(n/2)) | n ≤ 40 |
 | Matrix Exponentiation | O(n) to O(log n) | O(k³ log n) | Linear recurrences |
+---
+
+## Next Step
+
+- Go to [20_DP_on_Intervals.md](20_DP_on_Intervals.md) to continue with DP on Intervals.

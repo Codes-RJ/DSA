@@ -1,4 +1,4 @@
-# Member Functions in C++ - Complete Guide
+﻿# Member Functions in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -812,3 +812,8 @@ b.setOption1(10).setOption2("test");
 7. **Method chaining**: Return `*this` for fluent interfaces
 
 ---
+---
+
+## Next Step
+
+- Go to [06_Static_Members.md](06_Static_Members.md) to continue with Static Members.

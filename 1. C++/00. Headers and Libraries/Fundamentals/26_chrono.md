@@ -1,4 +1,4 @@
-# 26_chrono.md - Time Utilities
+﻿# 26_chrono.md - Time Utilities
 
 The `chrono` header provides time points, durations, and clocks for precise time measurement and manipulation in C++.
 
@@ -1000,10 +1000,8 @@ auto steady_elapsed = steady_end - steady_start; // Always positive
 - Simple millisecond delays (use platform-specific sleep)
 - High-frequency trading nanosecond precision (use specialized hardware)
 - Real-time systems with guaranteed timing (use RTOS features)
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Components**: Clock types, durations, time points, literals  
-**Performance**: High-resolution timing with minimal overhead  
-**Portability**: Cross-platform time handling
+## Next Step
+
+- Go to [27_random.md](27_random.md) to continue with random.

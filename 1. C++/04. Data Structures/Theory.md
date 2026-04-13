@@ -1,4 +1,4 @@
-# C++ Basic Data Structures - Theory Guide
+﻿# C++ Basic Data Structures - Theory Guide
 
 ## Overview
 
@@ -292,3 +292,8 @@ Do you need sequential access?
 ## Conclusion
 
 C++ provides a comprehensive set of data structures catering to different use cases. Understanding the characteristics, time complexities, and memory layouts of these containers enables developers to make informed decisions and write efficient, maintainable code. Modern C++ continues to enhance these data structures with features like move semantics, perfect forwarding, and improved safety guarantees.
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

@@ -1,4 +1,4 @@
-# Graph Basics
+﻿# Graph Basics
 
 ## 📖 Overview
 
@@ -267,3 +267,8 @@ public:
 8. **Applications** are everywhere: social, web, maps, dependencies
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Adjacency_Matrix.md](02_Adjacency_Matrix.md) to continue with Adjacency Matrix.

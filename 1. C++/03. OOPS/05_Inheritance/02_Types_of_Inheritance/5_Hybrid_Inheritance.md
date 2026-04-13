@@ -1,4 +1,4 @@
-# Hybrid Inheritance in C++ - Complete Guide
+﻿# Hybrid Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -722,3 +722,7 @@ int main() {
 6. **Composition** is often a better alternative
 
 ---
+
+## Next Step
+
+- Go to [Access Specifier in Inheritance](../03_Access_Specifiers_in_Inheritance.md) to understand the starting of Security in OOPS.

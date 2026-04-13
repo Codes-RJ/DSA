@@ -1,4 +1,4 @@
-# Comb Sort
+﻿# Comb Sort
 
 ## Overview
 Comb Sort is an improvement over bubble sort that eliminates turtles (small values near the end) more efficiently. It uses a gap sequence that starts large and gradually shrinks, comparing elements that are far apart initially.
@@ -419,3 +419,9 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Comb Sort with gap-based optimization and performance analysis.*
+
+---
+
+## Next Step
+
+- Go to [15_Gnome_Sort.md](15_Gnome_Sort.md) to continue with Gnome Sort.

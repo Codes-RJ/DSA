@@ -1,4 +1,4 @@
-# Graph Algorithm - Maximum Flow (Ford-Fulkerson & Edmonds-Karp)
+﻿# Graph Algorithm - Maximum Flow (Ford-Fulkerson & Edmonds-Karp)
 
 ## 📖 Overview
 
@@ -351,3 +351,8 @@ int main() {
 6. **Max Flow = Min Cut** (important theorem)
 
 ---
+---
+
+## Next Step
+
+- Go to [09_Minimum_Cut.md](09_Minimum_Cut.md) to continue with Minimum Cut.

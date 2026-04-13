@@ -1,4 +1,4 @@
-# 15_Master_Theorem.md
+﻿# 15_Master_Theorem.md
 
 ## Master Theorem
 
@@ -148,3 +148,8 @@ Solve the following recurrences using Master Theorem:
 5. T(n) = 8T(n/2) + n³
 6. T(n) = 16T(n/4) + n²
 7. T(n) = T(n/2) + 2^n
+---
+
+## Next Step
+
+- Go to [16_Recurrence_Relations.md](16_Recurrence_Relations.md) to continue with Recurrence Relations.

@@ -1,4 +1,4 @@
-# override and final Specifiers in C++ - Complete Guide
+﻿# override and final Specifiers in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -672,3 +672,8 @@ int main() {
 ---
 
 **Next file:** `10_Concepts.md`. Type **"next"** to continue.
+---
+
+## Next Step
+
+- Go to [10_Concepts.md](10_Concepts.md) to continue with Concepts.

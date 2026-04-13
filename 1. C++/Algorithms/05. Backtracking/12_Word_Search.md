@@ -1,4 +1,4 @@
-# 12_Word_Search.md
+﻿# 12_Word_Search.md
 
 ## Word Search
 
@@ -269,3 +269,8 @@ bool dfsWithPath(vector<vector<char>>& board, string& word, int i, int j, int in
 3. Count number of occurrences of a word in a grid
 4. Find the longest word in a grid from a dictionary
 5. Word search with diagonal moves allowed
+---
+
+## Next Step
+
+- Go to [13_Combination_Sum.md](13_Combination_Sum.md) to continue with Combination Sum.

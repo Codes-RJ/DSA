@@ -1,4 +1,4 @@
-# 22_Probability_DP.md
+﻿# 22_Probability_DP.md
 
 ## Probability DP
 
@@ -360,3 +360,8 @@ for (int step = 0; step < maxSteps; step++) {
 3. Not handling absorbing states correctly
 4. Floating point precision issues
 5. Infinite loops in expected value (solving linear equations)
+---
+
+## Next Step
+
+- Go to [23_DP_on_DAGs.md](23_DP_on_DAGs.md) to continue with DP on DAGs.

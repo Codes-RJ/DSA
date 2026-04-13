@@ -1,4 +1,4 @@
-# 01_Introduction_to_DP.md
+﻿# 01_Introduction_to_DP.md
 
 ## Introduction to Dynamic Programming
 
@@ -147,3 +147,8 @@ int fib(int n):
 3. Constraints are very small → Use brute force
 4. Constraints are huge → Use mathematical formula if exists
 5. Problem requires all solutions → Use backtracking
+---
+
+## Next Step
+
+- Go to [02_Memoization.md](02_Memoization.md) to continue with Memoization.

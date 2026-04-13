@@ -1,4 +1,4 @@
-# 17_DP_with_Bitmasks.md
+﻿# 17_DP_with_Bitmasks.md
 
 ## DP with Bitmasks
 
@@ -335,3 +335,8 @@ int countSubsetsWithSum(vector<int>& nums, int target) {
 | Hamiltonian Path | 2^n × n | O(n) | O(2^n × n²) |
 | Set Cover | 2^n | O(number of subsets) | O(2^n × m) |
 | SOS DP | 2^n | O(n) | O(n × 2^n) |
+---
+
+## Next Step
+
+- Go to [18_Digit_DP.md](18_Digit_DP.md) to continue with Digit DP.

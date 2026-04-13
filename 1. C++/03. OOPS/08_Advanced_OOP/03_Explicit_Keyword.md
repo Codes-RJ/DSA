@@ -1,4 +1,4 @@
-# Explicit Keyword in C++ - Complete Guide
+﻿# Explicit Keyword in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -619,3 +619,8 @@ int main() {
 7. **Recommended** for modern C++ code
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Virtual_Base_Class.md](04_Virtual_Base_Class.md) to continue with Virtual Base Class.

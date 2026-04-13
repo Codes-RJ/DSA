@@ -1,4 +1,4 @@
-# Hierarchical Inheritance in C++ - Complete Guide
+﻿# Hierarchical Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -928,3 +928,8 @@ int main() {
 6. **Common use cases**: shapes, employees, notifications, payments
 
 ---
+---
+
+## Next Step
+
+- Go to [5_Hybrid_Inheritance.md](5_Hybrid_Inheritance.md) to continue with Hybrid Inheritance.

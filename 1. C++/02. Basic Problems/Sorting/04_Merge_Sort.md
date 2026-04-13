@@ -1,4 +1,4 @@
-# Merge Sort in C++
+﻿# Merge Sort in C++
 
 ## Overview
 Merge sort is a divide-and-conquer algorithm that divides the array into halves, recursively sorts them, and then merges the sorted halves. It's known for its stability and guaranteed O(n log n) performance.
@@ -1316,3 +1316,8 @@ Merge sort is a reliable sorting algorithm with guaranteed O(n log n) performanc
 - Stable: ✅
 - In-place: ❌ for arrays, ✅ for linked lists
 - Best for: External sorting, stability requirements, linked lists
+---
+
+## Next Step
+
+- Go to [05_Quick_Sort.md](05_Quick_Sort.md) to continue with Quick Sort.

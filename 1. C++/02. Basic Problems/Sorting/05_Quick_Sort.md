@@ -1,4 +1,4 @@
-# Quick Sort in C++
+﻿# Quick Sort in C++
 
 ## Overview
 Quick sort is a highly efficient divide-and-conquer sorting algorithm that picks a pivot element and partitions the array around it. It's one of the most widely used sorting algorithms in practice.
@@ -1107,3 +1107,8 @@ Quick sort is one of the most efficient sorting algorithms in practice, with exc
 - In-place: ✅
 - Best for: Large datasets, general-purpose sorting
 - Use random pivot or median-of-three to avoid worst case
+---
+
+## Next Step
+
+- Go to [06_Heap_Sort.md](06_Heap_Sort.md) to continue with Heap Sort.

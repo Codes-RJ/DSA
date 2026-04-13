@@ -1,4 +1,4 @@
-# Access Control in C++ - Complete Guide
+﻿# Access Control in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -659,3 +659,8 @@ int main() {
 6. **Encapsulation**: Achieved through access control
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Practical_Examples.md](04_Practical_Examples.md) to continue with Practical Examples.

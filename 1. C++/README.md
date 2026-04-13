@@ -131,45 +131,78 @@ C++ is a high-level, general-purpose programming language created as an extensio
 
 ```
 1. C++/
+├── README.md
 ├── 00. Headers and Libraries/     # STL and standard library coverage
+│   ├── README.md
 │   ├── Fundamentals/              # Core STL headers (iostream, vector, etc.)
 │   └── Others/                    # Advanced topics (concurrency, debugging, etc.)
 ├── 01. Basics/                    # Fundamental C++ concepts
-│   ├── Variables and Operators
-│   ├── Control Flow
-│   ├── Functions
-│   └── Memory Management
+│   ├── README.md
+│   ├── Variables, Keywords and Operators
+│   ├── Conditional Statements
+│   ├── Loops and Iterations
+│   ├── Functions and Scopes
+│   ├── Arrays and Strings
+│   ├── Pointers and Memory Management
+│   └── Error Handling
 ├── 02. Basic Problems/            # Foundational algorithm problems
+│   ├── README.md
 │   ├── Search Algorithms/         # Linear, binary, and advanced search
 │   ├── Sorting Algorithms/        # All major sorting techniques
-│   └── Pattern Making/            # Pattern programming exercises
+│   └── Pattern Making             # Pattern programming exercises
 ├── 03. OOPS/                      # Object-Oriented Programming
+│   ├── README.md
+│   ├── Introduction/
 │   ├── Classes and Objects/
+│   ├── Constructors and Destructors/
+│   ├── Encapsulation/
 │   ├── Inheritance/
 │   ├── Polymorphism/
+│   ├── Abstraction/
+│   ├── Advance OOP/
+│   ├── Templates and Generic Programming/
+│   ├── Exception Handling/
+│   ├── Memory Management/
 │   ├── Design Patterns/
-│   └── Modern C++ Features/
+│   ├── Best Practices/
+│   ├── Modern C++ Features/
+│   ├── Projects and Applications/
+│   ├── Glossary
+│   ├── Index
+│   └── References
 ├── 04. Data Structures/           # Comprehensive data structure coverage
-│   ├── Arrays and Strings/
-│   ├── Sequence Containers/
-│   ├── Associative Containers/
+│   ├── README.md
+│   ├── Theory.md
+│   ├── Array
+│   ├── String
+│   ├── Sequence Container
+│   ├── Containers Adapters
+│   ├── Associative Containers
+│   ├── Unassociative Containers
+│   ├── Utility
 │   └── Specialized Containers/
 ├── 05. Trees and Graphs/          # Tree and graph data structures
+│   ├── README.md
 │   ├── Binary Trees/              # Tree fundamentals and operations
-│   ├── BST/                      # Binary Search Trees
-│   ├── AVL Trees/                # Self-balancing trees
-│   └── Graph Representations/     # Graph storage and basic algorithms
+│   ├── BST/                       # Binary Search Trees
+│   ├── AVL Trees/                 # Self-balancing trees
+│   ├── Graph Representations/     # Graph storage and basic algorithms
+│   ├── Tree Transversals
+│   └── Basic Graph Algorithms
 ├── 06. Problem Solving/           # Essential problem-solving techniques
+│   ├── README.md
 │   ├── Mathematical Problems/     # Number theory, combinatorics
 │   ├── Bit Manipulation/          # Bitwise operations and tricks
 │   ├── String Problems/           # String algorithms and processing
 │   ├── Array Problems/            # Array manipulation techniques
 │   └── Puzzle Problems/           # Logical and mathematical puzzles
 └── Algorithms/                    # Advanced algorithms (framework provided)
+│   ├── README.md
     ├── Graph Algorithms/
     ├── Dynamic Programming/
     ├── Greedy Algorithms/
-    └── Divide and Conquer/
+    ├── Divide and Conquer/
+    └── Backtracking/
 ```
 
 ## Section Completeness
@@ -191,7 +224,7 @@ C++ is a high-level, general-purpose programming language created as an extensio
 ## Key Features of This Repository
 
 ### Comprehensive Coverage
-- **277+ files** with detailed explanations and implementations
+- **250+ files** with detailed explanations and implementations
 - **Complete theory** with mathematical foundations
 - **Practical examples** with real-world applications
 - **Performance analysis** for all algorithms
@@ -233,3 +266,7 @@ C++ is a high-level, general-purpose programming language created as an extensio
 C++ remains a dominant language in performance-critical applications and competitive programming. While it has a steeper learning curve than modern languages, its combination of low-level control and high-level abstractions makes it an excellent choice for learning data structures and algorithms. 
 
 This repository provides a **complete learning path** from basic C++ syntax to advanced problem-solving techniques, with **100% coverage** of essential DSA topics. The structured approach ensures comprehensive understanding and practical application of concepts.
+
+## Next Step
+
+- Go to [01_Basics](01.%20Basics/README.md) to continue understanding Basics of Programming in C++.

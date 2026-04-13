@@ -1,4 +1,4 @@
-# Theory.md
+﻿# Theory.md
 
 ## Introduction to Dynamic Programming Theory
 
@@ -273,3 +273,8 @@ Ask these questions:
 6. **Optimize** – Reduce space or time if needed.
 
 7. **Extract answer** – The answer is usually dp[full_state] or best over states.
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

@@ -1,4 +1,4 @@
-# 06_Rat_in_a_Maze.md
+﻿# 06_Rat_in_a_Maze.md
 
 ## Rat in a Maze
 
@@ -274,3 +274,8 @@ Collect all items (cheeses) in the maze before reaching destination.
 3. Find all paths from start to end
 4. Count number of paths in a maze
 5. Find the path with maximum sum (if cells have values)
+---
+
+## Next Step
+
+- Go to [07_Knight_Tour.md](07_Knight_Tour.md) to continue with Knight Tour.

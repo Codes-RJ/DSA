@@ -1,4 +1,4 @@
-# Class Declaration in C++ - Complete Guide
+﻿# Class Declaration in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -617,3 +617,8 @@ From polar: 3.53553 + 3.53553i
 | Not using initialization list for const/reference | Const members must be initialized | Use member initializer list |
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Object_Creation.md](02_Object_Creation.md) to continue with Object Creation.

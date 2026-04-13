@@ -1,4 +1,4 @@
-# 18_Crossword_Puzzle.md
+﻿# 18_Crossword_Puzzle.md
 
 ## Crossword Puzzle
 
@@ -281,3 +281,8 @@ Generate a crossword puzzle from a word list.
 3. Determine if a crossword puzzle has a unique solution
 4. Generate a crossword puzzle from a word list
 5. Solve a crossword with intersecting constraints
+---
+
+## Next Step
+
+- Go to [19_Backtracking_vs_Brute_Force.md](19_Backtracking_vs_Brute_Force.md) to continue with Backtracking vs Brute Force.

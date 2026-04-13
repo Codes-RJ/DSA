@@ -1,4 +1,4 @@
-# 01_Introduction_to_Greedy.md
+﻿# 01_Introduction_to_Greedy.md
 
 ## Introduction to Greedy Algorithms
 
@@ -145,3 +145,8 @@ return result;
 - Proving optimality can be difficult
 - May fail on certain inputs
 - Not suitable for all problems
+---
+
+## Next Step
+
+- Go to [02_Activity_Selection.md](02_Activity_Selection.md) to continue with Activity Selection.

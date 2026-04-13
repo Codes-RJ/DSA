@@ -1,4 +1,4 @@
-# 23_DP_on_DAGs.md
+﻿# 23_DP_on_DAGs.md
 
 ## DP on DAGs (Directed Acyclic Graphs)
 
@@ -414,3 +414,8 @@ int maxProfitWithDependencies(vector<Task>& tasks, int deadline, int n) {
 | Count Paths | dp[v] | sum(dp[u]) | O(V + E) |
 | Max Sum Path | dp[v] | max(dp[u] + val[v]) | O(V + E) |
 | Time-Constrained | dp[t][v] | sum(dp[t-w][u]) | O(T × E) |
+---
+
+## Next Step
+
+- Go to [24_Optimization_Techniques.md](24_Optimization_Techniques.md) to continue with Optimization Techniques.

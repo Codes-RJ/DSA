@@ -1,4 +1,4 @@
-# Tree Node Structure
+﻿# Tree Node Structure
 
 ## 📖 Overview
 
@@ -270,3 +270,8 @@ FCNSNode (24 bytes on 64-bit system):
 6. **Proper deletion** prevents memory leaks
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Tree_Properties.md](03_Tree_Properties.md) to continue with Tree Properties.

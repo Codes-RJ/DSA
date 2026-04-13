@@ -1,4 +1,4 @@
-# Graph Algorithm - Articulation Points (Cut Vertices)
+﻿# Graph Algorithm - Articulation Points (Cut Vertices)
 
 ## 📖 Overview
 
@@ -439,3 +439,8 @@ int main() {
 5. **Biconnected components** are maximal 2-connected subgraphs
 
 ---
+---
+
+## Next Step
+
+- Go to [12_Bridges.md](12_Bridges.md) to continue with Bridges.

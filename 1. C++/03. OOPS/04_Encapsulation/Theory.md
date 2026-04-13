@@ -1,4 +1,4 @@
-# Encapsulation in C++ - Complete Guide
+﻿# Encapsulation in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -425,3 +425,8 @@ public:
 6. **Rule of thumb**: Make data private, provide public interface
 
 ---
+---
+
+## Next Step
+
+- Go to [Data Hiding](01_Data_Hiding.md) to continue forward.

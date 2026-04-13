@@ -1,4 +1,4 @@
-# Strategy Pattern in C++ - Complete Guide
+﻿# Strategy Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -847,3 +847,8 @@ int main() {
 6. **Eliminates** conditional statements for algorithm selection
 
 ---
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

@@ -1,4 +1,4 @@
-# 13_list.md - Doubly Linked List Container
+﻿# 13_list.md - Doubly Linked List Container
 
 The `list` header provides `std::list`, a doubly linked list container that supports constant-time insertion and removal of elements anywhere in the sequence.
 
@@ -1138,10 +1138,8 @@ struct Node {
 - Memory is constrained
 - Frequent searches needed
 - Small elements with high overhead concerns
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `push_front()`, `push_back()`, `insert()`, `erase()`, `splice()`, `sort()`  
-**Time Complexity**: O(1) insert/erase, O(n) search, O(n log n) sort  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [14_forward_list.md](14_forward_list.md) to continue with forward list.

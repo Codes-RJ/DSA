@@ -1,4 +1,4 @@
-# 14_Palindrome_Partitioning.md
+﻿# 14_Palindrome_Partitioning.md
 
 ## Palindrome Partitioning
 
@@ -294,3 +294,8 @@ Count partitions where all substrings are distinct.
 3. Count the number of palindrome partitions
 4. Find the longest palindrome substring
 5. Check if a string can be partitioned into k palindromic substrings
+---
+
+## Next Step
+
+- Go to [15_M_coloring_Problem.md](15_M_coloring_Problem.md) to continue with M coloring Problem.

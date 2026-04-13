@@ -1,4 +1,4 @@
-# Data Members in C++ - Complete Guide
+﻿# Data Members in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -706,3 +706,8 @@ class LessOptimized {
 7. **Initialization**: Use initialization list over assignment in constructor body
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Member_Functions.md](05_Member_Functions.md) to continue with Member Functions.

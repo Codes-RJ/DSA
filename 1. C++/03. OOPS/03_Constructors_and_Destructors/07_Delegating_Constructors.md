@@ -1,4 +1,4 @@
-# Delegating Constructors in C++ - Complete Guide
+﻿# Delegating Constructors in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -815,3 +815,8 @@ int main() {
 6. **Factory methods** can complement delegation patterns
 
 ---
+---
+
+## Next Step
+
+- Go to [08_Destructor.md](08_Destructor.md) to continue with Destructor.

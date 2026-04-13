@@ -1,4 +1,4 @@
-# Procedural Programming vs Object-Oriented Programming
+﻿# Procedural Programming vs Object-Oriented Programming
 
 ## 📖 Overview
 
@@ -590,3 +590,8 @@ Consider transitioning when:
 6. **You need to model complex real-world entities**
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Benefits_of_OOP.md](03_Benefits_of_OOP.md) to continue with Benefits of OOP.

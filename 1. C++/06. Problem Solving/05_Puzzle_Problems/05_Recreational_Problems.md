@@ -1,4 +1,4 @@
-# Recreational Problems
+﻿# Recreational Problems
 
 ## Introduction
 Recreational problems are "just for fun" but often reveal sophisticated algorithmic concepts.
@@ -29,3 +29,8 @@ Solving these puzzles via **Constraint Satisfaction Problems (CSP)** and backtra
 
 ## Summary
 Recreational problems keep your problem-solving skills sharp and offer a fun way to apply advanced data structures and algorithms in a tangible way.
+---
+
+## Next Step
+
+- Go to [README.md](README.md) to continue.

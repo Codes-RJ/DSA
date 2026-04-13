@@ -1,4 +1,4 @@
-# 07_cctype.md - Character Classification Library
+﻿# 07_cctype.md - Character Classification Library
 
 The `cctype` header provides functions for character classification and conversion. It's the C++ version of the C library `<ctype.h>`.
 
@@ -558,10 +558,8 @@ for (char c : text) {
 - Working with Unicode text (use appropriate Unicode libraries)
 - Need locale-aware processing (use `<locale>`)
 - Processing large amounts of text efficiently (consider optimized libraries)
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `isalpha()`, `isdigit()`, `isalnum()`, `isspace()`, `tolower()`, `toupper()`  
-**Time Complexity**: O(1) per character  
-**Space Complexity**: O(1)
+## Next Step
+
+- Go to [08_cstring.md](08_cstring.md) to continue with cstring.

@@ -1,4 +1,4 @@
-# Object Slicing in C++ - Complete Guide
+﻿# Object Slicing in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -592,3 +592,8 @@ int main() {
 7. **Prevent by** implementing clone pattern
 
 ---
+---
+
+## Next Step
+
+- Go to [06_Covariant_Return_Types.md](06_Covariant_Return_Types.md) to continue with Covariant Return Types.

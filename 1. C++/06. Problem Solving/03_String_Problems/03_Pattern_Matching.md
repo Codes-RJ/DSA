@@ -1,4 +1,4 @@
-# Pattern Matching Algorithms
+﻿# Pattern Matching Algorithms
 
 ## Introduction
 Pattern matching is the task of finding one or more occurrences of a "pattern" string within a "text" string.
@@ -44,3 +44,8 @@ Uses two heuristics (bad character and good suffix rule) to skip sections of the
 | **Rabin-Karp** | O(M) | O(N) (avg) | Good for multiple patterns |
 | **Z-Algorithm** | O(N+M) | O(1) (after construction) | Versatile for prefixes |
 | **Boyer-Moore** | O(M + Σ) | O(N/M) - O(N*M) | Standard for `ctrl + f` |
+---
+
+## Next Step
+
+- Go to [04_String_Transformation.md](04_String_Transformation.md) to continue with String Transformation.

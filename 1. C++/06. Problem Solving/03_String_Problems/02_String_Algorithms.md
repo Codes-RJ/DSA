@@ -1,4 +1,4 @@
-# String Algorithms
+﻿# String Algorithms
 
 ## Introduction
 String algorithms are fundamental techniques for processing and manipulating strings efficiently. These algorithms are crucial for text processing, pattern matching, bioinformatics, and many other applications.
@@ -646,3 +646,8 @@ public:
 ## Summary
 
 String algorithms are essential for efficient text processing and pattern matching. Understanding various string processing techniques, from basic operations to advanced algorithms like suffix arrays, enables solving complex problems in text processing, bioinformatics, and information retrieval. Mastering these algorithms is crucial for competitive programming and real-world applications involving string manipulation.
+---
+
+## Next Step
+
+- Go to [03_Pattern_Matching.md](03_Pattern_Matching.md) to continue with Pattern Matching.

@@ -1,4 +1,4 @@
-# 12_Majority_Element.md
+﻿# 12_Majority_Element.md
 
 ## Majority Element
 
@@ -232,3 +232,8 @@ Use binary search to find first and last occurrence.
 3. Find majority element in sorted array
 4. Find majority element using bit manipulation
 5. Find majority element in a stream
+---
+
+## Next Step
+
+- Go to [13_Quick_Select.md](13_Quick_Select.md) to continue with Quick Select.

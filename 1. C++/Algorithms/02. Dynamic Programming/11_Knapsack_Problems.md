@@ -1,4 +1,4 @@
-# 11_Knapsack_Problems.md
+﻿# 11_Knapsack_Problems.md
 
 ## Knapsack Problems
 
@@ -372,3 +372,8 @@ int combinationSum4(vector<int>& nums, int target) {
 | Coin Change (Min) | Min coins | Capacity forward, coin inside | 1D forward |
 | Coin Change (Ways) | Count ways | Coin outside, capacity forward | 1D forward |
 | Target Sum | Count ways | Convert to subset sum | 1D reverse |
+---
+
+## Next Step
+
+- Go to [12_Unbounded_Knapsack.md](12_Unbounded_Knapsack.md) to continue with Unbounded Knapsack.

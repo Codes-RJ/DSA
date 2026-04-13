@@ -1,4 +1,4 @@
-# 24_numeric.md - Numeric Algorithms
+﻿# 24_numeric.md - Numeric Algorithms
 
 The `numeric` header provides algorithms for accumulating and transforming numeric ranges, complementing `<algorithm>` with operations focused on numerical computations.
 
@@ -1071,10 +1071,8 @@ if (!diffs.empty()) {
 - Non-numeric operations
 - Need for complex mathematical functions (use `<cmath>`)
 - Performance-critical inner loops with custom optimizations
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `accumulate`, `iota`, `inner_product`, `partial_sum`, `adjacent_difference`  
-**Time Complexity**: O(n) for all operations  
-**Space Complexity**: O(1) additional (except where output iterator creates new range)
+## Next Step
+
+- Go to [25_functional.md](25_functional.md) to continue with functional.

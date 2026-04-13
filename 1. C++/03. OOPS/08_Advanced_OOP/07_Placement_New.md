@@ -1,4 +1,4 @@
-# Placement New in C++ - Complete Guide
+﻿# Placement New in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -632,3 +632,8 @@ int main() {
 7. **Combine with RAII** for safety
 
 ---
+---
+
+## Next Step
+
+- Go to [08_Type_Conversion_in_OOP.md](08_Type_Conversion_in_OOP.md) to continue with Type Conversion in OOP.

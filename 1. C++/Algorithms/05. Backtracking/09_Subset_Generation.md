@@ -1,4 +1,4 @@
-# 09_Subset_Generation.md
+﻿# 09_Subset_Generation.md
 
 ## Subset Generation
 
@@ -268,3 +268,8 @@ Similar to subset sum but with multiplication.
 3. Generate all subsets with duplicates (unique subsets)
 4. Generate all subsets that sum to a target
 5. Generate all subsets in lexicographic order
+---
+
+## Next Step
+
+- Go to [10_Permutation_Generation.md](10_Permutation_Generation.md) to continue with Permutation Generation.

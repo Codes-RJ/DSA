@@ -1,4 +1,4 @@
-# 18_Jump_Game.md
+﻿# 18_Jump_Game.md
 
 ## Jump Game
 
@@ -200,3 +200,8 @@ Some positions are blocked.
 | Game development | Character movement with jump power |
 | Network routing | Packet forwarding with hop limits |
 | Resource allocation | Minimum resources to reach target |
+---
+
+## Next Step
+
+- Go to [19_Assign_Cookies.md](19_Assign_Cookies.md) to continue with Assign Cookies.

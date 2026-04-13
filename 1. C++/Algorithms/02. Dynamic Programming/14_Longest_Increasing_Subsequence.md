@@ -1,4 +1,4 @@
-# 14_Longest_Increasing_Subsequence.md
+﻿# 14_Longest_Increasing_Subsequence.md
 
 ## Longest Increasing Subsequence (LIS)
 
@@ -368,3 +368,8 @@ vector<int> reconstructLIS(vector<int>& nums) {
     return lis;
 }
 ```
+---
+
+## Next Step
+
+- Go to [15_Edit_Distance.md](15_Edit_Distance.md) to continue with Edit Distance.

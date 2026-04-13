@@ -1,4 +1,4 @@
-# Binary Search Trees - Introduction
+﻿# Binary Search Trees - Introduction
 
 ## 📖 Overview
 
@@ -427,3 +427,8 @@ After mastering BST basics, proceed to:
 5. **Advanced Topics** - AVL trees, Red-Black trees
 
 ---
+---
+
+## Next Step
+
+- Go to [02_BST_Insertion.md](02_BST_Insertion.md) to continue with BST Insertion.

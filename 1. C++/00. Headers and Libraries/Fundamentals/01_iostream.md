@@ -1,4 +1,4 @@
-# iostream - Input/Output Stream Library
+﻿# iostream - Input/Output Stream Library
 
 The `iostream` library is one of the most fundamental C++ headers, providing input and output functionality through streams.
 
@@ -373,15 +373,8 @@ getline(cin, sentence);  // Reads entire line
 - [`sstream.md`](sstream.md) - For string streams
 - [`string.md`](string.md) - For string operations
 
-## 🚀 Next Steps
-
-1. Practice basic input/output operations
-2. Learn about input validation
-3. Explore file operations with `fstream`
-4. Study string streams with `sstream`
-
 ---
 
-**Examples in this file**: 5 complete programs  
-**Key Functions**: `cin`, `cout`, `cerr`, `clog`, `getline()`  
-**Common Use Cases**: User interaction, data input, result display
+## Next Step
+
+- Go to [02_vector.md](02_vector.md) to continue with vector.

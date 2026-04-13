@@ -1,4 +1,4 @@
-# Connected Components in Graph
+﻿# Connected Components in Graph
 
 ## 📖 Overview
 
@@ -540,3 +540,8 @@ Where α(V) is the inverse Ackermann function (practically constant)
 7. **Tree components** have V-1 edges and are acyclic
 
 ---
+---
+
+## Next Step
+
+- Go to [04_Cycle_Detection.md](04_Cycle_Detection.md) to continue with Cycle Detection.

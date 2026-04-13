@@ -1,4 +1,4 @@
-# Multilevel Inheritance in C++ - Complete Guide
+﻿# Multilevel Inheritance in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -709,3 +709,8 @@ int main() {
 7. **Virtual destructors** ensure proper cleanup
 
 ---
+---
+
+## Next Step
+
+- Go to [4_Hierarchical_Inheritance.md](4_Hierarchical_Inheritance.md) to continue with Hierarchical Inheritance.

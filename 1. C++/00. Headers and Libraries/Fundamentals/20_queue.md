@@ -1,4 +1,4 @@
-# 20_queue.md - FIFO Container Adapter
+﻿# 20_queue.md - FIFO Container Adapter
 
 The `queue` header provides `std::queue`, a container adapter that provides first-in, first-out (FIFO) access to elements.
 
@@ -1235,10 +1235,8 @@ std::queue<int, std::list<int>> q;  // Good for frequent pops
 - Need priority-based processing (use `priority_queue`)
 - Need to access elements in middle
 - Need to iterate through all elements
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `push()`, `pop()`, `front()`, `back()`, `empty()`, `size()`, `emplace()`  
-**Time Complexity**: O(1) for all operations  
-**Space Complexity**: O(n) where n is number of elements
+## Next Step
+
+- Go to [21_priority_queue.md](21_priority_queue.md) to continue with priority queue.

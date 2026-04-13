@@ -1,4 +1,4 @@
-# 07_Closest_Pair_of_Points.md
+﻿# 07_Closest_Pair_of_Points.md
 
 ## Closest Pair of Points
 
@@ -222,3 +222,8 @@ Different problem, uses rotating calipers
 3. Find closest pair of points with integer coordinates
 4. Find all pairs with distance less than given threshold
 5. Find the pair with maximum distance (diameter)
+---
+
+## Next Step
+
+- Go to [08_Maximum_Subarray_Sum.md](08_Maximum_Subarray_Sum.md) to continue with Maximum Subarray Sum.

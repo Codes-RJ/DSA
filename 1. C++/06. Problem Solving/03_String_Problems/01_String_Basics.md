@@ -1,4 +1,4 @@
-# String Basics in C++
+﻿# String Basics in C++
 
 ## Introduction
 A string is a sequence of characters. In C++, there are two ways to represent strings:
@@ -53,3 +53,8 @@ Unlike C-style strings (which need `strcmp`), `std::string` can be compared usin
 
 ## Prerequisites
 Understanding strings is essential for most coding problems involving text processing, data parsing, and user interactions.
+---
+
+## Next Step
+
+- Go to [02_String_Algorithms.md](02_String_Algorithms.md) to continue with String Algorithms.

@@ -1,4 +1,4 @@
-# 09_utility.md - Generic Helper Utilities
+﻿# 09_utility.md - Generic Helper Utilities
 
 The `utility` header contains fundamental utility components used throughout the C++ standard library. It provides essential tools for working with pairs, moving objects, and generic programming.
 
@@ -906,10 +906,8 @@ void func(std::string&& arg) {  // T is not deduced
 - You need more than two elements (use `std::tuple`)
 - Working with simple built-in types only
 - Performance is not a concern
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Components**: `std::pair`, `std::move`, `std::forward`, `std::swap`, `std::exchange`  
-**Time Complexity**: O(1) for most operations  
-**Space Complexity**: O(1) additional
+## Next Step
+
+- Go to [10_tuple.md](10_tuple.md) to continue with tuple.

@@ -1,4 +1,4 @@
-# Smart Pointers - Modern Memory Management
+﻿# Smart Pointers - Modern Memory Management
 
 Smart pointers are a key feature of modern C++ that provide automatic memory management and help prevent memory leaks and dangling pointers.
 
@@ -734,10 +734,8 @@ public:
     // Copy and assignment properly deleted (rule of five)
 };
 ```
-
 ---
 
-**Examples in this file**: 2 comprehensive programs  
-**Key Concepts**: RAII, ownership semantics, memory management  
-**Time Complexity**: O(1) for most operations  
-**Space Complexity**: O(1) overhead per smart pointer
+## Next Step
+
+- Go to [stl_containers.md](stl_containers.md) to continue with stl containers.

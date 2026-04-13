@@ -1,4 +1,4 @@
-# algorithm - Standard Algorithms Library
+﻿# algorithm - Standard Algorithms Library
 
 The `algorithm` header is one of the most powerful headers in C++ STL, providing a collection of functions for operating on ranges of elements.
 
@@ -459,10 +459,8 @@ sort(result.begin(), result.end());
 | Remove elements | `erase-remove` | Any |
 | Transform elements | `transform` | Any |
 | Copy elements | `copy` | Any |
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `sort`, `find`, `binary_search`, `transform`, `remove_if`  
-**Time Complexity**: Varies by algorithm (O(log n) to O(n log n))  
-**Space Complexity**: Usually O(1) additional
+## Next Step
+
+- Go to [05_cmath.md](05_cmath.md) to continue with cmath.

@@ -1,4 +1,4 @@
-# Concurrency - Higher-Level Concurrency Tools
+﻿# Concurrency - Higher-Level Concurrency Tools
 
 C++ provides high-level concurrency abstractions (`<future>`, `<async>`, `<promise>`) on top of raw threads, letting you express *what* result you want without manually managing thread lifecycles and shared state.
 
@@ -391,10 +391,8 @@ auto f = std::async(std::launch::async, heavyWork);
 2. Implement a timeout-aware version of `future::get()` using `wait_for`
 3. Build a `when_all` helper that waits for a `vector<future<T>>` to all complete
 4. Explore C++23 `std::execution` policy extensions for parallel algorithms
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Types**: `std::future`, `std::shared_future`, `std::promise`, `std::async`, `std::packaged_task`  
-**Key Patterns**: Fan-out parallel, pipeline, cancellation, shared results  
-**Common Use Cases**: Async I/O, parallel data processing, background computations, result aggregation
+## Next Step
+
+- Go to [debugging.md](debugging.md) to continue with debugging.

@@ -1,4 +1,4 @@
-# 19_Assign_Cookies.md
+﻿# 19_Assign_Cookies.md
 
 ## Assign Cookies
 
@@ -187,3 +187,8 @@ Minimize total unused cookie size while satisfying children.
 | Job assignment | Assign smallest capable worker to job |
 | Memory allocation | Assign smallest sufficient memory block |
 | Scheduling | Assign smallest sufficient time slot |
+---
+
+## Next Step
+
+- Go to [20_Reconstruct_String_from_Adjacent_Pairs.md](20_Reconstruct_String_from_Adjacent_Pairs.md) to continue with Reconstruct String from Adjacent Pairs.

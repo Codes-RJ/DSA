@@ -1,4 +1,4 @@
-# Pattern Puzzles
+﻿# Pattern Puzzles
 
 ## Introduction
 Pattern puzzles involve identifying a sequence or visual structure and reproducing it or finding its rules.
@@ -47,3 +47,8 @@ Repeating self-similar structures at every scale (e.g., Sierpinski triangle).
 - [ ] Constant ratio? → Exponential pattern.
 - [ ] Recursion involved? → Fractal or dynamic sequence.
 - [ ] Symmetry? → Reflective coordinate logic.
+---
+
+## Next Step
+
+- Go to [03_Number_Puzzles.md](03_Number_Puzzles.md) to continue with Number Puzzles.

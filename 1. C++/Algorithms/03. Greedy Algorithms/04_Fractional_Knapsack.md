@@ -1,4 +1,4 @@
-# 04_Fractional_Knapsack.md
+﻿# 04_Fractional_Knapsack.md
 
 ## Fractional Knapsack
 
@@ -233,3 +233,8 @@ Since ratio(i) > ratio(j), the total value increases.
 
 This contradicts optimality of O.
 Therefore, G must be optimal.
+---
+
+## Next Step
+
+- Go to [05_Huffman_Coding.md](05_Huffman_Coding.md) to continue with Huffman Coding.

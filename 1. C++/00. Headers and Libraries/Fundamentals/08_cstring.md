@@ -1,4 +1,4 @@
-# 08_cstring.md - C-Style String Library
+﻿# 08_cstring.md - C-Style String Library
 
 The `cstring` header provides functions for working with C-style null-terminated strings and memory operations. It's the C++ version of the C library `<string.h>`.
 
@@ -805,10 +805,8 @@ char* token2 = std::strtok(str2, ",");  // Interferes with previous call
 - Complex string manipulation
 - Unicode text processing
 - Safety-critical applications
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Functions**: `strlen()`, `strcpy()`, `strcat()`, `strcmp()`, `memcpy()`, `memset()`  
-**Time Complexity**: O(n) for most operations  
-**Space Complexity**: O(1) additional
+## Next Step
+
+- Go to [09_utility.md](09_utility.md) to continue with utility.

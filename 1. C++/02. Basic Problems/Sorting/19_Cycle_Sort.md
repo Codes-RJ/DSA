@@ -1,4 +1,4 @@
-# Cycle Sort
+﻿# Cycle Sort
 
 ## Overview
 Cycle Sort is an in-place sorting algorithm that minimizes the number of write operations. It's particularly useful when write operations are expensive, such as with EEPROM or flash memory.
@@ -576,3 +576,9 @@ public:
 ---
 
 *This implementation provides a comprehensive guide to Cycle Sort with focus on minimizing write operations and applications in memory-constrained environments.*
+
+---
+
+## Next Step
+
+- Go to [20_Bogo_Sort.md](20_Bogo_Sort.md) to continue with Bogo Sort.

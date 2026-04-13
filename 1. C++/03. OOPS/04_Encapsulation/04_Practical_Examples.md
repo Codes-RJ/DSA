@@ -1,4 +1,4 @@
-# Encapsulation - Practical Examples
+﻿# Encapsulation - Practical Examples
 
 ## 📖 Overview
 
@@ -1079,3 +1079,8 @@ int main() {
 7. **Real-world systems** naturally map to encapsulated objects
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Best_Practices.md](05_Best_Practices.md) to continue with Best Practices.

@@ -1,4 +1,4 @@
-# Inline Functions in C++ - Complete Guide
+﻿# Inline Functions in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -924,3 +924,8 @@ public:
 7. **constexpr**: Implies inline and enables compile-time evaluation
 
 ---
+---
+
+## Next Step
+
+- Go to [09_Nested_Classes.md](09_Nested_Classes.md) to continue with Nested Classes.

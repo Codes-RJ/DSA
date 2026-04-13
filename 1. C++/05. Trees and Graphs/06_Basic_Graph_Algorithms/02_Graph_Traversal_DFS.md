@@ -1,4 +1,4 @@
-# Graph Traversal - DFS (Depth-First Search) - Complete Guide
+﻿# Graph Traversal - DFS (Depth-First Search) - Complete Guide
 
 ## 📖 Overview
 
@@ -478,3 +478,8 @@ int main() {
 8. **Cycle detection** uses parent tracking for undirected, recursion stack for directed
 
 ---
+---
+
+## Next Step
+
+- Go to [03_Connected_Components.md](03_Connected_Components.md) to continue with Connected Components.

@@ -1,4 +1,4 @@
-# Ternary Search
+﻿# Ternary Search
 
 ## Overview
 Ternary search is a divide-and-conquer search algorithm that divides the search space into three parts instead of two. It's particularly useful for finding the minimum or maximum of unimodal functions.
@@ -263,3 +263,8 @@ int findPeakElement(const std::vector<int>& arr) {
 ---
 
 *This implementation provides a comprehensive guide to ternary search with both discrete and continuous applications.*
+---
+
+## Next Step
+
+- Go to [08_Sublist_Search.md](08_Sublist_Search.md) to continue with Sublist Search.

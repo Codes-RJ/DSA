@@ -1,4 +1,4 @@
-# Specialized Containers in C++
+﻿# Specialized Containers in C++
 
 ## Overview
 Specialized containers are designed for specific use cases and provide optimized operations for particular domains. C++ provides two main specialized containers: `std::bitset` for fixed-size bit manipulation and `std::valarray` for numerical array operations. These containers offer specialized functionality not available in general-purpose containers.
@@ -870,3 +870,8 @@ void demonstrateValarray() {
 3. **Not handling empty valarrays** - Some operations may fail
 4. **Performance misconceptions** - May not be faster than simple loops
 5. **Limited compiler optimization** - Vectorization depends on compiler
+---
+
+## Next Step
+
+- Go to [Theory.md](Theory.md) to continue with Theory.

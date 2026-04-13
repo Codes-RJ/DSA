@@ -1,4 +1,4 @@
-# Memory Pools in C++ - Complete Guide
+﻿# Memory Pools in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -804,3 +804,8 @@ int main() {
 7. **Customizable** for specific use cases
 
 ---
+---
+
+## Next Step
+
+- Go to [05_Smart_Pointers_Intro.md](05_Smart_Pointers_Intro.md) to continue with Smart Pointers Intro.

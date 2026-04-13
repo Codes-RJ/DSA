@@ -1,4 +1,4 @@
-# Multithreading - Concurrent Execution in C++
+﻿# Multithreading - Concurrent Execution in C++
 
 The C++11 thread library (`<thread>`, `<mutex>`, `<atomic>`, `<condition_variable>`) provides portable, type-safe primitives for writing concurrent programs.
 
@@ -480,10 +480,8 @@ cv.wait(lock, []{ return !queue.empty() || done; });
 2. Implement a simple parallel `map` that distributes work across N threads
 3. Explore C++20 `std::jthread` — auto-joining thread with stop token
 4. Study memory order (`relaxed`, `acquire`, `release`, `seq_cst`) for lock-free programming
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Types**: `std::thread`, `std::mutex`, `std::lock_guard`, `std::unique_lock`, `std::atomic`, `std::condition_variable`  
-**Key Patterns**: Producer–Consumer, Thread Pool, Reader-Writer, One-Time Init  
-**Common Use Cases**: Parallel computation, background tasks, event processing, shared state management
+## Next Step
+
+- Go to [optimization.md](optimization.md) to continue with optimization.

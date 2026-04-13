@@ -1,4 +1,4 @@
-# 14_Convex_Hull.md
+﻿# 14_Convex_Hull.md
 
 ## Convex Hull (Graham Scan and Divide and Conquer)
 
@@ -304,3 +304,8 @@ vector<Point> convexHullGraham(vector<Point>& points) {
 3. Find area of convex hull
 4. Find farthest pair of points (diameter of convex hull)
 5. Find minimum area enclosing rectangle
+---
+
+## Next Step
+
+- Go to [15_Master_Theorem.md](15_Master_Theorem.md) to continue with Master Theorem.

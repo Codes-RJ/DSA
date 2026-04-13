@@ -1,4 +1,4 @@
-# 08_Generate_Parentheses.md
+﻿# 08_Generate_Parentheses.md
 
 ## Generate Parentheses
 
@@ -232,3 +232,8 @@ Different problem (usually solved with stack or DP).
 3. Generate all valid parentheses with k types of brackets
 4. Check if a given parentheses string is valid
 5. Find the longest valid parentheses substring
+---
+
+## Next Step
+
+- Go to [09_Subset_Generation.md](09_Subset_Generation.md) to continue with Subset Generation.

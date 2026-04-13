@@ -1,4 +1,4 @@
-# Memory Management - Resource Lifetime in C++
+﻿# Memory Management - Resource Lifetime in C++
 
 Modern C++ resource management is built on **ownership** and **RAII** — tying resource lifetime to object lifetime so that resources are always cleaned up, even in the presence of exceptions.
 
@@ -459,10 +459,8 @@ struct Node { std::weak_ptr<Node> next; };
 2. Audit an existing codebase for raw `new`/`delete` and replace with smart pointers
 3. Use `valgrind --leak-check=full` to detect leaks in a C++ program
 4. Explore C++23 `std::out_ptr` for integrating smart pointers with C APIs
-
 ---
 
-**Examples in this file**: 4 complete programs  
-**Key Concepts**: RAII, ownership, stack vs heap, Rule of Zero/Five  
-**Key Types**: `unique_ptr`, `shared_ptr`, `weak_ptr`, `vector`, custom RAII wrappers  
-**Common Use Cases**: File handles, DB connections, object pools, exception-safe code
+## Next Step
+
+- Go to [miscellaneous.md](miscellaneous.md) to continue with miscellaneous.

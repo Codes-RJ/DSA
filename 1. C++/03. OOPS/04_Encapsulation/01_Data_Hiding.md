@@ -1,4 +1,4 @@
-# Data Hiding in C++ - Complete Guide
+﻿# Data Hiding in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -859,3 +859,8 @@ int main() {
 6. **Rule of thumb**: Make data private, provide meaningful public interface
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Getters_and_Setters.md](02_Getters_and_Setters.md) to continue with Getters and Setters.

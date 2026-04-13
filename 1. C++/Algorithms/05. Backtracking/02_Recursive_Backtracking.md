@@ -1,4 +1,4 @@
-# 02_Recursive_Backtracking.md
+﻿# 02_Recursive_Backtracking.md
 
 ## Recursive Backtracking
 
@@ -234,3 +234,8 @@ void generateSubsets(vector<int>& nums, int index, vector<int>& current, vector<
 3. Generate all subsets of an array
 4. Generate all binary strings of length n with no consecutive 1s
 5. Generate all ways to climb n stairs using steps 1, 2, or 3
+---
+
+## Next Step
+
+- Go to [03_Pruning_Techniques.md](03_Pruning_Techniques.md) to continue with Pruning Techniques.

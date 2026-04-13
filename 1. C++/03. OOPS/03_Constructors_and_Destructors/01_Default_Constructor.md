@@ -1,4 +1,4 @@
-# Default Constructor in C++ - Complete Guide
+﻿# Default Constructor in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -777,3 +777,8 @@ int main() {
 7. **Always initialize**: All members to prevent undefined behavior
 
 ---
+---
+
+## Next Step
+
+- Go to [02_Parameterized_Constructor.md](02_Parameterized_Constructor.md) to continue with Parameterized Constructor.

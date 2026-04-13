@@ -1,4 +1,4 @@
-# Two-Pointer Technique: Efficiency and Optimization
+﻿# Two-Pointer Technique: Efficiency and Optimization
 
 ## Overview
 The two-pointer technique is an essential optimization pattern that reduces the number of operations by using two separate indices to traverse a data structure (usually an array or linked list). By coordinating the pointer movements based on local conditions, we can solve problems in $O(N)$ that would otherwise require $O(N^2)$.
@@ -117,3 +117,8 @@ vector<int> sortedSquares(vector<int>& arr) {
 - **Index Out of Range**: Always verify `l < r` or `curr != nullptr` inside inner loops.
 - **Empty Arrays**: Simple `if` check at the start.
 - **All same values**: Pointer logic must handle this without unnecessary swaps or increments.
+---
+
+## Next Step
+
+- Go to [03_Sliding_Window.md](03_Sliding_Window.md) to continue with Sliding Window.
