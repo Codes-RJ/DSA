@@ -27,4 +27,4 @@ flowchart TD
 This README is the navigation index for this folder.
 ## Next Step
 
-- Go to [01_Abstract_Classes.md](01_Abstract_Classes.md) to understand Abstract Classes.
+- Go to [Theory.md](Theory.md) to understand basics of the content to come.

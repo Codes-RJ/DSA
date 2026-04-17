@@ -606,4 +606,4 @@ int main() {
 
 ## Next Step
 
-- Go to [README.md](README.md) to continue.
+- Go to [01_Abstract_class](01_Abstract_Classes.md) to continue.
