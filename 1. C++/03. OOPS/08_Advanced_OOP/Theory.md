@@ -620,4 +620,4 @@ int main() {
 
 ## Next Step
 
-- Go to [README.md](README.md) to continue.
+- Go to [01_Friend_Functions_and_Classes.md](01_Friend_Functions_and_Classes.md) to continue forward.

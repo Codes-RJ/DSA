@@ -732,4 +732,4 @@ int main() {
 
 ## Next Step
 
-- Go to [Theory.md](Theory.md) to continue with Theory.
+- Go to [08_Advanced_OOP](../08_Advanced_OOP/README.md) to continue with your learning path.
