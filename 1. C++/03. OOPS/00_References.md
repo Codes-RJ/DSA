@@ -484,7 +484,3 @@ Use these resources to assess your progress:
 - Contribute to open-source projects
 
 ---
-
-*This resource list is regularly updated. Last updated: 2024*  
-*Total Resources: 50+ categorized items*  
-*Difficulty Levels: Beginner to Expert*

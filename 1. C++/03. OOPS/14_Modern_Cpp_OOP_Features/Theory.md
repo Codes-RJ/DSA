@@ -1,613 +1,382 @@
-﻿# Modern C++ OOP Features - Complete Guide
+﻿# Theory.md
 
-## 📖 Overview
+## Modern C++ OOP Features - Theoretical Foundations
 
-Modern C++ (C++11 and later) introduced numerous features that enhance Object-Oriented Programming. These features improve type safety, performance, code clarity, and maintainability. Understanding modern C++ features is essential for writing efficient and elegant object-oriented code.
+### Overview
 
----
-
-## 🎯 Key Modern C++ Features
-
-| Feature | Version | Description |
-|---------|---------|-------------|
-| **auto** | C++11 | Type inference |
-| **decltype** | C++11 | Declare type of expression |
-| **Range-based for** | C++11 | Simplified iteration |
-| **Lambda Expressions** | C++11 | Anonymous functions |
-| **Smart Pointers** | C++11 | Automatic memory management |
-| **Move Semantics** | C++11 | Efficient resource transfer |
-| **Initializer Lists** | C++11 | Uniform initialization |
-| **Delegating Constructors** | C++11 | Constructor chaining |
-| **Inheriting Constructors** | C++11 | Inherit base constructors |
-| **override/final** | C++11 | Virtual function control |
-| **Concepts** | C++20 | Template constraints |
+Modern C++ refers to the evolution of the C++ language starting with C++11, which introduced a paradigm shift in how C++ is written. These features emphasize type safety, resource management, performance, and expressiveness. This document covers the theoretical foundations of modern C++ features, their design principles, and their impact on object-oriented programming.
 
 ---
 
-## 1. **auto and decltype (Type Inference)**
+### 1. Evolution of C++ Standards
+
+| Standard | Year | Key Features |
+|----------|------|--------------|
+| **C++98** | 1998 | First standardized version, STL, RTTI |
+| **C++03** | 2003 | Bug fixes, minor improvements |
+| **C++11** | 2011 | Auto, lambdas, smart pointers, move semantics, constexpr |
+| **C++14** | 2014 | Generic lambdas, digit separators, variable templates |
+| **C++17** | 2017 | Fold expressions, structured bindings, if constexpr |
+| **C++20** | 2020 | Concepts, ranges, coroutines, modules, spaceship operator |
+| **C++23** | 2023 | std::expected, std::mdspan, deducing this |
+
+---
+
+### 2. Design Philosophy of Modern C++
+
+**Zero-Overhead Principle (Stroustrup):**
+
+> "What you don't use, you don't pay for. And further: What you do use, you couldn't hand-code any better."
+
+| Principle | Implication |
+|-----------|-------------|
+| **Abstraction without penalty** | High-level constructs compile to efficient code |
+| **Type safety** | Catch errors at compile time, not runtime |
+| **Resource safety** | RAII ensures no leaks |
+| **Performance** | No unnecessary overhead |
+
+**The C++11 Evolution Goals:**
+
+| Goal | Description |
+|------|-------------|
+| **Make C++ easier to teach and learn** | Simplify common tasks |
+| **Improve type safety** | Reduce unsafe casts and conversions |
+| **Improve performance** | Enable move semantics, constexpr |
+| **Make C++ more consistent** | Uniform initialization, auto |
+| **Improve concurrency support** | Thread library, atomics |
+
+---
+
+### 3. Type Deduction Theory
+
+**auto Type Deduction Rules:**
+
+| Initializer Type | Deduced Type |
+|-----------------|--------------|
+| `auto x = expr;` | Type of expr (cv-qualifiers removed) |
+| `auto& x = expr;` | Reference to expr's type |
+| `const auto& x = expr;` | const reference |
+| `auto&& x = expr;` | Forwarding reference |
+
+**decltype Type Deduction Rules:**
+
+| Expression | decltype Result |
+|------------|-----------------|
+| Variable name | Type of variable |
+| Lvalue expression (parenthesized) | Lvalue reference |
+| Function call | Return type of function |
+| Rvalue expression | Type of expression |
+
+**Example:**
+```cpp
+int x = 10;
+const int y = 20;
+
+auto a = x;      // int (const removed)
+auto& b = x;     // int&
+const auto& c = y; // const int&
+decltype(x) d;   // int
+decltype((x)) e; // int& (parenthesized)
+```
+
+---
+
+### 4. Move Semantics and Rvalue References
+
+**Value Categories in C++11:**
+
+```
+Expression
+    │
+    ├── glvalue (generalized lvalue)
+    │       ├── lvalue (has identity, cannot be moved)
+    │       └── xvalue (expiring value, can be moved)
+    │
+    └── rvalue (can be moved)
+            ├── xvalue (expiring value)
+            └── prvalue (pure rvalue, temporary)
+```
+
+**Key Distinctions:**
+
+| Category | Has Identity | Can be Moved | Examples |
+|----------|--------------|--------------|----------|
+| **lvalue** | Yes | No | Variables, function names |
+| **xvalue** | Yes | Yes | `std::move(x)`, `arr[n]` |
+| **prvalue** | No | Yes | Literals, temporaries |
+
+**Move Semantics Theory:**
+
+| Concept | Description |
+|---------|-------------|
+| **Move Constructor** | Transfers resources from source to new object |
+| **Move Assignment** | Transfers resources from source to existing object |
+| **Source State** | Left in valid but unspecified state (usually empty) |
+| **Noexcept** | Move operations should be noexcept for optimal performance |
+
+---
+
+### 5. Lambda Expressions Theory
+
+**Lambda Closure Type:**
+
+Each lambda expression generates a unique, unnamed function object type (closure type).
+
+| Component | Description |
+|-----------|-------------|
+| **Captured Variables** | Stored as data members in closure object |
+| **Call Operator** | `operator()` is const by default (unless mutable) |
+| **Conversion to Function Pointer** | Only for non-capturing lambdas |
+
+**Capture Categories:**
+
+| Capture | Effect |
+|---------|--------|
+| `[&]` | Capture all by reference |
+| `[=]` | Capture all by value |
+| `[a, &b]` | Capture a by value, b by reference |
+| `[this]` | Capture this pointer |
+| `[*this]` (C++17) | Capture *this by value |
+
+**Lifetime Considerations:**
+
+| Capture Type | Lifetime Risk | Solution |
+|--------------|---------------|----------|
+| **By reference** | Dangling reference | Ensure captured variables outlive lambda |
+| **By value** | Copy overhead | Acceptable for small types |
+| **`this` capture** | Object destruction | Ensure object outlives lambda |
+
+---
+
+### 6. Smart Pointers Theory
+
+**Ownership Models:**
+
+| Model | Description | C++ Implementation |
+|-------|-------------|-------------------|
+| **No ownership** | Observer, no deletion responsibility | Raw pointer, reference |
+| **Exclusive ownership** | Single owner, unique responsibility | `std::unique_ptr` |
+| **Shared ownership** | Multiple owners, last one deletes | `std::shared_ptr` |
+| **Weak ownership** | Non-owning observer, breaks cycles | `std::weak_ptr` |
+
+**Control Block (shared_ptr):**
+
+```
+shared_ptr Control Block
+┌─────────────────────────┐
+│ strong ref count        │  (number of shared_ptr owners)
+├─────────────────────────┤
+│ weak ref count          │  (number of weak_ptr observers)
+├─────────────────────────┤
+│ deleter (function ptr)  │  (custom deletion strategy)
+├─────────────────────────┤
+│ allocator (optional)    │  (custom memory allocator)
+└─────────────────────────┘
+```
+
+**Performance Characteristics:**
+
+| Operation | unique_ptr | shared_ptr | weak_ptr |
+|-----------|------------|------------|----------|
+| **Size** | 8 bytes (same as raw) | 16 bytes (two pointers) | 16 bytes |
+| **Construction** | O(1) | O(1) + control block | O(1) |
+| **Copy** | Not allowed | O(1) + atomic increment | O(1) + atomic increment |
+| **Destruction** | O(1) | O(1) + atomic decrement | O(1) + atomic decrement |
+| **Dereference** | O(1) | O(1) | O(1) (after lock) |
+
+---
+
+### 7. Perfect Forwarding Theory
+
+**The Forwarding Problem:**
 
 ```cpp
-#include <iostream>
-#include <vector>
-#include <map>
-#include <string>
-using namespace std;
-
-class Widget {
-public:
-    static auto create() {
-        return Widget();
-    }
-    
-    void process() {
-        cout << "Widget processing" << endl;
-    }
-};
-
-auto add(int a, int b) -> int {  // Trailing return type
-    return a + b;
+template <typename T>
+void wrapper(T&& arg) {
+    // Want to call func with same value category as arg
+    func(arg);  // Always passes as lvalue
+    func(std::move(arg));  // Always passes as rvalue
 }
+```
 
-template<typename T, typename U>
-auto multiply(T a, U b) -> decltype(a * b) {
-    return a * b;
-}
+**Solution: std::forward**
 
-int main() {
-    cout << "=== auto and decltype ===" << endl;
-    
-    // Basic auto usage
-    auto i = 42;           // int
-    auto d = 3.14;         // double
-    auto s = "Hello";      // const char*
-    auto v = vector<int>{1, 2, 3};
-    
-    // auto with iterators
-    map<string, int> scores = {{"Alice", 95}, {"Bob", 87}};
-    for (auto it = scores.begin(); it != scores.end(); ++it) {
-        cout << it->first << ": " << it->second << endl;
-    }
-    
-    // Range-based for with auto
-    for (const auto& [name, score] : scores) {
-        cout << name << ": " << score << endl;
-    }
-    
-    // decltype example
-    int x = 10;
-    decltype(x) y = 20;  // y is int
-    decltype((x)) z = x; // z is int& (reference)
-    
-    // auto with functions
-    auto result = add(5, 3);
-    cout << "add(5, 3) = " << result << endl;
-    
-    auto product = multiply(5, 3.14);
-    cout << "multiply(5, 3.14) = " << product << endl;
-    
-    // auto with factory method
-    auto widget = Widget::create();
-    widget.process();
-    
-    return 0;
+| Rule | Description |
+|------|-------------|
+| **std::forward<T>(arg)** | Casts arg to T&& |
+| **Reference Collapsing** | `T& &` collapses to `T&` |
+| **Universal Reference** | `T&&` where T is deduced |
+
+**Reference Collapsing Rules:**
+
+| Original | Collapsed |
+|----------|-----------|
+| `T& &` | `T&` |
+| `T& &&` | `T&` |
+| `T&& &` | `T&` |
+| `T&& &&` | `T&&` |
+
+**Perfect Forwarding Implementation:**
+
+```cpp
+template <typename T>
+void wrapper(T&& arg) {
+    // Forward preserves value category
+    func(std::forward<T>(arg));
 }
 ```
 
 ---
 
-## 2. **Range-Based For Loops**
+### 8. Uniform Initialization Theory
 
-```cpp
-#include <iostream>
-#include <vector>
-#include <array>
-#include <string>
-#include <map>
-using namespace std;
+**Problems with Old Initialization Syntax:**
 
-class Collection {
-private:
-    vector<int> data_ = {1, 2, 3, 4, 5};
-    
-public:
-    auto begin() { return data_.begin(); }
-    auto end() { return data_.end(); }
-    auto begin() const { return data_.begin(); }
-    auto end() const { return data_.end(); }
-};
+| Problem | Description |
+|---------|-------------|
+| **Narrowing conversions** | Allowed silently |
+| **Most vexing parse** | `Widget w();` declares function |
+| **Inconsistent syntax** | Different syntax for different types |
 
-int main() {
-    cout << "=== Range-Based For Loops ===" << endl;
-    
-    // Basic array
-    int arr[] = {1, 2, 3, 4, 5};
-    cout << "Array: ";
-    for (int x : arr) {
-        cout << x << " ";
-    }
-    cout << endl;
-    
-    // Vector
-    vector<string> words = {"Hello", "World", "C++"};
-    cout << "Vector: ";
-    for (const auto& word : words) {
-        cout << word << " ";
-    }
-    cout << endl;
-    
-    // Modifying elements
-    vector<int> numbers = {1, 2, 3, 4, 5};
-    for (auto& n : numbers) {
-        n *= 2;
-    }
-    cout << "Doubled: ";
-    for (int n : numbers) {
-        cout << n << " ";
-    }
-    cout << endl;
-    
-    // Map with structured bindings (C++17)
-    map<string, int> scores = {{"Alice", 95}, {"Bob", 87}, {"Charlie", 92}};
-    cout << "Scores:" << endl;
-    for (const auto& [name, score] : scores) {
-        cout << "  " << name << ": " << score << endl;
-    }
-    
-    // Custom container
-    Collection col;
-    cout << "Custom collection: ";
-    for (int x : col) {
-        cout << x << " ";
-    }
-    cout << endl;
-    
-    return 0;
-}
+**Uniform Initialization Solution:**
+
+| Feature | Description |
+|---------|-------------|
+| **Braced initialization** | `T{args...}` |
+| **Narrowing prevention** | Compile-time error |
+| **Initializer list constructors** | `std::initializer_list<T>` |
+| **Aggregate initialization** | Works with arrays and aggregates |
+
+**Initialization Priority:**
+
+```
+1. Initializer list constructor (if matches)
+2. Regular constructor
+3. Aggregate initialization
 ```
 
 ---
 
-## 3. **Lambda Expressions**
+### 9. constexpr Theory
 
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <functional>
-#include <memory>
-using namespace std;
+**constexpr vs const:**
 
-class Processor {
-private:
-    int multiplier_ = 2;
-    
-public:
-    void process(vector<int>& data) {
-        // Lambda capturing this
-        for_each(data.begin(), data.end(), [this](int& x) {
-            x *= multiplier_;
-        });
-    }
-    
-    auto getMultiplier() const { return multiplier_; }
-};
+| Aspect | const | constexpr |
+|--------|-------|-----------|
+| **Evaluation time** | Runtime | Compile time (or runtime) |
+| **Initialization** | At runtime | Must be constant expression |
+| **Function calls** | No | Yes (C++11 limited, C++14 expanded) |
+| **Variables** | Can be initialized at runtime | Must be initialized at compile time |
 
-int main() {
-    cout << "=== Lambda Expressions ===" << endl;
-    
-    // Basic lambda
-    auto add = [](int a, int b) { return a + b; };
-    cout << "add(5, 3) = " << add(5, 3) << endl;
-    
-    // Lambda with capture
-    int factor = 2;
-    auto multiply = [factor](int x) { return x * factor; };
-    cout << "multiply(5) = " << multiply(5) << endl;
-    
-    // Mutable lambda
-    int counter = 0;
-    auto increment = [counter]() mutable {
-        return ++counter;
-    };
-    cout << "Counter: " << increment() << ", " << increment() << endl;
-    
-    // Lambda with STL algorithms
-    vector<int> numbers = {1, 2, 3, 4, 5};
-    
-    // Transform
-    vector<int> squares(numbers.size());
-    transform(numbers.begin(), numbers.end(), squares.begin(), 
-              [](int x) { return x * x; });
-    cout << "Squares: ";
-    for (int x : squares) cout << x << " ";
-    cout << endl;
-    
-    // Filter
-    auto it = remove_if(numbers.begin(), numbers.end(), 
-                        [](int x) { return x % 2 == 0; });
-    numbers.erase(it, numbers.end());
-    cout << "Odd numbers: ";
-    for (int x : numbers) cout << x << " ";
-    cout << endl;
-    
-    // Lambda capturing this
-    Processor proc;
-    vector<int> data = {1, 2, 3, 4, 5};
-    proc.process(data);
-    cout << "Processed data: ";
-    for (int x : data) cout << x << " ";
-    cout << endl;
-    
-    // Generic lambda (C++14)
-    auto generic_add = [](auto a, auto b) { return a + b; };
-    cout << "generic_add(5, 3) = " << generic_add(5, 3) << endl;
-    cout << "generic_add(3.14, 2.71) = " << generic_add(3.14, 2.71) << endl;
-    
-    // Lambda as function object
-    function<int(int, int)> func = [](int a, int b) { return a + b; };
-    cout << "function: " << func(10, 20) << endl;
-    
-    return 0;
-}
-```
+**constexpr Function Requirements (C++14):**
+
+| Requirement | Description |
+|-------------|-------------|
+| **Body** | Can have loops, multiple statements |
+| **Parameters** | Must be literal types |
+| **Return type** | Must be literal type |
+| **No static/thread_local** | Not allowed |
+| **No goto** | Not allowed |
+| **No try-catch** | Not allowed (except for consteval) |
 
 ---
 
-## 4. **Smart Pointers**
+### 10. Concepts Theory (C++20)
+
+**Problems with Traditional Templates:**
+
+| Problem | Description |
+|---------|-------------|
+| **Error messages** | Long, cryptic errors when constraints violated |
+| **No intent documentation** | Template requirements not explicit |
+| **Overload resolution** | Difficult to constrain templates |
+
+**Concept Solution:**
+
+| Feature | Description |
+|---------|-------------|
+| **Named requirements** | Concepts document template constraints |
+| **Early checking** | Constraints checked before instantiation |
+| **Better errors** | Clear, readable error messages |
+| **Overload resolution** | Concepts participate in overload resolution |
+
+**Concept vs requires Clause:**
+
+| Approach | Syntax | Use Case |
+|----------|--------|----------|
+| **Concept** | `template <Integral T>` | Most common, readable |
+| **Requires clause** | `template <typename T> requires Integral<T>` | Complex constraints |
+| **Trailing requires** | `auto add(T a, T b) requires Integral<T>` | After function declaration |
+
+---
+
+### 11. RAII Evolution
+
+**Traditional RAII (C++98):**
 
 ```cpp
-#include <iostream>
-#include <memory>
-#include <vector>
-#include <string>
-using namespace std;
-
 class Resource {
-private:
-    string name_;
-    static int count_;
-    
+    int* data_;
 public:
-    Resource(string name) : name_(name) {
-        count_++;
-        cout << "Resource '" << name_ << "' created (total: " << count_ << ")" << endl;
-    }
-    
-    ~Resource() {
-        count_--;
-        cout << "Resource '" << name_ << "' destroyed (remaining: " << count_ << ")" << endl;
-    }
-    
-    void use() const {
-        cout << "Using resource: " << name_ << endl;
-    }
-    
-    string getName() const { return name_; }
+    Resource() : data_(new int[100]) { }
+    ~Resource() { delete[] data_; }
+    // Copy not implemented - resource can't be copied
 };
-
-int Resource::count_ = 0;
-
-// unique_ptr - exclusive ownership
-void uniquePtrExample() {
-    cout << "\n--- unique_ptr ---" << endl;
-    
-    unique_ptr<Resource> u1 = make_unique<Resource>("Unique1");
-    unique_ptr<Resource> u2 = make_unique<Resource>("Unique2");
-    
-    u1->use();
-    
-    // Transfer ownership
-    unique_ptr<Resource> u3 = move(u1);
-    if (!u1) cout << "u1 is now empty" << endl;
-    u3->use();
-}
-
-// shared_ptr - shared ownership
-void sharedPtrExample() {
-    cout << "\n--- shared_ptr ---" << endl;
-    
-    shared_ptr<Resource> s1 = make_shared<Resource>("Shared1");
-    {
-        shared_ptr<Resource> s2 = s1;  // Reference count: 2
-        shared_ptr<Resource> s3 = s2;  // Reference count: 3
-        cout << "Reference count: " << s1.use_count() << endl;
-        s2->use();
-    }  // s2 and s3 destroyed, count becomes 1
-    cout << "Reference count: " << s1.use_count() << endl;
-}
-
-// weak_ptr - non-owning observer
-void weakPtrExample() {
-    cout << "\n--- weak_ptr ---" << endl;
-    
-    shared_ptr<Resource> s = make_shared<Resource>("Shared");
-    weak_ptr<Resource> w = s;
-    
-    cout << "Reference count: " << s.use_count() << endl;
-    
-    if (auto locked = w.lock()) {
-        locked->use();
-        cout << "Weak pointer valid" << endl;
-    }
-    
-    s.reset();  // Destroy the object
-    
-    if (auto locked = w.lock()) {
-        locked->use();
-    } else {
-        cout << "Weak pointer expired" << endl;
-    }
-}
-
-// Custom deleter
-void customDeleterExample() {
-    cout << "\n--- Custom Deleter ---" << endl;
-    
-    auto deleter = [](Resource* r) {
-        cout << "Custom deleting: " << r->getName() << endl;
-        delete r;
-    };
-    
-    unique_ptr<Resource, decltype(deleter)> u(new Resource("Custom"), deleter);
-    u->use();
-}
-
-int main() {
-    cout << "=== Smart Pointers ===" << endl;
-    
-    uniquePtrExample();
-    sharedPtrExample();
-    weakPtrExample();
-    customDeleterExample();
-    
-    cout << "\nAll resources automatically managed!" << endl;
-    
-    return 0;
-}
 ```
 
----
-
-## 5. **Move Semantics**
+**Modern RAII (C++11):**
 
 ```cpp
-#include <iostream>
-#include <string>
-#include <vector>
-#include <chrono>
-using namespace std;
-
-class StringBuffer {
-private:
-    char* data_;
-    size_t size_;
-    
+class Resource {
+    unique_ptr<int[]> data_;
 public:
-    // Constructor
-    StringBuffer(const char* str = "") {
-        size_ = strlen(str);
-        data_ = new char[size_ + 1];
-        strcpy(data_, str);
-        cout << "Constructed: " << data_ << endl;
-    }
-    
-    // Copy constructor (expensive)
-    StringBuffer(const StringBuffer& other) {
-        size_ = other.size_;
-        data_ = new char[size_ + 1];
-        strcpy(data_, other.data_);
-        cout << "Copied: " << data_ << endl;
-    }
-    
-    // Move constructor (efficient)
-    StringBuffer(StringBuffer&& other) noexcept
-        : data_(other.data_), size_(other.size_) {
-        other.data_ = nullptr;
-        other.size_ = 0;
-        cout << "Moved: " << data_ << endl;
-    }
-    
-    // Copy assignment
-    StringBuffer& operator=(const StringBuffer& other) {
-        if (this != &other) {
-            delete[] data_;
-            size_ = other.size_;
-            data_ = new char[size_ + 1];
-            strcpy(data_, other.data_);
-            cout << "Copy assigned: " << data_ << endl;
-        }
-        return *this;
-    }
-    
-    // Move assignment
-    StringBuffer& operator=(StringBuffer&& other) noexcept {
-        if (this != &other) {
-            delete[] data_;
-            data_ = other.data_;
-            size_ = other.size_;
-            other.data_ = nullptr;
-            other.size_ = 0;
-            cout << "Move assigned: " << data_ << endl;
-        }
-        return *this;
-    }
-    
-    ~StringBuffer() {
-        if (data_) {
-            cout << "Destroyed: " << data_ << endl;
-            delete[] data_;
-        }
-    }
-    
-    void display() const {
-        if (data_) cout << "String: " << data_ << endl;
-        else cout << "String: (empty)" << endl;
-    }
+    Resource() : data_(make_unique<int[]>(100)) { }
+    // Default destructor works
+    // Move semantics enabled automatically
 };
-
-StringBuffer createBuffer() {
-    StringBuffer temp("Temporary");
-    return temp;  // Move or RVO
-}
-
-int main() {
-    cout << "=== Move Semantics ===" << endl;
-    
-    cout << "\n1. Copy vs Move:" << endl;
-    StringBuffer s1("Hello");
-    StringBuffer s2 = s1;           // Copy
-    StringBuffer s3 = move(s1);     // Move
-    cout << "s1 after move: ";
-    s1.display();
-    cout << "s2: ";
-    s2.display();
-    cout << "s3: ";
-    s3.display();
-    
-    cout << "\n2. Returning from function:" << endl;
-    StringBuffer s4 = createBuffer();  // Move or RVO
-    s4.display();
-    
-    cout << "\n3. Move with vector:" << endl;
-    vector<StringBuffer> vec;
-    vec.push_back(StringBuffer("First"));   // Move
-    vec.push_back(StringBuffer("Second"));  // Move
-    vec.push_back(StringBuffer("Third"));   // Move
-    
-    return 0;
-}
 ```
 
----
+**RAII + Move Semantics Benefits:**
 
-## 6. **override and final Specifiers**
-
-```cpp
-#include <iostream>
-#include <string>
-#include <memory>
-#include <vector>
-using namespace std;
-
-// Base class
-class Shape {
-public:
-    virtual void draw() const {
-        cout << "Drawing shape" << endl;
-    }
-    
-    virtual double area() const = 0;
-    
-    virtual void scale(double factor) {
-        cout << "Scaling shape" << endl;
-    }
-    
-    virtual ~Shape() = default;
-};
-
-// override ensures correct overriding
-class Circle : public Shape {
-private:
-    double radius_;
-    
-public:
-    Circle(double r) : radius_(r) {}
-    
-    void draw() const override {
-        cout << "Drawing circle with radius " << radius_ << endl;
-    }
-    
-    double area() const override {
-        return 3.14159 * radius_ * radius_;
-    }
-    
-    // final prevents further overriding
-    void scale(double factor) override final {
-        radius_ *= factor;
-        cout << "Circle scaled to radius " << radius_ << endl;
-    }
-};
-
-// Cannot override final function
-class BigCircle : public Circle {
-public:
-    BigCircle(double r) : Circle(r) {}
-    
-    // void scale(double factor) override { }  // Error! final function
-    
-    void draw() const override {
-        cout << "Drawing big circle" << endl;
-    }
-};
-
-// final class - cannot be inherited
-class FinalShape final : public Shape {
-public:
-    double area() const override { return 0; }
-    void draw() const override { cout << "Drawing final shape" << endl; }
-};
-
-// class InvalidShape : public FinalShape { };  // Error! FinalShape is final
-
-int main() {
-    cout << "=== override and final Specifiers ===" << endl;
-    
-    Circle circle(5.0);
-    BigCircle bigCircle(10.0);
-    
-    cout << "\n1. Virtual function calls:" << endl;
-    circle.draw();
-    circle.scale(2.0);
-    
-    cout << "\n2. Polymorphic container:" << endl;
-    vector<unique_ptr<Shape>> shapes;
-    shapes.push_back(make_unique<Circle>(3.0));
-    shapes.push_back(make_unique<BigCircle>(7.0));
-    
-    for (const auto& shape : shapes) {
-        shape->draw();
-        cout << "Area: " << shape->area() << endl;
-    }
-    
-    cout << "\n3. final class:" << endl;
-    FinalShape fs;
-    fs.draw();
-    
-    return 0;
-}
-```
+| Benefit | Description |
+|---------|-------------|
+| **Automatic cleanup** | Destructor still works |
+| **Move support** | Resources can be transferred |
+| **No manual copy** | unique_ptr prevents accidental copy |
+| **Exception safety** | No leaks during stack unwinding |
 
 ---
 
-## 📊 Modern C++ Features Summary
+### 12. Performance Implications
 
-| Feature | Purpose | Best Practice |
-|---------|---------|---------------|
-| **auto** | Type deduction | Use for complex types, avoid for simple types |
-| **decltype** | Expression type | Use in templates and trailing returns |
-| **Range-for** | Simplified iteration | Use for all container iteration |
-| **Lambda** | Anonymous functions | Capture by value for small data, by reference for large |
-| **Smart Pointers** | Automatic memory | unique_ptr for exclusive, shared_ptr for shared |
-| **Move Semantics** | Efficient transfer | Use for large objects, implement move operations |
-| **override** | Virtual override safety | Always use when overriding virtual functions |
-| **final** | Prevent overriding | Use for leaf classes and final overrides |
+| Feature | Overhead | When to Use |
+|---------|----------|-------------|
+| **auto** | Zero (compile time) | Always when type is obvious |
+| **Range-based for** | Zero (same as manual loop) | Always for iteration |
+| **Lambda** | Zero (function object) | Local functions, STL algorithms |
+| **unique_ptr** | Zero (same as raw pointer) | Exclusive ownership |
+| **shared_ptr** | Control block, atomic ops | Shared ownership |
+| **move semantics** | Zero (transfer instead of copy) | Expensive-to-copy objects |
+| **constexpr** | Zero (compile time) | Compile-time computations |
+| **Concepts** | Zero (compile time) | Template constraints |
+
+---
+
+### Key Takeaways
+
+1. **Modern C++** (C++11 onward) fundamentally changed how C++ is written
+2. **Zero-overhead principle** ensures abstractions don't cost performance
+3. **Type deduction** (`auto`, `decltype`) reduces verbosity while maintaining safety
+4. **Move semantics** enables efficient transfer of resources
+5. **Smart pointers** provide RAII for dynamic memory
+6. **Lambdas** enable local function objects for algorithms
+7. **Uniform initialization** provides consistent, safe initialization syntax
+8. **constexpr** moves computation to compile time
+9. **Concepts** (C++20) improve template error messages and constraints
+10. **RAII + move semantics** enables safe, efficient resource management
 
 ---
 
-## ✅ Key Takeaways
+### Next Steps
 
-1. **auto** simplifies code but use judiciously
-2. **Range-based for** makes iteration cleaner
-3. **Lambdas** enable functional programming patterns
-4. **Smart pointers** eliminate manual memory management
-5. **Move semantics** dramatically improve performance
-6. **override** prevents subtle bugs in inheritance
-7. **final** documents design intent
-8. **Modern C++** is safer and more expressive
-
----
----
-
-## Next Step
-
-- Go to [README.md](README.md) to continue.
+- Go to [01_Auto_and_Decltype.md](01_Auto_and_Decltype.md) to understand Auto and Decltype.

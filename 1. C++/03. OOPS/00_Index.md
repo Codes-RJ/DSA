@@ -255,7 +255,3 @@ Each topic is tagged with difficulty and prerequisites:
 Happy learning! 🎯
 
 ---
-
-*Last Updated: 2024*
-*Total Topics: 130+ files*
-*Estimated Content: 500-600 pages*

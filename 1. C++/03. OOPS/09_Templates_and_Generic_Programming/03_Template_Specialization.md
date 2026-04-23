@@ -1,656 +1,628 @@
-﻿# Template Specialization
+﻿# 03_Template_Specialization.md
 
-## 📖 Overview
+## Template Specialization in C++
 
-Template specialization allows you to define custom implementations of templates for specific types. When the general template implementation doesn't work well for a particular type or requires special handling, you can provide a specialized version that overrides the generic behavior.
+### Overview
 
----
-
-## 🎯 Key Concepts
-
-- **Full Specialization**: Complete replacement for a specific type
-- **Partial Specialization**: Specialization for some template parameters
-- **Explicit Specialization**: Using `template <>` syntax
-- **Function Template Specialization**: Special behavior for specific types
-- **Class Template Specialization**: Custom class implementation
+Template specialization allows providing custom implementations of templates for specific types or type categories. While a generic template works for most types, sometimes you need special behavior for certain types (e.g., `bool`, `char*`, or containers). Specialization enables optimization, type-specific logic, and handling of edge cases without sacrificing the benefits of generic programming.
 
 ---
 
-## 💻 Syntax Overview
+### What is Template Specialization?
 
-### Full Specialization
-```cpp
-template <>
-class ClassName<SpecificType> {
-    // Specialized implementation
-};
-```
+Template specialization is a mechanism that lets you define a separate version of a template for a specific set of template arguments. When the compiler encounters a template instantiation, it first looks for a matching specialization before using the primary template.
 
-### Partial Specialization
-```cpp
-template <typename T>
-class ClassName<T, SpecificType> {
-    // Partially specialized implementation
-};
-```
+**Types of Specialization:**
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Full Specialization** | Specific implementation for a concrete type | `template <> class Stack<bool>` |
+| **Partial Specialization** | Implementation for a category of types | `template <typename T> class Stack<T*>` |
+| **Function Template Specialization** | Specialization for function templates | `template <> void swap<Widget>(Widget&, Widget&)` |
 
 ---
 
-## 🔍 Detailed Explanation
+### Full Specialization for Class Templates
 
-### 1. **Function Template Specialization**
+Full specialization provides a completely separate implementation for a specific type.
 
 ```cpp
 #include <iostream>
 #include <cstring>
 using namespace std;
 
-// Generic function template
+// Primary template - works for most types
 template <typename T>
-T add(T a, T b) {
-    cout << "Generic add: ";
-    return a + b;
-}
-
-// Full specialization for const char*
-template <>
-const char* add<const char*>(const char* a, const char* b) {
-    cout << "String specialization: ";
-    static char result[100];
-    strcpy(result, a);
-    strcat(result, b);
-    return result;
-}
-
-// Generic compare function
-template <typename T>
-bool compare(T a, T b) {
-    cout << "Generic compare: ";
-    return a == b;
-}
-
-// Specialization for double (with epsilon)
-template <>
-bool compare<double>(double a, double b) {
-    cout << "Double specialization: ";
-    const double epsilon = 1e-10;
-    return abs(a - b) < epsilon;
-}
-
-// Generic print function
-template <typename T>
-void print(T value) {
-    cout << "Generic print: " << value << endl;
-}
-
-// Specialization for bool
-template <>
-void print<bool>(bool value) {
-    cout << "Bool specialization: " << (value ? "TRUE" : "FALSE") << endl;
-}
-
-// Specialization for pointers
-template <typename T>
-void print<T*>(T* ptr) {
-    cout << "Pointer specialization: " << ptr << " -> " << *ptr << endl;
-}
-
-int main() {
-    cout << "=== Function Template Specialization ===" << endl;
-    
-    // Generic add
-    cout << add(5, 3) << endl;
-    cout << add(3.14, 2.86) << endl;
-    
-    // Specialized string add
-    cout << add("Hello", " World") << endl;
-    
-    cout << endl;
-    
-    // Generic compare
-    cout << "5 == 5: " << compare(5, 5) << endl;
-    cout << "5.0 == 5.0000000001: " << compare(5.0, 5.0000000001) << endl;
-    
-    cout << endl;
-    
-    // Generic print
-    print(42);
-    print(3.14);
-    print("Hello");
-    
-    // Specialized print
-    print(true);
-    print(false);
-    
-    // Pointer specialization
-    int x = 100;
-    print(&x);
-    
-    return 0;
-}
-```
-
-### 2. **Class Template Full Specialization**
-
-```cpp
-#include <iostream>
-#include <cstring>
-using namespace std;
-
-// Generic Calculator class template
-template <typename T>
-class Calculator {
+class Printer {
 public:
-    T add(T a, T b) {
-        cout << "Generic add: ";
-        return a + b;
-    }
-    
-    T multiply(T a, T b) {
-        cout << "Generic multiply: ";
-        return a * b;
-    }
-    
-    T divide(T a, T b) {
-        cout << "Generic divide: ";
-        if (b == 0) {
-            throw runtime_error("Division by zero");
-        }
-        return a / b;
-    }
-    
-    void display(T value) {
-        cout << "Result: " << value << endl;
-    }
-};
-
-// Full specialization for const char*
-template <>
-class Calculator<const char*> {
-public:
-    const char* add(const char* a, const char* b) {
-        cout << "String add: ";
-        static char result[100];
-        strcpy(result, a);
-        strcat(result, b);
-        return result;
-    }
-    
-    const char* multiply(const char* a, const char* b) {
-        cout << "String multiply (concatenation): ";
-        return add(a, b); // Reuse add functionality
-    }
-    
-    const char* divide(const char* a, const char* b) {
-        cout << "String divide (not supported): ";
-        return "Cannot divide strings";
-    }
-    
-    void display(const char* value) {
-        cout << "String result: " << value << endl;
+    void print(const T& value) {
+        cout << "Generic printer: " << value << endl;
     }
 };
 
 // Full specialization for bool
 template <>
-class Calculator<bool> {
+class Printer<bool> {
 public:
-    bool add(bool a, bool b) {
-        cout << "Boolean add (OR): ";
-        return a || b;
+    void print(const bool& value) {
+        cout << "Boolean printer: " << (value ? "true" : "false") << endl;
     }
-    
-    bool multiply(bool a, bool b) {
-        cout << "Boolean multiply (AND): ";
-        return a && b;
+};
+
+// Full specialization for const char*
+template <>
+class Printer<const char*> {
+public:
+    void print(const char* value) {
+        cout << "C-string printer: \"" << value << "\"" << endl;
     }
-    
-    bool divide(bool a, bool b) {
-        cout << "Boolean divide (not supported): ";
-        return false;
-    }
-    
-    void display(bool value) {
-        cout << "Boolean result: " << (value ? "TRUE" : "FALSE") << endl;
+};
+
+// Full specialization for string
+template <>
+class Printer<string> {
+public:
+    void print(const string& value) {
+        cout << "String printer: \"" << value << "\"" << endl;
     }
 };
 
 int main() {
-    cout << "=== Class Template Full Specialization ===" << endl;
+    Printer<int> intPrinter;
+    intPrinter.print(42);
     
-    // Generic calculator
-    Calculator<int> intCalc;
-    cout << intCalc.add(5, 3) << endl;
-    cout << intCalc.multiply(4, 6) << endl;
-    intCalc.display(intCalc.divide(10, 2));
+    Printer<double> doublePrinter;
+    doublePrinter.print(3.14159);
     
-    cout << endl;
+    Printer<bool> boolPrinter;
+    boolPrinter.print(true);
+    boolPrinter.print(false);
     
-    // String calculator (specialized)
-    Calculator<const char*> stringCalc;
-    cout << stringCalc.add("Hello", " World") << endl;
-    cout << stringCalc.multiply("Hi", " There") << endl;
-    stringCalc.display(stringCalc.divide("A", "B"));
+    Printer<const char*> cstrPrinter;
+    cstrPrinter.print("Hello, World!");
     
-    cout << endl;
-    
-    // Boolean calculator (specialized)
-    Calculator<bool> boolCalc;
-    cout << boolCalc.add(true, false) << endl;
-    cout << boolCalc.multiply(true, true) << endl;
-    cout << boolCalc.multiply(true, false) << endl;
+    Printer<string> strPrinter;
+    strPrinter.print("C++ Programming");
     
     return 0;
 }
 ```
 
-### 3. **Class Template Partial Specialization**
+**Output:**
+```
+Generic printer: 42
+Generic printer: 3.14159
+Boolean printer: true
+Boolean printer: false
+C-string printer: "Hello, World!"
+String printer: "C++ Programming"
+```
+
+---
+
+### Full Specialization for Function Templates
+
+Function templates can also be fully specialized.
+
+```cpp
+#include <iostream>
+#include <string>
+#include <cstring>
+using namespace std;
+
+// Primary function template
+template <typename T>
+T maxValue(T a, T b) {
+    cout << "Generic max: ";
+    return (a > b) ? a : b;
+}
+
+// Full specialization for const char* (C-style strings)
+template <>
+const char* maxValue<const char*>(const char* a, const char* b) {
+    cout << "C-string max (strcmp): ";
+    return (strcmp(a, b) > 0) ? a : b;
+}
+
+// Full specialization for string
+template <>
+string maxValue<string>(string a, string b) {
+    cout << "String max (lexicographic): ";
+    return (a > b) ? a : b;
+}
+
+// Full specialization for int (can optimize)
+template <>
+int maxValue<int>(int a, int b) {
+    cout << "Integer max (optimized): ";
+    return (a > b) ? a : b;
+}
+
+int main() {
+    cout << maxValue(10, 20) << endl;
+    cout << maxValue(3.14, 2.71) << endl;
+    cout << maxValue('A', 'Z') << endl;
+    
+    const char* str1 = "apple";
+    const char* str2 = "orange";
+    cout << maxValue(str1, str2) << endl;
+    
+    string s1 = "hello";
+    string s2 = "world";
+    cout << maxValue(s1, s2) << endl;
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Integer max (optimized): 20
+Generic max: 3.14
+Generic max: Z
+C-string max (strcmp): orange
+String max (lexicographic): world
+```
+
+---
+
+### Partial Specialization for Class Templates
+
+Partial specialization applies when some (but not all) template parameters are specified. This is only available for class templates (not function templates).
 
 ```cpp
 #include <iostream>
 using namespace std;
 
-// Generic template with two parameters
+// Primary template
 template <typename T, typename U>
 class Pair {
-private:
-    T first;
-    U second;
-    
 public:
-    Pair(T f, U s) : first(f), second(s) {}
-    
     void display() {
-        cout << "Generic Pair[" << first << ", " << second << "]" << endl;
+        cout << "Generic Pair: (" << typeid(T).name() << ", " 
+             << typeid(U).name() << ")" << endl;
     }
-    
-    T getFirst() { return first; }
-    U getSecond() { return second; }
 };
 
-// Partial specialization for same types
+// Partial specialization: Both types are the same
 template <typename T>
 class Pair<T, T> {
-private:
-    T first;
-    T second;
-    
 public:
-    Pair(T f, T s) : first(f), second(s) {}
-    
     void display() {
-        cout << "Same-type Pair[" << first << ", " << second << "]" << endl;
-        cout << "Both elements are of the same type!" << endl;
+        cout << "Same-type Pair: (" << typeid(T).name() 
+             << ", " << typeid(T).name() << ")" << endl;
     }
+};
+
+// Partial specialization: First type is pointer
+template <typename T, typename U>
+class Pair<T*, U> {
+public:
+    void display() {
+        cout << "Pointer-first Pair: (T*, U)" << endl;
+    }
+};
+
+// Partial specialization: Second type is pointer
+template <typename T, typename U>
+class Pair<T, U*> {
+public:
+    void display() {
+        cout << "Pointer-second Pair: (T, U*)" << endl;
+    }
+};
+
+// Partial specialization: Both are pointers
+template <typename T, typename U>
+class Pair<T*, U*> {
+public:
+    void display() {
+        cout << "Both-pointers Pair: (T*, U*)" << endl;
+    }
+};
+
+// Partial specialization: First is const
+template <typename T, typename U>
+class Pair<const T, U> {
+public:
+    void display() {
+        cout << "Const-first Pair: (const T, U)" << endl;
+    }
+};
+
+int main() {
+    Pair<int, double> p1;
+    p1.display();
     
-    T getFirst() { return first; }
-    T getSecond() { return second; }
+    Pair<int, int> p2;
+    p2.display();
     
-    // Additional method for same-type pairs
-    T getSum() {
-        return first + second;
+    Pair<int*, double> p3;
+    p3.display();
+    
+    Pair<int, double*> p4;
+    p4.display();
+    
+    Pair<int*, double*> p5;
+    p5.display();
+    
+    Pair<const int, double> p6;
+    p6.display();
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Generic Pair: (i, d)
+Same-type Pair: (i, i)
+Pointer-first Pair: (T*, U)
+Pointer-second Pair: (T, U*)
+Both-pointers Pair: (T*, U*)
+Const-first Pair: (const T, U)
+```
+
+---
+
+### Specialization for Arrays
+
+Partial specialization for array types is common in template metaprogramming.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Primary template
+template <typename T>
+class ArrayInfo {
+public:
+    static void show() {
+        cout << "Type: " << typeid(T).name() << " (not an array)" << endl;
+    }
+};
+
+// Partial specialization for array of known size
+template <typename T, int N>
+class ArrayInfo<T[N]> {
+public:
+    static void show() {
+        cout << "Array of " << N << " elements of type: " 
+             << typeid(T).name() << endl;
+    }
+};
+
+// Partial specialization for unbounded array
+template <typename T>
+class ArrayInfo<T[]> {
+public:
+    static void show() {
+        cout << "Unbounded array of type: " << typeid(T).name() << endl;
+    }
+};
+
+// Get array size at compile time
+template <typename T, int N>
+int getArraySize(T (&)[N]) {
+    return N;
+}
+
+int main() {
+    ArrayInfo<int>::show();
+    
+    int arr1[10];
+    ArrayInfo<decltype(arr1)>::show();
+    
+    int arr2[];
+    ArrayInfo<decltype(arr2)>::show();
+    
+    // Compile-time array size
+    int numbers[] = {1, 2, 3, 4, 5};
+    cout << "Array size: " << getArraySize(numbers) << endl;
+    
+    double prices[] = {10.5, 20.3, 15.8, 30.2};
+    cout << "Array size: " << getArraySize(prices) << endl;
+    
+    return 0;
+}
+```
+
+---
+
+### Specialization for Pointers and References
+
+Specializing for pointer and reference types is common in type traits.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Primary template - detects if type is a pointer
+template <typename T>
+struct IsPointer {
+    static const bool value = false;
+    static void check() {
+        cout << typeid(T).name() << " is NOT a pointer" << endl;
     }
 };
 
 // Partial specialization for pointer types
 template <typename T>
-class Pair<T*, T*> {
-private:
-    T* first;
-    T* second;
-    
-public:
-    Pair(T* f, T* s) : first(f), second(s) {}
-    
-    void display() {
-        cout << "Pointer Pair[" << first << ", " << second << "]" << endl;
-        cout << "Values: [" << *first << ", " << *second << "]" << endl;
-    }
-    
-    T* getFirst() { return first; }
-    T* getSecond() { return second; }
-    
-    // Swap the pointed values
-    void swapValues() {
-        T temp = *first;
-        *first = *second;
-        *second = temp;
+struct IsPointer<T*> {
+    static const bool value = true;
+    static void check() {
+        cout << typeid(T*).name() << " IS a pointer to " 
+             << typeid(T).name() << endl;
     }
 };
 
-// Template with three parameters
-template <typename T, typename U, typename V>
-class Triple {
-private:
-    T first;
-    U second;
-    V third;
-    
-public:
-    Triple(T f, U s, V t) : first(f), second(s), third(t) {}
-    
-    void display() {
-        cout << "Generic Triple[" << first << ", " << second << ", " << third << "]" << endl;
-    }
-};
-
-// Partial specialization for all same types
+// Partial specialization for const pointers
 template <typename T>
-class Triple<T, T, T> {
-private:
-    T first, second, third;
-    
-public:
-    Triple(T f, T s, T t) : first(f), second(s), third(t) {}
-    
-    void display() {
-        cout << "Uniform Triple[" << first << ", " << second << ", " << third << "]" << endl;
-        cout << "All elements are the same type!" << endl;
+struct IsPointer<const T*> {
+    static const bool value = true;
+    static void check() {
+        cout << "const " << typeid(T*).name() << " IS a const pointer" << endl;
     }
-    
-    T getSum() {
-        return first + second + third;
+};
+
+// Partial specialization for volatile pointers
+template <typename T>
+struct IsPointer<volatile T*> {
+    static const bool value = true;
+    static void check() {
+        cout << "volatile " << typeid(T*).name() << " IS a volatile pointer" << endl;
     }
+};
+
+// For references
+template <typename T>
+struct IsReference {
+    static const bool value = false;
+};
+
+template <typename T>
+struct IsReference<T&> {
+    static const bool value = true;
+};
+
+template <typename T>
+struct IsReference<T&&> {
+    static const bool value = true;
 };
 
 int main() {
-    cout << "=== Class Template Partial Specialization ===" << endl;
+    IsPointer<int>::check();
+    IsPointer<int*>::check();
+    IsPointer<const int*>::check();
+    IsPointer<volatile int*>::check();
+    IsPointer<int**>::check();
     
-    // Generic pairs
-    Pair<int, string> p1(42, "Answer");
-    p1.display();
-    
-    Pair<double, bool> p2(3.14, true);
-    p2.display();
-    
-    cout << endl;
-    
-    // Same-type pairs (partial specialization)
-    Pair<int, int> p3(10, 20);
-    p3.display();
-    cout << "Sum: " << p3.getSum() << endl;
-    
-    Pair<string, string> p4("Hello", "World");
-    p4.display();
-    cout << "Sum: " << p4.getSum() << endl;
-    
-    cout << endl;
-    
-    // Pointer pairs (partial specialization)
-    int x = 100, y = 200;
-    Pair<int*, int*> p5(&x, &y);
-    p5.display();
-    
-    cout << "Before swap: x=" << x << ", y=" << y << endl;
-    p5.swapValues();
-    cout << "After swap: x=" << x << ", y=" << y << endl;
-    
-    cout << endl;
-    
-    // Triple examples
-    Triple<int, string, double> t1(1, "Two", 3.0);
-    t1.display();
-    
-    Triple<int, int, int> t2(1, 2, 3);
-    t2.display();
-    cout << "Sum: " << t2.getSum() << endl;
+    cout << "\nIsReference checks:" << endl;
+    cout << "int is reference: " << IsReference<int>::value << endl;
+    cout << "int& is reference: " << IsReference<int&>::value << endl;
+    cout << "int&& is reference: " << IsReference<int&&>::value << endl;
     
     return 0;
 }
 ```
 
-### 4. **Advanced Specialization Techniques**
+**Output:**
+```
+i is NOT a pointer
+Pi IS a pointer to i
+const Pi IS a const pointer
+volatile Pi IS a volatile pointer
+PPi IS a pointer to Pi
+
+IsReference checks:
+int is reference: 0
+int& is reference: 1
+int&& is reference: 1
+```
+
+---
+
+### Real-World Example: Smart Pointer Specialization
 
 ```cpp
 #include <iostream>
-#include <type_traits>
 using namespace std;
 
-// Template with conditionally enabled members
+// Primary template - generic smart pointer
 template <typename T>
-class Container {
+class SmartPtr {
 private:
-    T data;
+    T* ptr_;
     
 public:
-    Container(T value) : data(value) {}
-    
-    // Method enabled only for arithmetic types
-    template <typename U = T>
-    typename enable_if<is_arithmetic<U>::value, U>::type
-    multiply(U factor) {
-        cout << "Arithmetic multiply: ";
-        return data * factor;
+    SmartPtr(T* ptr = nullptr) : ptr_(ptr) {
+        cout << "Generic SmartPtr created for " << typeid(T).name() << endl;
     }
     
-    // Method enabled only for string types
-    template <typename U = T>
-    typename enable_if<is_same<U, string>::value, U>::type
-    repeat(int times) {
-        cout << "String repeat: ";
-        string result;
-        for (int i = 0; i < times; i++) {
-            result += data;
-        }
-        return result;
+    ~SmartPtr() {
+        delete ptr_;
+        cout << "Generic SmartPtr destroyed" << endl;
     }
     
-    void display() {
-        cout << "Container holds: " << data << endl;
+    T* operator->() { return ptr_; }
+    T& operator*() { return *ptr_; }
+};
+
+// Full specialization for arrays
+template <typename T>
+class SmartPtr<T[]> {
+private:
+    T* ptr_;
+    int size_;
+    
+public:
+    SmartPtr(T* ptr = nullptr, int size = 0) : ptr_(ptr), size_(size) {
+        cout << "Array SmartPtr created for " << typeid(T).name() 
+             << "[" << size_ << "]" << endl;
+    }
+    
+    ~SmartPtr() {
+        delete[] ptr_;
+        cout << "Array SmartPtr destroyed" << endl;
+    }
+    
+    T& operator[](int index) { return ptr_[index]; }
+};
+
+// Full specialization for bool (optimization)
+template <>
+class SmartPtr<bool> {
+private:
+    unsigned char* ptr_;
+    int bits_;
+    
+public:
+    SmartPtr(bool* ptr = nullptr, int bits = 0) : bits_(bits) {
+        // Pack booleans into bits
+        cout << "Bool SmartPtr (optimized) created" << endl;
+    }
+    
+    ~SmartPtr() {
+        cout << "Bool SmartPtr destroyed" << endl;
     }
 };
 
-// Specialization for arrays
-template <typename T, size_t N>
-class Container<T[N]> {
-private:
-    T data[N];
+int main() {
+    SmartPtr<int> intPtr(new int(42));
+    *intPtr = 100;
+    cout << "Value: " << *intPtr << endl;
     
-public:
-    Container(const T (&arr)[N]) {
-        for (size_t i = 0; i < N; i++) {
-            data[i] = arr[i];
-        }
-    }
+    SmartPtr<int[]> arrPtr(new int[5], 5);
+    arrPtr[0] = 10;
+    arrPtr[1] = 20;
+    cout << "arrPtr[0]: " << arrPtr[0] << endl;
     
-    T& operator[](size_t index) {
-        return data[index];
-    }
+    SmartPtr<bool> boolPtr(new bool[10], 10);
     
-    const T& operator[](size_t index) const {
-        return data[index];
-    }
-    
-    size_t size() const { return N; }
-    
-    void display() {
-        cout << "Array Container [";
-        for (size_t i = 0; i < N; i++) {
-            cout << data[i];
-            if (i < N - 1) cout << ", ";
-        }
-        cout << "]" << endl;
-    }
-};
+    return 0;
+}
+```
 
-// Template class with specialization based on type properties
+---
+
+### Specialization Priority Rules
+
+When multiple specializations match, the compiler selects the most specialized one.
+
+```cpp
+#include <iostream>
+using namespace std;
+
 template <typename T>
-class TypeInfo {
-public:
-    static void printInfo() {
-        cout << "Generic type information" << endl;
-        cout << "Size: " << sizeof(T) << " bytes" << endl;
-    }
+struct Selector {
+    static void show() { cout << "Primary template" << endl; }
 };
 
 // Partial specialization for pointers
 template <typename T>
-class TypeInfo<T*> {
-public:
-    static void printInfo() {
-        cout << "Pointer type information" << endl;
-        cout << "Pointer size: " << sizeof(T*) << " bytes" << endl;
-        cout << "Pointed type size: " << sizeof(T) << " bytes" << endl;
-    }
+struct Selector<T*> {
+    static void show() { cout << "Pointer specialization" << endl; }
 };
 
-// Partial specialization for arrays
-template <typename T, size_t N>
-class TypeInfo<T[N]> {
-public:
-    static void printInfo() {
-        cout << "Array type information" << endl;
-        cout << "Array size: " << N << " elements" << endl;
-        cout << "Total size: " << sizeof(T[N]) << " bytes" << endl;
-        cout << "Element size: " << sizeof(T) << " bytes" << endl;
-    }
+// Partial specialization for const pointers
+template <typename T>
+struct Selector<const T*> {
+    static void show() { cout << "Const pointer specialization" << endl; }
+};
+
+// Full specialization for int*
+template <>
+struct Selector<int*> {
+    static void show() { cout << "int* full specialization" << endl; }
+};
+
+// Full specialization for const int*
+template <>
+struct Selector<const int*> {
+    static void show() { cout << "const int* full specialization" << endl; }
 };
 
 int main() {
-    cout << "=== Advanced Specialization Techniques ===" << endl;
-    
-    // Container with conditional methods
-    Container<int> intContainer(42);
-    intContainer.display();
-    cout << "Multiplied by 3: " << intContainer.multiply(3) << endl;
-    
-    Container<string> stringContainer("Hello");
-    stringContainer.display();
-    cout << "Repeated 3 times: " << stringContainer.repeat(3) << endl;
-    
-    cout << endl;
-    
-    // Array container specialization
-    int arr[] = {1, 2, 3, 4, 5};
-    Container<int[5]> arrayContainer(arr);
-    arrayContainer.display();
-    cout << "Element at index 2: " << arrayContainer[2] << endl;
-    
-    cout << endl;
-    
-    // Type information with specializations
-    cout << "Type information:" << endl;
-    TypeInfo<int>::printInfo();
-    cout << endl;
-    
-    TypeInfo<int*>::printInfo();
-    cout << endl;
-    
-    TypeInfo<double[10]>::printInfo();
+    Selector<double>::show();           // Primary template
+    Selector<double*>::show();          // Pointer specialization
+    Selector<const double*>::show();    // Const pointer specialization
+    Selector<int*>::show();             // int* full specialization
+    Selector<const int*>::show();       // const int* full specialization
     
     return 0;
 }
 ```
 
-### 5. **Specialization with Inheritance**
+**Output:**
+```
+Primary template
+Pointer specialization
+Const pointer specialization
+int* full specialization
+const int* full specialization
+```
+
+**Priority Order (Highest to Lowest):**
+
+```
+1. Full specialization (exact match)
+2. Partial specialization (pattern match)
+3. Primary template (most general)
+```
+
+---
+
+### Limitations of Function Template Partial Specialization
+
+C++ does not allow partial specialization of function templates. Use overloading or class templates as workarounds.
 
 ```cpp
 #include <iostream>
-#include <string>
-#include <vector>
 using namespace std;
 
-// Base template class
+// Cannot partially specialize function templates:
+// template <typename T>
+// void process(T* ptr) { }  // This is overloading, not partial specialization
+
+// Workaround 1: Use overloading
 template <typename T>
-class Shape {
-protected:
-    T data;
-    
-public:
-    Shape(T d) : data(d) {}
-    
-    virtual void draw() {
-        cout << "Drawing generic shape with data: " << data << endl;
-    }
-    
-    virtual double getArea() {
-        cout << "Generic area calculation: ";
-        return 0.0;
-    }
-    
-    virtual ~Shape() {}
-};
+void process(T value) {
+    cout << "Generic: " << value << endl;
+}
 
-// Specialization for Circle
-template <>
-class Shape<double> {
-protected:
-    double radius;
-    
-public:
-    Shape(double r) : radius(r) {}
-    
-    void draw() {
-        cout << "Drawing circle with radius: " << radius << endl;
-    }
-    
-    double getArea() {
-        cout << "Circle area calculation: ";
-        return 3.14159 * radius * radius;
-    }
-};
-
-// Template class inheriting from specialized template
 template <typename T>
-class ColoredShape : public Shape<T> {
-private:
-    string color;
-    
-public:
-    ColoredShape(T data, string c) : Shape<T>(data), color(c) {}
-    
-    void draw() override {
-        cout << "Drawing colored " << color << " shape" << endl;
-        Shape<T>::draw();
+void process(T* ptr) {
+    cout << "Pointer: " << *ptr << endl;
+}
+
+// Workaround 2: Use a helper class template
+template <typename T>
+struct Processor {
+    static void execute(T value) {
+        cout << "Generic processor: " << value << endl;
     }
 };
 
-// Specialization for Rectangle (using composition)
-template <>
-class Shape<pair<double, double>> {
-protected:
-    pair<double, double> dimensions; // width, height
-    
-public:
-    Shape(pair<double, double> dims) : dimensions(dims) {}
-    
-    void draw() {
-        cout << "Drawing rectangle " << dimensions.first << "x" << dimensions.second << endl;
-    }
-    
-    double getArea() {
-        cout << "Rectangle area calculation: ";
-        return dimensions.first * dimensions.second;
+template <typename T>
+struct Processor<T*> {
+    static void execute(T* ptr) {
+        cout << "Pointer processor: " << *ptr << endl;
     }
 };
+
+template <typename T>
+void processWithHelper(T value) {
+    Processor<T>::execute(value);
+}
 
 int main() {
-    cout << "=== Specialization with Inheritance ===" << endl;
+    int x = 42;
     
-    // Generic shape
-    Shape<string> genericShape("Generic Data");
-    genericShape.draw();
-    cout << "Area: " << genericShape.getArea() << endl;
+    process(x);      // Generic
+    process(&x);     // Pointer (overload)
     
-    cout << endl;
-    
-    // Specialized circle
-    Shape<double> circle(5.0);
-    circle.draw();
-    cout << "Area: " << circle.getArea() << endl;
-    
-    cout << endl;
-    
-    // Colored shape inheriting from generic
-    ColoredShape<int> coloredIntShape(42, "red");
-    coloredIntShape.draw();
-    
-    cout << endl;
-    
-    // Specialized rectangle
-    Shape<pair<double, double>> rectangle({4.0, 6.0});
-    rectangle.draw();
-    cout << "Area: " << rectangle.getArea() << endl;
+    processWithHelper(x);   // Generic processor
+    processWithHelper(&x);  // Pointer processor
     
     return 0;
 }
@@ -658,308 +630,30 @@ int main() {
 
 ---
 
-## 🎮 Complete Example: Smart Pointer Specializations
+### Summary
 
-```cpp
-#include <iostream>
-#include <memory>
-#include <type_traits>
-using namespace std;
-
-// Generic smart pointer template
-template <typename T>
-class SmartPointer {
-private:
-    T* ptr;
-    
-public:
-    explicit SmartPointer(T* p = nullptr) : ptr(p) {}
-    
-    ~SmartPointer() {
-        delete ptr;
-    }
-    
-    // Copy semantics (deleted)
-    SmartPointer(const SmartPointer&) = delete;
-    SmartPointer& operator=(const SmartPointer&) = delete;
-    
-    // Move semantics
-    SmartPointer(SmartPointer&& other) noexcept : ptr(other.ptr) {
-        other.ptr = nullptr;
-    }
-    
-    SmartPointer& operator=(SmartPointer&& other) noexcept {
-        if (this != &other) {
-            delete ptr;
-            ptr = other.ptr;
-            other.ptr = nullptr;
-        }
-        return *this;
-    }
-    
-    T& operator*() const { return *ptr; }
-    T* operator->() const { return ptr; }
-    T* get() const { return ptr; }
-    
-    explicit operator bool() const { return ptr != nullptr; }
-    
-    void reset(T* p = nullptr) {
-        delete ptr;
-        ptr = p;
-    }
-    
-    void displayInfo() const {
-        cout << "Generic SmartPointer managing: " << typeid(T).name() << endl;
-        if (ptr) {
-            cout << "  Value: " << *ptr << endl;
-        } else {
-            cout << "  Value: nullptr" << endl;
-        }
-    }
-};
-
-// Specialization for arrays
-template <typename T>
-class SmartPointer<T[]> {
-private:
-    T* ptr;
-    size_t size;
-    
-public:
-    SmartPointer(T* p = nullptr, size_t s = 0) : ptr(p), size(s) {}
-    
-    ~SmartPointer() {
-        delete[] ptr;
-    }
-    
-    // Delete copy operations
-    SmartPointer(const SmartPointer&) = delete;
-    SmartPointer& operator=(const SmartPointer&) = delete;
-    
-    // Move operations
-    SmartPointer(SmartPointer&& other) noexcept : ptr(other.ptr), size(other.size) {
-        other.ptr = nullptr;
-        other.size = 0;
-    }
-    
-    SmartPointer& operator=(SmartPointer&& other) noexcept {
-        if (this != &other) {
-            delete[] ptr;
-            ptr = other.ptr;
-            size = other.size;
-            other.ptr = nullptr;
-            other.size = 0;
-        }
-        return *this;
-    }
-    
-    T& operator[](size_t index) const {
-        if (!ptr || index >= size) {
-            throw out_of_range("Array index out of bounds");
-        }
-        return ptr[index];
-    }
-    
-    T* get() const { return ptr; }
-    size_t getSize() const { return size; }
-    
-    explicit operator bool() const { return ptr != nullptr; }
-    
-    void displayInfo() const {
-        cout << "Array SmartPointer managing: " << typeid(T).name() << "[" << size << "]" << endl;
-        if (ptr) {
-            cout << "  Values: [";
-            for (size_t i = 0; i < size; i++) {
-                cout << ptr[i];
-                if (i < size - 1) cout << ", ";
-            }
-            cout << "]" << endl;
-        } else {
-            cout << "  Values: nullptr" << endl;
-        }
-    }
-};
-
-// Specialization for FILE handles
-template <>
-class SmartPointer<FILE> {
-private:
-    FILE* file;
-    
-public:
-    explicit SmartPointer(FILE* f = nullptr) : file(f) {}
-    
-    ~SmartPointer() {
-        if (file) {
-            fclose(file);
-        }
-    }
-    
-    // Delete copy operations
-    SmartPointer(const SmartPointer&) = delete;
-    SmartPointer& operator=(const SmartPointer&) = delete;
-    
-    // Move operations
-    SmartPointer(SmartPointer&& other) noexcept : file(other.file) {
-        other.file = nullptr;
-    }
-    
-    SmartPointer& operator=(SmartPointer&& other) noexcept {
-        if (this != &other) {
-            if (file) fclose(file);
-            file = other.file;
-            other.file = nullptr;
-        }
-        return *this;
-    }
-    
-    FILE* get() const { return file; }
-    
-    explicit operator bool() const { return file != nullptr; }
-    
-    // File-specific operations
-    int write(const string& text) {
-        if (!file) return -1;
-        return fwrite(text.c_str(), 1, text.length(), file);
-    }
-    
-    string readLine() {
-        if (!file) return "";
-        
-        char buffer[256];
-        if (fgets(buffer, sizeof(buffer), file)) {
-            return string(buffer);
-        }
-        return "";
-    }
-    
-    void displayInfo() const {
-        cout << "FILE SmartPointer managing: ";
-        if (file) {
-            cout << "open file handle" << endl;
-        } else {
-            cout << "nullptr" << endl;
-        }
-    }
-};
-
-int main() {
-    cout << "=== Smart Pointer Specializations Demo ===" << endl;
-    
-    // Generic smart pointer
-    {
-        SmartPointer<int> intPtr(new int(42));
-        intPtr.displayInfo();
-        cout << "Value: " << *intPtr << endl;
-        
-        // Move semantics
-        SmartPointer<int> movedPtr = move(intPtr);
-        movedPtr.displayInfo();
-        cout << "Original valid: " << (intPtr ? "Yes" : "No") << endl;
-    }
-    
-    cout << endl;
-    
-    // Array smart pointer specialization
-    {
-        SmartPointer<int[]> arrPtr(new int[5]{1, 2, 3, 4, 5}, 5);
-        arrPtr.displayInfo();
-        
-        cout << "Array elements: ";
-        for (size_t i = 0; i < arrPtr.getSize(); i++) {
-            cout << arrPtr[i] << " ";
-        }
-        cout << endl;
-    }
-    
-    cout << endl;
-    
-    // FILE smart pointer specialization
-    {
-        SmartPointer<FILE> filePtr(fopen("test.txt", "w"));
-        filePtr.displayInfo();
-        
-        if (filePtr) {
-            filePtr.write("Hello from specialized smart pointer!");
-            cout << "Wrote to file successfully" << endl;
-        }
-        
-        // File automatically closed when filePtr goes out of scope
-    }
-    
-    cout << endl;
-    
-    // Read from file
-    {
-        SmartPointer<FILE> filePtr(fopen("test.txt", "r"));
-        if (filePtr) {
-            string content = filePtr.readLine();
-            cout << "Read from file: " << content << endl;
-        }
-    }
-    
-    return 0;
-}
-```
+| Concept | Key Point |
+|---------|-----------|
+| **Full Specialization** | Complete custom implementation for a specific type |
+| **Partial Specialization** | Custom implementation for a category of types (class templates only) |
+| **Function Specialization** | Available for full specialization only |
+| **Priority Rules** | Compiler selects the most specialized match |
+| **Common Uses** | Type traits, optimizations, container specializations |
 
 ---
 
-## ⚡ Performance Considerations
+### Key Takeaways
 
-### Advantages
-- ✅ **Optimized for Specific Types**: Specialized implementations can be more efficient
-- ✅ **Type-Specific Behavior**: Handle edge cases and special requirements
-- ✅ **Compile-Time Selection**: No runtime overhead for choosing implementation
-
-### Considerations
-- ⚠️ **Code Maintenance**: Multiple versions to maintain
-- ⚠️ **Compilation Time**: More templates to instantiate
-- ⚠️ **Code Bloat**: Additional specialized code
+1. **Full specialization** provides type-specific behavior
+2. **Partial specialization** works for patterns (pointers, arrays, const)
+3. **Function templates** only support full specialization (use overloading as alternative)
+4. **Priority rules** ensure the most specific match is selected
+5. **Specialization** is essential for type traits and template metaprogramming
+6. **Array and pointer specializations** are common in practice
+7. **Specialization does not inherit** members from the primary template
 
 ---
 
-## 🐛 Common Pitfalls
+### Next Steps
 
-| Problem | Solution |
-|---------|----------|
-| **Specialization not found** | Ensure specialization syntax is correct |
-| **Ambiguous specialization** | Be specific about which parameters to specialize |
-| **Partial specialization order** | Most specific specialization is chosen |
-| **Function specialization conflicts** | Use overloads instead of function specialization |
-
----
-
-## ✅ Best Practices
-
-1. **Specialize only when necessary** - prefer generic implementations
-2. **Document specialization reasons** - explain why special behavior is needed
-3. **Keep specializations consistent** - maintain similar interfaces
-4. **Test all specializations** - ensure they work correctly
-5. **Use concepts (C++20)** instead of specialization when possible
-6. **Consider overloads** for function templates instead of specialization
-
----
-
-## 📚 Related Topics
-
-- [Function Templates](01_Function_Templates.md)
-- [Class Templates](02_Class_Templates.md)
-- [Variadic Templates](04_Variadic_Templates.md)
-- [Template Metaprogramming](05_Template_Metaprogramming.md)
-
----
-
-## 🚀 Next Steps
-
-Continue learning about:
-- **Variadic Templates**: Variable number of template arguments
-- **Template Metaprogramming**: Compile-time computation
-- **C++20 Concepts**: Modern template constraints
-- **Advanced Template Techniques**: SFINAE, tag dispatch, and more
-
----
----
-
-## Next Step
-
-- Go to [04_Variadic_Templates.md](04_Variadic_Templates.md) to continue with Variadic Templates.
+- Go to [04_Variadic_Templates.md](04_Variadic_Templates.md) to understand Variadic Templates.

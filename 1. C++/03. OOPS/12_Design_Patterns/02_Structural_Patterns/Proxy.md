@@ -752,4 +752,4 @@ int main() {
 
 ## Next Step
 
-- Go to [README.md](README.md) to continue.
+- Go to [03_Behavioral_Patterns](../03_Behavioral_Patterns/README.md) to continue.

@@ -884,4 +884,4 @@ int main() {
 
 ## Next Step
 
-- Go to [Theory.md](Theory.md) to continue with Theory.
+- Go to [11_Memory_Management_in_OOP](../11_Memory_Management_in_OOP/README.md) to continue to next module.

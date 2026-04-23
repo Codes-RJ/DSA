@@ -690,4 +690,4 @@ int main() {
 
 ## Next Step
 
-- Go to [Theory.md](Theory.md) to continue with Theory.
+- Go to [09_Templates_and_Generic_Programming](../09_Templates_and_Generic_Programming/README.md) to understand theoretical foundations of Templates and Generic Programming.

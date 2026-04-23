@@ -1,846 +1,670 @@
-﻿# Class Templates
+﻿# 02_Class_Templates.md
 
-## 📖 Overview
+## Class Templates in C++
 
-Class templates allow you to create generic classes that can work with any data type. Just like function templates, class templates provide a blueprint for creating classes with type parameters, enabling code reuse and type safety without sacrificing performance.
+### Overview
 
----
-
-## 🎯 Key Concepts
-
-- **Template Class**: A class with one or more template parameters
-- **Instantiation**: Creating a concrete class from a template
-- **Type Parameters**: Placeholders for data types (`typename T`)
-- **Non-type Parameters**: Compile-time constants (`int SIZE`)
-- **Default Template Arguments**: Fallback types for template parameters
+Class templates allow creating a single class definition that works with multiple data types. Instead of writing separate classes for `int`, `double`, `string`, etc., you write one template class, and the compiler generates the appropriate version for each type used. Class templates are the foundation of container classes like `vector`, `list`, `map`, and `stack` in the C++ Standard Library.
 
 ---
 
-## 💻 Basic Syntax
+### What is a Class Template?
 
+A class template is a blueprint for creating classes. It defines a family of classes that differ only by the types of their data members or the types they operate on. When you instantiate a class template, the compiler generates a concrete class for the specified type.
+
+**Syntax:**
 ```cpp
 template <typename T>
 class ClassName {
-    // Class members using T
-};
-```
-
-### With Multiple Parameters
-```cpp
-template <typename T, typename U, int N>
-class ClassName {
-    // Class members using T, U, and N
-};
-```
-
----
-
-## 🔍 Detailed Explanation
-
-### 1. **Simple Class Template**
-
-```cpp
-#include <iostream>
-using namespace std;
-
-// Basic Box class template
-template <typename T>
-class Box {
 private:
-    T content;
+    T data_;
     
 public:
-    // Constructor
-    Box(T value) : content(value) {}
-    
-    // Getter
-    T getContent() const { return content; }
-    
-    // Setter
-    void setContent(T value) { content = value; }
-    
-    // Display method
-    void display() const {
-        cout << "Box contains: " << content << endl;
-    }
+    ClassName(T value);
+    T getData() const;
+    void setData(T value);
 };
-
-int main() {
-    // Create boxes with different types
-    Box<int> intBox(42);
-    Box<string> stringBox("Hello Templates");
-    Box<double> doubleBox(3.14159);
-    
-    // Use the boxes
-    intBox.display();
-    stringBox.display();
-    doubleBox.display();
-    
-    // Modify content
-    intBox.setContent(100);
-    stringBox.setContent("Modified Content");
-    
-    cout << "\nAfter modification:" << endl;
-    intBox.display();
-    stringBox.display();
-    
-    return 0;
-}
 ```
 
-### 2. **Class Template with Multiple Type Parameters**
+**Key Components:**
+
+| Component | Description | Example |
+|-----------|-------------|---------|
+| `template <typename T>` | Template parameter declaration | `template <typename T>` |
+| `typename` or `class` | Keyword indicating a type parameter | `typename T` or `class T` |
+| `T` | Template parameter name (placeholder for type) | Any valid identifier |
+| Class body | Uses `T` as a regular type | `T data_;` |
+
+---
+
+### Basic Class Template Example
+
+This example demonstrates a simple class template that stores a value of any type.
 
 ```cpp
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Pair class template with two type parameters
-template <typename T, typename U>
-class Pair {
+// Class template definition
+template <typename T>
+class Box {
 private:
-    T first;
-    U second;
+    T content_;
     
 public:
-    Pair(T f, U s) : first(f), second(s) {}
-    
-    T getFirst() const { return first; }
-    U getSecond() const { return second; }
-    
-    void setFirst(T f) { first = f; }
-    void setSecond(U s) { second = s; }
-    
-    void display() const {
-        cout << "Pair[" << first << ", " << second << "]" << endl;
-    }
-};
-
-// Triple class template with three type parameters
-template <typename T, typename U, typename V>
-class Triple {
-private:
-    T first;
-    U second;
-    V third;
-    
-public:
-    Triple(T f, U s, V t) : first(f), second(s), third(t) {}
-    
-    void display() const {
-        cout << "Triple[" << first << ", " << second << ", " << third << "]" << endl;
+    // Constructor
+    Box(T content) : content_(content) {
+        cout << "Box created with content of type: " << typeid(T).name() << endl;
     }
     
-    // Method returning a pair
-    Pair<T, U> getFirstTwo() const {
-        return Pair<T, U>(first, second);
+    // Getter
+    T getContent() const {
+        return content_;
+    }
+    
+    // Setter
+    void setContent(T content) {
+        content_ = content;
+    }
+    
+    // Display function
+    void display() const {
+        cout << "Box contains: " << content_ << endl;
     }
 };
 
 int main() {
-    // Pair with different type combinations
-    Pair<int, string> p1(42, "Answer");
-    Pair<string, double> p2("Pi", 3.14159);
-    Pair<char, bool> p3('A', true);
+    // Box for integers
+    Box<int> intBox(42);
+    intBox.display();
+    cout << "Value: " << intBox.getContent() << endl;
     
-    p1.display();
-    p2.display();
-    p3.display();
+    // Box for doubles
+    Box<double> doubleBox(3.14159);
+    doubleBox.display();
     
-    cout << endl;
+    // Box for strings
+    Box<string> stringBox("Hello, World!");
+    stringBox.display();
     
-    // Triple example
-    Triple<int, string, double> t1(100, "Hundred", 100.0);
-    t1.display();
+    // Box for char
+    Box<char> charBox('A');
+    charBox.display();
     
-    Pair<int, string> firstTwo = t1.getFirstTwo();
-    cout << "First two: ";
-    firstTwo.display();
+    // Modifying content
+    intBox.setContent(100);
+    cout << "After modification: ";
+    intBox.display();
     
     return 0;
 }
 ```
 
-### 3. **Class Template with Non-type Parameters**
+**Output:**
+```
+Box created with content of type: i
+Box contains: 42
+Value: 42
+Box created with content of type: d
+Box contains: 3.14159
+Box created with content of type: NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+Box contains: Hello, World!
+Box created with content of type: c
+Box contains: A
+After modification: Box contains: 100
+```
+
+---
+
+### Member Function Definitions Outside the Class
+
+Member functions of a class template can be defined outside the class body.
 
 ```cpp
 #include <iostream>
-#include <stdexcept>
 using namespace std;
 
-// Array class template with non-type parameter
-template <typename T, int SIZE>
-class FixedArray {
+template <typename T>
+class Calculator {
 private:
-    T data[SIZE];
+    T value_;
     
 public:
-    // Default constructor
-    FixedArray() {
-        for (int i = 0; i < SIZE; i++) {
-            data[i] = T{};
-        }
-    }
+    // Constructor
+    Calculator(T value);
     
-    // Constructor with initial value
-    FixedArray(const T& initialValue) {
-        for (int i = 0; i < SIZE; i++) {
-            data[i] = initialValue;
-        }
-    }
-    
-    // Subscript operator
-    T& operator[](int index) {
-        if (index < 0 || index >= SIZE) {
-            throw out_of_range("Index out of bounds");
-        }
-        return data[index];
-    }
-    
-    // Const version of subscript operator
-    const T& operator[](int index) const {
-        if (index < 0 || index >= SIZE) {
-            throw out_of_range("Index out of bounds");
-        }
-        return data[index];
-    }
-    
-    // Get size
-    int getSize() const { return SIZE; }
-    
-    // Display array
-    void display() const {
-        cout << "[";
-        for (int i = 0; i < SIZE; i++) {
-            cout << data[i];
-            if (i < SIZE - 1) cout << ", ";
-        }
-        cout << "]" << endl;
-    }
-    
-    // Fill array with value
-    void fill(const T& value) {
-        for (int i = 0; i < SIZE; i++) {
-            data[i] = value;
-        }
-    }
+    // Member functions declared inside, defined outside
+    T add(T other) const;
+    T subtract(T other) const;
+    T multiply(T other) const;
+    T divide(T other) const;
+    void display() const;
 };
 
-// Matrix class template with two non-type parameters
-template <typename T, int ROWS, int COLS>
-class Matrix {
-private:
-    T data[ROWS][COLS];
-    
-public:
-    Matrix() {
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
-                data[i][j] = T{};
-            }
-        }
+// Member function definitions outside the class
+template <typename T>
+Calculator<T>::Calculator(T value) : value_(value) { }
+
+template <typename T>
+T Calculator<T>::add(T other) const {
+    return value_ + other;
+}
+
+template <typename T>
+T Calculator<T>::subtract(T other) const {
+    return value_ - other;
+}
+
+template <typename T>
+T Calculator<T>::multiply(T other) const {
+    return value_ * other;
+}
+
+template <typename T>
+T Calculator<T>::divide(T other) const {
+    if (other != 0) {
+        return value_ / other;
     }
-    
-    T& operator()(int row, int col) {
-        if (row < 0 || row >= ROWS || col < 0 || col >= COLS) {
-            throw out_of_range("Matrix index out of bounds");
-        }
-        return data[row][col];
-    }
-    
-    const T& operator()(int row, int col) const {
-        if (row < 0 || row >= ROWS || col < 0 || col >= COLS) {
-            throw out_of_range("Matrix index out of bounds");
-        }
-        return data[row][col];
-    }
-    
-    void display() const {
-        for (int i = 0; i < ROWS; i++) {
-            cout << "[";
-            for (int j = 0; j < COLS; j++) {
-                cout << data[i][j];
-                if (j < COLS - 1) cout << ", ";
-            }
-            cout << "]" << endl;
-        }
-    }
-    
-    int getRows() const { return ROWS; }
-    int getCols() const { return COLS; }
-};
+    cout << "Error: Division by zero!" << endl;
+    return 0;
+}
+
+template <typename T>
+void Calculator<T>::display() const {
+    cout << "Calculator value: " << value_ << endl;
+}
 
 int main() {
-    // FixedArray with different sizes and types
-    FixedArray<int, 5> intArray;
-    FixedArray<string, 3> strArray("Empty");
+    Calculator<int> intCalc(10);
+    intCalc.display();
+    cout << "Add 5: " << intCalc.add(5) << endl;
+    cout << "Subtract 3: " << intCalc.subtract(3) << endl;
+    cout << "Multiply by 2: " << intCalc.multiply(2) << endl;
+    cout << "Divide by 4: " << intCalc.divide(4) << endl;
     
-    // Set values
-    for (int i = 0; i < 5; i++) {
-        intArray[i] = i * 10;
-    }
-    
-    strArray[0] = "First";
-    strArray[1] = "Second";
-    strArray[2] = "Third";
-    
-    cout << "Integer array (size 5): ";
-    intArray.display();
-    
-    cout << "String array (size 3): ";
-    strArray.display();
-    
-    cout << endl;
-    
-    // Matrix example
-    Matrix<int, 3, 3> intMatrix;
-    
-    // Fill matrix with values
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            intMatrix(i, j) = i * 3 + j + 1;
-        }
-    }
-    
-    cout << "3x3 Integer Matrix:" << endl;
-    intMatrix.display();
-    
-    // Access specific element
-    cout << "Element at (1,2): " << intMatrix(1, 2) << endl;
+    Calculator<double> doubleCalc(3.14);
+    doubleCalc.display();
+    cout << "Add 2.71: " << doubleCalc.add(2.71) << endl;
     
     return 0;
 }
 ```
 
-### 4. **Stack Class Template**
+**Output:**
+```
+Calculator value: 10
+Add 5: 15
+Subtract 3: 7
+Multiply by 2: 20
+Divide by 4: 2
+Calculator value: 3.14
+Add 2.71: 5.85
+```
+
+---
+
+### Class Template with Multiple Type Parameters
+
+Class templates can have multiple type parameters.
+
+```cpp
+#include <iostream>
+#include <utility>
+using namespace std;
+
+// Class template with two type parameters
+template <typename T1, typename T2>
+class Pair {
+private:
+    T1 first_;
+    T2 second_;
+    
+public:
+    Pair(T1 first, T2 second) : first_(first), second_(second) { }
+    
+    T1 getFirst() const { return first_; }
+    T2 getSecond() const { return second_; }
+    
+    void setFirst(T1 first) { first_ = first; }
+    void setSecond(T2 second) { second_ = second; }
+    
+    void display() const {
+        cout << "(" << first_ << ", " << second_ << ")" << endl;
+    }
+    
+    // Swap the pair (swap first and second)
+    Pair<T2, T1> swap() const {
+        return Pair<T2, T1>(second_, first_);
+    }
+};
+
+int main() {
+    // Different type combinations
+    Pair<int, double> p1(10, 3.14);
+    cout << "Integer-Double pair: ";
+    p1.display();
+    
+    Pair<string, int> p2("Age", 25);
+    cout << "String-Integer pair: ";
+    p2.display();
+    
+    Pair<char, bool> p3('A', true);
+    cout << "Character-Boolean pair: ";
+    p3.display();
+    
+    // Using the swap function
+    Pair<double, int> swapped = p1.swap();
+    cout << "Swapped pair: ";
+    swapped.display();
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Integer-Double pair: (10, 3.14)
+String-Integer pair: (Age, 25)
+Character-Boolean pair: (A, 1)
+Swapped pair: (3.14, 10)
+```
+
+---
+
+### Non-Type Template Parameters in Classes
+
+Class templates can also accept non-type parameters (compile-time constants).
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Class template with non-type parameter
+template <typename T, int capacity>
+class StaticArray {
+private:
+    T data_[capacity];
+    int size_;
+    
+public:
+    StaticArray() : size_(0) { }
+    
+    bool push(const T& value) {
+        if (size_ < capacity) {
+            data_[size_++] = value;
+            return true;
+        }
+        return false;
+    }
+    
+    T pop() {
+        if (size_ > 0) {
+            return data_[--size_];
+        }
+        throw out_of_range("Array is empty");
+    }
+    
+    T get(int index) const {
+        if (index >= 0 && index < size_) {
+            return data_[index];
+        }
+        throw out_of_range("Index out of bounds");
+    }
+    
+    int size() const { return size_; }
+    int capacity() const { return capacity; }
+    
+    void display() const {
+        cout << "[";
+        for (int i = 0; i < size_; i++) {
+            cout << data_[i];
+            if (i < size_ - 1) cout << ", ";
+        }
+        cout << "]" << endl;
+    }
+};
+
+int main() {
+    // Different capacities create different types
+    StaticArray<int, 5> smallArray;
+    StaticArray<int, 10> largeArray;
+    
+    cout << "smallArray capacity: " << smallArray.capacity() << endl;
+    cout << "largeArray capacity: " << largeArray.capacity() << endl;
+    
+    // Using smallArray
+    for (int i = 1; i <= 5; i++) {
+        smallArray.push(i * 10);
+    }
+    cout << "smallArray: ";
+    smallArray.display();
+    
+    // Attempt to push beyond capacity
+    if (!smallArray.push(60)) {
+        cout << "Cannot push to smallArray (full)" << endl;
+    }
+    
+    // Using different type with non-type parameter
+    StaticArray<string, 3> stringArray;
+    stringArray.push("Apple");
+    stringArray.push("Banana");
+    stringArray.push("Cherry");
+    cout << "stringArray: ";
+    stringArray.display();
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+smallArray capacity: 5
+largeArray capacity: 10
+smallArray: [10, 20, 30, 40, 50]
+Cannot push to smallArray (full)
+stringArray: [Apple, Banana, Cherry]
+```
+
+---
+
+### Default Template Parameters
+
+Class templates can have default values for template parameters (C++11 and later).
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Class template with default type parameter
+template <typename T = int>
+class SimpleContainer {
+private:
+    T value_;
+    
+public:
+    SimpleContainer(T value = T()) : value_(value) { }
+    
+    T getValue() const { return value_; }
+    void setValue(T value) { value_ = value; }
+};
+
+// Class template with multiple defaults
+template <typename T = double, int size = 10>
+class FixedArray {
+private:
+    T data_[size];
+    int count_;
+    
+public:
+    FixedArray() : count_(0) { }
+    
+    void add(const T& value) {
+        if (count_ < size) {
+            data_[count_++] = value;
+        }
+    }
+    
+    void display() const {
+        cout << "Array (size=" << size << ", type=" << typeid(T).name() << "): ";
+        for (int i = 0; i < count_; i++) {
+            cout << data_[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    // Using default template parameter (int)
+    SimpleContainer<> defaultContainer;
+    cout << "Default container value: " << defaultContainer.getValue() << endl;
+    
+    // Explicit type
+    SimpleContainer<string> stringContainer("Hello");
+    cout << "String container value: " << stringContainer.getValue() << endl;
+    
+    // FixedArray with defaults (double, size=10)
+    FixedArray<> defaultArray;
+    defaultArray.add(3.14);
+    defaultArray.add(2.71);
+    defaultArray.display();
+    
+    // FixedArray with custom type and default size
+    FixedArray<int> intArray;
+    intArray.add(10);
+    intArray.add(20);
+    intArray.add(30);
+    intArray.display();
+    
+    // FixedArray with custom type and custom size
+    FixedArray<char, 5> charArray;
+    charArray.add('A');
+    charArray.add('B');
+    charArray.add('C');
+    charArray.display();
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Default container value: 0
+String container value: Hello
+Array (size=10, type=d): 3.14 2.71 
+Array (size=10, type=i): 10 20 30 
+Array (size=5, type=c): A B C 
+```
+
+---
+
+### Template Template Parameters
+
+A template parameter can itself be a template (advanced feature).
 
 ```cpp
 #include <iostream>
 #include <vector>
-#include <stdexcept>
+#include <list>
 using namespace std;
 
-// Generic Stack class template
+// Template template parameter
+template <typename T, template <typename> class Container>
+class Wrapper {
+private:
+    Container<T> container_;
+    
+public:
+    void add(const T& value) {
+        container_.push_back(value);
+    }
+    
+    void display() const {
+        for (const auto& item : container_) {
+            cout << item << " ";
+        }
+        cout << endl;
+    }
+};
+
+// Note: std::vector and std::list have two template parameters (type, allocator)
+// Simplified example for demonstration
 template <typename T>
+class SimpleVector {
+private:
+    T data_[100];
+    int size_;
+    
+public:
+    SimpleVector() : size_(0) { }
+    
+    void push_back(const T& value) {
+        if (size_ < 100) {
+            data_[size_++] = value;
+        }
+    }
+    
+    T* begin() { return data_; }
+    T* end() { return data_ + size_; }
+    const T* begin() const { return data_; }
+    const T* end() const { return data_ + size_; }
+};
+
+template <typename T>
+class SimpleList {
+    // Simplified list implementation
+};
+
+int main() {
+    Wrapper<int, SimpleVector> intVector;
+    intVector.add(10);
+    intVector.add(20);
+    intVector.add(30);
+    cout << "SimpleVector contents: ";
+    intVector.display();
+    
+    return 0;
+}
+```
+
+---
+
+### Common Class Template Examples
+
+#### 1. Stack Class Template
+
+```cpp
+template <typename T, int maxSize = 100>
 class Stack {
 private:
-    vector<T> items;
+    T data_[maxSize];
+    int top_;
     
 public:
-    // Push item onto stack
-    void push(const T& item) {
-        items.push_back(item);
+    Stack() : top_(-1) { }
+    
+    void push(const T& value) {
+        if (top_ < maxSize - 1) {
+            data_[++top_] = value;
+        } else {
+            throw overflow_error("Stack overflow");
+        }
     }
     
-    // Push item using move semantics
-    void push(T&& item) {
-        items.push_back(move(item));
-    }
-    
-    // Pop item from stack
     T pop() {
-        if (isEmpty()) {
-            throw runtime_error("Stack is empty");
+        if (top_ >= 0) {
+            return data_[top_--];
+        } else {
+            throw underflow_error("Stack underflow");
         }
-        T top = items.back();
-        items.pop_back();
-        return top;
     }
     
-    // Get top item without removing
-    T& top() {
-        if (isEmpty()) {
-            throw runtime_error("Stack is empty");
+    T peek() const {
+        if (top_ >= 0) {
+            return data_[top_];
         }
-        return items.back();
+        throw underflow_error("Stack is empty");
     }
     
-    // Get top item (const version)
-    const T& top() const {
-        if (isEmpty()) {
-            throw runtime_error("Stack is empty");
-        }
-        return items.back();
-    }
-    
-    // Check if stack is empty
-    bool isEmpty() const {
-        return items.empty();
-    }
-    
-    // Get stack size
-    size_t size() const {
-        return items.size();
-    }
-    
-    // Clear stack
-    void clear() {
-        items.clear();
-    }
-    
-    // Display stack contents
-    void display() const {
-        if (isEmpty()) {
-            cout << "Stack is empty" << endl;
-            return;
-        }
-        
-        cout << "Stack (top -> bottom): ";
-        for (auto it = items.rbegin(); it != items.rend(); ++it) {
-            cout << *it;
-            if (it + 1 != items.rend()) cout << " -> ";
-        }
-        cout << endl;
-    }
+    bool isEmpty() const { return top_ == -1; }
+    bool isFull() const { return top_ == maxSize - 1; }
+    int size() const { return top_ + 1; }
 };
-
-int main() {
-    cout << "=== Stack Template Demo ===" << endl;
-    
-    // Stack with integers
-    Stack<int> intStack;
-    intStack.push(10);
-    intStack.push(20);
-    intStack.push(30);
-    
-    cout << "Integer stack:" << endl;
-    intStack.display();
-    cout << "Top element: " << intStack.top() << endl;
-    cout << "Stack size: " << intStack.size() << endl;
-    
-    cout << "\nPopping elements:" << endl;
-    while (!intStack.isEmpty()) {
-        cout << "Popped: " << intStack.pop() << endl;
-    }
-    
-    cout << "\n";
-    
-    // Stack with strings
-    Stack<string> stringStack;
-    stringStack.push("First");
-    stringStack.push("Second");
-    stringStack.push("Third");
-    
-    cout << "String stack:" << endl;
-    stringStack.display();
-    
-    cout << "\nPopping: " << stringStack.pop() << endl;
-    cout << "New top: " << stringStack.top() << endl;
-    
-    cout << "\n";
-    
-    // Stack with custom objects
-    Stack<pair<int, string>> pairStack;
-    pairStack.push({1, "One"});
-    pairStack.push({2, "Two"});
-    pairStack.push({3, "Three"});
-    
-    cout << "Pair stack:" << endl;
-    pairStack.display();
-    
-    return 0;
-}
 ```
 
-### 5. **Template Class with Default Parameters**
+#### 2. Queue Class Template
 
 ```cpp
-#include <iostream>
-#include <memory>
-using namespace std;
-
-// Smart pointer class template with default deleter
-template <typename T, typename Deleter = default_delete<T>>
-class SmartPointer {
+template <typename T, int maxSize = 100>
+class Queue {
 private:
-    T* ptr;
-    Deleter deleter;
+    T data_[maxSize];
+    int front_;
+    int rear_;
+    int count_;
     
 public:
-    // Constructor
-    explicit SmartPointer(T* p = nullptr) : ptr(p) {}
+    Queue() : front_(0), rear_(-1), count_(0) { }
     
-    // Destructor
-    ~SmartPointer() {
-        if (ptr) {
-            deleter(ptr);
+    void enqueue(const T& value) {
+        if (count_ < maxSize) {
+            rear_ = (rear_ + 1) % maxSize;
+            data_[rear_] = value;
+            count_++;
+        } else {
+            throw overflow_error("Queue overflow");
         }
     }
     
-    // Copy constructor (deleted for unique ownership)
-    SmartPointer(const SmartPointer&) = delete;
-    SmartPointer& operator=(const SmartPointer&) = delete;
-    
-    // Move constructor
-    SmartPointer(SmartPointer&& other) noexcept : ptr(other.ptr), deleter(move(other.deleter)) {
-        other.ptr = nullptr;
-    }
-    
-    // Move assignment
-    SmartPointer& operator=(SmartPointer&& other) noexcept {
-        if (this != &other) {
-            if (ptr) {
-                deleter(ptr);
-            }
-            ptr = other.ptr;
-            deleter = move(other.deleter);
-            other.ptr = nullptr;
+    T dequeue() {
+        if (count_ > 0) {
+            T value = data_[front_];
+            front_ = (front_ + 1) % maxSize;
+            count_--;
+            return value;
+        } else {
+            throw underflow_error("Queue underflow");
         }
-        return *this;
     }
     
-    // Dereference operators
-    T& operator*() const { return *ptr; }
-    T* operator->() const { return ptr; }
-    
-    // Get raw pointer
-    T* get() const { return ptr; }
-    
-    // Check if pointer is valid
-    explicit operator bool() const { return ptr != nullptr; }
-    
-    // Reset pointer
-    void reset(T* p = nullptr) {
-        if (ptr) {
-            deleter(ptr);
-        }
-        ptr = p;
-    }
-    
-    // Release ownership
-    T* release() {
-        T* temp = ptr;
-        ptr = nullptr;
-        return temp;
-    }
+    bool isEmpty() const { return count_ == 0; }
+    bool isFull() const { return count_ == maxSize; }
+    int size() const { return count_; }
 };
-
-// Custom deleter for arrays
-template <typename T>
-class ArrayDeleter {
-public:
-    void operator()(T* ptr) const {
-        delete[] ptr;
-    }
-};
-
-int main() {
-    cout << "=== Smart Pointer Template Demo ===" << endl;
-    
-    // Using default deleter
-    {
-        SmartPointer<int> ptr1(new int(42));
-        cout << "Value: " << *ptr1 << endl;
-        cout << "Pointer valid: " << (ptr1 ? "Yes" : "No") << endl;
-    } // ptr1 automatically deleted here
-    
-    // Using custom array deleter
-    {
-        SmartPointer<int, ArrayDeleter<int>> arrPtr(new int[5]{1, 2, 3, 4, 5});
-        cout << "Array values: ";
-        for (int i = 0; i < 5; i++) {
-            cout << arrPtr.get()[i] << " ";
-        }
-        cout << endl;
-    } // array automatically deleted here
-    
-    // Move semantics
-    {
-        SmartPointer<string> strPtr(new string("Hello Templates"));
-        SmartPointer<string> movedPtr = move(strPtr);
-        
-        cout << "Moved pointer value: " << *movedPtr << endl;
-        cout << "Original pointer valid: " << (strPtr ? "Yes" : "No") << endl;
-        cout << "Moved pointer valid: " << (movedPtr ? "Yes" : "No") << endl;
-    }
-    
-    return 0;
-}
 ```
 
----
-
-## 🎮 Complete Example: Generic Container Library
+#### 3. Pair Class Template (Like std::pair)
 
 ```cpp
-#include <iostream>
-#include <stdexcept>
-#include <algorithm>
-using namespace std;
-
-// Generic List class template
-template <typename T>
-class List {
-private:
-    struct Node {
-        T data;
-        Node* next;
-        Node(const T& value) : data(value), next(nullptr) {}
-    };
-    
-    Node* head;
-    Node* tail;
-    size_t count;
-    
+template <typename T1, typename T2>
+class Pair {
 public:
-    List() : head(nullptr), tail(nullptr), count(0) {}
+    T1 first;
+    T2 second;
     
-    ~List() {
-        clear();
+    Pair() : first(T1()), second(T2()) { }
+    Pair(const T1& a, const T2& b) : first(a), second(b) { }
+    
+    bool operator==(const Pair& other) const {
+        return first == other.first && second == other.second;
     }
     
-    // Copy constructor
-    List(const List& other) : head(nullptr), tail(nullptr), count(0) {
-        Node* current = other.head;
-        while (current) {
-            pushBack(current->data);
-            current = current->next;
-        }
+    bool operator<(const Pair& other) const {
+        if (first != other.first) return first < other.first;
+        return second < other.second;
     }
-    
-    // Assignment operator
-    List& operator=(const List& other) {
-        if (this != &other) {
-            clear();
-            Node* current = other.head;
-            while (current) {
-                pushBack(current->data);
-                current = current->next;
-            }
-        }
-        return *this;
-    }
-    
-    void pushFront(const T& value) {
-        Node* newNode = new Node(value);
-        if (!head) {
-            head = tail = newNode;
-        } else {
-            newNode->next = head;
-            head = newNode;
-        }
-        count++;
-    }
-    
-    void pushBack(const T& value) {
-        Node* newNode = new Node(value);
-        if (!head) {
-            head = tail = newNode;
-        } else {
-            tail->next = newNode;
-            tail = newNode;
-        }
-        count++;
-    }
-    
-    T popFront() {
-        if (!head) {
-            throw runtime_error("List is empty");
-        }
-        
-        Node* temp = head;
-        T value = temp->data;
-        head = head->next;
-        
-        if (!head) {
-            tail = nullptr;
-        }
-        
-        delete temp;
-        count--;
-        return value;
-    }
-    
-    T popBack() {
-        if (!head) {
-            throw runtime_error("List is empty");
-        }
-        
-        T value;
-        if (head == tail) {
-            value = head->data;
-            delete head;
-            head = tail = nullptr;
-        } else {
-            Node* current = head;
-            while (current->next != tail) {
-                current = current->next;
-            }
-            value = tail->data;
-            delete tail;
-            tail = current;
-            tail->next = nullptr;
-        }
-        
-        count--;
-        return value;
-    }
-    
-    bool isEmpty() const { return count == 0; }
-    size_t size() const { return count; }
-    
-    void clear() {
-        while (!isEmpty()) {
-            popFront();
-        }
-    }
-    
-    void display() const {
-        if (isEmpty()) {
-            cout << "List is empty" << endl;
-            return;
-        }
-        
-        cout << "List: ";
-        Node* current = head;
-        while (current) {
-            cout << current->data;
-            if (current->next) cout << " -> ";
-            current = current->next;
-        }
-        cout << endl;
-    }
-    
-    // Iterator class for range-based for loops
-    class Iterator {
-    private:
-        Node* current;
-        
-    public:
-        Iterator(Node* node) : current(node) {}
-        
-        T& operator*() { return current->data; }
-        const T& operator*() const { return current->data; }
-        
-        Iterator& operator++() {
-            current = current->next;
-            return *this;
-        }
-        
-        bool operator!=(const Iterator& other) const {
-            return current != other.current;
-        }
-    };
-    
-    Iterator begin() { return Iterator(head); }
-    Iterator end() { return Iterator(nullptr); }
 };
-
-int main() {
-    cout << "=== Generic List Container Demo ===" << endl;
-    
-    // List with integers
-    List<int> intList;
-    intList.pushBack(10);
-    intList.pushBack(20);
-    intList.pushBack(30);
-    intList.pushFront(5);
-    
-    cout << "Integer list:" << endl;
-    intList.display();
-    cout << "Size: " << intList.size() << endl;
-    
-    cout << "\nPopping from front: " << intList.popFront() << endl;
-    intList.display();
-    
-    cout << "\nPopping from back: " << intList.popBack() << endl;
-    intList.display();
-    
-    // Range-based for loop
-    cout << "\nUsing range-based for loop:" << endl;
-    for (int value : intList) {
-        cout << value << " ";
-    }
-    cout << endl;
-    
-    cout << "\n";
-    
-    // List with strings
-    List<string> stringList;
-    stringList.pushBack("First");
-    stringList.pushBack("Second");
-    stringList.pushBack("Third");
-    stringList.pushFront("Zero");
-    
-    cout << "String list:" << endl;
-    stringList.display();
-    
-    // Copy constructor test
-    List<string> copyList = stringList;
-    cout << "\nCopied list:" << endl;
-    copyList.display();
-    
-    // Modify original
-    stringList.popFront();
-    cout << "\nOriginal after pop:" << endl;
-    stringList.display();
-    cout << "Copy remains unchanged:" << endl;
-    copyList.display();
-    
-    return 0;
-}
 ```
 
 ---
 
-## ⚡ Performance Considerations
+### Summary
 
-### Advantages
-- ✅ **Zero Runtime Overhead**: Templates generate optimized code
-- ✅ **Type Safety**: Compile-time type checking
-- ✅ **Code Reuse**: Single implementation for multiple types
-- ✅ **Inlining**: Template methods are often inlined
-
-### Considerations
-- ⚠️ **Code Bloat**: Each instantiation generates separate code
-- ⚠️ **Compilation Time**: Longer build times
-- ⚠️ **Binary Size**: Increased executable size
-
----
-
-## 🐛 Common Pitfalls
-
-| Problem | Solution |
-|---------|----------|
-| **Template definition in .cpp file** | Move definition to header file |
-| **Missing template arguments** | Provide default template parameters |
-| **Linker errors** | Ensure template is visible to all translation units |
-| **Circular dependencies** | Use forward declarations and proper includes |
+| Concept | Key Point |
+|---------|-----------|
+| **Class Template** | Blueprint for creating classes for different types |
+| **Template Parameter** | Placeholder for a type (or value) |
+| **Member Function Definition** | Can be defined inside or outside the class |
+| **Multiple Parameters** | Class templates can have multiple type parameters |
+| **Non-Type Parameters** | Compile-time constants as template arguments |
+| **Default Parameters** | Default values for template arguments (C++11) |
+| **Template Template Parameters** | Templates as parameters to other templates |
 
 ---
 
-## ✅ Best Practices
+### Key Takeaways
 
-1. **Use meaningful template parameter names**
-2. **Provide default template arguments** when appropriate
-3. **Implement rule of three/five/zero** for template classes
-4. **Use `const` correctness** throughout the class
-5. **Consider move semantics** for performance
-6. **Document template requirements** and constraints
-7. **Use `static_assert`** for better error messages
-
----
-
-## 📚 Related Topics
-
-- [Function Templates](01_Function_Templates.md)
-- [Template Specialization](03_Template_Specialization.md)
-- [Variadic Templates](04_Variadic_Templates.md)
-- [STL Containers](../11_Memory_Management_in_OOP/05_Smart_Pointers_Intro.md)
+1. **Class templates** enable creating type-independent containers and data structures
+2. **Member functions** defined outside require `template <typename T>` prefix
+3. **Multiple type parameters** allow creating pairs, tuples, and complex containers
+4. **Non-type parameters** enable compile-time fixed-size arrays and buffers
+5. **Default template parameters** simplify usage for common cases
+6. **Class templates are defined in headers** (not .cpp files)
+7. **Template code is generated** at compile time for each type used
 
 ---
 
-## 🚀 Next Steps
+### Next Steps
 
-Continue learning about:
-- **Template Specialization**: Custom behavior for specific types
-- **Variadic Templates**: Variable number of template arguments
-- **Template Metaprogramming**: Compile-time computation
-- **Advanced Template Techniques**: SFINAE, concepts, and more
-
----
----
-
-## Next Step
-
-- Go to [03_Template_Specialization.md](03_Template_Specialization.md) to continue with Template Specialization.
+- Go to [03_Template_Specialization.md](03_Template_Specialization.md) to understand Template Specialization.

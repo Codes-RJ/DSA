@@ -557,7 +557,3 @@ See Virtual Table.
 - Practice exercises are included in most topic sections
 
 ---
-
-*Last Updated: 2024*  
-*Total Terms: 100+*  
-*Categories: 15 main categories*

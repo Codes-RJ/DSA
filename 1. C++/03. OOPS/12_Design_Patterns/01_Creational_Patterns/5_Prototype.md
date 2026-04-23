@@ -742,4 +742,4 @@ int main() {
 
 ## Next Step
 
-- Go to [README.md](README.md) to continue.
+- Go to [02_Structural_Patterns](../02_Structural_Patterns/README.md) to continue.

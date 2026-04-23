@@ -1,473 +1,568 @@
-﻿# Function Templates
+﻿# 01_Function_Templates.md
 
-## 📖 Overview
+## Function Templates in C++
 
-Function templates are a powerful C++ feature that allows you to write generic functions that can work with different data types. Instead of writing separate functions for each type, you can write a single template that the compiler can instantiate for any required type.
+### Overview
 
----
-
-## 🎯 Key Concepts
-
-- **Template Parameter**: Placeholder for data type (`typename T` or `class T`)
-- **Type Deduction**: Compiler automatically determines template arguments
-- **Function Template Instantiation**: Compiler generates concrete function from template
-- **Template Argument List**: Explicit specification of template types
+Function templates allow writing a single function that works with multiple data types. Instead of writing multiple overloaded functions for different types, you write one template function, and the compiler generates the appropriate version for each type used. Function templates are the foundation of generic programming in C++.
 
 ---
 
-## 💻 Basic Syntax
+### What is a Function Template?
 
+A function template is a blueprint for creating functions. It defines a family of functions that differ only by the types of their parameters or return values. When you call a function template, the compiler deduces the template arguments and generates a concrete function.
+
+**Syntax:**
 ```cpp
 template <typename T>
-returnType functionName(parameterList) {
-    // Function body
+T functionName(T parameter) {
+    // function body
 }
 ```
 
-### Alternative Syntax
-```cpp
-template <class T>
-returnType functionName(parameterList) {
-    // Function body
-}
-```
+**Key Components:**
+
+| Component | Description | Example |
+|-----------|-------------|---------|
+| `template <typename T>` | Template parameter declaration | `template <typename T>` |
+| `typename` or `class` | Keyword indicating a type parameter | `typename T` or `class T` |
+| `T` | Template parameter name (placeholder for type) | Any valid identifier |
+| Function body | Uses `T` as a regular type | `T result = a + b;` |
 
 ---
 
-## 🔍 Detailed Explanation
+### Basic Function Template Example
 
-### 1. **Simple Function Template**
+This example demonstrates a simple function template that finds the maximum of two values.
 
 ```cpp
 #include <iostream>
 using namespace std;
 
-// Basic function template
+// Function template definition
 template <typename T>
-T findMaximum(T a, T b) {
+T getMax(T a, T b) {
     return (a > b) ? a : b;
 }
 
 int main() {
-    // Type deduction - compiler determines T automatically
-    cout << "Max of 10 and 20: " << findMaximum(10, 20) << endl;      // T = int
-    cout << "Max of 3.14 and 2.71: " << findMaximum(3.14, 2.71) << endl; // T = double
-    cout << "Max of 'A' and 'Z': " << findMaximum('A', 'Z') << endl;  // T = char
+    // Using with integers
+    int x = 10, y = 20;
+    int intMax = getMax(x, y);
+    cout << "Max of " << x << " and " << y << " is " << intMax << endl;
     
-    // Explicit template specification
-    cout << "Max (explicit): " << findMaximum<double>(5, 3.7) << endl; // T = double
+    // Using with doubles
+    double a = 3.14, b = 2.71;
+    double doubleMax = getMax(a, b);
+    cout << "Max of " << a << " and " << b << " is " << doubleMax << endl;
+    
+    // Using with characters
+    char c1 = 'A', c2 = 'Z';
+    char charMax = getMax(c1, c2);
+    cout << "Max of '" << c1 << "' and '" << c2 << "' is '" << charMax << "'" << endl;
+    
+    // Using with strings
+    string s1 = "apple", s2 = "orange";
+    string stringMax = getMax(s1, s2);
+    cout << "Max of \"" << s1 << "\" and \"" << s2 << "\" is \"" << stringMax << "\"" << endl;
     
     return 0;
 }
 ```
 
-### 2. **Multiple Template Parameters**
+**Output:**
+```
+Max of 10 and 20 is 20
+Max of 3.14 and 2.71 is 3.14
+Max of 'A' and 'Z' is 'Z'
+Max of "apple" and "orange" is "orange"
+```
+
+---
+
+### Function Template with Multiple Parameters
+
+Function templates can have multiple type parameters.
 
 ```cpp
 #include <iostream>
-#include <string>
 using namespace std;
 
-// Function with multiple template parameters
-template <typename T, typename U>
-void printPair(T first, U second) {
+// Function template with two different type parameters
+template <typename T1, typename T2>
+void display(T1 first, T2 second) {
     cout << "First: " << first << ", Second: " << second << endl;
+    cout << "Size of first: " << sizeof(T1) << " bytes" << endl;
+    cout << "Size of second: " << sizeof(T2) << " bytes" << endl;
 }
 
-// Function returning different type
-template <typename T, typename R>
-R castAndAdd(T a, T b) {
-    return static_cast<R>(a) + static_cast<R>(b);
-}
-
-int main() {
-    printPair(42, "Hello");           // T = int, U = const char*
-    printPair(3.14, "Pi");            // T = double, U = const char*
-    printPair("Age", 25);             // T = const char*, U = int
-    
-    // Explicit template arguments
-    double result = castAndAdd<int, double>(5, 3);
-    cout << "Cast and add result: " << result << endl;
-    
-    return 0;
-}
-```
-
-### 3. **Template Parameters with Default Values**
-
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-// Template with default parameter
-template <typename T, int Size = 10>
-class FixedBuffer {
-private:
-    T buffer[Size];
-    int count = 0;
-    
-public:
-    void add(const T& item) {
-        if (count < Size) {
-            buffer[count++] = item;
-        }
-    }
-    
-    void print() const {
-        for (int i = 0; i < count; i++) {
-            cout << buffer[i] << " ";
-        }
-        cout << endl;
-    }
-    
-    int getSize() const { return Size; }
-    int getCount() const { return count; }
-};
-
-// Function template with default type
-template <typename T = int>
-T getDefault() {
-    return T{};
-}
-
-int main() {
-    // Using default size
-    FixedBuffer<int> buffer1;
-    buffer1.add(10);
-    buffer1.add(20);
-    buffer1.add(30);
-    
-    cout << "Buffer1 (size " << buffer1.getSize() << "): ";
-    buffer1.print();
-    
-    // Explicit size
-    FixedBuffer<string, 5> buffer2;
-    buffer2.add("Hello");
-    buffer2.add("World");
-    
-    cout << "Buffer2 (size " << buffer2.getSize() << "): ";
-    buffer2.print();
-    
-    // Default type
-    cout << "Default int: " << getDefault() << endl;
-    cout << "Default double: " << getDefault<double>() << endl;
-    
-    return 0;
-}
-```
-
-### 4. **Template Function Overloading**
-
-```cpp
-#include <iostream>
-#include <cstring>
-using namespace std;
-
-// General template
-template <typename T>
-void printArray(T arr[], int size) {
-    cout << "Generic array: ";
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
-// Specialized overload for const char*
-void printArray(const char* arr[], int size) {
-    cout << "String array: ";
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
-// Template with different parameter count
-template <typename T>
-T sum(T a, T b) {
-    cout << "Two parameters: ";
+// Function template with mixed return type
+template <typename T1, typename T2>
+auto add(T1 a, T2 b) -> decltype(a + b) {
     return a + b;
 }
 
-template <typename T>
-T sum(T a, T b, T c) {
-    cout << "Three parameters: ";
-    return a + b + c;
-}
-
 int main() {
-    int intArr[] = {1, 2, 3, 4, 5};
-    double doubleArr[] = {1.1, 2.2, 3.3};
+    // Different type combinations
+    display(10, 3.14);           // int and double
+    display('A', "Hello");       // char and const char*
+    display(3.14f, 100L);        // float and long
     
-    printArray(intArr, 5);
-    printArray(doubleArr, 3);
-    
-    const char* strArr[] = {"Hello", "World", "Templates"};
-    printArray(strArr, 3);
-    
-    cout << "Sum: " << sum(5, 3) << endl;
-    cout << "Sum: " << sum(1, 2, 3) << endl;
-    cout << "Sum: " << sum(2.5, 1.5) << endl;
-    cout << "Sum: " << sum(1.0, 2.0, 3.0) << endl;
+    // Auto return type deduction
+    cout << "\nAdding different types:" << endl;
+    cout << "10 + 3.14 = " << add(10, 3.14) << endl;      // returns double
+    cout << "3.14f + 5 = " << add(3.14f, 5) << endl;     // returns float
+    cout << "100 + 200L = " << add(100, 200L) << endl;    // returns long
     
     return 0;
 }
 ```
 
-### 5. **Template Constraints and Requirements**
+**Output:**
+```
+First: 10, Second: 3.14
+Size of first: 4 bytes
+Size of second: 8 bytes
+First: A, Second: Hello
+Size of first: 1 bytes
+Size of second: 8 bytes
+First: 3.14, Second: 100
+Size of first: 4 bytes
+Size of second: 8 bytes
+
+Adding different types:
+10 + 3.14 = 13.14
+3.14f + 5 = 8.14
+100 + 200 = 300
+```
+
+---
+
+### Template Parameter Deduction
+
+When you call a function template, the compiler attempts to deduce the template arguments from the function arguments.
 
 ```cpp
 #include <iostream>
-#include <type_traits>
 using namespace std;
 
-// Template with SFINAE (Substitution Failure Is Not An Error)
 template <typename T>
-typename enable_if<is_integral<T>::value, T>::type
-multiply(T a, T b) {
-    cout << "Integral multiplication: ";
-    return a * b;
-}
-
-template <typename T>
-typename enable_if<is_floating_point<T>::value, T>::type
-multiply(T a, T b) {
-    cout << "Floating point multiplication: ";
-    return a * b;
-}
-
-// Modern C++20 concepts (if available)
-#ifdef __cpp_concepts
-template <typename T>
-concept Numeric = is_integral_v<T> || is_floating_point_v<T>;
-
-template <Numeric T>
-T addNumbers(T a, T b) {
-    return a + b;
-}
-#endif
-
-// Template requiring specific operations
-template <typename T>
-auto processValue(T value) -> decltype(value * value) {
-    static_assert(is_arithmetic<T>::value, "T must be a numeric type");
-    cout << "Processing numeric value: ";
+T square(T value) {
     return value * value;
 }
 
+template <typename T>
+void process(T a, T b) {
+    cout << "Both arguments of same type: " << a << ", " << b << endl;
+}
+
+// Overload for different types
+template <typename T1, typename T2>
+void process(T1 a, T2 b) {
+    cout << "Arguments of different types: " << a << ", " << b << endl;
+}
+
 int main() {
-    cout << multiply(5, 3) << endl;      // Uses integral version
-    cout << multiply(3.14, 2.0) << endl; // Uses floating point version
-    // multiply("Hello", "World");       // Compilation error
+    // Type deduction examples
+    int x = 5;
+    double y = 3.14;
     
-    cout << processValue(5) << endl;     // 25
-    cout << processValue(3.5) << endl;   // 12.25
-    // processValue("Hello");            // Compilation error
+    // Deduced as int
+    int intSquare = square(x);
+    cout << "Square of " << x << " = " << intSquare << endl;
     
-#ifdef __cpp_concepts
-    cout << "With concepts: " << addNumbers(10, 20) << endl;
-    cout << "With concepts: " << addNumbers(1.5, 2.5) << endl;
-#endif
+    // Deduced as double
+    double doubleSquare = square(y);
+    cout << "Square of " << y << " = " << doubleSquare << endl;
+    
+    // Both int - T deduced as int
+    process(10, 20);
+    
+    // Both double - T deduced as double
+    process(3.14, 2.71);
+    
+    // Different types - calls the two-parameter version
+    process(10, 3.14);
     
     return 0;
 }
 ```
 
+**Output:**
+```
+Square of 5 = 25
+Square of 3.14 = 9.8596
+Both arguments of same type: 10, 20
+Both arguments of same type: 3.14, 2.71
+Arguments of different types: 10, 3.14
+```
+
+**Deduction Rules:**
+
+| Scenario | Deduction Result |
+|----------|------------------|
+| Same type used for all parameters | Single type parameter deduced |
+| Different types for same parameter | Compilation error (ambiguous) |
+| Different types for different parameters | Use multiple type parameters |
+
 ---
 
-## 🎮 Complete Example: Generic Utilities
+### Explicit Template Instantiation
+
+You can explicitly specify template arguments instead of relying on deduction.
 
 ```cpp
 #include <iostream>
-#include <algorithm>
-#include <vector>
-#include <string>
 using namespace std;
 
-// Generic swap function
 template <typename T>
-void genericSwap(T& a, T& b) {
-    T temp = move(a);
-    a = move(b);
-    b = move(temp);
+T multiply(T a, T b) {
+    return a * b;
 }
 
-// Generic bubble sort
 template <typename T>
-void bubbleSort(T arr[], int size) {
-    for (int i = 0; i < size - 1; i++) {
-        for (int j = 0; j < size - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                genericSwap(arr[j], arr[j + 1]);
-            }
-        }
-    }
-}
-
-// Generic binary search
-template <typename T>
-int binarySearch(const T arr[], int size, const T& target) {
-    int left = 0, right = size - 1;
-    
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-        
-        if (arr[mid] == target) {
-            return mid;
-        }
-        
-        if (arr[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-    
-    return -1; // Not found
-}
-
-// Generic print function
-template <typename T>
-void printArray(const string& label, T arr[], int size) {
-    cout << label << ": ";
-    for (int i = 0; i < size; i++) {
-        cout << arr[i];
-        if (i < size - 1) cout << ", ";
-    }
-    cout << endl;
-}
-
-// Generic comparison function
-template <typename T>
-bool compareArrays(const T arr1[], const T arr2[], int size) {
-    for (int i = 0; i < size; i++) {
-        if (arr1[i] != arr2[i]) {
-            return false;
-        }
-    }
-    return true;
+T convert(int value) {
+    return static_cast<T>(value);
 }
 
 int main() {
-    cout << "=== Generic Utilities Demo ===" << endl;
+    int a = 5, b = 3;
     
-    // Test with integers
-    int intArr[] = {64, 34, 25, 12, 22, 11, 90};
-    int intSize = sizeof(intArr) / sizeof(intArr[0]);
+    // Implicit deduction (T = int)
+    int result1 = multiply(a, b);
+    cout << "Implicit: " << a << " * " << b << " = " << result1 << endl;
     
-    printArray("Original integers", intArr, intSize);
-    bubbleSort(intArr, intSize);
-    printArray("Sorted integers", intArr, intSize);
+    // Explicit instantiation (T = double)
+    double result2 = multiply<double>(a, b);
+    cout << "Explicit (double): " << a << " * " << b << " = " << result2 << endl;
     
-    int target = 25;
-    int index = binarySearch(intArr, intSize, target);
-    cout << "Binary search for " << target << ": ";
-    if (index != -1) {
-        cout << "Found at index " << index << endl;
-    } else {
-        cout << "Not found" << endl;
-    }
+    // Cannot deduce return type - must be explicit
+    double d = convert<double>(42);
+    cout << "Convert 42 to double: " << d << endl;
     
-    cout << endl;
-    
-    // Test with doubles
-    double doubleArr[] = {3.14, 1.59, 2.65, 0.99, 5.89};
-    int doubleSize = sizeof(doubleArr) / sizeof(doubleArr[0]);
-    
-    printArray("Original doubles", doubleArr, doubleSize);
-    bubbleSort(doubleArr, doubleSize);
-    printArray("Sorted doubles", doubleArr, doubleSize);
-    
-    // Test with strings
-    string strArr[] = {"Zebra", "Apple", "Orange", "Banana", "Grape"};
-    int strSize = sizeof(strArr) / sizeof(strArr[0]);
-    
-    printArray("Original strings", strArr, strSize);
-    bubbleSort(strArr, strSize);
-    printArray("Sorted strings", strArr, strSize);
-    
-    string searchTarget = "Orange";
-    index = binarySearch(strArr, strSize, searchTarget);
-    cout << "Binary search for \"" << searchTarget << "\": ";
-    if (index != -1) {
-        cout << "Found at index " << index << endl;
-    } else {
-        cout << "Not found" << endl;
-    }
-    
-    cout << endl;
-    
-    // Test array comparison
-    int arr1[] = {1, 2, 3, 4, 5};
-    int arr2[] = {1, 2, 3, 4, 5};
-    int arr3[] = {1, 2, 3, 4, 6};
-    
-    cout << "arr1 == arr2: " << (compareArrays(arr1, arr2, 5) ? "True" : "False") << endl;
-    cout << "arr1 == arr3: " << (compareArrays(arr1, arr3, 5) ? "True" : "False") << endl;
+    float f = convert<float>(100);
+    cout << "Convert 100 to float: " << f << endl;
     
     return 0;
 }
 ```
 
----
+**Output:**
+```
+Implicit: 5 * 3 = 15
+Explicit (double): 5 * 3 = 15
+Convert 42 to double: 42
+Convert 100 to float: 100
+```
 
-## ⚡ Performance Considerations
+**When to Use Explicit Instantiation:**
 
-### Advantages
-- ✅ **Zero Runtime Overhead**: Templates generate optimized code
-- ✅ **Type Safety**: Compile-time type checking
-- ✅ **Code Reuse**: Single implementation for multiple types
-- ✅ **Inline Optimization**: Template functions are often inlined
-
-### Considerations
-- ⚠️ **Code Bloat**: Each instantiation generates separate code
-- ⚠️ **Compilation Time**: Longer build times for complex templates
-- ⚠️ **Binary Size**: Increased executable size
-
----
-
-## 🐛 Common Pitfalls
-
-| Problem | Solution |
-|---------|----------|
-| **Template definition in .cpp file** | Move definition to header file |
-| **Type deduction ambiguity** | Use explicit template arguments |
-| **Missing template arguments** | Provide default template parameters |
-| **Linker errors** | Ensure template is visible to all translation units |
+| Scenario | Reason |
+|----------|--------|
+| Return type differs from parameter types | Compiler cannot deduce return type |
+| Template arguments cannot be deduced | No function arguments to deduce from |
+| Ambiguous deduction | Multiple possible deductions |
+| Want specific type conversion | Force conversion of arguments |
 
 ---
 
-## ✅ Best Practices
+### Function Template Overloading
 
-1. **Use descriptive template parameter names** (`T` for type, `N` for number)
-2. **Prefer `typename` over `class`** for template parameters
-3. **Add `const` and `&`** for large objects to avoid copying
-4. **Use `static_assert`** for better error messages
-5. **Consider move semantics** for performance
-6. **Document template requirements** and constraints
+Function templates can be overloaded with other function templates or regular functions.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Regular function
+void print(int value) {
+    cout << "Regular function (int): " << value << endl;
+}
+
+// Function template
+template <typename T>
+void print(T value) {
+    cout << "Template function: " << value << endl;
+}
+
+// Overloaded function template
+template <typename T>
+void print(T value, int repeat) {
+    for (int i = 0; i < repeat; i++) {
+        cout << value << " ";
+    }
+    cout << endl;
+}
+
+// Template specialization (discussed in detail later)
+template <>
+void print<bool>(bool value) {
+    cout << "Specialized template (bool): " << (value ? "true" : "false") << endl;
+}
+
+int main() {
+    // Calls regular function (exact match)
+    print(42);
+    
+    // Calls template (no exact regular function match)
+    print(3.14);
+    
+    // Calls overloaded template
+    print("Hello", 3);
+    
+    // Calls specialized template
+    print(true);
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Regular function (int): 42
+Template function: 3.14
+Hello Hello Hello 
+Specialized template (bool): true
+```
+
+**Overload Resolution Rules:**
+
+| Priority | Function Type |
+|----------|---------------|
+| 1 (Highest) | Regular function (exact match) |
+| 2 | Template specialization |
+| 3 | Function template (deduced) |
+| 4 (Lowest) | Regular function (after conversion) |
 
 ---
 
-## 📚 Related Topics
+### Non-Type Template Parameters
 
-- [Class Templates](02_Class_Templates.md)
-- [Template Specialization](03_Template_Specialization.md)
-- [Variadic Templates](04_Variadic_Templates.md)
-- [Template Metaprogramming](05_Template_Metaprogramming.md)
+Function templates can also accept non-type parameters (compile-time constants).
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Non-type template parameter
+template <typename T, int size>
+T arraySum(T (&arr)[size]) {
+    T sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+// Default non-type parameter
+template <typename T, int multiplier = 2>
+T multiplyBy(T value) {
+    return value * multiplier;
+}
+
+// Using non-type parameter for compile-time checks
+template <int N>
+void printNTimes(const string& message) {
+    for (int i = 0; i < N; i++) {
+        cout << message << endl;
+    }
+}
+
+int main() {
+    // Array size deduced as non-type parameter
+    int numbers[] = {1, 2, 3, 4, 5};
+    int sum = arraySum(numbers);
+    cout << "Sum of array: " << sum << endl;
+    
+    double prices[] = {10.5, 20.3, 15.8};
+    double total = arraySum(prices);
+    cout << "Total of prices: " << total << endl;
+    
+    // Using default multiplier
+    cout << "5 * 2 (default) = " << multiplyBy(5) << endl;
+    
+    // Explicit multiplier
+    cout << "5 * 3 = " << multiplyBy<int, 3>(5) << endl;
+    
+    // Compile-time loop
+    printNTimes<3>("Hello, World!");
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Sum of array: 15
+Total of prices: 46.6
+5 * 2 (default) = 10
+5 * 3 = 15
+Hello, World!
+Hello, World!
+Hello, World!
+```
+
+**Non-Type Parameter Restrictions:**
+
+| Restriction | Description |
+|-------------|-------------|
+| **Integral types** | int, char, bool, enum, etc. |
+| **Pointers** | To objects with external linkage |
+| **References** | To objects with external linkage |
+| **Nullptr** | `std::nullptr_t` |
+| **Not allowed** | float, double, string, class objects |
 
 ---
 
-## 🚀 Next Steps
+### Function Templates with Default Parameters
 
-Continue learning about:
-- **Class Templates**: Generic classes and containers
-- **Template Specialization**: Custom behavior for specific types
-- **Advanced Template Techniques**: SFINAE, concepts, and metaprogramming
+Function templates can have default template arguments (C++11 and later).
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Default template parameter
+template <typename T = int>
+T getDefaultValue() {
+    return T();
+}
+
+// Multiple defaults
+template <typename T = double, int size = 10>
+class Container {
+    // Class template with defaults
+};
+
+// Function with default template parameter
+template <typename T = int>
+void displayValue(T value = T()) {
+    cout << "Value: " << value << endl;
+}
+
+int main() {
+    // Uses default (int)
+    int defaultInt = getDefaultValue();
+    cout << "Default int: " << defaultInt << endl;
+    
+    // Explicitly specify double
+    double defaultDouble = getDefaultValue<double>();
+    cout << "Explicit double: " << defaultDouble << endl;
+    
+    // Using default template parameter
+    displayValue(42);      // T deduced as int
+    displayValue(3.14);    // T deduced as double
+    displayValue();        // Uses default T (int) and default value (0)
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Default int: 0
+Explicit double: 0
+Value: 42
+Value: 3.14
+Value: 0
+```
 
 ---
+
+### Common Function Template Examples
+
+#### 1. Swap Function Template
+
+```cpp
+template <typename T>
+void swapValues(T& a, T& b) {
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+// Usage
+int x = 5, y = 10;
+swapValues(x, y);  // x=10, y=5
+```
+
+#### 2. Find Minimum
+
+```cpp
+template <typename T>
+T minValue(T a, T b) {
+    return (a < b) ? a : b;
+}
+
+// Usage
+int smallest = minValue(10, 20);     // 10
+double smaller = minValue(3.14, 2.71); // 2.71
+```
+
+#### 3. Linear Search
+
+```cpp
+template <typename T>
+int linearSearch(const T arr[], int size, const T& target) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Usage
+int numbers[] = {10, 20, 30, 40, 50};
+int index = linearSearch(numbers, 5, 30);  // Returns 2
+```
+
+#### 4. Print Array
+
+```cpp
+template <typename T, int N>
+void printArray(const T (&arr)[N]) {
+    cout << "[";
+    for (int i = 0; i < N; i++) {
+        cout << arr[i];
+        if (i < N - 1) cout << ", ";
+    }
+    cout << "]" << endl;
+}
+
+// Usage
+int nums[] = {1, 2, 3, 4, 5};
+printArray(nums);  // [1, 2, 3, 4, 5]
+```
+
 ---
 
-## Next Step
+### Summary
 
-- Go to [02_Class_Templates.md](02_Class_Templates.md) to continue with Class Templates.
+| Concept | Key Point |
+|---------|-----------|
+| **Function Template** | Blueprint for creating functions for different types |
+| **Template Parameter** | Placeholder for a type (or value) |
+| **Type Deduction** | Compiler infers template arguments from function arguments |
+| **Explicit Instantiation** | Manually specify template arguments |
+| **Overloading** | Templates can be overloaded with functions or other templates |
+| **Non-Type Parameters** | Compile-time constants as template arguments |
+| **Default Parameters** | Default values for template arguments (C++11) |
+
+---
+
+### Key Takeaways
+
+1. **Function templates** enable writing type-independent code
+2. **Compiler deduces** template arguments in most cases
+3. **Explicit instantiation** is needed when deduction fails
+4. **Overloading rules** prefer regular functions over templates
+5. **Non-type parameters** allow compile-time constants
+6. **Function templates are defined in headers** (not .cpp files)
+7. **Template code is generated** at compile time for each type used
+
+---
+
+### Next Steps
+
+- Go to [02_Class_Templates.md](02_Class_Templates.md) to understand Class Templates.

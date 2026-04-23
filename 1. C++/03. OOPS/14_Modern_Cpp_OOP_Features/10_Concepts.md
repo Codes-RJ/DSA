@@ -563,4 +563,4 @@ int main() {
 
 ## Next Step
 
-- Go to [Theory.md](Theory.md) to continue with Theory.
+- Go to [15_Projects_and_Applications](../15_Projects_and_Applications/README.md) to continue with making projects and practice what you learnt.
