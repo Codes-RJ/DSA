@@ -164,7 +164,6 @@ After understanding tree basics, proceed to:
 5. **Advanced Tree Structures** - B-trees, Segment trees
 
 ---
----
 
 ## Next Step
 

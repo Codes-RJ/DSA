@@ -278,7 +278,6 @@ int getInternalCount(Node* root) {
 7. **Skewed tree**: Worst-case for operations
 
 ---
----
 
 ## Next Step
 

@@ -1,524 +1,731 @@
-# Tree Traversals - Complete Guide
+# README.md
 
-## 📖 Overview
+## Tree Traversals - Complete Guide
 
-Tree traversal refers to the process of visiting each node in a tree exactly once. Different traversal orders produce different sequences with distinct properties. In Binary Search Trees (BSTs), inorder traversal produces nodes in sorted order. This guide covers all major traversal methods with complete implementations and use cases.
+### Overview
 
----
-
-## 🎯 Types of Traversals
-
-| Traversal | Order | Use Case |
-|-----------|-------|----------|
-| **Inorder** | Left → Root → Right | Sorted output from BST |
-| **Preorder** | Root → Left → Right | Tree copying, serialization |
-| **Postorder** | Left → Right → Root | Tree deletion, expression evaluation |
-| **Level Order** | Level by level (BFS) | Shortest path, breadth-first search |
+Tree traversal refers to the process of visiting each node in a tree exactly once in a systematic way. Different traversal orders serve different purposes: inorder traversal of a BST gives sorted order, preorder traversal is useful for creating copies of trees, postorder traversal is used for deleting trees, and level order traversal gives a breadth-first view. Understanding tree traversals is essential for solving many tree-related problems.
 
 ---
 
-## 📊 Traversal Comparison
+### Topics Covered
 
+| # | Name | Purpose |
+| --- | --- | --- |
+| 1. | [01_Depth_First_Search.md](01_Depth_First_Search.md) | understand Depth-First Search (DFS) Traversal |
+| 2. | [02_Breadth_First_Search.md](02_Breadth_First_Search.md) | understand Breadth-First Search (BFS) Traversal |
+| 3. | [03_Inorder_Traversal.md](03_Inorder_Traversal.md) | understand Inorder Traversal (Left-Root-Right) |
+| 4. | [04_Preorder_Traversal.md](04_Preorder_Traversal.md) | understand Preorder Traversal (Root-Left-Right) |
+| 5. | [05_Postorder_Traversal.md](05_Postorder_Traversal.md) | understand Postorder Traversal (Left-Right-Root) |
+| 6. | [06_Level_Order_Traversal.md](06_Level_Order_Traversal.md) | understand Level Order Traversal (BFS) |
+| 7. | [README.md](README.md) | understand Tree Traversals Overview |
+
+---
+
+## 1. Depth-First Search (DFS)
+
+This topic introduces the DFS approach to tree traversal.
+
+**File:** [01_Depth_First_Search.md](01_Depth_First_Search.md)
+
+**What you will learn:**
+- What is Depth-First Search
+- Recursive implementation
+- Iterative implementation using stack
+- Time and space complexity
+- Applications of DFS
+
+**Key Concepts:**
+
+| Concept | Description |
+|---------|-------------|
+| **Depth-First** | Explores as far as possible along each branch before backtracking |
+| **Stack-based** | Uses recursion or explicit stack |
+| **Three Orders** | Preorder, Inorder, Postorder |
+
+**Visualization:**
 ```
-        50
-       /  \
-      30   80
-     / \   / \
-    20 40 70 90
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
 
-Inorder:    20, 30, 40, 50, 70, 80, 90
-Preorder:   50, 30, 20, 40, 80, 70, 90
-Postorder:  20, 40, 30, 70, 90, 80, 50
-Level Order:50, 30, 80, 20, 40, 70, 90
+DFS Order (Preorder): 1,2,4,5,3,6
 ```
 
----
-
-## 🌲 Inorder Traversal (Left → Root → Right)
-
-### Characteristics
-- Produces nodes in **sorted order** for BST
-- Most commonly used traversal for BSTs
-- Visits left subtree, then root, then right subtree
-
-### Recursive Implementation
-
+**Recursive DFS Template:**
 ```cpp
-void inorderRecursive(Node* node, vector<int>& result) {
-    if (node == nullptr) return;
+void dfs(Node* node) {
+    if (!node) return;
     
-    inorderRecursive(node->left, result);
-    result.push_back(node->data);
-    inorderRecursive(node->right, result);
-}
-```
-
-### Iterative Implementation (Using Stack)
-
-```cpp
-vector<int> inorderIterative(Node* root) {
-    vector<int> result;
-    stack<Node*> stk;
-    Node* current = root;
+    // Process node (preorder position)
     
-    while (current != nullptr || !stk.empty()) {
-        // Go to leftmost node
-        while (current != nullptr) {
-            stk.push(current);
-            current = current->left;
-        }
-        
-        // Process node
-        current = stk.top();
-        stk.pop();
-        result.push_back(current->data);
-        
-        // Go to right subtree
-        current = current->right;
-    }
+    dfs(node->left);
     
-    return result;
+    // Process node (inorder position)
+    
+    dfs(node->right);
+    
+    // Process node (postorder position)
 }
 ```
 
 ---
 
-## 🌳 Preorder Traversal (Root → Left → Right)
+## 2. Breadth-First Search (BFS)
 
-### Characteristics
-- Creates a copy of the tree when combined with insertion order
-- Useful for serialization (saving tree structure)
-- Visits root, then left subtree, then right subtree
+This topic introduces the BFS approach to tree traversal.
 
-### Recursive Implementation
+**File:** [02_Breadth_First_Search.md](02_Breadth_First_Search.md)
 
-```cpp
-void preorderRecursive(Node* node, vector<int>& result) {
-    if (node == nullptr) return;
-    
-    result.push_back(node->data);
-    preorderRecursive(node->left, result);
-    preorderRecursive(node->right, result);
-}
+**What you will learn:**
+- What is Breadth-First Search
+- Level order traversal using queue
+- Iterative implementation
+- Time and space complexity
+- Applications of BFS
+
+**Key Concepts:**
+
+| Concept | Description |
+|---------|-------------|
+| **Breadth-First** | Explores level by level before going deeper |
+| **Queue-based** | Uses queue for processing nodes |
+| **Level Order** | Nodes at same depth are visited together |
+
+**Visualization:**
+```
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+BFS Order (Level Order): 1,2,3,4,5,6
 ```
 
-### Iterative Implementation (Using Stack)
-
+**BFS Implementation:**
 ```cpp
-vector<int> preorderIterative(Node* root) {
-    vector<int> result;
-    if (root == nullptr) return result;
-    
-    stack<Node*> stk;
-    stk.push(root);
-    
-    while (!stk.empty()) {
-        Node* current = stk.top();
-        stk.pop();
-        
-        result.push_back(current->data);
-        
-        // Push right first so left is processed first (stack LIFO)
-        if (current->right) stk.push(current->right);
-        if (current->left) stk.push(current->left);
-    }
-    
-    return result;
-}
-```
-
----
-
-## 🌴 Postorder Traversal (Left → Right → Root)
-
-### Characteristics
-- Used for deleting trees (delete children before parent)
-- Used in expression evaluation (postfix notation)
-- Visits left subtree, then right subtree, then root
-
-### Recursive Implementation
-
-```cpp
-void postorderRecursive(Node* node, vector<int>& result) {
-    if (node == nullptr) return;
-    
-    postorderRecursive(node->left, result);
-    postorderRecursive(node->right, result);
-    result.push_back(node->data);
-}
-```
-
-### Iterative Implementation (Using Two Stacks)
-
-```cpp
-vector<int> postorderIterative(Node* root) {
-    vector<int> result;
-    if (root == nullptr) return result;
-    
-    stack<Node*> stk1, stk2;
-    stk1.push(root);
-    
-    while (!stk1.empty()) {
-        Node* current = stk1.top();
-        stk1.pop();
-        stk2.push(current);
-        
-        if (current->left) stk1.push(current->left);
-        if (current->right) stk1.push(current->right);
-    }
-    
-    while (!stk2.empty()) {
-        result.push_back(stk2.top()->data);
-        stk2.pop();
-    }
-    
-    return result;
-}
-```
-
----
-
-## 📊 Level Order Traversal (BFS)
-
-### Characteristics
-- Visits nodes level by level from top to bottom
-- Uses a queue instead of recursion
-- Finds shortest path in unweighted trees
-
-### Implementation (Using Queue)
-
-```cpp
-vector<int> levelOrder(Node* root) {
-    vector<int> result;
-    if (root == nullptr) return result;
+void levelOrder(Node* root) {
+    if (!root) return;
     
     queue<Node*> q;
     q.push(root);
     
     while (!q.empty()) {
-        Node* current = q.front();
+        Node* curr = q.front();
         q.pop();
         
-        result.push_back(current->data);
+        cout << curr->data << " ";
         
-        if (current->left) q.push(current->left);
-        if (current->right) q.push(current->right);
+        if (curr->left) q.push(curr->left);
+        if (curr->right) q.push(curr->right);
     }
-    
-    return result;
 }
 ```
 
-### Level Order with Level Separation
+---
 
+## 3. Inorder Traversal
+
+This topic explains inorder traversal (Left-Root-Right).
+
+**File:** [03_Inorder_Traversal.md](03_Inorder_Traversal.md)
+
+**What you will learn:**
+- Inorder traversal algorithm (recursive and iterative)
+- Inorder traversal of BST gives sorted order
+- Time and space complexity
+- Applications (sorted output, BST validation)
+
+**Key Concepts:**
+
+| Order | Operation |
+|-------|-----------|
+| **Step 1** | Traverse left subtree |
+| **Step 2** | Visit root |
+| **Step 3** | Traverse right subtree |
+
+**Visualization:**
+```
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+Inorder: 4,2,5,1,3,6
+```
+
+**Recursive Implementation:**
 ```cpp
-vector<vector<int>> levelOrderWithLevels(Node* root) {
-    vector<vector<int>> result;
-    if (root == nullptr) return result;
+void inorder(Node* node) {
+    if (!node) return;
+    inorder(node->left);
+    cout << node->data << " ";
+    inorder(node->right);
+}
+```
+
+**Iterative Implementation:**
+```cpp
+void inorderIterative(Node* root) {
+    stack<Node*> st;
+    Node* curr = root;
+    
+    while (curr || !st.empty()) {
+        while (curr) {
+            st.push(curr);
+            curr = curr->left;
+        }
+        
+        curr = st.top();
+        st.pop();
+        cout << curr->data << " ";
+        curr = curr->right;
+    }
+}
+```
+
+---
+
+## 4. Preorder Traversal
+
+This topic explains preorder traversal (Root-Left-Right).
+
+**File:** [04_Preorder_Traversal.md](04_Preorder_Traversal.md)
+
+**What you will learn:**
+- Preorder traversal algorithm (recursive and iterative)
+- Root visited before children
+- Applications (tree copying, serialization, prefix expression)
+
+**Key Concepts:**
+
+| Order | Operation |
+|-------|-----------|
+| **Step 1** | Visit root |
+| **Step 2** | Traverse left subtree |
+| **Step 3** | Traverse right subtree |
+
+**Visualization:**
+```
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+Preorder: 1,2,4,5,3,6
+```
+
+**Recursive Implementation:**
+```cpp
+void preorder(Node* node) {
+    if (!node) return;
+    cout << node->data << " ";
+    preorder(node->left);
+    preorder(node->right);
+}
+```
+
+**Iterative Implementation:**
+```cpp
+void preorderIterative(Node* root) {
+    if (!root) return;
+    
+    stack<Node*> st;
+    st.push(root);
+    
+    while (!st.empty()) {
+        Node* curr = st.top();
+        st.pop();
+        cout << curr->data << " ";
+        
+        if (curr->right) st.push(curr->right);
+        if (curr->left) st.push(curr->left);
+    }
+}
+```
+
+---
+
+## 5. Postorder Traversal
+
+This topic explains postorder traversal (Left-Right-Root).
+
+**File:** [05_Postorder_Traversal.md](05_Postorder_Traversal.md)
+
+**What you will learn:**
+- Postorder traversal algorithm (recursive and iterative)
+- Children visited before root
+- Applications (tree deletion, postfix expression, dependency resolution)
+
+**Key Concepts:**
+
+| Order | Operation |
+|-------|-----------|
+| **Step 1** | Traverse left subtree |
+| **Step 2** | Traverse right subtree |
+| **Step 3** | Visit root |
+
+**Visualization:**
+```
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+Postorder: 4,5,2,6,3,1
+```
+
+**Recursive Implementation:**
+```cpp
+void postorder(Node* node) {
+    if (!node) return;
+    postorder(node->left);
+    postorder(node->right);
+    cout << node->data << " ";
+}
+```
+
+**Iterative Implementation (Two-Stack Method):**
+```cpp
+void postorderIterative(Node* root) {
+    if (!root) return;
+    
+    stack<Node*> st1, st2;
+    st1.push(root);
+    
+    while (!st1.empty()) {
+        Node* curr = st1.top();
+        st1.pop();
+        st2.push(curr);
+        
+        if (curr->left) st1.push(curr->left);
+        if (curr->right) st1.push(curr->right);
+    }
+    
+    while (!st2.empty()) {
+        cout << st2.top()->data << " ";
+        st2.pop();
+    }
+}
+```
+
+---
+
+## 6. Level Order Traversal
+
+This topic explains level order traversal (breadth-first).
+
+**File:** [06_Level_Order_Traversal.md](06_Level_Order_Traversal.md)
+
+**What you will learn:**
+- Level order traversal using queue
+- Printing level by level
+- Zigzag traversal (spiral order)
+- Time and space complexity
+- Applications (shortest path, tree width)
+
+**Key Concepts:**
+
+| Concept | Description |
+|---------|-------------|
+| **Level by Level** | Process nodes at same depth together |
+| **Queue-based** | Uses queue for BFS |
+| **Level Tracking** | Track level using queue size |
+
+**Visualization:**
+```
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+Level Order: 1,2,3,4,5,6
+```
+
+**Basic Implementation:**
+```cpp
+void levelOrder(Node* root) {
+    if (!root) return;
+    
+    queue<Node*> q;
+    q.push(root);
+    
+    while (!q.empty()) {
+        Node* curr = q.front();
+        q.pop();
+        cout << curr->data << " ";
+        
+        if (curr->left) q.push(curr->left);
+        if (curr->right) q.push(curr->right);
+    }
+}
+```
+
+**Level-by-Level Output:**
+```cpp
+void levelOrderByLevel(Node* root) {
+    if (!root) return;
     
     queue<Node*> q;
     q.push(root);
     
     while (!q.empty()) {
         int levelSize = q.size();
-        vector<int> currentLevel;
         
         for (int i = 0; i < levelSize; i++) {
-            Node* current = q.front();
+            Node* curr = q.front();
+            q.pop();
+            cout << curr->data << " ";
+            
+            if (curr->left) q.push(curr->left);
+            if (curr->right) q.push(curr->right);
+        }
+        cout << endl;  // New line after each level
+    }
+}
+```
+
+**Zigzag (Spiral) Traversal:**
+```cpp
+void zigzagTraversal(Node* root) {
+    if (!root) return;
+    
+    queue<Node*> q;
+    q.push(root);
+    bool leftToRight = true;
+    
+    while (!q.empty()) {
+        int levelSize = q.size();
+        vector<int> level(levelSize);
+        
+        for (int i = 0; i < levelSize; i++) {
+            Node* curr = q.front();
             q.pop();
             
-            currentLevel.push_back(current->data);
+            int index = leftToRight ? i : (levelSize - 1 - i);
+            level[index] = curr->data;
             
-            if (current->left) q.push(current->left);
-            if (current->right) q.push(current->right);
+            if (curr->left) q.push(curr->left);
+            if (curr->right) q.push(curr->right);
         }
         
-        result.push_back(currentLevel);
+        for (int val : level) {
+            cout << val << " ";
+        }
+        cout << endl;
+        
+        leftToRight = !leftToRight;
     }
-    
-    return result;
 }
 ```
 
 ---
 
-## 💻 Complete Implementation
+### Complete Traversal Demo
 
 ```cpp
 #include <iostream>
-#include <vector>
-#include <stack>
 #include <queue>
+#include <stack>
+#include <vector>
 using namespace std;
 
-template<typename T>
-class Node {
-public:
-    T data;
+struct Node {
+    int data;
     Node* left;
     Node* right;
     
-    Node(const T& value) : data(value), left(nullptr), right(nullptr) {}
+    Node(int val) : data(val), left(nullptr), right(nullptr) {}
 };
 
-template<typename T>
 class BinaryTree {
 private:
-    Node<T>* root;
-    
-    // Recursive traversals
-    void inorderRecursive(Node<T>* node, vector<T>& result) {
-        if (node == nullptr) return;
-        inorderRecursive(node->left, result);
-        result.push_back(node->data);
-        inorderRecursive(node->right, result);
-    }
-    
-    void preorderRecursive(Node<T>* node, vector<T>& result) {
-        if (node == nullptr) return;
-        result.push_back(node->data);
-        preorderRecursive(node->left, result);
-        preorderRecursive(node->right, result);
-    }
-    
-    void postorderRecursive(Node<T>* node, vector<T>& result) {
-        if (node == nullptr) return;
-        postorderRecursive(node->left, result);
-        postorderRecursive(node->right, result);
-        result.push_back(node->data);
-    }
+    Node* root;
     
 public:
     BinaryTree() : root(nullptr) {}
     
-    void setRoot(Node<T>* node) { root = node; }
+    void setRoot(Node* node) { root = node; }
     
-    // Recursive traversals
-    vector<T> inorderRecursive() {
-        vector<T> result;
-        inorderRecursive(root, result);
-        return result;
+    // ============ RECURSIVE TRAVERSALS ============
+    
+    void inorderRecursive(Node* node) {
+        if (!node) return;
+        inorderRecursive(node->left);
+        cout << node->data << " ";
+        inorderRecursive(node->right);
     }
     
-    vector<T> preorderRecursive() {
-        vector<T> result;
-        preorderRecursive(root, result);
-        return result;
+    void preorderRecursive(Node* node) {
+        if (!node) return;
+        cout << node->data << " ";
+        preorderRecursive(node->left);
+        preorderRecursive(node->right);
     }
     
-    vector<T> postorderRecursive() {
-        vector<T> result;
-        postorderRecursive(root, result);
-        return result;
+    void postorderRecursive(Node* node) {
+        if (!node) return;
+        postorderRecursive(node->left);
+        postorderRecursive(node->right);
+        cout << node->data << " ";
     }
     
-    // Iterative traversals
-    vector<T> inorderIterative() {
-        vector<T> result;
-        stack<Node<T>*> stk;
-        Node<T>* current = root;
+    // ============ ITERATIVE TRAVERSALS ============
+    
+    void inorderIterative() {
+        stack<Node*> st;
+        Node* curr = root;
         
-        while (current != nullptr || !stk.empty()) {
-            while (current != nullptr) {
-                stk.push(current);
-                current = current->left;
+        while (curr || !st.empty()) {
+            while (curr) {
+                st.push(curr);
+                curr = curr->left;
             }
-            
-            current = stk.top();
-            stk.pop();
-            result.push_back(current->data);
-            current = current->right;
-        }
-        
-        return result;
-    }
-    
-    vector<T> preorderIterative() {
-        vector<T> result;
-        if (root == nullptr) return result;
-        
-        stack<Node<T>*> stk;
-        stk.push(root);
-        
-        while (!stk.empty()) {
-            Node<T>* current = stk.top();
-            stk.pop();
-            
-            result.push_back(current->data);
-            
-            if (current->right) stk.push(current->right);
-            if (current->left) stk.push(current->left);
-        }
-        
-        return result;
-    }
-    
-    vector<T> postorderIterative() {
-        vector<T> result;
-        if (root == nullptr) return result;
-        
-        stack<Node<T>*> stk1, stk2;
-        stk1.push(root);
-        
-        while (!stk1.empty()) {
-            Node<T>* current = stk1.top();
-            stk1.pop();
-            stk2.push(current);
-            
-            if (current->left) stk1.push(current->left);
-            if (current->right) stk1.push(current->right);
-        }
-        
-        while (!stk2.empty()) {
-            result.push_back(stk2.top()->data);
-            stk2.pop();
-        }
-        
-        return result;
-    }
-    
-    vector<T> levelOrder() {
-        vector<T> result;
-        if (root == nullptr) return result;
-        
-        queue<Node<T>*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            Node<T>* current = q.front();
-            q.pop();
-            
-            result.push_back(current->data);
-            
-            if (current->left) q.push(current->left);
-            if (current->right) q.push(current->right);
-        }
-        
-        return result;
-    }
-    
-    vector<vector<T>> levelOrderWithLevels() {
-        vector<vector<T>> result;
-        if (root == nullptr) return result;
-        
-        queue<Node<T>*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            int levelSize = q.size();
-            vector<T> currentLevel;
-            
-            for (int i = 0; i < levelSize; i++) {
-                Node<T>* current = q.front();
-                q.pop();
-                
-                currentLevel.push_back(current->data);
-                
-                if (current->left) q.push(current->left);
-                if (current->right) q.push(current->right);
-            }
-            
-            result.push_back(currentLevel);
-        }
-        
-        return result;
-    }
-    
-    void print(const string& title, const vector<T>& result) {
-        cout << title << ": ";
-        for (const T& val : result) {
-            cout << val << " ";
+            curr = st.top();
+            st.pop();
+            cout << curr->data << " ";
+            curr = curr->right;
         }
         cout << endl;
     }
     
-    void printAll() {
-        cout << "\n=== Tree Traversals ===" << endl;
-        print("Inorder (recursive)", inorderRecursive());
-        print("Preorder (recursive)", preorderRecursive());
-        print("Postorder (recursive)", postorderRecursive());
-        print("Inorder (iterative)", inorderIterative());
-        print("Preorder (iterative)", preorderIterative());
-        print("Postorder (iterative)", postorderIterative());
-        print("Level Order", levelOrder());
+    void preorderIterative() {
+        if (!root) return;
         
-        cout << "\nLevel Order with Levels:" << endl;
-        vector<vector<int>> levels = levelOrderWithLevels();
-        for (size_t i = 0; i < levels.size(); i++) {
-            cout << "Level " << i << ": ";
-            for (int val : levels[i]) {
-                cout << val << " ";
+        stack<Node*> st;
+        st.push(root);
+        
+        while (!st.empty()) {
+            Node* curr = st.top();
+            st.pop();
+            cout << curr->data << " ";
+            
+            if (curr->right) st.push(curr->right);
+            if (curr->left) st.push(curr->left);
+        }
+        cout << endl;
+    }
+    
+    void postorderIterative() {
+        if (!root) return;
+        
+        stack<Node*> st1, st2;
+        st1.push(root);
+        
+        while (!st1.empty()) {
+            Node* curr = st1.top();
+            st1.pop();
+            st2.push(curr);
+            
+            if (curr->left) st1.push(curr->left);
+            if (curr->right) st1.push(curr->right);
+        }
+        
+        while (!st2.empty()) {
+            cout << st2.top()->data << " ";
+            st2.pop();
+        }
+        cout << endl;
+    }
+    
+    // ============ LEVEL ORDER ============
+    
+    void levelOrder() {
+        if (!root) return;
+        
+        queue<Node*> q;
+        q.push(root);
+        
+        while (!q.empty()) {
+            Node* curr = q.front();
+            q.pop();
+            cout << curr->data << " ";
+            
+            if (curr->left) q.push(curr->left);
+            if (curr->right) q.push(curr->right);
+        }
+        cout << endl;
+    }
+    
+    void levelOrderByLevel() {
+        if (!root) return;
+        
+        queue<Node*> q;
+        q.push(root);
+        
+        while (!q.empty()) {
+            int levelSize = q.size();
+            
+            for (int i = 0; i < levelSize; i++) {
+                Node* curr = q.front();
+                q.pop();
+                cout << curr->data << " ";
+                
+                if (curr->left) q.push(curr->left);
+                if (curr->right) q.push(curr->right);
             }
             cout << endl;
         }
     }
+    
+    void displayAllTraversals() {
+        cout << "Recursive Traversals:" << endl;
+        cout << "  Inorder:   ";
+        inorderRecursive(root);
+        cout << endl;
+        cout << "  Preorder:  ";
+        preorderRecursive(root);
+        cout << endl;
+        cout << "  Postorder: ";
+        postorderRecursive(root);
+        cout << endl;
+        
+        cout << "\nIterative Traversals:" << endl;
+        cout << "  Inorder:   ";
+        inorderIterative();
+        cout << "  Preorder:  ";
+        preorderIterative();
+        cout << "  Postorder: ";
+        postorderIterative();
+        
+        cout << "\nLevel Order Traversal:" << endl;
+        cout << "  Single line: ";
+        levelOrder();
+        cout << "  By level:" << endl;
+        levelOrderByLevel();
+    }
 };
 
 int main() {
-    // Create tree: 
-    //        50
-    //       /  \
-    //      30   80
-    //     / \   / \
-    //    20 40 70 90
+    // Build tree
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    root->right->right = new Node(6);
     
-    Node<int>* root = new Node<int>(50);
-    root->left = new Node<int>(30);
-    root->right = new Node<int>(80);
-    root->left->left = new Node<int>(20);
-    root->left->right = new Node<int>(40);
-    root->right->left = new Node<int>(70);
-    root->right->right = new Node<int>(90);
-    
-    BinaryTree<int> tree;
+    BinaryTree tree;
     tree.setRoot(root);
     
-    cout << "=== Binary Tree Traversals Demo ===" << endl;
-    cout << "Tree structure:" << endl;
-    cout << "        50" << endl;
-    cout << "       /  \\" << endl;
-    cout << "      30   80" << endl;
-    cout << "     / \\   / \\" << endl;
-    cout << "    20 40 70 90" << endl;
-    
-    tree.printAll();
+    tree.displayAllTraversals();
     
     return 0;
 }
 ```
 
----
+**Output:**
+```
+Recursive Traversals:
+  Inorder:   4 2 5 1 3 6 
+  Preorder:  1 2 4 5 3 6 
+  Postorder: 4 5 2 6 3 1 
 
-## 📊 Complexity Analysis
+Iterative Traversals:
+  Inorder:   4 2 5 1 3 6 
+  Preorder:  1 2 4 5 3 6 
+  Postorder: 4 5 2 6 3 1 
 
-| Traversal | Time Complexity | Space Complexity | Space (Recursive) |
-|-----------|----------------|------------------|-------------------|
-| **Inorder** | O(n) | O(1) iterative | O(h) |
-| **Preorder** | O(n) | O(1) iterative | O(h) |
-| **Postorder** | O(n) | O(n) iterative (2 stacks) | O(h) |
-| **Level Order** | O(n) | O(w) where w = max width | N/A |
-
----
-
-## 🎯 Use Cases Summary
-
-| Traversal | Best Use Case |
-|-----------|---------------|
-| **Inorder** | Getting sorted data from BST |
-| **Preorder** | Serializing/deserializing tree, creating copy |
-| **Postorder** | Deleting tree, evaluating expressions |
-| **Level Order** | Finding shortest path, printing tree levels |
+Level Order Traversal:
+  Single line: 1 2 3 4 5 6 
+  By level:
+1 
+2 3 
+4 5 6 
+```
 
 ---
 
-## ✅ Key Takeaways
+### Complexity Summary
 
-1. **Inorder** produces sorted order for BST
-2. **Preorder** is useful for tree serialization
-3. **Postorder** is used for tree deletion
-4. **Level order** uses BFS and a queue
-5. **Iterative traversals** avoid recursion stack overflow
-6. **Recursive traversals** are more readable but use O(h) space
-7. **BST property** only guarantees inorder sorting
+| Traversal | Time Complexity | Space Complexity (Recursive) | Space Complexity (Iterative) |
+|-----------|----------------|------------------------------|------------------------------|
+| **Inorder** | O(n) | O(h) | O(h) |
+| **Preorder** | O(n) | O(h) | O(h) |
+| **Postorder** | O(n) | O(h) | O(h) |
+| **Level Order** | O(n) | O(w) | O(w) |
+
+- h = height of tree
+- w = maximum width of tree
 
 ---
+
+### Applications Summary
+
+| Traversal | Applications |
+|-----------|--------------|
+| **Inorder** | BST sorted output, BST validation |
+| **Preorder** | Tree copying, Serialization, Prefix expression |
+| **Postorder** | Tree deletion, Postfix expression, Dependency resolution |
+| **Level Order** | Shortest path (unweighted), Tree width, Zigzag traversal |
+
+---
+
+### Prerequisites
+
+Before starting this section, you should have completed:
+
+- [01_Binary_Trees/README.md](../01_Binary_Trees/README.md) - Binary tree basics
+- [02_BST/README.md](../02_BST/README.md) - BST basics
+- [04. Data Structures](../../04.%20Data%20Structures/README.md) - Stack and Queue
+
+---
+
+### Learning Path
+
+```
+Level 1: Depth-First Traversals
+├── Recursive DFS (Inorder, Preorder, Postorder)
+├── Iterative DFS using Stack
+└── Applications
+
+Level 2: Breadth-First Traversals
+├── Level Order using Queue
+├── Level-by-Level Output
+└── Zigzag/Spiral Traversal
+
+Level 3: Advanced Topics
+├── Morris Traversal (O(1) space)
+├── Boundary Traversal
+└── Diagonal Traversal
+```
+
+---
+
+### Common Mistakes to Avoid
+
+| Mistake | Solution |
+|---------|----------|
+| Forgetting base case in recursion | Always check for null node |
+| Infinite loop in iterative traversal | Update pointers correctly |
+| Not preserving order in iterative methods | Use appropriate stack/queue order |
+| Confusing preorder and postorder | Remember: pre = root first, post = root last |
+| Stack overflow for deep trees | Use iterative traversal for very deep trees |
+
+---
+
+### Practice Questions
+
+After completing this section, you should be able to:
+
+1. Implement all three DFS traversals recursively
+2. Implement all three DFS traversals iteratively
+3. Implement level order traversal using queue
+4. Print level order traversal level by level
+5. Implement zigzag (spiral) level order traversal
+6. Identify which traversal produces a given output
+7. Use inorder traversal to get sorted order from BST
+8. Use preorder traversal to serialize a tree
+
+---
+
+### Next Steps
+
+- Go to [01_Depth_First_Search.md](01_Depth_First_Search.md) to understand Depth-First Search.

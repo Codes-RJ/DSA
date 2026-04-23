@@ -270,7 +270,6 @@ FCNSNode (24 bytes on 64-bit system):
 6. **Proper deletion** prevents memory leaks
 
 ---
----
 
 ## Next Step
 

@@ -874,4 +874,4 @@ void demonstrateValarray() {
 
 ## Next Step
 
-- Go to [Theory.md](Theory.md) to continue with Theory.
+- Go to [Trees and Graphs](../05.%20Trees%20and%20Graphs/README.md) to continue to next topic.

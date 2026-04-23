@@ -615,8 +615,7 @@ int main() {
 8. **Space complexity** O(w) where w is maximum width
 
 ---
----
 
 ## Next Step
 
-- Go to [README.md](README.md) to continue.
+- Go to [06_Basic_Graph_Algorithms](../06_Basic_Graph_Algorithms/README.md) to continue.

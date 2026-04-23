@@ -1,299 +1,396 @@
-﻿# C++ Basic Data Structures - Theory Guide
-
-## Overview
-
-Data structures are fundamental building blocks in computer science that organize and store data in memory. C++ provides both built-in primitive data structures and powerful container classes through the Standard Template Library (STL). Understanding these data structures is essential for writing efficient, maintainable, and scalable code.
-
-## Classification of Data Structures
-
-Data structures in C++ can be broadly classified into:
-
-1. **Primitive Data Structures**: Built-in types (int, char, float, double, bool)
-2. **Linear Data Structures**: Elements arranged in sequence
-3. **Non-Linear Data Structures**: Elements connected hierarchically
-4. **Container Adapters**: Provide restricted interfaces to underlying containers
+﻿Here is `Theory.md` for the **04. Data Structures** folder.
 
 ---
 
-## 1. Arrays
+# Theory.md
 
-### Definition
-An array is a collection of elements of the same data type stored in contiguous memory locations.
+## Data Structures - Theoretical Foundations
 
-### Types of Arrays in C++
+### Overview
 
-#### C-style Arrays
-- Traditional arrays inherited from C
-- Fixed size determined at compile time
-- No bounds checking
-- No size information stored
+Data structures are specialized formats for organizing, processing, retrieving, and storing data. They form the foundation of computer science and algorithm design. This document covers the theoretical foundations of data structures, including abstract data types, complexity analysis, container categories, and selection guidelines.
 
-#### std::array (C++11)
-- Modern alternative to C-style arrays
-- Fixed size known at compile time
-- Provides STL-like interface
-- Size information available via `.size()`
-- Bounds checking with `.at()`
+---
 
-#### std::vector
-- Dynamic array that can grow/shrink automatically
-- Elements stored contiguously
-- Provides random access
-- Amortized O(1) insertion at the end
-- Cache-friendly due to contiguous memory
+### 1. What is a Data Structure?
 
-### Time Complexity
-| Operation | C-style Array | std::array | std::vector |
-|-----------|---------------|------------|-------------|
-| Access | O(1) | O(1) | O(1) |
-| Insert at end | O(1)* | N/A | O(1) amortized |
-| Insert at middle | O(n) | O(n) | O(n) |
-| Delete at end | O(1)* | N/A | O(1) |
-| Delete at middle | O(n) | O(n) | O(n) |
-| Search | O(n) | O(n) | O(n) |
+A data structure is a particular way of organizing data in computer memory so that it can be used efficiently. Different data structures are suited to different kinds of applications, and some are highly specialized for specific tasks.
 
-*Requires manual size tracking
+**Key Properties of Data Structures:**
 
-### Memory Layout
-Arrays store elements in contiguous memory:
+| Property | Description |
+|----------|-------------|
+| **Organization** | How data elements are arranged |
+| **Access Method** | How elements can be accessed (random, sequential) |
+| **Space Efficiency** | How much memory the structure uses |
+| **Time Efficiency** | How fast operations are |
+
+---
+
+### 2. Abstract Data Types (ADTs)
+
+An Abstract Data Type is a mathematical model for data types defined by the behavior (operations) rather than implementation.
+
+**ADT vs Data Structure:**
+
+| Aspect | Abstract Data Type | Data Structure |
+|--------|-------------------|----------------|
+| **Definition** | What operations are possible | How operations are implemented |
+| **Focus** | Interface | Implementation |
+| **Example** | Stack (push, pop, top) | Array-based stack, linked stack |
+| **Language** | Theoretical concept | Concrete implementation |
+
+**Common ADTs:**
+
+| ADT | Core Operations | Possible Implementations |
+|-----|-----------------|--------------------------|
+| **List** | insert, delete, get, set | Array, linked list |
+| **Stack** | push, pop, top | Array, linked list |
+| **Queue** | enqueue, dequeue, front, back | Array, linked list |
+| **Priority Queue** | insert, extract_min/max | Heap, balanced BST |
+| **Set** | insert, delete, find | Hash table, BST |
+| **Map** | insert, delete, lookup | Hash table, BST |
+
+---
+
+### 3. Complexity Analysis
+
+Time and space complexity are measured using Big O notation.
+
+**Common Complexities:**
+
+| Complexity | Name | Example Operation |
+|------------|------|-------------------|
+| O(1) | Constant | Array access |
+| O(log n) | Logarithmic | Binary search, BST lookup |
+| O(n) | Linear | Linear search |
+| O(n log n) | Linearithmic | Merge sort |
+| O(n²) | Quadratic | Bubble sort |
+| O(2ⁿ) | Exponential | Recursive Fibonacci |
+
+**Complexity Hierarchy:**
 ```
-Address:  1000   1004   1008   1012   1016
-         +------+------+------+------+------+
-         |  10  |  20  |  30  |  40  |  50  |
-         +------+------+------+------+------+
-         arr[0] arr[1] arr[2] arr[3] arr[4]
+O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ) < O(n!)
 ```
 
 ---
 
-## 2. Strings
+### 4. Container Categories
 
-### Definition
-A string is a sequence of characters used to represent text.
+C++ STL containers are classified into several categories:
 
-### Types of Strings
-
-#### C-style Strings
-- Null-terminated character arrays
-- Functions in `<cstring>` header
-- Manual memory management required
-- Prone to buffer overflow
-
-#### std::string
-- Modern C++ string class
-- Dynamic size
-- Automatic memory management
-- Rich member functions
-- Safe and easy to use
-
-### Common Operations
-- Concatenation: `+`, `+=`
-- Length: `.length()`, `.size()`
-- Substring: `.substr()`
-- Find: `.find()`
-- Replace: `.replace()`
-- Conversion: `std::stoi()`, `std::to_string()`
-
----
-
-## 3. Sequence Containers
-
-Sequence containers store elements in a linear sequence.
-
-### std::vector
-- Dynamic array with contiguous storage
-- Best for most general use cases
-- Excellent cache performance
-
-### std::deque (Double-ended Queue)
-- Double-ended queue
-- Fast insertion/deletion at both ends
-- Random access available
-- Not contiguous like vector
-
-### std::list
-- Doubly-linked list
-- Constant time insertion/deletion anywhere
-- No random access
-- Iterator stability
-
-### std::forward_list
-- Singly-linked list (C++11)
-- Forward-only traversal
-- Minimal memory overhead
-- Good for forward-only operations
-
-### Comparison Matrix
-| Feature | vector | deque | list | forward_list |
-|---------|--------|-------|------|--------------|
-| Random Access | Yes | Yes | No | No |
-| Insert at Front | O(n) | O(1) | O(1) | O(1) |
-| Insert at Back | O(1)* | O(1) | O(1) | No |
-| Insert Middle | O(n) | O(n) | O(1) | O(1) |
-| Memory Overhead | Low | Medium | High | Medium |
-| Iterator Invalidation | Frequent | Less | Never | Never |
+```
+STL Containers
+│
+├── Sequence Containers
+│   ├── array (C++11)
+│   ├── vector
+│   ├── deque
+│   ├── list
+│   └── forward_list (C++11)
+│
+├── Associative Containers (ordered)
+│   ├── set
+│   ├── multiset
+│   ├── map
+│   └── multimap
+│
+├── Unordered Associative Containers (C++11)
+│   ├── unordered_set
+│   ├── unordered_multiset
+│   ├── unordered_map
+│   └── unordered_multimap
+│
+└── Container Adapters
+    ├── stack
+    ├── queue
+    └── priority_queue
+```
 
 ---
 
-## 4. Associative Containers
+### 5. Sequence Containers
 
-Associative containers store key-value pairs or sorted unique elements.
+Sequence containers store elements in a linear order.
 
-### Ordered Associative Containers
+| Container | Memory Layout | Random Access | Insert/Delete | Iterator Invalidation |
+|-----------|---------------|---------------|---------------|----------------------|
+| **array** | Contiguous | O(1) | N/A | N/A |
+| **vector** | Contiguous | O(1) | O(n) (end O(1)) | On reallocation |
+| **deque** | Blocks | O(1) | O(1) ends, O(n) middle | On insert at ends |
+| **list** | Non-contiguous | O(n) | O(1)* | None (except erased) |
+| **forward_list** | Non-contiguous | O(n) | O(1)* | None (except erased) |
 
-#### std::map
-- Key-value pairs sorted by key
-- Implemented as Red-Black Tree
-- O(log n) operations
-- Keys are unique
-
-#### std::set
-- Unique elements sorted
-- Implemented as Red-Black Tree
-- O(log n) operations
-
-### Unordered Associative Containers
-
-#### std::unordered_map
-- Key-value pairs stored in hash table
-- Average O(1) operations
-- Keys are unique
-- Order not guaranteed
-
-#### std::unordered_set
-- Unique elements in hash table
-- Average O(1) operations
-- Order not guaranteed
-
-### Time Complexity Comparison
-| Operation | map/set | unordered_map/unordered_set |
-|-----------|---------|----------------------------|
-| Insert | O(log n) | O(1) average, O(n) worst |
-| Delete | O(log n) | O(1) average, O(n) worst |
-| Search | O(log n) | O(1) average, O(n) worst |
-| Access | O(log n) | O(1) average, O(n) worst |
+*Given iterator to position
 
 ---
 
-## 5. Container Adapters
+### 6. Associative Containers (Ordered)
+
+Ordered associative containers store elements in sorted order using comparison functions.
+
+| Container | Keys Unique | Sorted By | Implementation | Operation Complexity |
+|-----------|-------------|-----------|----------------|----------------------|
+| **set** | Yes | Key | Red-Black Tree | O(log n) |
+| **multiset** | No | Key | Red-Black Tree | O(log n) |
+| **map** | Yes (key) | Key | Red-Black Tree | O(log n) |
+| **multimap** | No (key) | Key | Red-Black Tree | O(log n) |
+
+**Red-Black Tree Properties:**
+
+| Property | Description |
+|----------|-------------|
+| **Color** | Each node is red or black |
+| **Root** | Root is black |
+| **Leaves** | Leaves (null) are black |
+| **Red Rule** | Red nodes cannot have red children |
+| **Black Rule** | Every path from root to leaf has same number of black nodes |
+
+---
+
+### 7. Unordered Associative Containers
+
+Unordered associative containers use hash tables for O(1) average access.
+
+| Container | Keys Unique | Implementation | Average Complexity | Worst Case |
+|-----------|-------------|----------------|--------------------|------------|
+| **unordered_set** | Yes | Hash Table | O(1) | O(n) |
+| **unordered_multiset** | No | Hash Table | O(1) | O(n) |
+| **unordered_map** | Yes (key) | Hash Table | O(1) | O(n) |
+| **unordered_multimap** | No (key) | Hash Table | O(1) | O(n) |
+
+**Hash Table Components:**
+
+| Component | Description |
+|-----------|-------------|
+| **Bucket** | Slot in hash table that holds elements |
+| **Hash Function** | Maps key to bucket index |
+| **Load Factor** | Ratio of elements to buckets |
+| **Rehashing** | Resizing when load factor exceeds threshold |
+
+**Hash Function Requirements:**
+
+| Requirement | Description |
+|-------------|-------------|
+| **Deterministic** | Same key always produces same hash |
+| **Uniform Distribution** | Keys distributed evenly across buckets |
+| **Fast** | Computation should be O(1) |
+
+---
+
+### 8. Container Adapters
 
 Container adapters provide restricted interfaces to underlying containers.
 
-### std::stack
-- LIFO (Last In, First Out) data structure
-- Operations: push, pop, top
-- Default underlying container: deque
+| Adapter | Underlying Container (default) | Principle | Key Operations |
+|---------|-------------------------------|-----------|----------------|
+| **stack** | deque | LIFO | push, pop, top |
+| **queue** | deque | FIFO | push, pop, front, back |
+| **priority_queue** | vector | Priority | push, pop, top |
 
-### std::queue
-- FIFO (First In, First Out) data structure
-- Operations: push, pop, front, back
-- Default underlying container: deque
-
-### std::priority_queue
-- Elements ordered by priority
-- Max-heap by default
-- Operations: push, pop, top
-- Default underlying container: vector
-
----
-
-## 6. Utility Data Structures
-
-### std::pair
-- Holds two heterogeneous values
-- Accessed via .first and .second
-- Used in map insertions and returns
-
-### std::tuple (C++11)
-- Holds multiple heterogeneous values
-- Accessed via std::get<index>()
-- Can be used for returning multiple values
-
-### std::optional (C++17)
-- Represents optional value that may or may not exist
-- Safer than using sentinel values or pointers
-- Check with .has_value() or bool conversion
-
-### std::variant (C++17)
-- Type-safe union
-- Holds one of several specified types
-- Accessed via std::get or std::visit
-
----
-
-## Memory Management in C++ Data Structures
-
-### Stack vs Heap Allocation
-- **Stack**: Automatic allocation, fast, limited size
-- **Heap**: Manual allocation, slower, flexible size
-
-### RAII (Resource Acquisition Is Initialization)
-- Resources acquired in constructor, released in destructor
-- STL containers follow RAII principles
-- Automatic memory management for containers
-
-### Iterator Invalidation Rules
-- **vector**: Insert/erase may invalidate all iterators
-- **deque**: Insert at front/back invalidates iterators
-- **list**: Insert/erase only affects iterators at that position
-- **map/set**: Insert/erase doesn't invalidate existing iterators
-- **unordered containers**: Rehashing may invalidate all iterators
-
----
-
-## Choosing the Right Container - Decision Tree
-
+**Stack Principle (LIFO - Last In, First Out):**
 ```
-Do you need ordered elements?
-    ├── Yes → Need key-value pairs?
-    │         ├── Yes → std::map
-    │         └── No → std::set
-    └── No → Need key-value pairs?
-              ├── Yes → std::unordered_map
-              └── No → std::unordered_set
+push(1) → [1]
+push(2) → [1, 2]
+push(3) → [1, 2, 3]
+pop()   → returns 3, stack becomes [1, 2]
+top()   → returns 2
+```
 
-Do you need sequential access?
-    ├── Need random access?
-    │   ├── Yes → std::vector (most cases)
-    │   └── No → Need fast insertion at both ends?
-    │             ├── Yes → std::deque
-    │             └── No → std::list
-    └── Need LIFO/FIFO access?
-        ├── LIFO → std::stack
-        └── FIFO → std::queue
+**Queue Principle (FIFO - First In, First Out):**
+```
+push(1) → [1]
+push(2) → [1, 2]
+push(3) → [1, 2, 3]
+pop()   → returns 1, queue becomes [2, 3]
+front() → returns 2
+back()  → returns 3
+```
+
+**Priority Queue Principle:**
+```
+push(10) → [10]
+push(30) → [10, 30] (max-heap: 30 at top)
+push(20) → [10, 20, 30]
+top()    → returns 30
+pop()    → removes 30, heap becomes [10, 20]
 ```
 
 ---
 
-## Performance Guidelines
+### 9. Iterators
 
-1. **Use std::vector as default container** - It's cache-friendly and versatile
-2. **Use .reserve()** when you know the approximate size
-3. **Use .shrink_to_fit()** to reduce memory after removals
-4. **Choose unordered containers** when hash collisions are rare
-5. **Use ordered containers** when range queries are needed
-6. **Avoid frequent insertions in the middle of vectors** - O(n) operations
-7. **Use list when iterators must remain valid** after modifications
-8. **Use emplace() instead of push()** to avoid unnecessary copies
+Iterators provide a uniform way to traverse elements in containers.
+
+**Iterator Categories:**
+
+| Category | Operations | Supported Containers |
+|----------|------------|---------------------|
+| **Input** | ++, *, ->, ==, != | istream |
+| **Output** | ++, * = | ostream |
+| **Forward** | Input + Output + multi-pass | forward_list, unordered_set |
+| **Bidirectional** | Forward + -- | list, set, map |
+| **Random Access** | Bidirectional + +, -, [], <, > | vector, deque, array |
+
+**Iterator Hierarchy:**
+```
+          Input Iterator
+               │
+          Forward Iterator
+               │
+       ┌───────┴───────┐
+       │               │
+Bidirectional      Random Access
+    Iterator          Iterator
+```
 
 ---
 
-## Common Pitfalls
+### 10. Allocators
 
-1. **Out-of-bounds access** - Use .at() for bounds checking
-2. **Iterator invalidation** - Know when iterators become invalid
-3. **Copy overhead** - Use move semantics and references
-4. **Memory fragmentation** - Frequent reallocation in vectors
-5. **Hash collisions** - Choose good hash functions for unordered containers
-6. **Comparison function requirements** - Strict weak ordering for ordered containers
+Allocators manage memory allocation for containers.
+
+| Aspect | Description |
+|--------|-------------|
+| **Purpose** | Separate memory management from container logic |
+| **Default** | `std::allocator<T>` uses `new` and `delete` |
+| **Custom** | Can provide custom allocators for pools, tracking |
+| **Interface** | `allocate()`, `deallocate()`, `construct()`, `destroy()` |
+
+**Custom Allocator Use Cases:**
+
+| Use Case | Description |
+|----------|-------------|
+| **Memory Pool** | Pre-allocated blocks for fast allocation |
+| **Tracking** | Count allocations for debugging |
+| **Shared Memory** | Allocate in shared memory segment |
+| **Stack Allocation** | Allocate from stack instead of heap |
 
 ---
 
-## Conclusion
+### 11. Container Selection Guidelines
 
-C++ provides a comprehensive set of data structures catering to different use cases. Understanding the characteristics, time complexities, and memory layouts of these containers enables developers to make informed decisions and write efficient, maintainable code. Modern C++ continues to enhance these data structures with features like move semantics, perfect forwarding, and improved safety guarantees.
+**By Access Pattern:**
+
+| Access Pattern | Recommended Container |
+|----------------|----------------------|
+| Random access required | vector, deque, array |
+| Sequential access only | list, forward_list |
+| Insert/delete at ends | deque, vector (end only) |
+| Insert/delete anywhere | list, forward_list |
+
+**By Lookup Requirement:**
+
+| Lookup Requirement | Recommended Container |
+|--------------------|----------------------|
+| Sorted order needed | set, map |
+| Range queries needed | set, map |
+| Fast lookup only | unordered_set, unordered_map |
+| Duplicate keys allowed | multiset, multimap, unordered_multiset |
+
+**By Size:**
+
+| Size Characteristic | Recommended Container |
+|--------------------|----------------------|
+| Fixed size known at compile time | array |
+| Dynamic, unpredictable | vector |
+| Very large, many insert/delete | list, deque |
+
 ---
 
-## Next Step
+### 12. Memory Layout Comparison
 
-- Go to [README.md](README.md) to continue.
+**Contiguous Memory (array, vector):**
+```
+Address: 1000 1004 1008 1012 1016
+Value:   [10] [20] [30] [40] [50]
+```
+Pros: Cache friendly, fast random access
+Cons: Expensive insert/delete in middle
+
+**Linked Memory (list, forward_list):**
+```
+Node1: [10] → Node2: [20] → Node3: [30] → nullptr
+Address: 1000    Address: 2000    Address: 1500
+```
+Pros: Fast insert/delete anywhere
+Cons: Poor cache locality, extra memory for pointers
+
+**Blocked Memory (deque):**
+```
+Block 0: [10] [11] [12] [13]
+Block 1: [20] [21] [22] [23]
+Block 2: [30] [31] [32] [33]
+```
+Pros: O(1) random access, O(1) insert at ends
+Cons: Slightly slower than vector for random access
+
+---
+
+### 13. Iterator Invalidation Rules
+
+| Container | Insert | Erase | Reallocation |
+|-----------|--------|-------|--------------|
+| **vector** | Invalidates after insertion point | Invalidates after erase point | All iterators if reallocation occurs |
+| **deque** | Invalidates all (ends may preserve) | Invalidates erased | N/A |
+| **list** | No invalidation | Invalidates erased only | N/A |
+| **set/map** | No invalidation | Invalidates erased only | N/A |
+| **unordered_set** | May invalidate on rehash | Invalidates erased only | On rehash |
+
+---
+
+### 14. Big O Complexity Summary
+
+| Container | Access | Insert | Delete | Search | Memory |
+|-----------|--------|--------|--------|--------|--------|
+| **array** | O(1) | N/A | N/A | O(n) | O(n) fixed |
+| **vector** | O(1) | O(n)* | O(n)* | O(n) | O(n) |
+| **deque** | O(1) | O(1)** | O(1)** | O(n) | O(n) |
+| **list** | O(n) | O(1)† | O(1)† | O(n) | O(n) |
+| **set/map** | O(log n) | O(log n) | O(log n) | O(log n) | O(n) |
+| **unordered_set/map** | O(1) avg | O(1) avg | O(1) avg | O(1) avg | O(n) |
+
+* O(1) at end, O(n) elsewhere
+** O(1) at ends, O(n) elsewhere
+† Given iterator to position
+
+---
+
+### 15. When to Use Which Container
+
+| Scenario | Recommended Container |
+|----------|----------------------|
+| Need fixed-size array known at compile time | `array` |
+| Need dynamic array with fast random access | `vector` |
+| Need frequent insert/delete at both ends | `deque` |
+| Need frequent insert/delete anywhere | `list` |
+| Need LIFO access | `stack` |
+| Need FIFO access | `queue` |
+| Need priority-based access | `priority_queue` |
+| Need unique sorted elements | `set` |
+| Need key-value pairs sorted by key | `map` |
+| Need fast lookup, order doesn't matter | `unordered_set` |
+| Need fast key-value lookup | `unordered_map` |
+| Need bit manipulation | `bitset` |
+| Need numerical array operations | `valarray` |
+
+---
+
+### Key Takeaways
+
+1. **Data structures** organize data for efficient access and manipulation
+2. **Abstract Data Types** define behavior; **data structures** define implementation
+3. **Complexity analysis** helps choose the right data structure
+4. **Sequence containers** store linear sequences (vector, list, deque)
+5. **Associative containers** store key-value pairs in sorted order (set, map)
+6. **Unordered containers** use hash tables for O(1) average access
+7. **Container adapters** provide restricted interfaces (stack, queue)
+8. **Iterators** provide uniform traversal across containers
+9. **Iterator invalidation** rules vary by container
+10. **Container selection** depends on access patterns and requirements
+
+---
+
+### Next Steps
+
+- Go to [00_Basic_Data_Structures_Indexes.md](00_Basic_Data_Structures_Indexes.md) to understand Data Structures Index and Navigation.

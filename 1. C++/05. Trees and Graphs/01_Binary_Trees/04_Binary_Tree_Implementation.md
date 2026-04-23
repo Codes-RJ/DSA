@@ -670,7 +670,6 @@ int main() {
 6. **Proper cleanup** prevents memory leaks
 
 ---
----
 
 ## Next Step
 

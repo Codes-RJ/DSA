@@ -1,219 +1,563 @@
-# README.md - Graph Representations
+# README.md
 
-## 📖 Overview
+## Graph Representations - Complete Guide
 
-Graphs are non-linear data structures consisting of vertices (nodes) and edges (connections between vertices). Choosing the right graph representation is crucial for algorithm efficiency. This guide covers all major graph representations, their trade-offs, and when to use each.
+### Overview
 
----
-
-## 🎯 Why Graph Representations Matter
-
-| Representation | Space | Add Edge | Check Edge | Iterate Neighbors | Use Case |
-|----------------|-------|----------|------------|-------------------|----------|
-| **Adjacency Matrix** | O(V²) | O(1) | O(1) | O(V) | Dense graphs |
-| **Adjacency List** | O(V+E) | O(1) | O(V) | O(degree) | Sparse graphs |
-| **Edge List** | O(E) | O(1) | O(E) | O(E) | Simple edge processing |
-| **Incidence Matrix** | O(V×E) | O(1) | O(E) | O(E) | Hypergraphs |
+A graph is a non-linear data structure consisting of vertices (nodes) and edges (connections between vertices). Graphs model relationships between objects and are fundamental to many real-world applications like social networks, GPS navigation, network routing, and recommendation systems. Choosing the right graph representation is crucial for algorithm efficiency and memory usage.
 
 ---
 
-## 📊 Graph Terminology
+### Topics Covered
 
-### Basic Terms
+| # | Name | Purpose |
+| --- | --- | --- |
+| 1. | [01_Graph_Basics.md](01_Graph_Basics.md) | understand Graph Basics (terminology, types) |
+| 2. | [02_Adjacency_Matrix.md](02_Adjacency_Matrix.md) | understand Adjacency Matrix Representation |
+| 3. | [03_Adjacency_List.md](03_Adjacency_List.md) | understand Adjacency List Representation |
+| 4. | [04_Edge_List.md](04_Edge_List.md) | understand Edge List Representation |
+| 5. | [05_Comparison_of_Representations.md](05_Comparison_of_Representations.md) | understand Comparison of Graph Representations |
+| 6. | [README.md](README.md) | understand Graph Representations Overview |
 
-| Term | Definition | Example |
-|------|------------|---------|
-| **Vertex (Node)** | Fundamental unit | City in a map |
-| **Edge** | Connection between vertices | Road between cities |
-| **Degree** | Number of edges incident to vertex | Number of roads from city |
-| **Path** | Sequence of vertices connected by edges | Route from A to B |
-| **Cycle** | Path that starts and ends at same vertex | Loop in a graph |
-| **Connected Component** | Maximal set of connected vertices | Isolated clusters |
+---
 
-### Graph Types
+## 1. Graph Basics
 
+This topic introduces fundamental graph terminology and concepts.
+
+**File:** [01_Graph_Basics.md](01_Graph_Basics.md)
+
+**What you will learn:**
+- Graph definition (vertices, edges)
+- Directed vs Undirected graphs
+- Weighted vs Unweighted graphs
+- Degree of a vertex (indegree, outdegree)
+- Path, cycle, connected components
+- Graph applications
+
+**Key Concepts:**
+
+| Term | Definition |
+|------|------------|
+| **Vertex (Node)** | A point in the graph |
+| **Edge** | A connection between two vertices |
+| **Directed Graph** | Edges have direction |
+| **Undirected Graph** | Edges have no direction (bidirectional) |
+| **Weighted Graph** | Edges have associated weights/costs |
+| **Degree** | Number of edges incident to a vertex |
+| **Indegree** | Number of incoming edges (directed) |
+| **Outdegree** | Number of outgoing edges (directed) |
+| **Path** | Sequence of vertices connected by edges |
+| **Cycle** | Path that starts and ends at same vertex |
+| **Connected Component** | Maximal set of connected vertices |
+
+**Graph Types:**
 ```
-Undirected Graph:            Directed Graph (Digraph):
-    1 --- 2                      1 → 2
-    |     |                      ↑   ↓
-    4 --- 3                      4 ← 3
+Undirected Graph:          Directed Graph:
+    1 ----- 2                 1 ---→ 2
+    |        |                ↑       |
+    |        |                |       ↓
+    4 ----- 3                 4 ←--- 3
 
-Weighted Graph:               Unweighted Graph:
-    1 ---5--- 2                   1 --- 2
-    |         |                   |     |
-    2         3                   4 --- 3
-    4 ---1--- 3
+Weighted Graph:
+    1 ----5---- 2
+    |           |
+    2           3
+    |           |
+    4 ----1---- 3
 ```
 
 ---
 
-## 🗂️ Graph Representations
+## 2. Adjacency Matrix
 
-### 1. Adjacency Matrix
+This topic explains the adjacency matrix representation using a 2D array.
 
-A 2D array where `matrix[i][j] = 1` if there's an edge from vertex i to vertex j.
+**File:** [02_Adjacency_Matrix.md](02_Adjacency_Matrix.md)
+
+**What you will learn:**
+- Adjacency matrix definition
+- Memory layout (V x V matrix)
+- For undirected graphs (symmetric)
+- For directed graphs (not necessarily symmetric)
+- For weighted graphs (store weights)
+- Space and time complexity
+
+**Key Concepts:**
+
+| Operation | Complexity |
+|-----------|------------|
+| **Space** | O(V²) |
+| **Edge Lookup** | O(1) |
+| **Add Edge** | O(1) |
+| **Remove Edge** | O(1) |
+| **Get Neighbors** | O(V) |
+
+**Representation:**
+```
+Undirected Graph:          Adjacency Matrix:
+    1 ----- 2             [0][1][2][3]
+    |       |           0[0 1 1 0]
+    |       |           1[1 0 0 1]
+    4 ----- 3           2[1 0 0 1]
+                        3[0 1 1 0]
+```
+
+**Implementation:**
+```cpp
+// Unweighted graph
+int V = 5;
+vector<vector<bool>> adj(V, vector<bool>(V, false));
+
+// Add edge between u and v (undirected)
+adj[u][v] = true;
+adj[v][u] = true;
+
+// Check if edge exists
+if (adj[u][v]) { /* edge exists */ }
+
+// Get all neighbors of u
+for (int v = 0; v < V; v++) {
+    if (adj[u][v]) {
+        cout << v << " ";
+    }
+}
+
+// Weighted graph
+vector<vector<int>> adj(V, vector<int>(V, INF));
+adj[u][v] = weight;
+adj[v][u] = weight;  // for undirected
+```
+
+---
+
+## 3. Adjacency List
+
+This topic explains the adjacency list representation using arrays of lists.
+
+**File:** [03_Adjacency_List.md](03_Adjacency_List.md)
+
+**What you will learn:**
+- Adjacency list definition
+- For undirected graphs (each edge stored twice)
+- For directed graphs (each edge stored once)
+- For weighted graphs (store pairs of neighbor and weight)
+- Space and time complexity
+
+**Key Concepts:**
+
+| Operation | Complexity |
+|-----------|------------|
+| **Space** | O(V + E) |
+| **Edge Lookup** | O(V) (or O(log V) with sorted list) |
+| **Add Edge** | O(1) |
+| **Remove Edge** | O(V) |
+| **Get Neighbors** | O(degree) |
+
+**Representation:**
+```
+Undirected Graph:          Adjacency List:
+    1 ----- 2             0: 1 → 2
+    |       |             1: 0 → 3
+    |       |             2: 0 → 3
+    4 ----- 3             3: 1 → 2
+```
+
+**Implementation:**
+```cpp
+// Unweighted graph
+vector<vector<int>> adj(V);
+
+// Add edge between u and v (undirected)
+adj[u].push_back(v);
+adj[v].push_back(u);
+
+// Check if edge exists (O(degree))
+bool edgeExists = false;
+for (int neighbor : adj[u]) {
+    if (neighbor == v) {
+        edgeExists = true;
+        break;
+    }
+}
+
+// Get all neighbors of u
+for (int v : adj[u]) {
+    cout << v << " ";
+}
+
+// Weighted graph
+vector<vector<pair<int, int>>> adj(V);
+
+// Add weighted edge
+adj[u].push_back({v, weight});
+adj[v].push_back({u, weight});  // for undirected
+
+// Iterate over neighbors with weights
+for (auto [neighbor, weight] : adj[u]) {
+    cout << neighbor << " (weight: " << weight << ") ";
+}
+```
+
+---
+
+## 4. Edge List
+
+This topic explains the edge list representation storing all edges in a list.
+
+**File:** [04_Edge_List.md](04_Edge_List.md)
+
+**What you will learn:**
+- Edge list definition
+- For directed and undirected graphs
+- For weighted graphs (store triples)
+- Space and time complexity
+- When edge list is preferred (Kruskal's algorithm)
+
+**Key Concepts:**
+
+| Operation | Complexity |
+|-----------|------------|
+| **Space** | O(E) |
+| **Edge Lookup** | O(E) |
+| **Add Edge** | O(1) |
+| **Remove Edge** | O(E) |
+| **Get Neighbors** | O(E) |
+
+**Representation:**
+```
+Undirected Graph:          Edge List:
+    1 ----- 2             (0,1)
+    |       |             (0,2)
+    |       |             (1,3)
+    4 ----- 3             (2,3)
+```
+
+**Implementation:**
+```cpp
+// Unweighted graph
+vector<pair<int, int>> edges;
+
+// Add edge between u and v (undirected)
+edges.push_back({u, v});
+// For undirected, edge appears once (direction not stored)
+
+// Weighted graph
+struct Edge {
+    int u, v, weight;
+};
+vector<Edge> edges;
+
+// Add weighted edge
+edges.push_back({u, v, weight});
+
+// Sort edges by weight (for Kruskal's algorithm)
+sort(edges.begin(), edges.end(), 
+     [](Edge a, Edge b) { return a.weight < b.weight; });
+
+// Iterate over all edges
+for (auto [u, v, w] : edges) {
+    cout << u << " - " << v << " (" << w << ")" << endl;
+}
+```
+
+---
+
+## 5. Comparison of Representations
+
+This topic compares the three representations to help choose the right one.
+
+**File:** [05_Comparison_of_Representations.md](05_Comparison_of_Representations.md)
+
+**What you will learn:**
+- When to use each representation
+- Memory usage comparison
+- Operation complexity comparison
+- Dense vs Sparse graphs
+- Algorithm-specific considerations
+
+**Key Concepts:**
+
+| Representation | Space | Edge Lookup | Neighbors | Best For |
+|----------------|-------|-------------|-----------|----------|
+| **Adjacency Matrix** | O(V²) | O(1) | O(V) | Dense graphs (E ≈ V²) |
+| **Adjacency List** | O(V+E) | O(degree) | O(degree) | Sparse graphs (E ≪ V²) |
+| **Edge List** | O(E) | O(E) | O(E) | Edge-centric algorithms |
+
+**Comparison Table:**
+
+| Criterion | Adjacency Matrix | Adjacency List | Edge List |
+|-----------|-----------------|----------------|-----------|
+| **Memory (V=1000, E=3000)** | ~1 MB (int) | ~24 KB | ~24 KB |
+| **Memory (V=1000, E=500,000)** | ~1 MB | ~4 MB | ~4 MB |
+| **Add Edge** | O(1) | O(1) | O(1) |
+| **Remove Edge** | O(1) | O(degree) | O(E) |
+| **Check Edge** | O(1) | O(degree) | O(E) |
+| **Get Neighbors** | O(V) | O(degree) | O(E) |
+| **Iterate over edges** | O(V²) | O(V+E) | O(E) |
+
+**Selection Guide:**
+
+| Scenario | Recommended Representation |
+|----------|---------------------------|
+| **Dense graph (E ≈ V²)** | Adjacency Matrix |
+| **Sparse graph (E ≪ V²)** | Adjacency List |
+| **Need fast edge lookup** | Adjacency Matrix |
+| **Need fast neighbor iteration** | Adjacency List |
+| **Need to sort edges by weight** | Edge List |
+| **Running BFS/DFS** | Adjacency List |
+| **Running Floyd-Warshall** | Adjacency Matrix |
+| **Running Kruskal's algorithm** | Edge List |
+| **Limited memory** | Adjacency List (sparse) or Edge List |
+
+---
+
+### Complete Graph Implementation (All Representations)
 
 ```cpp
-class AdjacencyMatrix {
+#include <iostream>
+#include <vector>
+#include <list>
+#include <utility>
+using namespace std;
+
+// ============ ADJACENCY MATRIX ============
+class GraphMatrix {
 private:
-    int** matrix;
-    int vertices;
+    int V;
+    vector<vector<bool>> adj;
     
 public:
-    AdjacencyMatrix(int v) : vertices(v) {
-        matrix = new int*[v];
-        for (int i = 0; i < v; i++) {
-            matrix[i] = new int[v]();
-        }
-    }
+    GraphMatrix(int vertices) : V(vertices), adj(vertices, vector<bool>(vertices, false)) {}
     
-    void addEdge(int u, int v, int weight = 1) {
-        matrix[u][v] = weight;
-        matrix[v][u] = weight;  // For undirected
+    void addEdge(int u, int v) {
+        adj[u][v] = true;
+        adj[v][u] = true;  // undirected
     }
     
     bool hasEdge(int u, int v) {
-        return matrix[u][v] != 0;
+        return adj[u][v];
+    }
+    
+    void print() {
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                cout << adj[i][j] << " ";
+            }
+            cout << endl;
+        }
     }
 };
-```
 
-### 2. Adjacency List
-
-Array of lists where list[i] contains all vertices adjacent to vertex i.
-
-```cpp
-class AdjacencyList {
+// ============ ADJACENCY LIST ============
+class GraphList {
 private:
+    int V;
     vector<vector<int>> adj;
     
 public:
-    AdjacencyList(int v) : adj(v) {}
+    GraphList(int vertices) : V(vertices), adj(vertices) {}
     
     void addEdge(int u, int v) {
         adj[u].push_back(v);
-        adj[v].push_back(u);  // For undirected
+        adj[v].push_back(u);  // undirected
+    }
+    
+    bool hasEdge(int u, int v) {
+        for (int neighbor : adj[u]) {
+            if (neighbor == v) return true;
+        }
+        return false;
+    }
+    
+    void print() {
+        for (int i = 0; i < V; i++) {
+            cout << i << ": ";
+            for (int v : adj[i]) {
+                cout << v << " ";
+            }
+            cout << endl;
+        }
     }
     
     vector<int> getNeighbors(int u) {
         return adj[u];
     }
 };
-```
 
-### 3. Edge List
-
-Simple list of all edges, each as a pair (u, v).
-
-```cpp
-struct Edge {
-    int u, v, weight;
-    Edge(int u, int v, int w = 1) : u(u), v(v), weight(w) {}
-};
-
-class EdgeList {
+// ============ EDGE LIST ============
+class GraphEdgeList {
 private:
-    vector<Edge> edges;
+    vector<pair<int, int>> edges;
+    int V;
     
 public:
-    void addEdge(int u, int v, int w = 1) {
-        edges.emplace_back(u, v, w);
+    GraphEdgeList(int vertices) : V(vertices) {}
+    
+    void addEdge(int u, int v) {
+        edges.push_back({u, v});
     }
     
-    vector<Edge> getAllEdges() {
+    void print() {
+        for (auto [u, v] : edges) {
+            cout << u << " -- " << v << endl;
+        }
+    }
+    
+    vector<pair<int, int>> getAllEdges() {
         return edges;
     }
 };
-```
 
-### 4. Incidence Matrix
-
-Matrix where rows represent vertices, columns represent edges.
-
-```cpp
-class IncidenceMatrix {
+// ============ WEIGHTED ADJACENCY LIST ============
+class WeightedGraphList {
 private:
-    vector<vector<int>> matrix;
-    int vertices;
-    int edgeCount;
+    int V;
+    vector<vector<pair<int, int>>> adj;
     
 public:
-    IncidenceMatrix(int v) : vertices(v), edgeCount(0) {
-        matrix.resize(v);
+    WeightedGraphList(int vertices) : V(vertices), adj(vertices) {}
+    
+    void addEdge(int u, int v, int weight) {
+        adj[u].push_back({v, weight});
+        adj[v].push_back({u, weight});  // undirected
     }
     
-    void addEdge(int u, int v) {
-        for (int i = 0; i < vertices; i++) {
-            matrix[i].push_back(0);
+    void print() {
+        for (int i = 0; i < V; i++) {
+            cout << i << ": ";
+            for (auto [v, w] : adj[i]) {
+                cout << "(" << v << "," << w << ") ";
+            }
+            cout << endl;
         }
-        matrix[u][edgeCount] = 1;
-        matrix[v][edgeCount] = 1;
-        edgeCount++;
     }
 };
+
+int main() {
+    int V = 5;
+    
+    cout << "=== Adjacency Matrix ===" << endl;
+    GraphMatrix gm(V);
+    gm.addEdge(0, 1);
+    gm.addEdge(0, 2);
+    gm.addEdge(1, 3);
+    gm.addEdge(2, 3);
+    gm.print();
+    
+    cout << "\n=== Adjacency List ===" << endl;
+    GraphList gl(V);
+    gl.addEdge(0, 1);
+    gl.addEdge(0, 2);
+    gl.addEdge(1, 3);
+    gl.addEdge(2, 3);
+    gl.print();
+    
+    cout << "\n=== Edge List ===" << endl;
+    GraphEdgeList gel(V);
+    gel.addEdge(0, 1);
+    gel.addEdge(0, 2);
+    gel.addEdge(1, 3);
+    gel.addEdge(2, 3);
+    gel.print();
+    
+    cout << "\n=== Weighted Graph ===" << endl;
+    WeightedGraphList wgl(V);
+    wgl.addEdge(0, 1, 5);
+    wgl.addEdge(0, 2, 3);
+    wgl.addEdge(1, 3, 2);
+    wgl.addEdge(2, 3, 4);
+    wgl.print();
+    
+    return 0;
+}
 ```
 
 ---
 
-## 📈 Representation Comparison
+### Memory Calculation Example
 
-### Space Complexity
+For a graph with V = 1000 vertices and E = 3000 edges:
 
-| Graph Type | Adjacency Matrix | Adjacency List | Edge List |
-|------------|------------------|----------------|-----------|
-| **Dense (E ≈ V²)** | O(V²) | O(V²) | O(V²) |
-| **Sparse (E ≈ V)** | O(V²) | O(V+E) = O(V) | O(V) |
+| Representation | Memory Calculation | Total |
+|----------------|-------------------|-------|
+| **Adjacency Matrix** | 1000 × 1000 × 1 byte | ~1 MB |
+| **Adjacency List** | 1000 lists + 2×3000 edges × 4 bytes | ~28 KB |
+| **Edge List** | 2×3000 edges × 4 bytes | ~24 KB |
 
-### Time Complexity for Operations
+For a dense graph with V = 1000, E = 500,000:
 
-| Operation | Matrix | List | Edge List |
-|-----------|--------|------|-----------|
-| **Add Edge** | O(1) | O(1) | O(1) |
-| **Remove Edge** | O(1) | O(V) | O(E) |
-| **Check Edge** | O(1) | O(V) | O(E) |
-| **Get Neighbors** | O(V) | O(degree) | O(E) |
-| **Iterate all edges** | O(V²) | O(V+E) | O(E) |
-
----
-
-## 📚 Folder Structure
-
-```
-04_Graph_Representations/
-├── README.md                       # This file - Complete guide
-├── 01_Graph_Basics.md              # Graph terminology and types
-├── 02_Adjacency_Matrix.md          # Matrix representation
-├── 03_Adjacency_List.md            # List representation
-├── 04_Edge_List.md                 # Edge list representation
-└── 05_Comparison.md                # When to use which representation
-```
+| Representation | Memory Calculation | Total |
+|----------------|-------------------|-------|
+| **Adjacency Matrix** | 1000 × 1000 × 1 byte | ~1 MB |
+| **Adjacency List** | 1000 lists + 2×500,000 edges × 4 bytes | ~4 MB |
+| **Edge List** | 2×500,000 edges × 4 bytes | ~4 MB |
 
 ---
 
-## 🚀 Learning Path
+### Prerequisites
+
+Before starting this section, you should have completed:
+
+- [01. Basics](../../01.%20Basics/README.md) - Arrays, vectors, pointers
+- [04. Data Structures](../../04.%20Data%20Structures/README.md) - Vectors, lists
+
+---
+
+### Learning Path
 
 ```
-1. Graph_Basics.md          → Understand graph terminology
-           ↓
-2. Adjacency_Matrix.md      → Learn matrix representation
-           ↓
-3. Adjacency_List.md        → Learn list representation
-           ↓
-4. Edge_List.md             → Learn edge list representation
-           ↓
-5. Comparison.md            → Choose the right representation
+Level 1: Graph Basics
+├── Terminology
+├── Directed vs Undirected
+└── Weighted vs Unweighted
+
+Level 2: Representations
+├── Adjacency Matrix
+├── Adjacency List
+└── Edge List
+
+Level 3: Implementation
+├── Adding edges
+├── Removing edges
+├── Checking existence
+└── Iterating neighbors
+
+Level 4: Selection Guide
+├── Dense vs Sparse
+├── Memory constraints
+└── Algorithm requirements
 ```
 
 ---
 
-## ✅ Key Takeaways
+### Common Mistakes to Avoid
 
-1. **Adjacency Matrix** is best for dense graphs with frequent edge checks
-2. **Adjacency List** is best for sparse graphs with neighbor iteration
-3. **Edge List** is best for algorithms processing all edges
-4. **Space-time trade-off** between representations
-5. **Directed vs undirected** affects memory usage
-6. **Weighted graphs** require storing weights
-7. **Choice of representation** impacts algorithm efficiency
+| Mistake | Solution |
+|---------|----------|
+| Forgetting to add both directions for undirected graphs | Add edge[u][v] AND edge[v][u] |
+| Using matrix for sparse graphs | Use adjacency list to save memory |
+| Using list for dense graphs | Use matrix for O(1) edge lookup |
+| Not reserving vector capacity | Use `reserve()` for known size |
+| Mixing 0-based and 1-based indexing | Be consistent throughout |
 
 ---
+
+### Practice Questions
+
+After completing this section, you should be able to:
+
+1. Choose the appropriate representation for a given graph
+2. Convert between adjacency matrix and adjacency list
+3. Implement all three representations
+4. Calculate memory usage for a graph
+5. Add and remove edges in each representation
+6. Iterate over neighbors efficiently
+7. Detect if a graph is dense or sparse
+8. Explain the trade-offs between representations
+
+---
+
+### Next Steps
+
+- Go to [01_Graph_Basics.md](01_Graph_Basics.md) to understand Graph Basics.

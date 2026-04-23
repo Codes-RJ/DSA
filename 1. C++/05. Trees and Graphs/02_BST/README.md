@@ -328,4 +328,6 @@ Advanced: Balanced BSTs (AVL, Red-Black)
 
 ---
 
-**Ready to start?** Type **"next"** to continue to `01_BST_Introduction.md`
+### Next Steps
+
+- Go to [01_BST_Introduction.md](01_BST_Introduction.md) to understand Binary Search Tree Basics.

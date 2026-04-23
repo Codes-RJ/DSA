@@ -647,8 +647,7 @@ int main() {
 8. **Morris traversal** achieves O(1) space for inorder
 
 ---
----
 
-## Next Step
+### Next Steps
 
-- Go to [README.md](README.md) to continue.
+- Go to [AVL Trees](../03_AVL_Trees/README.md) to understand Binary Search Tree Basics.
