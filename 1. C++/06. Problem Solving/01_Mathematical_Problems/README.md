@@ -1,75 +1,90 @@
-# Mathematical Problems
+# README.md
 
-## Overview
-Mathematical problems form the foundation of algorithmic thinking and competitive programming. This section covers essential mathematical concepts and their applications in programming, including number theory, combinatorics, and modular arithmetic.
+## Mathematical Problems - Complete Guide
 
-## Topics Covered
+### Overview
 
-### 1. Number Theory (`01_Number_Theory.md`)
-- Divisibility and factors
-- Prime numbers and primality testing
-- Sieve algorithms
-- Number theoretic functions
-- Diophantine equations
+Mathematical problems form the foundation of algorithmic thinking. They involve number theory, combinatorics, modular arithmetic, series, and prime numbers. Solving mathematical problems efficiently requires understanding mathematical concepts and their algorithmic implementations. These problems frequently appear in coding interviews and competitive programming.
 
-### 2. Prime Numbers (`02_Prime_Numbers.md`)
-- Prime checking algorithms
-- Sieve of Eratosthenes
-- Segmented sieve
+---
+
+### Topics Covered
+
+| # | Name | Purpose |
+| --- | --- | --- |
+| 1. | [01_Number_Theory.md](01_Number_Theory.md) | understand Number Theory Basics |
+| 2. | [02_Prime_Numbers.md](02_Prime_Numbers.md) | understand Prime Numbers and Sieve Algorithms |
+| 3. | [03_Factorial_and_Combinatorics.md](03_Factorial_and_Combinatorics.md) | understand Factorial and Combinatorics |
+| 4. | [04_GCD_LCM.md](04_GCD_LCM.md) | understand GCD and LCM (Euclidean Algorithm) |
+| 5. | [05_Modular_Arithmetic.md](05_Modular_Arithmetic.md) | understand Modular Arithmetic |
+| 6. | [06_Series_and_Summations.md](06_Series_and_Summations.md) | understand Series and Summations |
+| 7. | [README.md](README.md) | understand Mathematical Problems Overview |
+
+---
+
+## 1. Number Theory
+
+This topic covers fundamental number theory concepts and algorithms.
+
+**File:** [01_Number_Theory.md](01_Number_Theory.md)
+
+**What you will learn:**
+- Divisibility rules
+- Prime numbers and composite numbers
+- Factors and multiples
 - Prime factorization
-- Prime number theorems
+- Divisors and their properties
+- Perfect numbers, abundant numbers, deficient numbers
 
-### 3. Factorial and Combinatorics (`03_Factorial_and_Combinatorics.md`)
-- Factorial computation
-- Permutations and combinations
-- Binomial coefficients
-- Pascal's triangle
-- Inclusion-exclusion principle
+**Key Concepts:**
 
-### 4. GCD and LCM (`04_GCD_LCM.md`)
-- Euclidean algorithm
-- Extended Euclidean algorithm
-- LCM computation
-- Diophantine equations
-- Modular inverses
+| Concept | Description |
+|---------|-------------|
+| **Divisor** | Number that divides another number evenly |
+| **Prime Number** | Number greater than 1 with exactly two divisors |
+| **Composite Number** | Number with more than two divisors |
+| **Prime Factorization** | Breaking number into product of primes |
 
-### 5. Modular Arithmetic (`05_Modular_Arithmetic.md`)
-- Modular operations
-- Fermat's little theorem
-- Chinese remainder theorem
-- Modular exponentiation
-- Modular inverses
+**Sample Code:**
+```cpp
+// Prime factorization
+vector<int> primeFactors(int n) {
+    vector<int> factors;
+    for (int i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            factors.push_back(i);
+            n /= i;
+        }
+    }
+    if (n > 1) factors.push_back(n);
+    return factors;
+}
+```
 
-### 6. Series and Summations (`06_Series_and_Summations.md`)
-- Arithmetic series
-- Geometric series
-- Fibonacci sequence
-- Summation formulas
-- Recurrence relations
+---
 
-## Key Mathematical Concepts
+## 2. Prime Numbers
 
-### Number Theory Fundamentals
-- **Divisibility**: a divides b if b = a × k for some integer k
-- **Prime Numbers**: Natural numbers greater than 1 with exactly two divisors
-- **GCD**: Greatest common divisor of two numbers
-- **LCM**: Least common multiple of two numbers
+This topic covers prime number detection and generation algorithms.
 
-### Combinatorial Mathematics
-- **Permutations**: Ordered arrangements of objects
-- **Combinations**: Unordered selections of objects
-- **Binomial Coefficients**: Number of ways to choose k items from n items
-- **Factorial**: Product of all positive integers up to n
+**File:** [02_Prime_Numbers.md](02_Prime_Numbers.md)
 
-### Modular Arithmetic
-- **Modulo Operation**: Remainder after division
-- **Modular Addition**: (a + b) mod m = ((a mod m) + (b mod m)) mod m
-- **Modular Multiplication**: (a × b) mod m = ((a mod m) × (b mod m)) mod m
-- **Modular Exponentiation**: Efficient computation of (a^b) mod m
+**What you will learn:**
+- Primality testing (trial division)
+- Sieve of Eratosthenes (generate all primes up to n)
+- Sieve of Sundaram
+- Segmented Sieve (for large ranges)
+- Miller-Rabin primality test (probabilistic)
 
-## Common Algorithms
+**Key Concepts:**
 
-### 1. Sieve of Eratosthenes
+| Algorithm | Complexity | Use Case |
+|-----------|------------|----------|
+| **Trial Division** | O(√n) | Single number |
+| **Sieve of Eratosthenes** | O(n log log n) | All primes up to n |
+| **Segmented Sieve** | O(√R log log R) | Primes in range [L,R] |
+
+**Sample Code - Sieve of Eratosthenes:**
 ```cpp
 vector<bool> sieve(int n) {
     vector<bool> isPrime(n + 1, true);
@@ -82,12 +97,75 @@ vector<bool> sieve(int n) {
             }
         }
     }
-    
     return isPrime;
 }
 ```
 
-### 2. Euclidean Algorithm
+---
+
+## 3. Factorial and Combinatorics
+
+This topic covers factorial computation and combinatorial counting.
+
+**File:** [03_Factorial_and_Combinatorics.md](03_Factorial_and_Combinatorics.md)
+
+**What you will learn:**
+- Factorial computation (iterative, recursive)
+- Large factorial modulo
+- Permutations (nPr)
+- Combinations (nCr)
+- Binomial coefficients
+- Pascal's triangle
+
+**Key Concepts:**
+
+| Formula | Expression | Description |
+|---------|------------|-------------|
+| **Factorial** | n! = n × (n-1) × ... × 1 | Product of first n numbers |
+| **Permutation** | nPr = n! / (n-r)! | Number of arrangements |
+| **Combination** | nCr = n! / (r! × (n-r)!) | Number of selections |
+
+**Sample Code - Combination:**
+```cpp
+long long combination(int n, int r) {
+    if (r > n) return 0;
+    if (r == 0 || r == n) return 1;
+    
+    // Use symmetry: nCr = nC(n-r)
+    if (r > n - r) r = n - r;
+    
+    long long result = 1;
+    for (int i = 0; i < r; i++) {
+        result = result * (n - i) / (i + 1);
+    }
+    return result;
+}
+```
+
+---
+
+## 4. GCD and LCM
+
+This topic covers the Euclidean algorithm for GCD and LCM computation.
+
+**File:** [04_GCD_LCM.md](04_GCD_LCM.md)
+
+**What you will learn:**
+- Greatest Common Divisor (GCD)
+- Euclidean algorithm (recursive and iterative)
+- Extended Euclidean algorithm
+- Least Common Multiple (LCM)
+- Relationship: LCM(a,b) × GCD(a,b) = a × b
+- GCD of multiple numbers
+
+**Key Concepts:**
+
+| Algorithm | Complexity | Description |
+|-----------|------------|-------------|
+| **Euclidean Algorithm** | O(log n) | GCD(a, b) = GCD(b, a mod b) |
+| **Extended Euclidean** | O(log n) | Finds x,y such that ax + by = GCD(a,b) |
+
+**Sample Code - GCD:**
 ```cpp
 int gcd(int a, int b) {
     while (b != 0) {
@@ -97,13 +175,40 @@ int gcd(int a, int b) {
     }
     return a;
 }
+
+int lcm(int a, int b) {
+    return a / gcd(a, b) * b;  // Avoid overflow by dividing first
+}
 ```
 
-### 3. Modular Exponentiation
+---
+
+## 5. Modular Arithmetic
+
+This topic covers arithmetic operations modulo a number.
+
+**File:** [05_Modular_Arithmetic.md](05_Modular_Arithmetic.md)
+
+**What you will learn:**
+- Modulo operation properties
+- Modular addition, subtraction, multiplication
+- Modular exponentiation (fast power)
+- Modular inverse (Fermat's theorem, extended GCD)
+- Modular arithmetic in competitive programming
+
+**Key Concepts:**
+
+| Operation | Formula |
+|-----------|---------|
+| **Addition** | (a + b) mod m = (a mod m + b mod m) mod m |
+| **Multiplication** | (a × b) mod m = (a mod m × b mod m) mod m |
+| **Fast Exponentiation** | a^b mod m in O(log b) |
+
+**Sample Code - Modular Exponentiation:**
 ```cpp
 long long modPow(long long a, long long b, long long mod) {
     long long result = 1;
-    a %= mod;
+    a = a % mod;
     
     while (b > 0) {
         if (b & 1) {
@@ -112,112 +217,146 @@ long long modPow(long long a, long long b, long long mod) {
         a = (a * a) % mod;
         b >>= 1;
     }
-    
     return result;
+}
+
+// Modular inverse using Fermat's theorem (mod must be prime)
+long long modInverse(long long a, long long mod) {
+    return modPow(a, mod - 2, mod);
 }
 ```
 
-## Problem-Solving Strategies
+---
 
-### 1. Pattern Recognition
-- Look for mathematical patterns in the problem
-- Identify sequences or series
-- Recognize common mathematical properties
+## 6. Series and Summations
 
-### 2. Mathematical Modeling
-- Convert real-world problems to mathematical equations
-- Identify constraints and relationships
-- Choose appropriate mathematical tools
+This topic covers common series and summation formulas.
 
-### 3. Optimization Techniques
-- Use mathematical properties to optimize solutions
-- Apply number theory results
-- Leverage combinatorial formulas
+**File:** [06_Series_and_Summations.md](06_Series_and_Summations.md)
 
-### 4. Edge Case Analysis
-- Consider boundary conditions
-- Handle special cases (zero, one, negative numbers)
-- Validate mathematical assumptions
+**What you will learn:**
+- Arithmetic progression (AP)
+- Geometric progression (GP)
+- Sum of natural numbers
+- Sum of squares and cubes
+- Harmonic series
+- Fibonacci series
 
-## Complexity Analysis
+**Key Concepts:**
 
-| Operation | Time Complexity | Space Complexity |
-|-----------|----------------|------------------|
-| Prime Check (Naive) | O(√n) | O(1) |
+| Series | Formula | Sum |
+|--------|---------|-----|
+| **Natural Numbers** | 1 + 2 + ... + n | n(n+1)/2 |
+| **Squares** | 1² + 2² + ... + n² | n(n+1)(2n+1)/6 |
+| **Cubes** | 1³ + 2³ + ... + n³ | [n(n+1)/2]² |
+| **Arithmetic Progression** | a, a+d, a+2d, ... | n/2 × (2a + (n-1)d) |
+| **Geometric Progression** | a, ar, ar², ... | a(rⁿ - 1)/(r - 1) |
+
+**Sample Code:**
+```cpp
+// Sum of first n natural numbers
+long long sumNatural(int n) {
+    return (long long)n * (n + 1) / 2;
+}
+
+// Sum of squares
+long long sumSquares(int n) {
+    return (long long)n * (n + 1) * (2 * n + 1) / 6;
+}
+
+// Sum of AP
+long long sumAP(long long a, long long d, long long n) {
+    return n * (2 * a + (n - 1) * d) / 2;
+}
+```
+
+---
+
+### Complexity Summary
+
+| Problem Type | Time Complexity | Space Complexity |
+|--------------|----------------|------------------|
+| Prime Check (Trial) | O(√n) | O(1) |
 | Sieve of Eratosthenes | O(n log log n) | O(n) |
-| GCD (Euclidean) | O(log min(a,b)) | O(1) |
-| Modular Exponentiation | O(log b) | O(1) |
-| Factorial | O(n) | O(1) |
+| GCD (Euclidean) | O(log n) | O(1) |
+| Fast Exponentiation | O(log b) | O(1) |
+| Combination (Direct) | O(r) | O(1) |
 
-## Applications
+---
 
-### Competitive Programming
-- Number theory problems
-- Combinatorial counting
-- Cryptography challenges
-- Mathematical optimization
+### Common Mathematical Formulas
 
-### Real-World Applications
-- Cryptography and security
-- Statistical analysis
-- Engineering calculations
-- Financial modeling
+| Formula | Expression |
+|---------|------------|
+| **GCD(a,b) × LCM(a,b)** | a × b |
+| **Number of divisors** | (e₁+1) × (e₂+1) × ... |
+| **Sum of divisors** | (p₁^(e₁+1)-1)/(p₁-1) × ... |
+| **nCr modulo prime** | n! × (r!)^-1 × ((n-r)!)^-1 mod p |
 
-### Computer Science
-- Algorithm analysis
-- Data structure design
-- Complexity theory
-- Cryptographic protocols
+---
 
-## Common Pitfalls
+### Prerequisites
 
-1. **Integer Overflow**: Use appropriate data types (long long)
-2. **Modular Arithmetic**: Always apply modulo after operations
-3. **Precision Issues**: Be careful with floating-point calculations
-4. **Edge Cases**: Handle zero, one, and negative values properly
-5. **Time Limits**: Optimize for large input sizes
+Before starting this section, you should have completed:
 
-## Best Practices
+- [01. Basics](../../01.%20Basics/README.md) - Basic arithmetic, loops
+- [02. Basic Problems](../../02.%20Basic%20Problems/README.md) - Basic problem solving
 
-1. **Use Long Long**: For large numbers to avoid overflow
-2. **Precompute Values**: Use sieves and dynamic programming
-3. **Modular Arithmetic**: Apply modulo consistently
-4. **Test Edge Cases**: Verify with boundary values
-5. **Mathematical Proofs**: Understand why algorithms work
+---
 
-## Learning Resources
+### Learning Path
 
-### Books
-- "Elementary Number Theory" by David Burton
-- "Concrete Mathematics" by Graham, Knuth, Patashnik
-- "Competitive Programming 3" by Steven Halim
+```
+Level 1: Basic Number Theory
+├── Prime Numbers
+├── GCD and LCM
+└── Prime Factorization
 
-### Online Resources
-- Khan Academy (Number Theory)
-- Brilliant.org (Mathematics)
-- GeeksforGeeks (Mathematical Algorithms)
-- Codeforces (Math problems)
+Level 2: Advanced Number Theory
+├── Sieve of Eratosthenes
+├── Modular Arithmetic
+└── Modular Inverse
 
-## Practice Problems
+Level 3: Combinatorics
+├── Factorials
+├── Permutations
+└── Combinations
 
-### Beginner Level
-- Prime or composite checking
-- GCD and LCM calculations
-- Basic factorial problems
-- Simple series summations
+Level 4: Series and Formulas
+├── AP and GP
+├── Summation Formulas
+└── Binomial Theorem
+```
 
-### Intermediate Level
-- Sieve implementations
-- Modular arithmetic problems
-- Combinatorial counting
-- Number theoretic functions
+---
 
-### Advanced Level
-- Segmented sieve
-- Chinese remainder theorem
-- Advanced number theory
-- Mathematical optimization
+### Common Mistakes to Avoid
 
-## Summary
+| Mistake | Solution |
+|---------|----------|
+| Integer overflow in factorial | Use long long or modular arithmetic |
+| Forgetting 1 is not prime | Handle n=1 as special case |
+| Not using symmetry in nCr | Use min(r, n-r) for efficiency |
+| Division before multiplication in LCM | Multiply after division to avoid overflow |
+| Negative numbers in modulo | Add mod before modulo operation |
 
-Mathematical problems are essential for developing analytical thinking and algorithmic skills. Mastering these concepts provides a strong foundation for advanced algorithms and competitive programming success.
+---
+
+### Practice Questions
+
+After completing this section, you should be able to:
+
+1. Check if a number is prime (optimized)
+2. Generate all primes up to 1,000,000 using sieve
+3. Find prime factors of a number
+4. Compute GCD and LCM of two numbers
+5. Compute nCr modulo prime
+6. Find modular inverse using Fermat's theorem
+7. Sum of first n natural numbers (O(1) formula)
+8. Compute Fibonacci numbers efficiently
+
+---
+
+### Next Steps
+
+- Go to [01_Number_Theory.md](01_Number_Theory.md) to understand Number Theory Basics.

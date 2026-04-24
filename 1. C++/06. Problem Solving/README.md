@@ -1,228 +1,284 @@
-# Problem Solving in C++
+# README.md
 
-## Overview
-This section covers essential problem-solving techniques and algorithms commonly encountered in programming contests, technical interviews, and real-world applications. Each category focuses on specific problem types with detailed explanations, implementations, and complexity analysis.
+## Problem Solving in C++ - Complete Guide
 
-## Directory Structure
+### Overview
 
-```
-06. Problem Solving/
-├── README.md
-├── 01_Mathematical_Problems/
-│   ├── 01_Number_Theory.md
-│   ├── 02_Prime_Numbers.md
-│   ├── 03_Factorial_and_Combinatorics.md
-│   ├── 04_GCD_LCM.md
-│   ├── 05_Modular_Arithmetic.md
-│   ├── 06_Series_and_Summations.md
-│   └── README.md
-├── 02_Bit_Manipulation/
-│   ├── 01_Basic_Bit_Operations.md
-│   ├── 02_Bit_Tricks.md
-│   ├── 03_Bit_Masks.md
-│   ├── 04_Binary_Representation.md
-│   ├── 05_Bit_Manipulation_Problems.md
-│   └── README.md
-├── 03_String_Problems/
-│   ├── 01_String_Basics.md
-│   ├── 02_String_Algorithms.md
-│   ├── 03_Pattern_Matching.md
-│   ├── 04_String_Transformation.md
-│   ├── 05_Advanced_String_Problems.md
-│   └── README.md
-├── 04_Array_Problems/
-│   ├── 01_Array_Basics.md
-│   ├── 02_Two_Pointer_Technique.md
-│   ├── 03_Sliding_Window.md
-│   ├── 04_Array_Rotation.md
-│   ├── 05_Subarray_Problems.md
-│   └── README.md
-└── 05_Puzzle_Problems/
-    ├── 01_Logic_Puzzles.md
-    ├── 02_Pattern_Puzzles.md
-    ├── 03_Number_Puzzles.md
-    ├── 04_Array_Puzzles.md
-    ├── 05_Recreational_Problems.md
-    └── README.md
-```
+Problem solving is the core of programming and algorithm design. This section covers various categories of problems that appear frequently in coding interviews, competitive programming, and software development. Mastering these problem types helps develop logical thinking, pattern recognition, and efficient coding skills.
 
-## Learning Path
+---
 
-1. **Mathematical Problems** - Build foundation with number theory and combinatorics
-2. **Bit Manipulation** - Master bitwise operations for efficient solutions
-3. **String Problems** - Learn string processing and pattern matching
-4. **Array Problems** - Master array manipulation techniques
-5. **Puzzle Problems** - Apply knowledge to solve creative problems
+### Topics Covered
 
-## Key Concepts Covered
+| # | Name | Purpose |
+| --- | --- | --- |
+| 1. | [01_Mathematical_Problems/README.md](01_Mathematical_Problems/README.md) | understand Mathematical Problems |
+| 2. | [02_Bit_Manipulation/README.md](02_Bit_Manipulation/README.md) | understand Bit Manipulation Problems |
+| 3. | [03_String_Problems/README.md](03_String_Problems/README.md) | understand String Problems |
+| 4. | [04_Array_Problems/README.md](04_Array_Problems/README.md) | understand Array Problems |
+| 5. | [05_Puzzle_Problems/README.md](05_Puzzle_Problems/README.md) | understand Puzzle Problems |
 
-### Mathematical Problems
-- Number theory fundamentals
-- Prime number algorithms
-- Combinatorial mathematics
+---
+
+## 1. Mathematical Problems
+
+This topic covers mathematical problem-solving techniques and number theory.
+
+**Folder:** [01_Mathematical_Problems/](01_Mathematical_Problems/)
+
+**What you will learn:**
+- Number theory basics (primes, divisors, GCD, LCM)
 - Modular arithmetic
+- Combinatorics (factorials, permutations, combinations)
 - Series and summations
+- Prime number algorithms (Sieve of Eratosthenes)
+- Fast exponentiation
 
-### Bit Manipulation
-- Bitwise operations and tricks
-- Binary number system
-- Bit masks and flags
-- Optimization using bits
+**Key Concepts:**
 
-### String Problems
-- String algorithms and processing
-- Pattern matching techniques
-- String transformations
-- Advanced string operations
+| Concept | Description | Complexity |
+|---------|-------------|------------|
+| **Sieve of Eratosthenes** | Find all primes up to n | O(n log log n) |
+| **GCD (Euclidean Algorithm)** | Greatest common divisor | O(log n) |
+| **Fast Exponentiation** | Compute a^b efficiently | O(log b) |
+| **Modular Arithmetic** | Operations modulo m | O(1) |
 
-### Array Problems
-- Array manipulation techniques
-- Two-pointer approach
-- Sliding window technique
-- Subarray problems
+**Sample Problems:**
+- Prime number checking
+- Finding prime factors
+- Computing GCD and LCM
+- Fibonacci numbers
+- Factorial of large numbers
 
-### Puzzle Problems
-- Logical reasoning problems
-- Pattern recognition
-- Creative problem-solving
-- Recreational mathematics
+---
 
-## Problem-Solving Strategies
+## 2. Bit Manipulation
 
-### 1. Understanding the Problem
-- Read the problem statement carefully
-- Identify input/output constraints
-- Determine edge cases
-- Clarify ambiguities
+This topic covers problems that require working with individual bits.
 
-### 2. Algorithm Design
-- Choose appropriate data structures
-- Consider time and space complexity
-- Think about edge cases
-- Plan implementation steps
+**Folder:** [02_Bit_Manipulation/](02_Bit_Manipulation/)
 
-### 3. Implementation
-- Write clean, readable code
-- Include proper error handling
-- Add comments for complex logic
-- Test with sample inputs
+**What you will learn:**
+- Bitwise operators (&, |, ^, ~, <<, >>)
+- Setting, clearing, toggling bits
+- Checking if a bit is set
+- Counting set bits (Brian Kernighan's algorithm)
+- Bit masking techniques
+- Common bit tricks
 
-### 4. Optimization
-- Analyze bottlenecks
-- Consider alternative approaches
-- Optimize for constraints
-- Use appropriate language features
+**Key Concepts:**
 
-## Complexity Analysis
+| Operation | Expression | Description |
+|-----------|------------|-------------|
+| **Set bit** | `x \| (1 << k)` | Set kth bit to 1 |
+| **Clear bit** | `x & ~(1 << k)` | Set kth bit to 0 |
+| **Toggle bit** | `x ^ (1 << k)` | Flip kth bit |
+| **Check bit** | `(x >> k) & 1` | Get kth bit value |
+| **Lowest set bit** | `x & -x` | Isolate lowest set bit |
+| **Clear lowest set bit** | `x & (x - 1)` | Remove lowest set bit |
 
-Each problem includes:
-- **Time Complexity**: How runtime scales with input size
-- **Space Complexity**: How memory usage scales with input size
-- **Best Case**: Optimal scenario performance
-- **Worst Case**: Most challenging scenario
-- **Average Case**: Expected performance
+**Sample Problems:**
+- Counting set bits
+- Power of two checking
+- Single number (XOR trick)
+- Subset generation
+- Bitwise AND of ranges
 
-## Common Patterns
+---
 
-### Mathematical Patterns
-- Prime checking using sieve methods
-- GCD calculation using Euclidean algorithm
-- Factorial computation with modulo
-- Combinatorial calculations
+## 3. String Problems
 
-### Bit Manipulation Patterns
-- Setting, clearing, and toggling bits
-- Counting set bits efficiently
-- Finding unique elements using XOR
-- Power of two checks
+This topic covers string manipulation and pattern matching.
 
-### String Patterns
-- Two-pointer string processing
-- Hash-based pattern matching
-- String reversal and rotation
+**Folder:** [03_String_Problems/](03_String_Problems/)
+
+**What you will learn:**
+- String traversal and manipulation
+- Pattern matching algorithms (KMP, Rabin-Karp)
 - Palindrome checking
+- Anagram detection
+- String transformation problems
+- Efficient string algorithms
 
-### Array Patterns
-- Kadane's algorithm for maximum subarray
-- Two-pointer for pair problems
-- Sliding window for fixed-size subarrays
-- Prefix sums for range queries
+**Key Concepts:**
 
-## Prerequisites
+| Algorithm | Purpose | Complexity |
+|-----------|---------|------------|
+| **KMP (Knuth-Morris-Pratt)** | Pattern matching | O(n + m) |
+| **Rabin-Karp** | Pattern matching (rolling hash) | O(n + m) |
+| **Two Pointer** | Palindrome, substring | O(n) |
+| **Sliding Window** | Substring problems | O(n) |
 
-- Strong understanding of C++ fundamentals
-- Knowledge of basic data structures (arrays, strings)
-- Understanding of time and space complexity
-- Familiarity with mathematical concepts
-- Problem-solving mindset
+**Sample Problems:**
+- Longest palindromic substring
+- String to integer conversion (atoi)
+- Valid parentheses
+- Longest common prefix
+- String rotation check
 
-## Applications
+---
 
-### Competitive Programming
-- Codeforces, CodeChef, LeetCode problems
-- Time-constrained problem solving
-- Optimization techniques
+## 4. Array Problems
 
-### Technical Interviews
-- FAANG interview preparation
-- System design problems
-- Algorithmic thinking
+This topic covers array manipulation and algorithm techniques.
 
-### Real-World Applications
-- Data processing and analysis
-- Algorithm optimization
-- System performance improvement
+**Folder:** [04_Array_Problems/](04_Array_Problems/)
 
-## Best Practices
+**What you will learn:**
+- Two-pointer technique
+- Sliding window technique
+- Array rotation and reversal
+- Subarray problems (Kadane's algorithm)
+- Sorting and searching in arrays
+- Prefix sum technique
 
-1. **Start with Brute Force**: Understand the problem first
-2. **Optimize Gradually**: Improve step by step
-3. **Test Thoroughly**: Consider all edge cases
-4. **Document Solutions**: Explain your approach
-5. **Practice Regularly**: Build problem-solving intuition
+**Key Concepts:**
 
-## Tips for Success
+| Technique | Purpose | Complexity |
+|-----------|---------|------------|
+| **Two Pointer** | Pair sum, palindrome | O(n) |
+| **Sliding Window** | Subarray sum, longest substring | O(n) |
+| **Kadane's Algorithm** | Maximum subarray sum | O(n) |
+| **Prefix Sum** | Range sum queries | O(1) per query |
+| **Moore's Voting** | Majority element | O(n) |
 
-### Before Coding
-- Understand constraints completely
-- Think about multiple approaches
-- Consider edge cases early
-- Plan your implementation
+**Sample Problems:**
+- Two sum problem
+- Maximum subarray sum
+- Find missing number
+- Rotate array
+- Merge two sorted arrays
 
-### During Coding
-- Write modular, reusable code
-- Use meaningful variable names
-- Add comments for complex logic
-- Test as you implement
+---
 
-### After Coding
-- Verify with test cases
-- Analyze complexity
-- Consider improvements
-- Document your solution
+## 5. Puzzle Problems
 
-## Resources
+This topic covers logic puzzles and brain teasers.
 
-### Practice Platforms
-- LeetCode
-- HackerRank
-- Codeforces
-- CodeChef
-- AtCoder
+**Folder:** [05_Puzzle_Problems/](05_Puzzle_Problems/)
 
-### Reference Materials
-- Competitive Programming Handbook
-- Introduction to Algorithms (CLRS)
-- GeeksforGeeks
-- Stack Overflow
+**What you will learn:**
+- Logic puzzles and reasoning
+- Pattern recognition
+- Mathematical puzzles
+- Array puzzles
+- Recreational problem solving
 
-## Community and Support
+**Key Concepts:**
 
-- Join programming communities
-- Participate in contests
-- Share and discuss solutions
-- Learn from others' approaches
+| Puzzle Type | Description | Approach |
+|-------------|-------------|----------|
+| **Logic Puzzles** | Deductive reasoning | Process of elimination |
+| **Pattern Puzzles** | Number/sequence patterns | Find repeating pattern |
+| **Number Puzzles** | Mathematical relationships | Equation formulation |
+| **Array Puzzles** | Data structure challenges | Optimization techniques |
 
-## Summary
+**Sample Problems:**
+- Find the heavy ball (balance scale)
+- River crossing puzzles
+- Egg dropping problem
+- Water jug problem
+- Light switch puzzles
 
-Problem-solving is a skill that improves with practice. This section provides a structured approach to mastering common problem types, building from fundamental concepts to advanced techniques. Regular practice with these problems will develop your algorithmic thinking and programming skills.
+---
+
+### Problem-Solving Techniques
+
+| Technique | Description | Best For |
+|-----------|-------------|----------|
+| **Brute Force** | Try all possibilities | Small input size |
+| **Two Pointers** | Iterate from both ends | Sorted arrays, palindrome |
+| **Sliding Window** | Maintain window of elements | Subarray/substring problems |
+| **Divide and Conquer** | Split and merge | Sorting, search |
+| **Greedy** | Local optimal choices | Optimization problems |
+| **Dynamic Programming** | Store subproblem results | Overlapping subproblems |
+| **Backtracking** | Explore possibilities | Constraint satisfaction |
+
+---
+
+### Complexity Guide
+
+| Input Size | Acceptable Complexity |
+|------------|----------------------|
+| n ≤ 10 | O(n!) |
+| n ≤ 20 | O(2^n) |
+| n ≤ 100 | O(n³) |
+| n ≤ 1000 | O(n²) |
+| n ≤ 10^5 | O(n log n) |
+| n ≤ 10^7 | O(n) |
+| n > 10^7 | O(log n) or O(1) |
+
+---
+
+### Prerequisites
+
+Before starting this section, you should have completed:
+
+- [01. Basics](../01.%20Basics/README.md) - C++ fundamentals
+- [02. Basic Problems](../02.%20Basic%20Problems/README.md) - Basic problem solving
+- [04. Data Structures](../04.%20Data%20Structures/README.md) - Data structures
+
+---
+
+### Learning Path
+
+```
+Level 1: Mathematical Problems
+├── Number Theory
+├── Modular Arithmetic
+└── Combinatorics
+
+Level 2: Bit Manipulation
+├── Bitwise Operators
+├── Bit Tricks
+└── Bit Masks
+
+Level 3: String Problems
+├── String Manipulation
+├── Pattern Matching
+└── String Algorithms
+
+Level 4: Array Problems
+├── Two Pointers
+├── Sliding Window
+├── Prefix Sum
+└── Kadane's Algorithm
+
+Level 5: Puzzle Problems
+├── Logic Puzzles
+├── Pattern Recognition
+└── Optimization Puzzles
+```
+
+---
+
+### Common Mistakes to Avoid
+
+| Mistake | Solution |
+|---------|----------|
+| Integer overflow | Use long long, check bounds |
+| Off-by-one errors | Carefully test edge cases |
+| Ignoring constraints | Choose appropriate algorithm |
+| Premature optimization | Write correct code first |
+| Not handling empty input | Always check edge cases |
+
+---
+
+### Practice Questions
+
+After completing this section, you should be able to:
+
+1. Check if a number is prime (optimized)
+2. Find GCD and LCM of two numbers
+3. Count set bits in an integer
+4. Find the single number in an array (XOR trick)
+5. Check if two strings are anagrams
+6. Find maximum subarray sum (Kadane's algorithm)
+7. Solve two-sum problem with O(n) time
+8. Find missing number in 1..n array
+
+---
+
+### Next Steps
+
+- Go to [01_Mathematical_Problems](01_Mathematical_Problems/README.md) to understand Mathematical Problems.
