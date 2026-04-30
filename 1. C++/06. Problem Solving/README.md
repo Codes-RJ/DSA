@@ -43,12 +43,13 @@ This topic covers mathematical problem-solving techniques and number theory.
 | **Fast Exponentiation** | Compute a^b efficiently | O(log b) |
 | **Modular Arithmetic** | Operations modulo m | O(1) |
 
-**Sample Problems:**
-- Prime number checking
-- Finding prime factors
-- Computing GCD and LCM
-- Fibonacci numbers
-- Factorial of large numbers
+**Sub-topics:**
+- Number Theory
+- Prime Numbers and Sieve Algorithms
+- Factorial and Combinatorics
+- GCD and LCM (Euclidean Algorithm)
+- Modular Arithmetic
+- Series and Summations
 
 ---
 
@@ -77,12 +78,12 @@ This topic covers problems that require working with individual bits.
 | **Lowest set bit** | `x & -x` | Isolate lowest set bit |
 | **Clear lowest set bit** | `x & (x - 1)` | Remove lowest set bit |
 
-**Sample Problems:**
-- Counting set bits
-- Power of two checking
-- Single number (XOR trick)
-- Subset generation
-- Bitwise AND of ranges
+**Sub-topics:**
+- Basic Bit Operations
+- Common Bit Tricks
+- Bit Masks and Subset Generation
+- Binary Representation
+- Bit Manipulation Problems
 
 ---
 
@@ -109,12 +110,12 @@ This topic covers string manipulation and pattern matching.
 | **Two Pointer** | Palindrome, substring | O(n) |
 | **Sliding Window** | Substring problems | O(n) |
 
-**Sample Problems:**
-- Longest palindromic substring
-- String to integer conversion (atoi)
-- Valid parentheses
-- Longest common prefix
-- String rotation check
+**Sub-topics:**
+- String Basics
+- String Algorithms
+- Pattern Matching
+- String Transformation
+- Advanced String Problems
 
 ---
 
@@ -142,12 +143,12 @@ This topic covers array manipulation and algorithm techniques.
 | **Prefix Sum** | Range sum queries | O(1) per query |
 | **Moore's Voting** | Majority element | O(n) |
 
-**Sample Problems:**
-- Two sum problem
-- Maximum subarray sum
-- Find missing number
-- Rotate array
-- Merge two sorted arrays
+**Sub-topics:**
+- Array Basics
+- Two Pointer Technique
+- Sliding Window
+- Array Rotation
+- Subarray Problems
 
 ---
 
@@ -173,12 +174,12 @@ This topic covers logic puzzles and brain teasers.
 | **Number Puzzles** | Mathematical relationships | Equation formulation |
 | **Array Puzzles** | Data structure challenges | Optimization techniques |
 
-**Sample Problems:**
-- Find the heavy ball (balance scale)
-- River crossing puzzles
-- Egg dropping problem
-- Water jug problem
-- Light switch puzzles
+**Sub-topics:**
+- Logic Puzzles
+- Pattern Puzzles
+- Number Puzzles
+- Array Puzzles
+- Recreational Problems
 
 ---
 
@@ -193,6 +194,7 @@ This topic covers logic puzzles and brain teasers.
 | **Greedy** | Local optimal choices | Optimization problems |
 | **Dynamic Programming** | Store subproblem results | Overlapping subproblems |
 | **Backtracking** | Explore possibilities | Constraint satisfaction |
+| **Bit Manipulation** | Work with individual bits | Performance-critical operations |
 
 ---
 
@@ -276,9 +278,11 @@ After completing this section, you should be able to:
 6. Find maximum subarray sum (Kadane's algorithm)
 7. Solve two-sum problem with O(n) time
 8. Find missing number in 1..n array
+9. Reverse a string in-place
+10. Find the longest common prefix
 
 ---
 
 ### Next Steps
 
-- Go to [01_Mathematical_Problems](01_Mathematical_Problems/README.md) to understand Mathematical Problems.
+- Go to [01_Mathematical_Problems/README.md](01_Mathematical_Problems/README.md) to understand Mathematical Problems.

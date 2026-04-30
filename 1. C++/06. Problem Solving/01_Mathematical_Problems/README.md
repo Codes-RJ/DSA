@@ -45,7 +45,7 @@ This topic covers fundamental number theory concepts and algorithms.
 | **Composite Number** | Number with more than two divisors |
 | **Prime Factorization** | Breaking number into product of primes |
 
-**Sample Code:**
+**Syntax:**
 ```cpp
 // Prime factorization
 vector<int> primeFactors(int n) {
@@ -84,8 +84,9 @@ This topic covers prime number detection and generation algorithms.
 | **Sieve of Eratosthenes** | O(n log log n) | All primes up to n |
 | **Segmented Sieve** | O(√R log log R) | Primes in range [L,R] |
 
-**Sample Code - Sieve of Eratosthenes:**
+**Syntax:**
 ```cpp
+// Sieve of Eratosthenes
 vector<bool> sieve(int n) {
     vector<bool> isPrime(n + 1, true);
     isPrime[0] = isPrime[1] = false;
@@ -125,13 +126,12 @@ This topic covers factorial computation and combinatorial counting.
 | **Permutation** | nPr = n! / (n-r)! | Number of arrangements |
 | **Combination** | nCr = n! / (r! × (n-r)!) | Number of selections |
 
-**Sample Code - Combination:**
+**Syntax:**
 ```cpp
+// Combination using symmetry
 long long combination(int n, int r) {
     if (r > n) return 0;
     if (r == 0 || r == n) return 1;
-    
-    // Use symmetry: nCr = nC(n-r)
     if (r > n - r) r = n - r;
     
     long long result = 1;
@@ -165,8 +165,9 @@ This topic covers the Euclidean algorithm for GCD and LCM computation.
 | **Euclidean Algorithm** | O(log n) | GCD(a, b) = GCD(b, a mod b) |
 | **Extended Euclidean** | O(log n) | Finds x,y such that ax + by = GCD(a,b) |
 
-**Sample Code - GCD:**
+**Syntax:**
 ```cpp
+// Euclidean algorithm for GCD
 int gcd(int a, int b) {
     while (b != 0) {
         int temp = b;
@@ -176,8 +177,9 @@ int gcd(int a, int b) {
     return a;
 }
 
+// LCM using GCD
 int lcm(int a, int b) {
-    return a / gcd(a, b) * b;  // Avoid overflow by dividing first
+    return a / gcd(a, b) * b;  // Divide first to avoid overflow
 }
 ```
 
@@ -204,8 +206,9 @@ This topic covers arithmetic operations modulo a number.
 | **Multiplication** | (a × b) mod m = (a mod m × b mod m) mod m |
 | **Fast Exponentiation** | a^b mod m in O(log b) |
 
-**Sample Code - Modular Exponentiation:**
+**Syntax:**
 ```cpp
+// Modular exponentiation
 long long modPow(long long a, long long b, long long mod) {
     long long result = 1;
     a = a % mod;
@@ -252,7 +255,7 @@ This topic covers common series and summation formulas.
 | **Arithmetic Progression** | a, a+d, a+2d, ... | n/2 × (2a + (n-1)d) |
 | **Geometric Progression** | a, ar, ar², ... | a(rⁿ - 1)/(r - 1) |
 
-**Sample Code:**
+**Syntax:**
 ```cpp
 // Sum of first n natural numbers
 long long sumNatural(int n) {
@@ -301,6 +304,56 @@ Before starting this section, you should have completed:
 
 - [01. Basics](../../01.%20Basics/README.md) - Basic arithmetic, loops
 - [02. Basic Problems](../../02.%20Basic%20Problems/README.md) - Basic problem solving
+
+---
+
+### Sample Mathematical Problem Solution
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Problem: Find the sum of all prime numbers up to n
+long long sumOfPrimes(int n) {
+    vector<bool> isPrime(n + 1, true);
+    isPrime[0] = isPrime[1] = false;
+    
+    for (int i = 2; i * i <= n; i++) {
+        if (isPrime[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                isPrime[j] = false;
+            }
+        }
+    }
+    
+    long long sum = 0;
+    for (int i = 2; i <= n; i++) {
+        if (isPrime[i]) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
+// Problem: Compute GCD of an array of numbers
+int gcdArray(vector<int>& arr) {
+    int result = arr[0];
+    for (int i = 1; i < arr.size(); i++) {
+        result = gcd(result, arr[i]);
+    }
+    return result;
+}
+
+int main() {
+    cout << "Sum of primes up to 100: " << sumOfPrimes(100) << endl;
+    
+    vector<int> nums = {24, 36, 48, 60};
+    cout << "GCD of array: " << gcdArray(nums) << endl;
+    
+    return 0;
+}
+```
 
 ---
 
@@ -354,6 +407,8 @@ After completing this section, you should be able to:
 6. Find modular inverse using Fermat's theorem
 7. Sum of first n natural numbers (O(1) formula)
 8. Compute Fibonacci numbers efficiently
+9. Find the number of divisors of a number
+10. Compute the sum of divisors of a number
 
 ---
 
