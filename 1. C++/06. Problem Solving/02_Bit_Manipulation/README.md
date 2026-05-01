@@ -1,508 +1,418 @@
-# Bit Manipulation
+# README.md
 
-## Overview
-Bit manipulation is the technique of directly manipulating bits within binary representations of numbers. It's a powerful optimization technique that can lead to highly efficient solutions for many problems, especially in competitive programming and system-level programming.
+## Bit Manipulation - Complete Guide
 
-## Topics Covered
+### Overview
 
-### 1. Basic Bit Operations (`01_Basic_Bit_Operations.md`)
-- Bitwise AND, OR, XOR, NOT operations
-- Left and right shift operations
-- Bit setting, clearing, and toggling
-- Bit checking and extraction
+Bit manipulation involves working directly with the binary representation of numbers. It is a powerful technique for solving problems efficiently, often reducing time complexity from O(n) to O(1) or from O(n²) to O(n). Bit manipulation is essential for competitive programming, embedded systems, cryptography, and performance-critical applications.
 
-### 2. Bit Tricks (`02_Bit_Tricks.md`)
-- Power of two operations
-- Counting set bits efficiently
-- Finding unique elements
-- Bit manipulation for mathematical operations
+---
 
-### 3. Bit Masks (`03_Bit_Masks.md`)
-- Creating and using bit masks
-- Subset generation using bits
-- State representation with bits
-- Bitmask DP techniques
+### Topics Covered
 
-### 4. Binary Representation (`04_Binary_Representation.md`)
-- Understanding binary number system
-- Converting between number systems
-- Signed and unsigned representations
-- Two's complement
+| # | Name | Purpose |
+| --- | --- | --- |
+| 1. | [01_Basic_Bit_Operations.md](01_Basic_Bit_Operations.md) | understand Basic Bit Operations |
+| 2. | [02_Bit_Tricks.md](02_Bit_Tricks.md) | understand Common Bit Tricks |
+| 3. | [03_Bit_Masks.md](03_Bit_Masks.md) | understand Bit Masks and Subset Generation |
+| 4. | [04_Binary_Representation.md](04_Binary_Representation.md) | understand Binary Representation |
+| 5. | [05_Bit_Manipulation_Problems.md](05_Bit_Manipulation_Problems.md) | understand Bit Manipulation Problems |
+| 6. | [README.md](README.md) | understand Bit Manipulation Overview |
 
-### 5. Bit Manipulation Problems (`05_Bit_Manipulation_Problems.md`)
-- Common bit manipulation problems
-- Optimization techniques
-- Real-world applications
-- Practice problems
+---
 
-## Key Concepts
+## 1. Basic Bit Operations
 
-### Bitwise Operations
-- **AND (&)**: Bitwise conjunction
-- **OR (|)**: Bitwise disjunction
-- **XOR (^)**: Bitwise exclusive or
-- **NOT (~)**: Bitwise negation
-- **Left Shift (<<)**: Shift bits left
-- **Right Shift (>>)**: Shift bits right
+This topic covers fundamental bitwise operators and their usage.
 
-### Common Bit Patterns
-- **Power of Two**: Only one bit set
-- **Even/Odd**: Last bit determines parity
-- **Sign Bit**: Most significant bit for signed numbers
-- **Mask**: Used to isolate specific bits
+**File:** [01_Basic_Bit_Operations.md](01_Basic_Bit_Operations.md)
 
-## Basic Operations
+**What you will learn:**
+- Bitwise AND (&)
+- Bitwise OR (|)
+- Bitwise XOR (^)
+- Bitwise NOT (~)
+- Left shift (<<)
+- Right shift (>>)
+- Operator precedence and examples
 
-### 1. Bit Checking
+**Key Concepts:**
+
+| Operator | Symbol | Description | Example |
+|----------|--------|-------------|---------|
+| **AND** | `&` | 1 if both bits are 1 | `5 & 3 = 1` (101 & 011 = 001) |
+| **OR** | `\|` | 1 if at least one bit is 1 | `5 \| 3 = 7` (101 \| 011 = 111) |
+| **XOR** | `^` | 1 if bits are different | `5 ^ 3 = 6` (101 ^ 011 = 110) |
+| **NOT** | `~` | Flips all bits | `~5 = -6` (flips all 32 bits) |
+| **Left Shift** | `<<` | Shifts bits left (multiply by 2) | `5 << 1 = 10` |
+| **Right Shift** | `>>` | Shifts bits right (divide by 2) | `5 >> 1 = 2` |
+
+**Syntax:**
 ```cpp
-class BitOperations {
-public:
-    // Check if bit at position k is set (0-indexed)
-    static bool isBitSet(int n, int k) {
-        return (n & (1 << k)) != 0;
-    }
-    
-    // Check if bit at position k is clear
-    static bool isBitClear(int n, int k) {
-        return (n & (1 << k)) == 0;
-    }
-    
-    // Get value of bit at position k
-    static int getBit(int n, int k) {
-        return (n >> k) & 1;
-    }
-};
+int a = 5;  // 101
+int b = 3;  // 011
+
+int andResult = a & b;    // 001 = 1
+int orResult = a | b;     // 111 = 7
+int xorResult = a ^ b;    // 110 = 6
+int notResult = ~a;       // ...11111010 = -6
+int leftShift = a << 1;   // 1010 = 10
+int rightShift = a >> 1;  // 10 = 2
 ```
 
-### 2. Bit Setting and Clearing
+---
+
+## 2. Common Bit Tricks
+
+This topic covers common bit manipulation tricks and optimizations.
+
+**File:** [02_Bit_Tricks.md](02_Bit_Tricks.md)
+
+**What you will learn:**
+- Checking if number is power of two
+- Counting set bits (Brian Kernighan's algorithm)
+- Isolating lowest set bit
+- Clearing lowest set bit
+- Swapping numbers without temporary variable
+- Checking if bits are alternating
+
+**Key Tricks:**
+
+| Trick | Expression | Description |
+|-------|------------|-------------|
+| **Power of Two** | `n & (n-1) == 0` | True if n is power of two |
+| **Lowest Set Bit** | `n & -n` | Isolates lowest set bit |
+| **Clear Lowest Set Bit** | `n & (n-1)` | Removes lowest set bit |
+| **Set bit** | `n \| (1 << k)` | Sets kth bit to 1 |
+| **Clear bit** | `n & ~(1 << k)` | Sets kth bit to 0 |
+| **Toggle bit** | `n ^ (1 << k)` | Flips kth bit |
+| **Check bit** | `(n >> k) & 1` | Gets kth bit value |
+
+**Syntax:**
 ```cpp
-class BitModification {
-public:
-    // Set bit at position k
-    static int setBit(int n, int k) {
-        return n | (1 << k);
+// Count set bits (Brian Kernighan)
+int countSetBits(int n) {
+    int count = 0;
+    while (n) {
+        n &= (n - 1);  // Clear lowest set bit
+        count++;
     }
-    
-    // Clear bit at position k
-    static int clearBit(int n, int k) {
-        return n & ~(1 << k);
-    }
-    
-    // Toggle bit at position k
-    static int toggleBit(int n, int k) {
-        return n ^ (1 << k);
-    }
-    
-    // Update bit at position k to value v (0 or 1)
-    static int updateBit(int n, int k, int v) {
-        int mask = 1 << k;
-        return (n & ~mask) | ((v << k) & mask);
-    }
-};
+    return count;
+}
+
+// Check power of two
+bool isPowerOfTwo(int n) {
+    return n > 0 && (n & (n - 1)) == 0;
+}
+
+// Swap without temporary variable
+void swap(int& a, int& b) {
+    a ^= b;
+    b ^= a;
+    a ^= b;
+}
 ```
 
-### 3. Bit Counting
+---
+
+## 3. Bit Masks
+
+This topic covers using bit masks to represent sets and subsets.
+
+**File:** [03_Bit_Masks.md](03_Bit_Masks.md)
+
+**What you will learn:**
+- Representing sets using bit masks
+- Subset generation using bit masks
+- Set operations (union, intersection, complement)
+- Checking membership
+- Iterating over subsets
+- Dynamic programming with bit masks
+
+**Key Concepts:**
+
+| Operation | Expression | Description |
+|-----------|------------|-------------|
+| **Add element** | `mask \| (1 << i)` | Add i to set |
+| **Remove element** | `mask & ~(1 << i)` | Remove i from set |
+| **Check element** | `(mask >> i) & 1` | Check if i is in set |
+| **Union** | `maskA \| maskB` | Union of two sets |
+| **Intersection** | `maskA & maskB` | Intersection of two sets |
+| **Complement** | `~mask` | Complement of set |
+
+**Syntax:**
 ```cpp
-class BitCounting {
-public:
-    // Count set bits (Brian Kernighan's algorithm)
-    static int countSetBits(int n) {
-        int count = 0;
-        while (n) {
-            n &= (n - 1); // Clear the rightmost set bit
-            count++;
-        }
-        return count;
-    }
+// Generate all subsets of an array of n elements
+vector<vector<int>> generateSubsets(vector<int>& arr) {
+    int n = arr.size();
+    vector<vector<int>> subsets;
     
-    // Count clear bits
-    static int countClearBits(int n) {
-        int bitLength = sizeof(n) * 8;
-        return bitLength - countSetBits(n);
-    }
-    
-    // Count set bits in range [l, r]
-    static int countSetBitsInRange(int n, int l, int r) {
-        int mask = ((1 << (r - l + 1)) - 1) << l;
-        int masked = n & mask;
-        return countSetBits(masked);
-    }
-};
-```
-
-## Advanced Bit Techniques
-
-### 1. Power of Two Operations
-```cpp
-class PowerOfTwo {
-public:
-    // Check if n is a power of two
-    static bool isPowerOfTwo(int n) {
-        return n > 0 && (n & (n - 1)) == 0;
-    }
-    
-    // Get next power of two greater than n
-    static int nextPowerOfTwo(int n) {
-        if (n <= 1) return 2;
-        
-        n--;
-        n |= n >> 1;
-        n |= n >> 2;
-        n |= n >> 4;
-        n |= n >> 8;
-        n |= n >> 16;
-        n++;
-        
-        return n;
-    }
-    
-    // Get previous power of two less than or equal to n
-    static int previousPowerOfTwo(int n) {
-        if (n <= 1) return 1;
-        
-        n |= n >> 1;
-        n |= n >> 2;
-        n |= n >> 4;
-        n |= n >> 8;
-        n |= n >> 16;
-        
-        return n - (n >> 1);
-    }
-};
-```
-
-### 2. Bit Reversal and Rotation
-```cpp
-class BitManipulationAdvanced {
-public:
-    // Reverse bits of a number
-    static unsigned int reverseBits(unsigned int n) {
-        unsigned int result = 0;
-        int bitCount = sizeof(n) * 8;
-        
-        for (int i = 0; i < bitCount; i++) {
-            result <<= 1;
-            result |= (n & 1);
-            n >>= 1;
-        }
-        
-        return result;
-    }
-    
-    // Rotate bits left by k positions
-    static unsigned int rotateLeft(unsigned int n, int k) {
-        int bitCount = sizeof(n) * 8;
-        k %= bitCount;
-        
-        return (n << k) | (n >> (bitCount - k));
-    }
-    
-    // Rotate bits right by k positions
-    static unsigned int rotateRight(unsigned int n, int k) {
-        int bitCount = sizeof(n) * 8;
-        k %= bitCount;
-        
-        return (n >> k) | (n << (bitCount - k));
-    }
-    
-    // Swap odd and even bits
-    static unsigned int swapOddEvenBits(unsigned int n) {
-        unsigned int evenBits = n & 0xAAAAAAAA; // Mask for even positions
-        unsigned int oddBits = n & 0x55555555;  // Mask for odd positions
-        
-        evenBits >>= 1;
-        oddBits <<= 1;
-        
-        return evenBits | oddBits;
-    }
-};
-```
-
-## Bit Masks and Applications
-
-### 1. Subset Generation
-```cpp
-class SubsetGeneration {
-public:
-    // Generate all subsets using bitmask
-    static std::vector<std::vector<int>> generateSubsets(const std::vector<int>& arr) {
-        int n = arr.size();
-        std::vector<std::vector<int>> subsets;
-        
-        for (int mask = 0; mask < (1 << n); mask++) {
-            std::vector<int> subset;
-            for (int i = 0; i < n; i++) {
-                if (mask & (1 << i)) {
-                    subset.push_back(arr[i]);
-                }
-            }
-            subsets.push_back(subset);
-        }
-        
-        return subsets;
-    }
-    
-    // Generate subsets of specific size
-    static std::vector<std::vector<int>> generateSubsetsOfSize(
-        const std::vector<int>& arr, int k) {
-        int n = arr.size();
-        std::vector<std::vector<int>> subsets;
-        
-        for (int mask = 0; mask < (1 << n); mask++) {
-            if (__builtin_popcount(mask) == k) {
-                std::vector<int> subset;
-                for (int i = 0; i < n; i++) {
-                    if (mask & (1 << i)) {
-                        subset.push_back(arr[i]);
-                    }
-                }
-                subsets.push_back(subset);
+    for (int mask = 0; mask < (1 << n); mask++) {
+        vector<int> subset;
+        for (int i = 0; i < n; i++) {
+            if (mask & (1 << i)) {
+                subset.push_back(arr[i]);
             }
         }
-        
-        return subsets;
+        subsets.push_back(subset);
     }
-};
+    return subsets;
+}
+
+// Iterate over all submasks of a mask
+int mask = 13;  // 1101
+for (int sub = mask; sub; sub = (sub - 1) & mask) {
+    // Process submask
+}
 ```
 
-### 2. Bitmask DP
+---
+
+## 4. Binary Representation
+
+This topic covers converting numbers to binary and understanding signed representations.
+
+**File:** [04_Binary_Representation.md](04_Binary_Representation.md)
+
+**What you will learn:**
+- Binary, octal, hexadecimal representation
+- Two's complement (signed integers)
+- Binary to decimal conversion
+- Decimal to binary conversion
+- Printing binary representation
+- Endianness
+
+**Key Concepts:**
+
+| Representation | Base | Digits | Example |
+|----------------|------|--------|---------|
+| **Binary** | 2 | 0,1 | 1010₂ = 10 |
+| **Octal** | 8 | 0-7 | 12₈ = 10 |
+| **Hexadecimal** | 16 | 0-9,A-F | A₁₆ = 10 |
+
+**Syntax:**
 ```cpp
-class BitmaskDP {
-public:
-    // Assignment problem using bitmask DP
-    static int assignmentProblem(const std::vector<std::vector<int>>& cost) {
-        int n = cost.size();
-        int dp[1 << 20]; // Assuming n <= 20
-        
-        for (int mask = 0; mask < (1 << n); mask++) {
-            dp[mask] = INT_MAX;
-        }
-        dp[0] = 0;
-        
-        for (int mask = 0; mask < (1 << n); mask++) {
-            int k = __builtin_popcount(mask); // Number of assigned jobs
-            
-            for (int i = 0; i < n; i++) {
-                if (!(mask & (1 << i))) { // If job i is not assigned
-                    int newMask = mask | (1 << i);
-                    dp[newMask] = std::min(dp[newMask], dp[mask] + cost[k][i]);
-                }
-            }
-        }
-        
-        return dp[(1 << n) - 1];
+// Print binary representation
+void printBinary(int n) {
+    for (int i = 31; i >= 0; i--) {
+        cout << ((n >> i) & 1);
+        if (i % 4 == 0) cout << " ";
     }
-    
-    // Traveling Salesman Problem (TSP) using bitmask DP
-    static int tsp(const std::vector<std::vector<int>>& dist) {
-        int n = dist.size();
-        int dp[1 << 15][15]; // Assuming n <= 15
-        
-        for (int mask = 0; mask < (1 << n); mask++) {
-            for (int i = 0; i < n; i++) {
-                dp[mask][i] = INT_MAX;
-            }
-        }
-        
-        dp[1][0] = 0; // Start from city 0
-        
-        for (int mask = 1; mask < (1 << n); mask++) {
-            for (int u = 0; u < n; u++) {
-                if (mask & (1 << u) && dp[mask][u] != INT_MAX) {
-                    for (int v = 0; v < n; v++) {
-                        if (!(mask & (1 << v))) {
-                            int newMask = mask | (1 << v);
-                            dp[newMask][v] = std::min(dp[newMask][v], 
-                                                      dp[mask][u] + dist[u][v]);
-                        }
-                    }
-                }
-            }
-        }
-        
-        int result = INT_MAX;
-        for (int i = 1; i < n; i++) {
-            result = std::min(result, dp[(1 << n) - 1][i] + dist[i][0]);
-        }
-        
-        return result;
+    cout << endl;
+}
+
+// Binary string to integer
+int binaryToInt(string binary) {
+    int result = 0;
+    for (char c : binary) {
+        result = (result << 1) | (c - '0');
     }
-};
+    return result;
+}
 ```
 
-## Practical Applications
+---
 
-### 1. Finding Unique Elements
+## 5. Bit Manipulation Problems
+
+This topic covers common interview and competitive programming problems.
+
+**File:** [05_Bit_Manipulation_Problems.md](05_Bit_Manipulation_Problems.md)
+
+**What you will learn:**
+- Single number (find element that appears once)
+- Find missing number
+- Count bits in a range
+- Reverse bits of a number
+- Find the two non-repeating elements
+- Add two numbers without using + operator
+
+**Key Problems:**
+
+| Problem | Solution Approach | Complexity |
+|---------|-------------------|------------|
+| **Single Number** | XOR all elements | O(n) |
+| **Missing Number** | XOR with indices | O(n) |
+| **Power of Two** | `n & (n-1) == 0` | O(1) |
+| **Count Set Bits** | Brian Kernighan | O(k) |
+| **Reverse Bits** | Bit by bit reversal | O(32) |
+
+**Syntax:**
 ```cpp
-class UniqueElements {
-public:
-    // Find element that appears once while others appear twice
-    static int findUnique(const std::vector<int>& arr) {
-        int result = 0;
-        for (int num : arr) {
-            result ^= num;
-        }
-        return result;
+// Single number (find element appearing once)
+int singleNumber(vector<int>& nums) {
+    int result = 0;
+    for (int num : nums) {
+        result ^= num;
     }
-    
-    // Find two unique elements while others appear twice
-    static std::pair<int, int> findTwoUnique(const std::vector<int>& arr) {
-        int xorAll = 0;
-        for (int num : arr) {
-            xorAll ^= num;
-        }
-        
-        // Find rightmost set bit
-        int rightmostSet = xorAll & -xorAll;
-        
-        int num1 = 0, num2 = 0;
-        for (int num : arr) {
-            if (num & rightmostSet) {
-                num1 ^= num;
-            } else {
-                num2 ^= num;
-            }
-        }
-        
-        return {num1, num2};
+    return result;
+}
+
+// Add two numbers without + operator
+int add(int a, int b) {
+    while (b != 0) {
+        int carry = a & b;
+        a = a ^ b;
+        b = carry << 1;
     }
-    
-    // Find element that appears once while others appear three times
-    static int findUniqueThrice(const std::vector<int>& arr) {
-        int ones = 0, twos = 0;
-        
-        for (int num : arr) {
-            ones = (ones ^ num) & ~twos;
-            twos = (twos ^ num) & ~ones;
-        }
-        
-        return ones;
+    return a;
+}
+
+// Reverse bits of a 32-bit integer
+uint32_t reverseBits(uint32_t n) {
+    uint32_t result = 0;
+    for (int i = 0; i < 32; i++) {
+        result = (result << 1) | (n & 1);
+        n >>= 1;
     }
-};
+    return result;
+}
 ```
 
-### 2. Mathematical Operations
-```cpp
-class BitMath {
-public:
-    // Multiply two numbers using bit operations
-    static long long multiply(int a, int b) {
-        long long result = 0;
-        
-        while (b > 0) {
-            if (b & 1) {
-                result += a;
-            }
-            a <<= 1;
-            b >>= 1;
-        }
-        
-        return result;
-    }
-    
-    // Divide two numbers using bit operations
-    static std::pair<int, int> divide(int dividend, int divisor) {
-        if (divisor == 0) return {INT_MAX, 0}; // Division by zero
-        
-        bool negative = (dividend < 0) ^ (divisor < 0);
-        long long dvd = abs(dividend);
-        long long dvs = abs(divisor);
-        
-        int quotient = 0;
-        for (int i = 31; i >= 0; i--) {
-            if ((dvs << i) <= dvd) {
-                dvd -= (dvs << i);
-                quotient += (1 << i);
-            }
-        }
-        
-        if (negative) quotient = -quotient;
-        return {quotient, dvd};
-    }
-    
-    // Calculate absolute value without branching
-    static int absoluteValue(int n) {
-        int mask = n >> (sizeof(int) * 8 - 1);
-        return (n ^ mask) - mask;
-    }
-    
-    // Find maximum of two numbers without branching
-    static int max(int a, int b) {
-        return a ^ ((a ^ b) & -(a < b));
-    }
-    
-    // Find minimum of two numbers without branching
-    static int min(int a, int b) {
-        return b ^ ((a ^ b) & -(a < b));
-    }
-};
-```
+---
 
-## Optimization Techniques
+### Bit Manipulation Cheat Sheet
 
-### 1. Bit Hacks for Performance
-```cpp
-class BitHacks {
-public:
-    // Fast absolute value
-    static int fastAbs(int n) {
-        int mask = n >> 31;
-        return (n + mask) ^ mask;
-    }
-    
-    // Fast sign function
-    static int sign(int n) {
-        return (n > 0) - (n < 0);
-    }
-    
-    // Fast min/max
-    static int fastMin(int a, int b) {
-        return b + ((a - b) & ((a - b) >> (sizeof(int) * 8 - 1)));
-    }
-    
-    static int fastMax(int a, int b) {
-        return a - ((a - b) & ((a - b) >> (sizeof(int) * 8 - 1)));
-    }
-    
-    // Check if numbers have opposite signs
-    static bool oppositeSigns(int a, int b) {
-        return (a ^ b) < 0;
-    }
-    
-    // Fast modulo for power of 2
-    static int fastModPowerOfTwo(int n, int power) {
-        return n & (power - 1);
-    }
-};
-```
+| Operation | Expression | Example (n=5, k=2) |
+|-----------|------------|-------------------|
+| Set kth bit | `n \| (1 << k)` | 5 | (1<<2) = 5 | 4 = 7 (111) |
+| Clear kth bit | `n & ~(1 << k)` | 5 & ~4 = 5 & 3 = 1 (001) |
+| Toggle kth bit | `n ^ (1 << k)` | 5 ^ 4 = 1 (001) |
+| Check kth bit | `(n >> k) & 1` | (5>>2)&1 = 1&1 = 1 |
+| Is power of two | `n & (n-1) == 0` | 4 & 3 = 0 → true |
+| Lowest set bit | `n & -n` | 6 (110) & -6 (010) = 2 (010) |
+| Clear lowest set bit | `n & (n-1)` | 6 & 5 = 4 (100) |
 
-## Complexity Analysis
+---
+
+### Complexity Summary
 
 | Operation | Time Complexity | Space Complexity |
 |-----------|----------------|------------------|
-| Bit Check | O(1) | O(1) |
-| Bit Set/Clear | O(1) | O(1) |
-| Count Set Bits | O(number of set bits) | O(1) |
-| Reverse Bits | O(log n) | O(1) |
-| Subset Generation | O(2^n * n) | O(2^n * n) |
-| Bitmask DP | O(2^n * n) | O(2^n) |
+| Basic bitwise | O(1) | O(1) |
+| Count set bits (Brian Kernighan) | O(k) where k = number of set bits | O(1) |
+| Reverse bits | O(32) = O(1) | O(1) |
+| Subset generation | O(2ⁿ × n) | O(2ⁿ × n) |
 
-## Best Practices
+---
 
-1. **Use Unsigned Types**: For predictable bit behavior
-2. **Avoid Undefined Behavior**: Be careful with signed shifts
-3. **Consider Endianness**: For bit-level operations
-4. **Use Built-in Functions**: Like __builtin_popcount for optimization
-5. **Document Bit Logic**: Bit operations can be hard to read
+### Prerequisites
 
-## Common Pitfalls
+Before starting this section, you should have completed:
 
-1. **Operator Precedence**: Use parentheses for clarity
-2. **Signed vs Unsigned**: Different behavior for right shifts
-3. **Integer Overflow**: Be careful with left shifts
-4. **Undefined Behavior**: Shifting by >= bit width
-5. **Portability**: Bit representation may vary
+- [01. Basics](../../01.%20Basics/README.md) - Binary numbers, operators
 
-## Summary
+---
 
-Bit manipulation is a powerful technique for optimizing algorithms and solving problems efficiently. Mastering bit operations enables elegant solutions to many computational problems and is essential for competitive programming and system-level programming.
+### Sample Bit Manipulation Solution
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Problem: Find the only number that appears once in an array
+int singleNumber(vector<int>& nums) {
+    int result = 0;
+    for (int num : nums) {
+        result ^= num;
+    }
+    return result;
+}
+
+// Problem: Check if a number is a power of two
+bool isPowerOfTwo(int n) {
+    return n > 0 && (n & (n - 1)) == 0;
+}
+
+// Problem: Count the number of set bits
+int countSetBits(int n) {
+    int count = 0;
+    while (n) {
+        n &= (n - 1);
+        count++;
+    }
+    return count;
+}
+
+int main() {
+    vector<int> nums = {4, 1, 2, 1, 2};
+    cout << "Single number: " << singleNumber(nums) << endl;
+    
+    cout << "Is 16 power of two? " << (isPowerOfTwo(16) ? "Yes" : "No") << endl;
+    cout << "Is 18 power of two? " << (isPowerOfTwo(18) ? "Yes" : "No") << endl;
+    
+    cout << "Set bits in 13: " << countSetBits(13) << endl;
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Single number: 4
+Is 16 power of two? Yes
+Is 18 power of two? No
+Set bits in 13: 3
+```
+
+---
+
+### Learning Path
+
+```
+Level 1: Basic Operations
+├── Bitwise Operators
+├── Shift Operators
+└── Basic Bit Tricks
+
+Level 2: Common Tricks
+├── Power of Two Check
+├── Count Set Bits
+├── Isolate/Remove Lowest Bit
+└── Swap without Temporary
+
+Level 3: Bit Masks
+├── Set Representation
+├── Subset Generation
+└── Submask Iteration
+
+Level 4: Problem Solving
+├── Single Number
+├── Missing Number
+├── Add without + Operator
+└── Bit Manipulation Problems
+```
+
+---
+
+### Common Mistakes to Avoid
+
+| Mistake | Solution |
+|---------|----------|
+| Shift beyond bit width | Limit shift to < 32 for int, < 64 for long long |
+| Negative right shift behavior | Use unsigned for bit operations |
+| XOR confusion | Understand XOR properties (a^a=0, a^0=a) |
+| Operator precedence | Use parentheses: `(n & (n-1)) == 0` |
+| Sign extension on right shift | Use `>>` for unsigned |
+
+---
+
+### Practice Questions
+
+1. Check if a number is a power of two
+2. Count the number of set bits in an integer
+3. Find the only number that appears once in an array
+4. Swap two numbers without using a temporary variable
+5. Generate all subsets using bit masks
+6. Reverse the bits of a 32-bit integer
+7. Add two integers without using + operator
+8. Find the missing number in an array of 0..n
+9. Find the two non-repeating elements in an array
+10. Check if a number has alternating bits
+
+---
+
+### Next Steps
+
+- Go to [01_Basic_Bit_Operations.md](01_Basic_Bit_Operations.md) to understand Basic Bit Operations.
