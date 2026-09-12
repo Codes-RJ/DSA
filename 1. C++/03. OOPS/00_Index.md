@@ -90,9 +90,9 @@ Professional-level topics and design patterns:
     - [Behavioral Patterns](./12_Design_Patterns/03_Behavioral_Patterns/)
 
 13. **[13_Best_Practices/](./13_Best_Practices/)** - Professional standards
-    - [Coding Standards](./13_Best_Practices/01_Coding_Standards.md)
-    - [SOLID Principles](./13_Best_Practices/05_SOLID_Principles.md)
-    - [Common Pitfalls](./13_Best_Practices/06_Common_Pitfalls.md)
+    - [Coding Standards](./13_Best_Practices/Theory.md)
+    - [SOLID Principles](./13_Best_Practices/Theory.md)
+    - [Common Pitfalls](./13_Best_Practices/Theory.md)
 
 14. **[14_Modern_Cpp_OOP_Features/](./14_Modern_Cpp_OOP_Features/)** - Modern C++
     - [Auto and Decltype](./14_Modern_Cpp_OOP_Features/01_Auto_and_Decltype.md)
@@ -101,9 +101,9 @@ Professional-level topics and design patterns:
     - [Move Semantics](./14_Modern_Cpp_OOP_Features/05_Move_Semantics.md)
 
 15. **[15_Projects_and_Applications/](./15_Projects_and_Applications/)** - Practical implementation
-    - [Banking System](./15_Projects_and_Applications/01_Banking_System.md)
-    - [Library Management](./15_Projects_and_Applications/02_Library_Management.md)
-    - [Game Character System](./15_Projects_and_Applications/05_Game_Character_System.md)
+    - [Banking System](./15_Projects_and_Applications/Theory.md)
+    - [Inventory System](./15_Projects_and_Applications/Theory.md)
+    - [HTTP Server System](./15_Projects_and_Applications/Theory.md)
 
 ---
 
@@ -181,7 +181,7 @@ Each topic is tagged with difficulty and prerequisites:
 ## 🚀 Suggested Learning Paths
 
 ### Path 1: Complete Beginner (3-4 months)
-1. [Introduction](./01_Introduction/) → 2. [Classes & Objects](./02_Classes_and_Objects/) → 3. [Basic Constructors](./03_Constructors_and_Destructors/01_Default_Constructor.md) → 4. [Encapsulation](./04_Encapsulation/) → 5. [Simple Inheritance](./05_Inheritance/01_Basics_of_Inheritance.md) → 6. [Basic Projects](./15_Projects_and_Applications/04_Shape_Calculator.md)
+1. [Introduction](./01_Introduction/) → 2. [Classes & Objects](./02_Classes_and_Objects/) → 3. [Basic Constructors](./03_Constructors_and_Destructors/01_Default_Constructor.md) → 4. [Encapsulation](./04_Encapsulation/) → 5. [Simple Inheritance](./05_Inheritance/01_Basics_of_Inheritance.md) → 6. [Basic Projects](./15_Projects_and_Applications/Theory.md)
 
 ### Path 2: C Programmer Transitioning (2-3 months)
 1. [Procedural vs OOP](./01_Introduction/02_Procedural_vs_OOP.md) → 2. [Classes & Objects](./02_Classes_and_Objects/) → 3. [Complete Constructors](./03_Constructors_and_Destructors/) → 4. [Inheritance](./05_Inheritance/) → 5. [Polymorphism](./06_Polymorphism/) → 6. [Memory Management](./11_Memory_Management_in_OOP/)
@@ -241,7 +241,7 @@ Each topic is tagged with difficulty and prerequisites:
 - [Key OOP Concepts](./01_Introduction/04_Basic_Terminology.md)
 - [Design Patterns](./12_Design_Patterns/)
 - [Best Practices](./13_Best_Practices/)
-- [Common Pitfalls](./13_Best_Practices/06_Common_Pitfalls.md)
+- [Common Pitfalls](./13_Best_Practices/Theory.md)
 
 ---
 

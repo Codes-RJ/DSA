@@ -1,4 +1,4 @@
-﻿# Strategy Pattern in C++ - Complete Guide
+# Strategy Pattern in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -851,4 +851,4 @@ int main() {
 
 ## Next Step
 
-- Go to [README.md](/1.%20C++/03.%20OOPS/13_Best_Practices/README.md) to learn the best practices of how to use OOPS.
+- Go to [README.md](../../13_Best_Practices/README.md) to learn the best practices of how to use OOPS.

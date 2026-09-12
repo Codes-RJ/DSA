@@ -1,4 +1,4 @@
-﻿# Pointers and Memory Management
+# Pointers and Memory Management
 
 ## Overview
 Pointers are one of C++'s most powerful features, providing direct memory access and enabling dynamic memory management. Understanding pointers is crucial for effective C++ programming and data structure implementation.
@@ -615,4 +615,4 @@ void pointerToMemberExample() {
 
 ## Next Step
 
-- Go to [07_Error_Handling.md](07_Error%20Handling.md) to continue with Error Handling.
+- Go to [07_Error_Handling.md](07_Error_Handling.md) to continue with Error Handling.

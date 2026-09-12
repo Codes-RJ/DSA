@@ -1,4 +1,4 @@
-﻿# Bogo Sort
+# Bogo Sort
 
 ## Overview
 Bogo Sort, also known as permutation sort or stupid sort, is an intentionally inefficient sorting algorithm that generates random permutations of the array until it happens to be sorted. It's primarily used for educational purposes to demonstrate algorithmic inefficiency.
@@ -460,4 +460,4 @@ public:
 
 ## Next Step
 
-- Go to [OOPS](/1.%20C++/03.%20OOPS/README.md) to continue with Theory.
+- Go to [OOPS](../../03.%20OOPS/README.md) to continue with Theory.

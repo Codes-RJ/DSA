@@ -1,4 +1,4 @@
-﻿# 05_Bit_Manipulation_Problems.md
+# 05_Bit_Manipulation_Problems.md
 
 ## Bit Manipulation Problems
 
@@ -642,4 +642,4 @@ Maximum product: 16
 
 ### Next Steps
 
-- Now proceed to [03_String_Problems](../../03_String_Problems/README.md) for String Problems.
+- Now proceed to [03_String_Problems](../03_String_Problems/README.md) for String Problems.

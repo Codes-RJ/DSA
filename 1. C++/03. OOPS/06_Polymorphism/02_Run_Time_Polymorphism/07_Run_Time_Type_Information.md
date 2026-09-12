@@ -1,4 +1,4 @@
-﻿# Run-Time Type Information (RTTI) in C++ - Complete Guide
+# Run-Time Type Information (RTTI) in C++ - Complete Guide
 
 ## 📖 Overview
 
@@ -735,4 +735,4 @@ int main() {
 
 ## Next Step
 
-- Go to [Abstraction](/3.%20Python/03.%20OOPS/07_Abstraction/README.md) to continue forward.
+- Go to [Abstraction](../../07_Abstraction/README.md) to continue forward.

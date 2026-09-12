@@ -68,7 +68,7 @@ A structural design pattern that decouples an abstraction from its implementatio
 ### **Builder Pattern**
 A creational design pattern that separates the construction of a complex object from its representation.
 
-**Related**: [Builder Pattern](./12_Design_Patterns/01_Creational_Patterns/Builder.md)
+**Related**: [Builder Pattern](./12_Design_Patterns/01_Creational_Patterns/4_Builder.md)
 
 ---
 
@@ -97,7 +97,7 @@ A constructor that creates a new object as a copy of an existing object.
 ### **Const Correctness**
 The practice of using the `const` keyword to ensure that objects cannot be modified when they shouldn't be.
 
-**Related**: [Const Members](./02_Classes_and_Objects/07_Const_Members.md), [Const Correctness](./13_Best_Practices/02_Const_Correctness.md)
+**Related**: [Const Members](./02_Classes_and_Objects/07_Const_Members.md), [Const Correctness](./13_Best_Practices/Theory.md)
 
 ### **Concrete Class**
 A class that can be instantiated, as opposed to an abstract class.
@@ -217,12 +217,12 @@ A member function that returns the value of a private data member (accessor).
 ### **Hierarchical Inheritance**
 A type of inheritance where multiple classes inherit from a single base class.
 
-**Related**: [Hierarchical Inheritance](./05_Inheritance/02_Types_of_Inheritance/Hierarchical_Inheritance.md)
+**Related**: [Hierarchical Inheritance](./05_Inheritance/02_Types_of_Inheritance/4_Hierarchical_Inheritance.md)
 
 ### **Hybrid Inheritance**
 A combination of multiple types of inheritance.
 
-**Related**: [Hybrid Inheritance](./05_Inheritance/02_Types_of_Inheritance/Hybrid_Inheritance.md)
+**Related**: [Hybrid Inheritance](./05_Inheritance/02_Types_of_Inheritance/5_Hybrid_Inheritance.md)
 
 ---
 
@@ -273,12 +273,12 @@ Another term for a member function.
 ### **Multiple Inheritance**
 A type of inheritance where a class inherits from multiple base classes.
 
-**Related**: [Multiple Inheritance](./05_Inheritance/02_Types_of_Inheritance/Multiple_Inheritance.md)
+**Related**: [Multiple Inheritance](./05_Inheritance/02_Types_of_Inheritance/2_Multiple_Inheritance.md)
 
 ### **Multilevel Inheritance**
 A type of inheritance where a class is derived from another derived class.
 
-**Related**: [Multilevel Inheritance](./05_Inheritance/02_Types_of_Inheritance/Multilevel_Inheritance.md)
+**Related**: [Multilevel Inheritance](./05_Inheritance/02_Types_of_Inheritance/3_Multilevel_Inheritance.md)
 
 ### **Mutable Keyword**
 A C++ keyword that allows a data member to be modified even in const member functions.
@@ -360,7 +360,7 @@ A class member that is accessible from anywhere the object is visible.
 ### **RAII (Resource Acquisition Is Initialization)**
 A programming pattern where resource acquisition is tied to object lifetime, ensuring automatic cleanup.
 
-**Related**: [RAII](./10_Exception_Handling_in_OOP/05_RAII.md), [RAII Best Practices](./13_Best_Practices/03_RAII.md)
+**Related**: [RAII](./10_Exception_Handling_in_OOP/05_RAII.md), [RAII Best Practices](./13_Best_Practices/Theory.md)
 
 ### **Reference**
 An alias for another variable. In OOP, often used to pass objects efficiently to functions.
@@ -397,7 +397,7 @@ A member function that modifies the value of a private data member (mutator).
 ### **Single Inheritance**
 A type of inheritance where a class inherits from only one base class.
 
-**Related**: [Single Inheritance](./05_Inheritance/02_Types_of_Inheritance/Single_Inheritance.md)
+**Related**: [Single Inheritance](./05_Inheritance/02_Types_of_Inheritance/1_Single_Inheritance.md)
 
 ### **Smart Pointer**
 An object that acts like a pointer but provides automatic memory management through RAII.
@@ -537,7 +537,7 @@ See Virtual Table.
 ## 🔗 Cross-References
 
 ### Related Topics
-- **SOLID Principles**: [SOLID Principles](./13_Best_Practices/05_SOLID_Principles.md)
+- **SOLID Principles**: [SOLID Principles](./13_Best_Practices/Theory.md)
 - **Design Patterns**: [Design Patterns](./12_Design_Patterns/)
 - **Modern C++**: [Modern C++ Features](./14_Modern_Cpp_OOP_Features/)
 - **Best Practices**: [Best Practices](./13_Best_Practices/)

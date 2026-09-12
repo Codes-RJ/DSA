@@ -1,4 +1,4 @@
-﻿# README.md
+# README.md
 
 ## Data Structures in C++ - Complete Guide
 
@@ -21,7 +21,13 @@ Data structures are specialized formats for organizing, processing, and storing 
 | 7. | [06_Unassociative_Container.md](06_Unassociative_Container.md) | understand Unordered Associative Containers (unordered_set, unordered_map) |
 | 8. | [07_Utility.md](07_Utility.md) | understand Utility Components (pair, tuple) |
 | 9. | [08_SpecializedContainers.md](08_SpecializedContainers.md) | understand Specialized Containers (bitset, valarray) |
-| 10. | [Theory.md](Theory.md) | understand Theoretical Foundations of Data Structures |
+| 10. | [09_Linked_List.md](09_Linked_List.md) | understand Custom Singly, Doubly, and Circular Linked Lists |
+| 11. | [10_Custom_Stack_and_Queue.md](10_Custom_Stack_and_Queue.md) | understand Custom Array/Node Stacks, Min-Stack, and Circular Queues |
+| 12. | [11_Trie.md](11_Trie.md) | understand Trie (Prefix Tree) and Binary Trie |
+| 13. | [12_Disjoint_Set_Union.md](12_Disjoint_Set_Union.md) | understand Disjoint Set Union (Union-Find) with Rank & Path Compression |
+| 14. | [13_Segment_Tree.md](13_Segment_Tree.md) | understand Segment Tree with Point Updates and Lazy Propagation |
+| 15. | [14_Fenwick_Tree.md](14_Fenwick_Tree.md) | understand Binary Indexed Tree (1D and 2D BIT) |
+| 16. | [Theory.md](Theory.md) | understand Theoretical Foundations of Data Structures |
 
 ---
 

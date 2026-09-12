@@ -1,5 +1,7 @@
 # C++ Programming Language
 
+> 🗺️ **Master Curriculum Architecture**: Access the **[Master DSA Curriculum Map](MASTER_DSA_MAP.md)** for an exhaustive syllabus breakdown, Mermaid prerequisite graph, Big-$O$ complexity cheat sheet, and pattern-matching matrix across all 8 modules.
+
 ## Overview
 
 C++ is a high-level, general-purpose programming language created as an extension of the C programming language. It was developed by Bjarne Stroustrup at Bell Labs starting in 1979 and officially released in 1985. C++ combines the low-level capabilities of C with object-oriented programming features, making it a powerful and versatile language for system programming, game development, competitive programming, and large-scale applications.
@@ -205,21 +207,22 @@ C++ is a high-level, general-purpose programming language created as an extensio
     └── Backtracking/
 ```
 
+## 🗺️ Master Curriculum Architecture
+
+For a complete, zero-fluff syllabus mapping all topics, prerequisite dependencies, asymptotic complexity cheat sheets, and problem-solving archetypes, see the:
+👉 **[Master DSA Curriculum Map](MASTER_DSA_MAP.md)**
+
 ## Section Completeness
 
-### ✅ Completed Sections (100%)
-- **Headers and Libraries**: Complete STL coverage with 52 files
-- **Basics**: All fundamental C++ concepts covered
-- **Basic Problems**: Comprehensive search and sorting algorithms
-- **OOPS**: Thorough object-oriented programming with design patterns
-- **Data Structures**: Complete coverage of STL containers and theory
-- **Trees and Graphs**: Essential tree and graph implementations
-- **Problem Solving**: Mathematical, bit manipulation, and string problems
-
-### 🚧 Framework Sections (Structure Only)
-- **Algorithms**: Directory structure provided for advanced algorithms
-  - Ready for implementation of graph algorithms, DP, greedy methods
-  - Framework follows competitive programming standards
+### ✅ Completed Sections (100% Fully Implemented)
+- **00. Headers and Libraries**: Complete STL coverage with 52 deep reference files
+- **01. Basics**: Core language primitives, memory models, scopes, and error handling
+- **02. Basic Problems**: Comprehensive search and sorting algorithms (20+ sorts, 10+ search techniques)
+- **03. OOPS**: Industrial object-oriented programming, RAII, Rule of 3/5/0, design patterns, and metaprogramming
+- **04. Data Structures**: Deep custom implementations and STL containers, including Trie, DSU, Segment Tree, and Fenwick Tree
+- **05. Trees and Graphs**: Binary Trees, BST, AVL, Red-Black Trees, Binary Heaps, Traversals, Graph Representations, Binary Lifting (LCA), and Euler Tour Tree Flattening
+- **06. Problem Solving**: Mathematical number theory, bit manipulation, string algorithms & transformations, array manipulation, and algorithmic puzzles
+- **Algorithms**: Comprehensive algorithmic paradigms (Divide and Conquer, Backtracking, Greedy Algorithms, Dynamic Programming, and Graph Algorithms)
 
 ## Key Features of This Repository
 

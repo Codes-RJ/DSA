@@ -18,6 +18,9 @@ Trees and graphs are non-linear data structures that represent hierarchical and 
 | 4. | [04_Graph_Representations](04_Graph_Representations/README.md) | understand Graph Representations |
 | 5. | [05_Tree_Traversals](05_Tree_Traversals/README.md) | understand Tree Traversals (DFS, BFS, Inorder, Preorder, Postorder) |
 | 6. | [06_Basic_Graph_Algorithms](06_Basic_Graph_Algorithms/README.md) | understand Basic Graph Algorithms (BFS, DFS, Connected Components, Cycle Detection, Topological Sort) |
+| 7. | [07_Red_Black_Trees](07_Red_Black_Trees/README.md) | understand Red-Black Trees (Self-Balancing BST, Black-Height Invariants, O(log N) operations) |
+| 8. | [08_Binary_Heap](08_Binary_Heap/README.md) | understand Binary Heap & Priority Queue (Min/Max Heap, Floyd's O(N) Build, In-Place Heap Sort) |
+| 9. | [09_Advanced_Tree_Techniques](09_Advanced_Tree_Techniques/README.md) | understand Advanced Tree Techniques (Binary Lifting, LCA, Euler Tour Tree Flattening, Segment Tree Subtree Queries) |
 
 ---
 
@@ -426,6 +429,51 @@ int main() {
 
 ---
 
+## 7. Red-Black Trees
+
+This topic explains Red-Black Trees, the industry-standard self-balancing BST powering `std::map` and `std::set`.
+
+**File:** [07_Red_Black_Trees](07_Red_Black_Trees/README.md)
+
+**What you will learn:**
+- The 5 Red-Black Invariants (Root black, leaf black, no two reds, equal black-height)
+- Mathematical proof of height bound: $H \le 2 \log_2(N + 1)$
+- Sentinel `nil` node design pattern eliminating null checks
+- Insertion fixup (Cases 1, 2, 3: Uncle red vs Uncle black)
+- Deletion fixup (Cases 1, 2, 3, 4: Sibling red vs Sibling black)
+- Comparison with AVL trees (AVL: fewer reads; RBT: faster dynamic writes with $\le 3$ rotations)
+
+---
+
+## 8. Binary Heap & Priority Queue
+
+This topic explains the Binary Heap, an array-backed complete binary tree for optimal priority queuing and in-place sorting.
+
+**File:** [08_Binary_Heap](08_Binary_Heap/README.md)
+
+**What you will learn:**
+- Complete binary tree shape property and heap-order property
+- Contiguous array indexing ($2i+1$, $2i+2$, $(i-1)/2$) with zero pointer overhead
+- `push` (sift-up) and `pop` (sift-down) in $O(\log N)$
+- Floyd's linear-time ($O(N)$) `buildHeap` with mathematical summation proof
+- Dynamic priority modification: `decreaseKey` and `deleteKey`
+- In-place Heap Sort ($O(N \log N)$ time, $O(1)$ memory)
+- Real-time task scheduler application
+
+---
+
+## 9. Advanced Tree Techniques
+
+This topic covers competitive programming and enterprise graph primitives for fast tree queries.
+
+**File:** [09_Advanced_Tree_Techniques](09_Advanced_Tree_Techniques/README.md)
+
+**What you will learn:**
+- **Binary Lifting & LCA**: Sparse table on trees (`up[u][k]`), $k$-th ancestor queries in $O(\log N)$, Lowest Common Ancestor, path distance, and maximum edge weight aggregation.
+- **Euler Tour Technique (ETT)**: Flattening trees via DFS entry/exit timestamps (`tin`/`tout`), $O(1)$ ancestor inclusion testing, mapping subtrees to contiguous 1D array ranges, and integrating with Segment Trees for dynamic subtree range sum queries in $O(\log N)$.
+
+---
+
 ### Learning Path
 
 ```
@@ -434,9 +482,10 @@ Level 1: Tree Basics
 ├── BST (Binary Search Tree)
 └── Tree Traversals
 
-Level 2: Balanced Trees
+Level 2: Balanced Trees & Priority Queues
 ├── AVL Trees
-└── Tree Traversals (BFS, DFS)
+├── Red-Black Trees
+└── Binary Heaps & Priority Queues
 
 Level 3: Graph Basics
 ├── Graph Representations
@@ -446,6 +495,10 @@ Level 4: Graph Algorithms
 ├── Connected Components
 ├── Cycle Detection
 └── Topological Sort
+
+Level 5: Advanced Tree Techniques
+├── Binary Lifting & LCA
+└── Euler Tour Tree Flattening
 ```
 
 ---

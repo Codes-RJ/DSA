@@ -47,9 +47,9 @@ Greedy algorithms are suitable when:
 | 7 | Minimum Number of Platforms | `07_Minimum_Number_of_Platforms.md` |
 | 8 | Interval Scheduling | `08_Interval_Scheduling.md` |
 | 9 | Interval Partitioning | `09_Interval_Partitioning.md` |
-| 10 | Dijkstra's Algorithm | `10_Dijkstra_Algorithm.md` |
-| 11 | Prim's Algorithm | `11_Prims_Algorithm.md` |
-| 12 | Kruskal's Algorithm | `12_Kruskals_Algorithm.md` |
+| 10 | Egyptian Fraction | `10_Egyptian_Fraction.md` |
+| 11 | Police and Thieves Problem | `11_Police_and_Thieves.md` |
+| 12 | Optimal Merge Patterns | `12_Optimal_Merge_Patterns.md` |
 | 13 | Minimum Cost to Connect Sticks | `13_Minimum_Cost_to_Connect_Sticks.md` |
 | 14 | Gas Station Problem | `14_Gas_Station_Problem.md` |
 | 15 | Lexicographically Smallest Sequence | `15_Lexicographically_Smallest_Sequence.md` |
@@ -71,24 +71,27 @@ Greedy Algorithm Categories:
 │   ├── Interval Partitioning
 │   └── Minimum Platforms
 │
-├── Scheduling Problems
+├── Scheduling & Matching
 │   ├── Job Sequencing with Deadlines
-│   ├── Task Scheduling
-│   └── Meeting Rooms
+│   ├── Police and Thieves Catching
+│   └── Task Scheduling
 │
-├── Graph Problems
-│   ├── Dijkstra (Shortest Path)
-│   ├── Prim (MST)
-│   ├── Kruskal (MST)
-│   └── Minimum Cost to Connect
+├── Mathematical & Representation
+│   ├── Egyptian Fraction Decomposition
+│   └── Proof of Optimality by Exchange Argument
 │
-├── Compression Problems
+├── Compression & Merging
 │   ├── Huffman Coding
-│   └── Optimal Merge Pattern
+│   └── Optimal Merge Patterns (Connecting Wires)
 │
 ├── Knapsack Variants
 │   ├── Fractional Knapsack
-│   └── Coin Change (for specific denominations)
+│   └── Coin Change (for canonical currency systems)
+│
+├── Graph Problems (Cross-Ref: 01. Graph Algorithms)
+│   ├── Dijkstra (Shortest Path)
+│   ├── Prim (Minimum Spanning Tree)
+│   └── Kruskal (Minimum Spanning Tree)
 │
 └── Array Problems
     ├── Jump Game
@@ -105,9 +108,9 @@ Greedy Algorithm Categories:
 | Job Sequencing | O(n log n) | O(n) |
 | Fractional Knapsack | O(n log n) | O(1) |
 | Huffman Coding | O(n log n) | O(n) |
-| Dijkstra | O((V+E) log V) | O(V) |
-| Prim | O((V+E) log V) | O(V) |
-| Kruskal | O(E log E) | O(V) |
+| Egyptian Fraction | O(p log q) | O(p) |
+| Police and Thieves | O(n) | O(1) |
+| Optimal Merge Patterns | O(n log n) | O(n) |
 | Minimum Platforms | O(n log n) | O(n) |
 | Jump Game | O(n) | O(1) |
 

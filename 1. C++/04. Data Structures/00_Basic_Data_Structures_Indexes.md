@@ -1,4 +1,4 @@
-﻿# C++ Basic Data Structures - Complete Index
+# C++ Basic Data Structures - Complete Index
 
 ## Overview
 This comprehensive documentation covers all core C++ data structures, from primitive arrays to advanced associative containers. Each file provides complete theoretical foundations, exhaustive function coverage, practical real-world examples, performance analysis, and professional best practices. The series is designed for both beginners learning C++ data structures and experienced developers seeking a complete reference.
@@ -383,6 +383,111 @@ This comprehensive documentation covers all core C++ data structures, from primi
 
 ---
 
+### 09_Linked_List.md
+
+**Covers:** Singly Linked List, Doubly Linked List, Circular Linked List, LRU Cache
+
+#### Detailed Topics Covered:
+- Node definitions, memory layout, dynamic heap allocation, and explicit destructor deallocation
+- Reversal algorithms (Iterative 3-pointer and Recursive)
+- Floyd's Cycle-Finding Algorithm (Tortoise and Hare) with cycle start detection
+- Production-grade Least Recently Used (LRU) Cache utilizing `std::unordered_map` and Doubly Linked List
+
+#### Key Operations Demonstrated:
+- Insertion (`insertAtHead`, `insertAtTail`, `insertAtPosition`)
+- Deletion (`deleteHead`, `deleteTail`, `deleteValue`)
+- Search and cycle detection in $O(N)$ time and $O(1)$ space
+- LRU Cache `get(key)` and `put(key, value)` in $O(1)$ amortized time
+
+---
+
+### 10_Custom_Stack_and_Queue.md
+
+**Covers:** Dynamic Array Stack, Linked List Stack, Min-Stack, Circular Queue, Two-Stack Queue, Monotonic Queue
+
+#### Detailed Topics Covered:
+- LIFO and FIFO memory mechanics and pointer/index manipulation
+- Ring buffer circular arithmetic (`(rear + 1) % capacity`) avoiding element shifting
+- Auxiliary stack pairing for $O(1)$ time and $O(N)$ space `getMin()` retrieval
+- Monotonic Queue utilizing `std::deque` for $O(N)$ Sliding Window Maximum
+
+#### Key Operations Demonstrated:
+- `push`, `pop`, `peek`/`top`, `isEmpty`, `isFull`
+- Capacity doubling and geometric amortized analysis
+- Ring buffer enqueue and dequeue in $O(1)$ time
+
+---
+
+### 11_Trie.md
+
+**Covers:** Standard Prefix Tree (Trie), Autocomplete System, Binary Bitwise Trie
+
+#### Detailed Topics Covered:
+- Multi-way tree representation of strings with terminal word markers
+- Prefix searching, word insertions, and recursive memory cleanup
+- Autocomplete suggestion engine with lexicographical DFS traversal
+- Binary Bitwise Trie representing 32-bit integers for Maximum XOR Pair queries in $O(32)$ time
+
+#### Key Operations Demonstrated:
+- `insert(word)` in $O(L)$ time
+- `search(word)` and `startsWith(prefix)` in $O(L)$ time
+- `findMaxXOR(num)` across arbitrary datasets in $O(32 \cdot N)$ time
+
+---
+
+### 12_Disjoint_Set_Union.md
+
+**Covers:** Disjoint Set Union (Union-Find), Path Compression, Union by Rank/Size, Cycle Detection, Kruskal's MST
+
+#### Detailed Topics Covered:
+- Dynamic partition of elements into disjoint equivalence classes
+- Two-pass path compression flattening trees to near $O(1)$ depth
+- Union by Rank and Union by Size heuristics achieving Inverse Ackermann $\alpha(N)$ amortized time
+- Undirected graph cycle detection and Kruskal's Minimum Spanning Tree
+
+#### Key Operations Demonstrated:
+- `find(i)` with recursive path compression
+- `unite(u, v)` by rank or size
+- `isConnected(u, v)` queries in $O(\alpha(N))$ time
+
+---
+
+### 13_Segment_Tree.md
+
+**Covers:** Segment Tree, Point Updates, Range Sum / Minimum Queries, Lazy Propagation
+
+#### Detailed Topics Covered:
+- Complete binary tree overlaying a 1D array representing contiguous segments
+- Array-based flattened representation ($4N$ size array bounds)
+- Range queries in $O(\log N)$ time by decomposing queries into canonical intervals
+- Lazy Propagation deferring range updates to descendants in $O(\log N)$ time
+
+#### Key Operations Demonstrated:
+- `build(arr, node, start, end)` in $O(N)$ time
+- `update(node, start, end, idx, val)` in $O(\log N)$ time
+- `query(node, start, end, l, r)` in $O(\log N)$ time
+- `updateRange(node, start, end, l, r, val)` with lazy propagation
+
+---
+
+### 14_Fenwick_Tree.md
+
+**Covers:** Binary Indexed Tree (1D and 2D BIT), Range Update / Point Query, Prefix Sums
+
+#### Detailed Topics Covered:
+- Implicit tree structure based on powers of 2 and least significant set bits (`idx & (-idx)`)
+- Point updates and prefix sum queries in $O(\log N)$ time using only $O(N)$ memory (no pointer/tree overhead)
+- Range sum queries via prefix differences: `query(R) - query(L - 1)`
+- 2D Fenwick Tree for matrix subgrid sum queries in $O(\log R \cdot \log C)$ time
+
+#### Key Operations Demonstrated:
+- `add(idx, val)` in $O(\log N)$ time
+- `query(idx)` in $O(\log N)$ time
+- `queryRange(l, r)` in $O(\log N)$ time
+- 2D `add(r, c, val)` and `query(r, c)` in $O(\log R \cdot \log C)$ time
+
+---
+
 ## Quick Reference Tables
 
 ### Complete Container Comparison
@@ -500,7 +605,7 @@ Need to store data?
 
 ## Conclusion
 
-This 8-file series provides **complete coverage of all core C++ data structures**:
+This 14-file series provides **complete coverage of all core C++ data structures and custom implementations**:
 
 ### Foundations (Files 1-2)
 1. **Arrays** - The most fundamental data structure
@@ -517,6 +622,14 @@ This 8-file series provides **complete coverage of all core C++ data structures*
 ### Utilities & Specialized (Files 7-8)
 7. **Utility Structures** - pair, tuple, optional, variant, any
 8. **Specialized Containers** - bitset, valarray
+
+### Custom & Advanced Structures (Files 9-14)
+9. **Linked Lists** - Custom Singly, Doubly, Circular Lists, and LRU Cache
+10. **Custom Stacks & Queues** - Dynamic Array/Node Stacks, Min-Stack, Circular Queues
+11. **Tries** - Prefix Trees, Autocomplete, Binary Trie for Max XOR
+12. **Disjoint Set Union (DSU)** - Union by Rank/Size, Path Compression, Kruskal MST
+13. **Segment Trees** - Range queries, Point Updates, Lazy Propagation
+14. **Fenwick Trees** - Binary Indexed Trees (1D, 2D, Range updates)
 
 ### What Each File Includes:
 - ✅ Complete theory and characteristics

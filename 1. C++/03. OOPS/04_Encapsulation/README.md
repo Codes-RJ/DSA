@@ -1,7 +1,3 @@
-﻿Here is the `README.md` for the **04_Encapsulation** folder inside OOPS.
-
----
-
 # README.md
 
 ## Encapsulation in C++ - Complete Guide

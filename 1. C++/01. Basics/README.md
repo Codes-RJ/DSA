@@ -1,4 +1,4 @@
-﻿# README.md
+# README.md
 
 ## C++ Basics - Complete Guide
 
@@ -16,7 +16,7 @@ This section covers the fundamental concepts of C++ programming. These topics fo
 | 4. | [04_Functions_and_Scope.md](04_Functions_and_Scope.md) | understand Functions and Scope |
 | 5. | [05_Arrays_and_Strings.md](05_Arrays_and_Strings.md) | understand Arrays and Strings |
 | 6. | [06_Pointers_and_Memory_Management.md](06_Pointers_and_Memory_Management.md) | understand Pointers and Memory Management |
-| 7. | [07_Error_Handling.md](07_Error%20Handling.md) | understand Error Handling |
+| 7. | [07_Error_Handling.md](07_Error_Handling.md) | understand Error Handling |
 
 ---
 

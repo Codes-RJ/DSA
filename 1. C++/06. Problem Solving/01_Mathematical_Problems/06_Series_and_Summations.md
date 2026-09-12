@@ -1,4 +1,4 @@
-﻿# 06_Series_and_Summations.md
+# 06_Series_and_Summations.md
 
 ## Series and Summations
 
@@ -488,4 +488,4 @@ int main() {
 
 ### Next Steps
 
-- Now proceed to [02_Bit_Manipulation/README.md](../../02_Bit_Manipulation/README.md) for understanding Bit Manipulation.
+- Now proceed to [02_Bit_Manipulation/README.md](../02_Bit_Manipulation/README.md) for understanding Bit Manipulation.

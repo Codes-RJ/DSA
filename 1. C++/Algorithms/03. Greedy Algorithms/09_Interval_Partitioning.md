@@ -1,4 +1,4 @@
-﻿# 09_Interval_Partitioning.md
+# 09_Interval_Partitioning.md
 
 ## Interval Partitioning (Minimum Number of Rooms)
 
@@ -220,4 +220,4 @@ int minColors(vector<Interval>& intervals) {
 
 ## Next Step
 
-- Go to [10_Dijkstra_Algorithm.md](10_Dijkstra_Algorithm.md) to continue with Dijkstra Algorithm.
+- Go to [10_Egyptian_Fraction.md](10_Egyptian_Fraction.md) to continue with Egyptian Fraction Algorithm.

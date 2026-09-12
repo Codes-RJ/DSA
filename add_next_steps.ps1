@@ -3,7 +3,7 @@
 # Handles: 00. Headers/Fundamentals, 00. Headers/Others, 01. Basics,
 #          02. Basic Problems (Search, Sorting), 03-06 folders, Algorithms
 
-$base = "c:\Users\Rohaj Jaiswal\OneDrive\Desktop\DSA\1. C++"
+$base = Join-Path $PSScriptRoot "1. C++"
 $changed = 0
 
 function Get-FriendlyName($filename) {

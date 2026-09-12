@@ -7,15 +7,14 @@
 [![GitHub forks](https://img.shields.io/github/forks/Codes-RJ/DSA.svg?style=social&label=Fork)](https://github.com/Codes-RJ/DSA)
 [![GitHub issues](https://img.shields.io/github/issues/Codes-RJ/DSA)](https://github.com/Codes-RJ/DSA/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Docs Live](https://img.shields.io/badge/Docs-Live-blue?style=for-the-badge&logo=readthedocs)](https://Codes-RJ.github.io/DSA/)
+[![MkDocs](https://img.shields.io/badge/MkDocs-Documentation-526CFE?style=for-the-badge&logo=mkdocs&logoColor=white)](https://www.mkdocs.org/)
 
 [![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
 A comprehensive learning workspace for **Data Structures and Algorithms** with theory notes, starter code in C++, Java, and Python, pattern practice, templates, and problem-solving materials.
-
-[![Documentation](https://img.shields.io/badge/Documentation-Live-blue?style=for-the-badge&logo=readthedocs)](https://Codes-RJ.github.io/DSA/)
-[![MkDocs](https://img.shields.io/badge/MkDocs-Documentation-526CFE?style=for-the-badge&logo=mkdocs&logoColor=white)](https://www.mkdocs.org/)
 
 </div>
 
@@ -30,9 +29,30 @@ A comprehensive learning workspace for **Data Structures and Algorithms** with t
 - 🔧 **Ready-to-Use Templates** - Competitive programming templates
 - 📖 **Interactive Documentation** - MkDocs-powered documentation site
 - 🤝 **Community Driven** - Open for contributions and improvements
+- 🎮 **Interactive Learning** - Live documentation with search and dark mode
+- 📊 **Visual Diagrams** - Flowcharts and Mermaid diagrams for better understanding
 
 ## 🚀 Quick Start
 
+### 🎯 For Beginners (New to DSA)
+1. Start with **Phase 1: Programming Basics** in your preferred language
+2. Work through each language folder (`1. C++`, `2. Java`, or `3. Python`)
+3. Follow the [Learning Roadmap](#learning-roadmap)
+4. Practice patterns in `02. Basic Problems` folder
+
+### 🤝 For Contributors
+1. Fork the repository (click the Fork button above)
+2. Clone your fork locally
+3. Pick a topic from the syllabus
+4. Submit a pull request with your improvements
+
+### 💼 For Interview Prep
+1. Focus on **Core DSA** and **Problem Solving** phases
+2. Practice with templates in the `Algorithms` folder
+3. Review the theory in the [documentation site](https://Codes-RJ.github.io/DSA/)
+4. Practice common interview questions from each topic
+
+### 📖 New to This Repo?
 - **[🍴 Fork the repository](#-how-to-fork-the-repository)** → Click the "Fork" button above
 - **[💻 Clone locally](#-local-setup)** → See Local Setup section  
 - **[🎯 New to DSA](#learning-roadmap)** → Start with Learning Roadmap
@@ -96,11 +116,13 @@ DSA/
     └── 📁 Algorithms/                  # Advanced algorithm topics
 ```
 
-| # | Folder / File | Description | Link |
-|---|---------------|-------------|------|
-| 1 | `1. C++/` | C++ implementations | [Browse](1.%20C%2B%2B/README.md) |
-| 2 | `2. Java/` | Java implementations | [Browse](2.%20Java/README.md) |
-| 3 | `3. Python/` | Python implementations | [Browse](3.%20Python/README.md) |
+### Language Tracks Overview
+
+| # | Language | Description | Link |
+|---|----------|-------------|------|
+| 1 | **C++** | C++ implementations with STL coverage | [Browse](1.%20C%2B%2B/README.md) |
+| 2 | **Java** | Java implementations with Collections Framework | [Browse](2.%20Java/README.md) |
+| 3 | **Python** | Python implementations with built-in data structures | [Browse](3.%20Python/README.md) |
 
 ## 📋 Table of Contents
 
@@ -215,38 +237,33 @@ Each language folder (C++, Java, Python) is organized into the same 8 sections:
 | 6 | `06. Problem Solving` | Math, bit manipulation, strings, arrays |
 | 7 | `Algorithms` | Graph algorithms, DP, greedy, divide & conquer |
 
-Recommended order:
+**Recommended Order:**
+1. Learn basics in your preferred language (`01. Basics`)
+2. Practice patterns and core problem types (`02. Basic Problems`)
+3. Study data structures in depth (`04. Data Structures`)
+4. Implement the same concept in all three languages
+5. Solve topic-based problems and revise weak areas
 
-1. Learn basics in your preferred language (`01. Basics`).
-2. Practice patterns and core problem types (`02. Basic Problems`).
-3. Study data structures in depth (`04. Data Structures`).
-4. Implement the same concept in all three languages.
-5. Solve topic-based problems and revise weak areas.
-
-## Learning Roadmap
+## 🗺️ Learning Roadmap
 
 ### Phase 1: Programming Basics
-
 - loops, conditions, functions
 - arrays and strings
 - pattern printing
 
 ### Phase 2: Foundation DSA
-
 - complexity
 - recursion
 - arrays, strings, linked lists
 - stack, queue, hashing
 
 ### Phase 3: Core DSA
-
 - trees
 - heaps
 - graphs
 - searching and sorting
 
 ### Phase 4: Problem Solving
-
 - sliding window
 - two pointers
 - binary search on answer
@@ -255,7 +272,6 @@ Recommended order:
 - dynamic programming
 
 ### Phase 5: Interview Preparation
-
 - solve mixed problems
 - revise notes
 - maintain templates
@@ -264,7 +280,6 @@ Recommended order:
 ## 📖 What to Study in Every Topic
 
 For each topic, cover:
-
 1. definition
 2. terminology
 3. working principle
@@ -274,29 +289,24 @@ For each topic, cover:
 7. common interview questions
 8. code in C++, Java, and Python
 
-## Running Code
+## 💻 Running Code
 
 ### C++
-
 ```bash
 g++ file.cpp -o run
 ./run
 ```
 
 ### Java
-
 ```bash
 javac FileName.java
 java FileName
 ```
 
 ### Python
-
 ```bash
 python file.py
 ```
-
-
 
 ## 🎯 Practice Strategy
 
@@ -306,11 +316,9 @@ python file.py
 - test with edge cases
 - write the final clean version
 
-
 ## 🎯 Repository Goal
 
 The goal of this repository is not just to collect code. It is to build:
-
 - clear theory
 - strong coding basics
 - language flexibility
@@ -320,7 +328,6 @@ The goal of this repository is not just to collect code. It is to build:
 ## 📚 Expanded Content Map
 
 The repository now contains:
-
 - starter implementations in C++, Java, and Python across all 8 sections
 - separate coverage for linear and non-linear data structures
 - algorithm examples for recursion, searching, sorting, dynamic programming, and sliding window
@@ -353,12 +360,10 @@ This repository includes a **MkDocs-powered documentation site** for an enhanced
 ### 🛠️ Setting Up MkDocs Locally
 
 #### Prerequisites
-
 - **Python 3.7+** installed on your system
 - **pip** package manager
 
 #### Installation Steps
-
 1. **Install MkDocs and Material Theme**
    ```bash
    pip install mkdocs
@@ -382,7 +387,6 @@ This repository includes a **MkDocs-powered documentation site** for an enhanced
    - View the interactive documentation
 
 #### Building the Documentation
-
 ```bash
 # Build static files
 mkdocs build
@@ -392,7 +396,6 @@ mkdocs gh-deploy
 ```
 
 ### 📁 Documentation Structure
-
 ```text
 docs/
 ├── 📄 mkdocs.yml              # Configuration file
@@ -405,25 +408,10 @@ docs/
 └── 📁 site/                  # Generated static files
 ```
 
-### 🎨 Customization Options
-
-The documentation uses **Material for MkDocs** with extensive customization:
-
-- **Color schemes**: Multiple color palettes
-- **Navigation**: Auto-generated navigation tree
-- **Code highlighting**: Multiple language support
-- **Diagrams**: Mermaid integration for flowcharts
-- **Search**: Built-in search with instant results
-- **Versioning**: Support for multiple documentation versions
-
 ### 📚 Live Documentation
-
 [🔗 **View Live Documentation**](https://Codes-RJ.github.io/DSA/)
 
-*Note: The documentation link assumes you'll deploy to GitHub Pages. Update the URL if deploying elsewhere.*
-
 ### 🤝 Contributing to Documentation
-
 - Edit Markdown files in the `docs/` directory
 - Run `mkdocs serve` to preview changes locally
 - Submit pull requests with documentation improvements
@@ -451,14 +439,12 @@ The documentation uses **Material for MkDocs** with extensive customization:
 ## 💻 Local Setup
 
 ### Prerequisites
-
 - **C++**: g++ compiler
 - **Java**: JDK 8 or higher
 - **Python**: Python 3.6 or higher
 - **Git**: For version control
 
 ### Installation Steps
-
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Codes-RJ/DSA.git
@@ -506,7 +492,6 @@ python file.py
 We welcome contributions! Here's how you can help:
 
 ### Contribution Guidelines
-
 1. **Fork the repository** (see instructions above)
 2. **Create a feature branch**
    ```bash
@@ -533,8 +518,44 @@ We welcome contributions! Here's how you can help:
    - Click "New Pull Request"
    - Provide a clear description of your changes
 
-### What to Contribute
+### 💡 Contribution Examples
 
+#### C++ Example
+```cpp
+// Binary Search Implementation
+class BinarySearch {
+public:
+    int search(vector<int>& arr, int target) {
+        int left = 0, right = arr.size() - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) return mid;
+            if (arr[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+        return -1;
+    }
+};
+```
+
+#### Python Example
+```python
+# Binary Search Implementation
+class BinarySearch:
+    def search(self, arr, target):
+        left, right = 0, len(arr) - 1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if arr[mid] == target:
+                return mid
+            elif arr[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1
+```
+
+### What to Contribute
 - **New algorithms** and data structures
 - **Optimized solutions** for existing problems
 - **Additional language implementations**
@@ -544,7 +565,6 @@ We welcome contributions! Here's how you can help:
 - **Templates** for competitive programming
 
 ### Code Style Guidelines
-
 - Use meaningful variable and function names
 - Add proper comments for complex logic
 - Include time and space complexity in comments
@@ -569,18 +589,62 @@ This repository is licensed under the MIT License - see the [LICENSE](LICENSE) f
 
 ## 📞 Contact & Support
 
-- **Issues**: Report bugs or request features via GitHub Issues
-- **Discussions**: Ask questions and share insights
+- **Issues**: Report bugs or request features via [GitHub Issues](https://github.com/Codes-RJ/DSA/issues)
+- **Discussions**: Ask questions and share insights in [GitHub Discussions](https://github.com/Codes-RJ/DSA/discussions)
 - **Pull Requests**: Contribute code and improvements
+- **Email**: [Your Email Address] (for private inquiries)
+
+## 🧠 Quick Reference
+
+### Time Complexity Cheat Sheet
+
+| Data Structure | Access | Search | Insertion | Deletion |
+|----------------|--------|--------|-----------|----------|
+| Array | O(1) | O(n) | O(n) | O(n) |
+| Stack | O(n) | O(n) | O(1) | O(1) |
+| Queue | O(n) | O(n) | O(1) | O(1) |
+| Linked List | O(n) | O(n) | O(1) | O(1) |
+| Hash Table | O(1)* | O(1)* | O(1)* | O(1)* |
+| Binary Search Tree | O(log n) | O(log n) | O(log n) | O(log n) |
+
+*Average case; worst case O(n)
+
+### Common Interview Topics
+- **Arrays**: Two-pointer, sliding window, prefix sum
+- **Strings**: Pattern matching, palindrome, anagram
+- **Linked Lists**: Cycle detection, merge, reversal
+- **Trees**: Traversal, height, LCA, BST operations
+- **Graphs**: BFS, DFS, shortest path, cycle detection
+- **DP**: Knapsack, LCS, LIS, matrix chain
+- **Sorting**: All sorting algorithms with complexity
+- **Greedy**: Interval scheduling, Huffman coding
 
 ## 🙏 Acknowledgments
 
 - All contributors who help improve this repository
 - The open-source community for valuable resources
 - Educational platforms that make DSA learning accessible
+- **Special thanks to**: [List of key contributors]
+
+---
+
+## 📌 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Codes-RJ/DSA&type=Date)](https://star-history.com/#Codes-RJ/DSA&Date)
 
 ---
 
 **Happy Coding! 🚀**
 
 If you find this repository helpful, please give it a ⭐ star!
+
+<div align="center">
+
+### 🌟 Made with ❤️ by [Codes-RJ](https://github.com/Codes-RJ)
+
+**Follow for more awesome content!**
+
+[![GitHub followers](https://img.shields.io/github/followers/Codes-RJ?style=social)](https://github.com/Codes-RJ)
+[![Twitter Follow](https://img.shields.io/twitter/follow/YourHandle?style=social)](https://twitter.com/YourHandle)
+
+</div>

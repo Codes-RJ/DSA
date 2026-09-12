@@ -1,4 +1,4 @@
-﻿# iostream - Input/Output Stream Library
+# iostream - Input/Output Stream Library
 
 The `iostream` library is one of the most fundamental C++ headers, providing input and output functionality through streams.
 
@@ -368,10 +368,10 @@ getline(cin, sentence);  // Reads entire line
 
 ## 📚 Related Headers
 
-- [`iomanip.md`](iomanip.md) - For output formatting
-- [`fstream.md`](fstream.md) - For file input/output
-- [`sstream.md`](sstream.md) - For string streams
-- [`string.md`](string.md) - For string operations
+- [`30_iomanip.md`](30_iomanip.md) - For output formatting
+- [`28_fstream.md`](28_fstream.md) - For file input/output
+- [`29_sstream.md`](29_sstream.md) - For string streams
+- [`03_string.md`](03_string.md) - For string operations
 
 ---
 

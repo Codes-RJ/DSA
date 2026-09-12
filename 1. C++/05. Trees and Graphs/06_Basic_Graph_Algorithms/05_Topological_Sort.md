@@ -1,4 +1,4 @@
-﻿# Topological Sort
+# Topological Sort
 
 ## 📖 Overview
 
@@ -567,4 +567,4 @@ int main() {
 
 ## Next Step
 
-- Go to [Problem Solving](/1.%20C++/06.%20Problem%20Solving/README.md) to continue.
+- Go to [Problem Solving](../../06.%20Problem%20Solving/README.md) to continue.

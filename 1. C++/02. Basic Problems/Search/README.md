@@ -25,7 +25,7 @@ Search/
 | Algorithm | Best Case | Average Case | Worst Case | Space | Stable | Use Case |
 |-----------|-----------|--------------|------------|-------|--------|----------|
 | [Linear Search](01_Linear_Search.md) | O(1) | O(n) | O(n) | O(1) | N/A | Unsorted small data |
-| [Binary Search](01_Binary_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data |
+| [Binary Search](02_Binary_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Sorted data |
 | [Jump Search](03_Jump_Search.md) | O(1) | O(√n) | O(√n) | O(1) | N/A | Sorted data, better than linear |
 | [Interpolation Search](04_Interpolation_Search.md) | O(1) | O(log log n) | O(n) | O(1) | N/A | Uniformly distributed data |
 | [Exponential Search](05_Exponential_Search.md) | O(1) | O(log n) | O(log n) | O(1) | N/A | Unlimited sorted data |

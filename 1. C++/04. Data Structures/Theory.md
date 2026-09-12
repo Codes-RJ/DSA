@@ -1,7 +1,3 @@
-﻿Here is `Theory.md` for the **04. Data Structures** folder.
-
----
-
 # Theory.md
 
 ## Data Structures - Theoretical Foundations

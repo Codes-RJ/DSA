@@ -459,4 +459,4 @@ main
 
 ### Next Steps
 
-- Move to [Data Structures](/1.%20C++/04.%20Data%20Structures/README.md) now.
+- Move to [Data Structures](../../04.%20Data%20Structures/README.md) now.

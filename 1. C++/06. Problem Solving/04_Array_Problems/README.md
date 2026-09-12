@@ -40,6 +40,36 @@ Array problems are fundamental in programming and appear frequently in technical
 - Subarray constraints
 - Prefix sum techniques
 
+### 6. Next Permutation (`06_Next_Permutation.md`)
+- Lexicographical permutation generation
+- Mathematical suffix analysis and pivot discovery
+- In-place reversal and swap algorithm
+- Complete cycle and factorial complexity considerations
+
+### 7. Merge Intervals (`07_Merge_Intervals.md`)
+- Interval scheduling and overlapping segments
+- Coordinate sorting and dynamic range expansion
+- Insert interval into sorted non-overlapping lists
+- Interval intersection identification
+
+### 8. Container With Most Water (`08_Container_With_Most_Water.md`)
+- Geometric area bounded by array heights
+- Two-pointer greedy inward elimination
+- Mathematical invariant and proof of correctness
+- Peak height pruning optimizations
+
+### 9. Product of Array Except Self (`09_Product_Except_Self.md`)
+- Division-free prefix and suffix accumulators
+- O(1) auxiliary space optimization
+- Zero-frequency edge case handling
+- Numerical stability and modular arithmetic generalizations
+
+### 10. Find the Duplicate Number (`10_Find_Duplicate_Number.md`)
+- Pigeonhole principle on bounded arrays
+- Functional graph mapping ($i \to \text{arr}[i]$)
+- Floyd's cycle-finding (Tortoise and Hare)
+- Read-only array constraint with O(1) memory
+
 ## Key Concepts
 
 ### Array Properties
@@ -682,15 +712,20 @@ public:
 ## Performance Analysis
 
 ### Time Complexity Summary
-| Technique | Time Complexity | Space Complexity |
-|-----------|-----------------|------------------|
-| Linear Search | O(n) | O(1) |
-| Binary Search | O(log n) | O(1) |
-| Two Pointer | O(n) | O(1) |
-| Sliding Window | O(n) | O(k) |
-| Array Rotation | O(n) | O(1) |
-| Kadane's Algorithm | O(n) | O(1) |
-| Prefix Sum | O(n) | O(n) |
+| Technique / Problem | Time Complexity | Space Complexity | Notes |
+|---------------------|-----------------|------------------|-------|
+| Linear Search | O(n) | O(1) | Sequential scan |
+| Binary Search | O(log n) | O(1) | Requires sorted array |
+| Two Pointer | O(n) | O(1) | Opposite or same direction |
+| Sliding Window | O(n) | O(k) | Subarray/substring properties |
+| Array Rotation | O(n) | O(1) | Reversal algorithm |
+| Kadane's Algorithm | O(n) | O(1) | Maximum subarray sum |
+| Prefix Sum | O(n) | O(n) | Range sum queries in O(1) |
+| Next Permutation | O(n) | O(1) | In-place lexicographic generation |
+| Merge Intervals | O(n log n) | O(n) | Sort + single pass merge |
+| Container With Most Water | O(n) | O(1) | Two-pointer optimal area shrinking |
+| Product Except Self | O(n) | O(1) | Division-free prefix/suffix passes |
+| Find Duplicate Number | O(n) | O(1) | Floyd's cycle detection on indices |
 
 ## Best Practices
 
