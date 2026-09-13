@@ -55,11 +55,11 @@ public:
     
     // Override all pure virtual functions
     double area() const override {
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
     
     double perimeter() const override {
-        return 2 * M_PI * radius;
+        return 2 * std::acos(-1.0) * radius;
     }
     
     void draw() const override {
@@ -616,7 +616,7 @@ public:
     Circle(string c, double r) : ColoredShape("Circle", c), radius(r) {}
     
     double area() const override {
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
 };
 
@@ -715,4 +715,4 @@ int main() {
 
 ## Next Step
 
-- Go to [04_Design_Patterns_Intro.md](04_Design_Patterns_Intro.md) to continue with Design Patterns Intro.
+- Continue to the canonical [Design Patterns](../12_Design_Patterns/README.md) section.

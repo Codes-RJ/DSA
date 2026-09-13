@@ -48,7 +48,8 @@ int main() {
 #include <cmath>
 
 int main() {
-    double angle = M_PI / 4;  // 45 degrees in radians
+    const double pi = std::acos(-1.0); // Portable in C++17.
+    double angle = pi / 4;  // 45 degrees in radians
     
     // Basic trigonometric functions
     cout << "sin(" << angle << ") = " << sin(angle) << endl;    // 0.707
@@ -111,12 +112,14 @@ public:
     
     // Calculate area of circle
     static double circleArea(double radius) {
-        return M_PI * radius * radius;
+        const double pi = std::acos(-1.0);
+        return pi * radius * radius;
     }
     
     // Calculate circumference of circle
     static double circleCircumference(double radius) {
-        return 2 * M_PI * radius;
+        const double pi = std::acos(-1.0);
+        return 2 * pi * radius;
     }
 };
 
@@ -149,7 +152,8 @@ class Physics {
 public:
     // Calculate projectile motion
     static void projectile(double velocity, double angle_deg) {
-        double angle_rad = angle_deg * M_PI / 180.0;
+        const double pi = std::acos(-1.0);
+        double angle_rad = angle_deg * pi / 180.0;
         double vx = velocity * cos(angle_rad);
         double vy = velocity * sin(angle_rad);
         
@@ -167,7 +171,8 @@ public:
     
     // Calculate simple pendulum period
     static double pendulumPeriod(double length) {
-        return 2 * M_PI * sqrt(length / 9.81);
+        const double pi = std::acos(-1.0);
+        return 2 * pi * sqrt(length / 9.81);
     }
     
     // Calculate kinetic energy
@@ -402,11 +407,13 @@ double safeSqrt(double x) {
 ### Pattern 2: Angle Conversion
 ```cpp
 double degreesToRadians(double degrees) {
-    return degrees * M_PI / 180.0;
+    const double pi = std::acos(-1.0);
+    return degrees * pi / 180.0;
 }
 
 double radiansToDegrees(double radians) {
-    return radians * 180.0 / M_PI;
+    const double pi = std::acos(-1.0);
+    return radians * 180.0 / pi;
 }
 ```
 
@@ -499,14 +506,16 @@ public:
 ```cpp
 #include <cmath>
 
-// Common constants
-const double PI = M_PI;           // 3.14159...
-const double E = M_E;             // 2.71828...
-const double LN2 = M_LN2;         // ln(2) = 0.693...
-const double LN10 = M_LN10;       // ln(10) = 2.302...
-const double SQRT2 = M_SQRT2;     // sqrt(2) = 1.414...
-const double SQRT1_2 = M_SQRT1_2; // 1/sqrt(2) = 0.707...
+// Portable C++17 constants computed with standard functions.
+const double PI = std::acos(-1.0);
+const double E = std::exp(1.0);
+const double LN2 = std::log(2.0);
+const double LN10 = std::log(10.0);
+const double SQRT2 = std::sqrt(2.0);
+const double SQRT1_2 = 1.0 / std::sqrt(2.0);
 ```
+
+Names such as `M_PI` are common implementation extensions, not constants guaranteed by standard C++. In C++20, prefer `<numbers>` and `std::numbers::pi_v<double>` when a named compile-time constant is needed.
 
 ## 🚀 Best Practices
 

@@ -4,7 +4,7 @@
 
 An **algorithm** is a finite, well-defined sequence of computational steps that transforms an input into a desired output. In computer science and competitive software engineering, algorithms are categorized by their underlying **design paradigms**—the fundamental problem-solving philosophies used to establish correctness and achieve optimal time/space complexity.
 
-This directory comprises a rigorous, industrial-grade C++ curriculum covering the 5 classical algorithm design paradigms, containing **107 specialized modules**, hundreds of runnable C++ implementations, mathematical proofs, and step-by-step visual traces.
+This directory is a broad C++ algorithms curriculum containing **98 numbered topic modules** plus section indexes and theory overviews. It covers graph algorithms and four major design paradigms: dynamic programming, greedy methods, divide and conquer, and backtracking. The Markdown examples are illustrative; extraction, compilation, and automated verification are in progress.
 
 ```
 Algorithms/
@@ -168,9 +168,9 @@ Combinatorial search, state-space tree traversal, and branch-and-bound pruning:
 ## 6. How to Use This Repository
 
 1. **Study Theory First**: Each subfolder contains a dedicated `Theory.md` covering invariants, proofs, and recurrence definitions.
-2. **Review Complete Implementations**: All code snippets are modern, production-grade C++ without abbreviations, using standard headers (`<vector>`, `<algorithm>`, `<queue>`, etc.).
+2. **Review Implementations Critically**: Examples emphasize readable algorithm structure, but may be fragments or await technical verification. Check the lesson's required language standard and test extracted code before reuse.
 3. **Trace Step-by-Step Executions**: ASCII memory layouts and call-stack visualizations accompany non-trivial recursions and pointer updates.
-4. **Compile & Experiment**: Every file can be compiled with standard C++14/C++17 compilers:
+4. **Compile & Experiment**: Markdown files are not compiler inputs. Copy or extract a complete code block into `main.cpp`, then compile it using the lesson's declared minimum standard. For C++17 examples, a typical command is:
    ```bash
    g++ -std=c++17 -Wall -Wextra -O2 main.cpp -o main
    ./main

@@ -596,4 +596,4 @@ int main() {
 
 ## Next Step
 
-- Go to [07_Delegating_Constructors.md](07_Delegating_Constructors.md) to continue with Delegating Constructors.
+- Continue to [Inheriting Constructors](08_Inheriting_Constructors.md). The canonical delegating-constructor lesson is in [Constructors and Destructors](../03_Constructors_and_Destructors/07_Delegating_Constructors.md).

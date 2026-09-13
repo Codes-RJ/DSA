@@ -482,7 +482,7 @@ public:
     }
     
     double area() const override {
-        return M_PI * radius_ * radius_;
+        return std::acos(-1.0) * radius_ * radius_;
     }
     
     void draw() const override {

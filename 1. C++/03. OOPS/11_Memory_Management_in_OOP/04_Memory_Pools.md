@@ -808,4 +808,4 @@ int main() {
 
 ## Next Step
 
-- Go to [05_Smart_Pointers_Intro.md](05_Smart_Pointers_Intro.md) to continue with Smart Pointers Intro.
+- Review the canonical [Smart Pointers and Ownership](../../00.%20Headers%20and%20Libraries/Others/smart_pointers.md) lesson, then continue to [Design Patterns](../12_Design_Patterns/README.md).

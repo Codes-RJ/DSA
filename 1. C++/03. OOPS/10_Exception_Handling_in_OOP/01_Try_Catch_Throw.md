@@ -1076,8 +1076,8 @@ int main() {
 ## 📚 Related Topics
 
 - [Standard Exceptions](02_Standard_Exceptions.md)
-- [Custom Exceptions](03_Custom_Exceptions.md)
-- [Exception Specifications](04_Exception_Specifications.md)
+- [Custom Exceptions](03_Custom_Exceptions/README.md)
+- [Exception Specifications](04_Exception_Specifications/README.md)
 - [RAII Pattern](05_RAII.md)
 
 ---

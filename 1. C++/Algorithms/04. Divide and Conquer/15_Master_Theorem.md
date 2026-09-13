@@ -41,7 +41,9 @@ Assume $f(N) = \Theta(N^d \log^k N)$ with $k \ge 0$:
 | :--- | :--- | :--- | :---: | :--- |
 | **Case 1** | $f(N) = O(N^{\log_b a - \epsilon})$ for $\epsilon > 0$ ($d < \log_b a$) | **Leaves Dominate** (Bottom-heavy) | $\Theta(N^{\log_b a})$ | Karatsuba ($a=3, b=2$), Strassen ($a=7, b=2$) |
 | **Case 2** | $f(N) = \Theta(N^{\log_b a} \log^k N)$ ($d = \log_b a$) | **Balanced Across All Levels** | $\Theta(N^{\log_b a} \log^{k+1} N)$ | Merge Sort ($a=2, b=2, k=0 \implies \Theta(N \log N)$) |
-| **Case 3** | $f(N) = \Omega(N^{\log_b a + \epsilon})$ for $\epsilon > 0$ ($d > \log_b a$)<br>and satisfies **Regularity**: $a f(N/b) \le c f(N)$ for $c < 1$ | **Root Dominates** (Top-heavy) | $\Theta(f(N))$ | Quickselect average case, $T(N) = 2T(N/2) + N^2$ |
+| **Case 3** | $f(N) = \Omega(N^{\log_b a + \epsilon})$ for $\epsilon > 0$ ($d > \log_b a$)<br>and satisfies **Regularity**: $a f(N/b) \le c f(N)$ for $c < 1$ | **Root Dominates** (Top-heavy) | $\Theta(f(N))$ | Example: $T(N) = 2T(N/2) + N^2 = \Theta(N^2)$ |
+
+Quickselect is not a Case 3 example with two equal subproblems. Its expected running time is commonly modeled as $T(N) = T(\alpha N) + \Theta(N)$ for a suitably bounded expected subproblem fraction $\alpha < 1$, yielding expected $\Theta(N)$ time.
 
 ---
 

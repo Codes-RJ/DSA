@@ -663,7 +663,7 @@ public:
     }
     
     double getArea() const override {
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
 };
 

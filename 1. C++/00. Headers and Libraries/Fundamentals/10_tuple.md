@@ -1037,4 +1037,4 @@ struct Data {
 
 ## Next Step
 
-- Go to [11_array.md](11_array.md) to continue with array.
+- Continue to the canonical [`std::array`](11_array/README.md) module.

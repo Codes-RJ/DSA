@@ -1289,4 +1289,4 @@ std::set<int> ordered_set;  // Maintains order
 
 ## Next Step
 
-- Go to [17_map.md](17_map.md) to continue with map.
+- Continue to the canonical [`std::map`](17_map/README.md) module.

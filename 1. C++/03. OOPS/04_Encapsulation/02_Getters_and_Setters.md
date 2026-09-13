@@ -308,11 +308,11 @@ public:
     }
     
     double getCircumference() const {
-        return 2 * M_PI * radius;
+        return 2 * std::acos(-1.0) * radius;
     }
     
     double getArea() const {
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
     
     void display() const {

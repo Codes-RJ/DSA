@@ -717,4 +717,4 @@ int main() {
 
 ## Next Step
 
-- Go to [07_Placement_New.md](07_Placement_New.md) to continue with Placement New.
+- Continue to [Type Conversions in Class Hierarchies](08_Type_Conversion_in_OOP.md).

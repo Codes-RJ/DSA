@@ -77,16 +77,20 @@ struct PointHash {
     }
 };
 
+struct PointLess {
+    bool operator()(const Point& a, const Point& b) const {
+        return a.x < b.x || (a.x == b.x && a.y < b.y);
+    }
+};
+
 // Node for A* algorithm
 struct AStarNode {
     Point position;
     double g;  // Cost from start to this node
     double h;  // Heuristic cost to goal
     double f;  // Total cost (g + h)
-    AStarNode* parent;
-    
-    AStarNode(Point pos, double gCost, double hCost, AStarNode* par = nullptr)
-        : position(pos), g(gCost), h(hCost), f(gCost + hCost), parent(par) {}
+    AStarNode(Point pos, double gCost, double hCost)
+        : position(pos), g(gCost), h(hCost), f(gCost + hCost) {}
     
     bool operator>(const AStarNode& other) const {
         return f > other.f;
@@ -165,45 +169,37 @@ public:
         
         // Maps for quick lookup
         unordered_map<Point, double, PointHash> gScore;
-        unordered_map<Point, double, PointHash> fScore;
-        unordered_map<Point, AStarNode*, PointHash> nodeMap;
+        unordered_map<Point, Point, PointHash> cameFrom;
         
         // Closed set (visited nodes)
-        set<Point, decltype([](const Point& a, const Point& b) {
-            return a.x < b.x || (a.x == b.x && a.y < b.y);
-        })> closedSet;
+        set<Point, PointLess> closedSet;
         
         // Initialize start node
         double hStart = getHeuristic(start, goal, heuristicType);
-        AStarNode* startNode = new AStarNode(start, 0, hStart);
-        
         gScore[start] = 0;
-        fScore[start] = hStart;
-        nodeMap[start] = startNode;
-        openSet.push(*startNode);
+        openSet.emplace(start, 0, hStart);
         
         while (!openSet.empty()) {
             AStarNode current = openSet.top();
             openSet.pop();
             
             Point currentPos = current.position;
+
+            // Ignore stale queue entries left behind after a better path was found.
+            if (current.g > gScore[currentPos]) continue;
+            if (closedSet.count(currentPos)) continue;
             
             // Check if goal reached
             if (currentPos == goal) {
                 // Reconstruct path
                 vector<Point> path;
-                AStarNode* node = nodeMap[currentPos];
-                while (node != nullptr) {
-                    path.push_back(node->position);
-                    node = node->parent;
+                Point step = currentPos;
+                path.push_back(step);
+                while (step != start) {
+                    step = cameFrom.at(step);
+                    path.push_back(step);
                 }
                 reverse(path.begin(), path.end());
-                
-                // Cleanup
-                for (auto& pair : nodeMap) {
-                    delete pair.second;
-                }
-                
                 return path;
             }
             
@@ -219,23 +215,14 @@ public:
                 if (!gScore.count(neighbor) || tentativeG < gScore[neighbor]) {
                     gScore[neighbor] = tentativeG;
                     double h = getHeuristic(neighbor, goal, heuristicType);
-                    double f = tentativeG + h;
-                    fScore[neighbor] = f;
-                    
-                    AStarNode* neighborNode = new AStarNode(neighbor, tentativeG, h, nodeMap[currentPos]);
-                    nodeMap[neighbor] = neighborNode;
-                    openSet.push(*neighborNode);
+                    cameFrom[neighbor] = currentPos;
+                    openSet.emplace(neighbor, tentativeG, h);
                 }
             }
         }
         
         // No path found
         cout << "No path found!" << endl;
-        
-        // Cleanup
-        for (auto& pair : nodeMap) {
-            delete pair.second;
-        }
         
         return {};
     }

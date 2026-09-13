@@ -416,4 +416,4 @@ g++ -Wall -Wextra -Wshadow -Wnull-dereference -Wformat=2 prog.cpp
 
 ## Next Step
 
-- Go to [design_patterns.md](design_patterns.md) to continue with design patterns.
+- Continue to the canonical [Design Patterns](../../03.%20OOPS/12_Design_Patterns/README.md) section.

@@ -1,6 +1,8 @@
 # C++ Programming Language
 
-> 🗺️ **Master Curriculum Architecture**: Access the **[Master DSA Curriculum Map](MASTER_DSA_MAP.md)** for an exhaustive syllabus breakdown, Mermaid prerequisite graph, Big-$O$ complexity cheat sheet, and pattern-matching matrix across all 8 modules.
+> 🗺️ **Master Curriculum Architecture**: Access the **[Master DSA Curriculum Map](MASTER_DSA_MAP.md)** for the syllabus breakdown, prerequisite graph, complexity cheat sheet, and pattern-matching matrix across the major modules.
+
+> 🎓 **Student Path**: Follow the canonical [C++ and DSA Learning Path](LEARNING_PATH.md) for the precise study order, prerequisites, and exit criteria. Use the directory numbering for navigation, not as the learning sequence.
 
 ## Overview
 
@@ -17,15 +19,15 @@ C++ is a high-level, general-purpose programming language created as an extensio
 - **2014**: C++14 - Further improvements and features
 - **2017**: C++17 - File system library, parallel algorithms
 - **2020**: C++20 - Concepts, ranges, coroutines, modules
-- **2023**: C++23 - Latest standard with additional features
+- **2023**: C++23 - Current published language standard; availability varies by compiler and standard-library implementation
 
 ## Key Features and Perks
 
 ### Performance Advantages
 - **Compiled Language**: Direct compilation to machine code for maximum performance
-- **Memory Efficiency**: Manual memory management with RAII (Resource Acquisition Is Initialization)
-- **Zero-Cost Abstractions**: High-level features don't compromise runtime performance
-- **Inline Assembly**: Can embed assembly code for optimization-critical sections
+- **Resource Management**: RAII (Resource Acquisition Is Initialization) ties resources to object lifetimes and reduces manual cleanup
+- **Zero-Overhead Principle**: Well-designed abstractions aim not to impose costs beyond an equivalent lower-level implementation, although this is not an unconditional guarantee
+- **Low-Level Extensions**: Many compilers support non-standard facilities such as inline assembly for target-specific work
 
 ### Rich Standard Library
 - **STL (Standard Template Library)**: Comprehensive data structures and algorithms
@@ -65,13 +67,13 @@ C++ is a high-level, general-purpose programming language created as an extensio
 
 ### Ecosystem
 - **Large Community**: Extensive libraries and frameworks
-- **Cross-Platform**: Compile once, run anywhere with appropriate compiler
+- **Source Portability**: Standards-conforming source can often be rebuilt across platforms, subject to operating-system, compiler, library, and ABI differences
 - **Industry Adoption**: Widely used in performance-critical applications
 - **Job Market**: High demand for C++ developers in specialized fields
 
 ### Compatibility
-- **C Compatibility**: Can compile and use most C code
-- **Binary Compatibility**: Standardized ABI for library interoperability
+- **C Interoperability**: C++ can call C interfaces through compatible declarations, but C++ is not a strict superset of every version of C
+- **Binary Interoperability**: ABI compatibility is platform- and toolchain-specific; the C++ language standard does not define one universal ABI
 
 ## Disadvantages and Quirks
 
@@ -79,7 +81,7 @@ C++ is a high-level, general-purpose programming language created as an extensio
 - **Steep Learning Curve**: Complex syntax and numerous features
 - **Manual Memory Management**: Prone to memory leaks and dangling pointers
 - **Header Dependencies**: Long compilation times for large projects
-- **Undefined Behavior**: Many operations have unspecified results
+- **Behavioral Categories**: C++ distinguishes undefined, unspecified, and implementation-defined behavior; unsafe operations may invoke undefined behavior
 
 ### Development Challenges
 - **Verbose Syntax**: Requires more code than modern languages
@@ -91,7 +93,7 @@ C++ is a high-level, general-purpose programming language created as an extensio
 - **Buffer Overflows**: No automatic bounds checking
 - **Memory Corruption**: Pointer errors can cause crashes
 - **Type Safety**: C-style casting can bypass type system
-- **Exception Safety**: Resource leaks if exceptions aren't handled properly
+- **Exception Safety**: Code without RAII or well-defined exception guarantees can leak resources or leave objects in invalid states
 
 ## C++ for DSA Learning
 
@@ -172,7 +174,7 @@ C++ is a high-level, general-purpose programming language created as an extensio
 │   ├── Glossary
 │   ├── Index
 │   └── References
-├── 04. Data Structures/           # Comprehensive data structure coverage
+├── 04. Data Structures/           # Standard containers and selected custom structures
 │   ├── README.md
 │   ├── Theory.md
 │   ├── Array
@@ -209,28 +211,31 @@ C++ is a high-level, general-purpose programming language created as an extensio
 
 ## 🗺️ Master Curriculum Architecture
 
-For a complete, zero-fluff syllabus mapping all topics, prerequisite dependencies, asymptotic complexity cheat sheets, and problem-solving archetypes, see the:
+For a broader syllabus map covering prerequisites, complexity summaries, and problem-solving archetypes, see the:
 👉 **[Master DSA Curriculum Map](MASTER_DSA_MAP.md)**
 
-## Section Completeness
+## Section Status
 
-### ✅ Completed Sections (100% Fully Implemented)
-- **00. Headers and Libraries**: Complete STL coverage with 52 deep reference files
-- **01. Basics**: Core language primitives, memory models, scopes, and error handling
-- **02. Basic Problems**: Comprehensive search and sorting algorithms (20+ sorts, 10+ search techniques)
-- **03. OOPS**: Industrial object-oriented programming, RAII, Rule of 3/5/0, design patterns, and metaprogramming
-- **04. Data Structures**: Deep custom implementations and STL containers, including Trie, DSU, Segment Tree, and Fenwick Tree
-- **05. Trees and Graphs**: Binary Trees, BST, AVL, Red-Black Trees, Binary Heaps, Traversals, Graph Representations, Binary Lifting (LCA), and Euler Tour Tree Flattening
-- **06. Problem Solving**: Mathematical number theory, bit manipulation, string algorithms & transformations, array manipulation, and algorithmic puzzles
-- **Algorithms**: Comprehensive algorithmic paradigms (Divide and Conquer, Backtracking, Greedy Algorithms, Dynamic Programming, and Graph Algorithms)
+All sections contain substantial study material, but the examples are currently undergoing technical review and automated extraction. Until a lesson is backed by a compiled and tested source file, treat its code as illustrative rather than production-ready.
+
+Start with the [toolchain guide](TOOLCHAIN.md), follow the [standards policy](STANDARDS.md), and use the [verified example suite](examples/README.md) to check your environment. The suite builds through CMake and is tested on GCC, Clang, MSVC, and a sanitizer configuration in CI.
+
+- **00. Headers and Libraries**: Broad standard-library and supporting-topic reference material
+- **01. Basics**: Core syntax, control flow, functions, arrays, pointers, and error handling
+- **02. Basic Problems**: Search, sorting, and pattern-programming material
+- **03. OOPS**: Object-oriented programming, object lifetime, templates, exceptions, design patterns, and related modern C++ features
+- **04. Data Structures**: ADT design and custom structures, including linked lists, Trie, DSU, Segment Tree, and Fenwick Tree; standard containers have one canonical home under Headers and Libraries
+- **05. Trees and Graphs**: Classical trees, traversals, representations, heaps, and selected advanced tree techniques
+- **06. Problem Solving**: Mathematical, bit, string, array, and puzzle-oriented examples
+- **Algorithms**: Graph algorithms, dynamic programming, greedy methods, divide and conquer, and backtracking
 
 ## Key Features of This Repository
 
-### Comprehensive Coverage
-- **250+ files** with detailed explanations and implementations
-- **Complete theory** with mathematical foundations
+### Broad Coverage
+- **435 Markdown files** after the first duplicate-topic consolidation pass
+- **Theory and mathematical foundations** across the major algorithm families, with verification status documented in [REPORT.md](REPORT.md)
 - **Practical examples** with real-world applications
-- **Performance analysis** for all algorithms
+- **Performance discussions** for many data structures and algorithms
 
 ### Learning-Focused Design
 - **Progressive difficulty** from basics to advanced topics
@@ -259,16 +264,16 @@ For a complete, zero-fluff syllabus mapping all topics, prerequisite dependencie
 4. Implement algorithms in the **Algorithms** section
 
 ### For Advanced Users
-1. Contribute to **Algorithms** section implementations
-2. Optimize existing solutions for better performance
-3. Add advanced problem-solving techniques
-4. Extend with modern C++ features and optimizations
+1. Review the verification findings in [REPORT.md](REPORT.md)
+2. Compile and test canonical examples before optimizing them
+3. Study advanced problem-solving techniques after completing their prerequisites
+4. Use explicit C++17, C++20, or C++23 labels when extending the material
 
 ## Conclusion
 
 C++ remains a dominant language in performance-critical applications and competitive programming. While it has a steeper learning curve than modern languages, its combination of low-level control and high-level abstractions makes it an excellent choice for learning data structures and algorithms. 
 
-This repository provides a **complete learning path** from basic C++ syntax to advanced problem-solving techniques, with **100% coverage** of essential DSA topics. The structured approach ensures comprehensive understanding and practical application of concepts.
+This repository provides a broad path from basic C++ syntax to advanced problem-solving techniques. It is an evolving study compendium rather than an exhaustive definition of C++ or DSA; see [REPORT.md](REPORT.md) for its current verification status and improvement roadmap.
 
 ## Next Step
 

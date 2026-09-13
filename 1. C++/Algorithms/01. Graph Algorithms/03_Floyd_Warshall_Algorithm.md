@@ -76,10 +76,10 @@ private:
     int vertices;
     vector<vector<int>> dist;
     vector<vector<int>> next;
-    bool hasNegativeCycle;
+    bool hasNegativeCycle_;
     
 public:
-    Graph(int v) : vertices(v), hasNegativeCycle(false) {
+    Graph(int v) : vertices(v), hasNegativeCycle_(false) {
         // Initialize distance matrix
         dist.resize(v, vector<int>(v, INT_MAX));
         next.resize(v, vector<int>(v, -1));
@@ -98,17 +98,20 @@ public:
     
     // ============ FLOYD-WARSHALL ALGORITHM ============
     void floydWarshall() {
-        // Copy original distances for path reconstruction
-        vector<vector<int>> oldDist = dist;
+        hasNegativeCycle_ = false;
         
         // Main algorithm: consider each vertex as intermediate
         for (int k = 0; k < vertices; k++) {
             for (int i = 0; i < vertices; i++) {
                 for (int j = 0; j < vertices; j++) {
-                    if (dist[i][k] != INT_MAX && dist[k][j] != INT_MAX &&
-                        dist[i][k] + dist[k][j] < dist[i][j]) {
-                        dist[i][j] = dist[i][k] + dist[k][j];
-                        next[i][j] = next[i][k];
+                    if (dist[i][k] != INT_MAX && dist[k][j] != INT_MAX) {
+                        const long long candidate =
+                            static_cast<long long>(dist[i][k]) + dist[k][j];
+                        if (candidate >= INT_MIN && candidate <= INT_MAX &&
+                            candidate < dist[i][j]) {
+                            dist[i][j] = static_cast<int>(candidate);
+                            next[i][j] = next[i][k];
+                        }
                     }
                 }
             }
@@ -117,7 +120,7 @@ public:
         // Check for negative cycles
         for (int i = 0; i < vertices; i++) {
             if (dist[i][i] < 0) {
-                hasNegativeCycle = true;
+                hasNegativeCycle_ = true;
                 break;
             }
         }
@@ -181,8 +184,8 @@ public:
     }
     
     // ============ CHECK IF GRAPH HAS NEGATIVE CYCLE ============
-    bool hasNegativeCycle() {
-        return hasNegativeCycle;
+    bool hasNegativeCycle() const noexcept {
+        return hasNegativeCycle_;
     }
     
     // ============ FIND GRAPH DIAMETER (LONGEST SHORTEST PATH) ============
@@ -271,7 +274,7 @@ public:
     // ============ DETECT NEGATIVE CYCLE (DETAILED) ============
     bool detectNegativeCycle() {
         floydWarshall();
-        return hasNegativeCycle;
+        return hasNegativeCycle_;
     }
     
     // ============ DISPLAY GRAPH ============

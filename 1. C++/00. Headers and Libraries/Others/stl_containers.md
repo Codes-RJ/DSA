@@ -464,4 +464,4 @@ int main() {
 
 ## Next Step
 
-- Go to [templates.md](templates.md) to continue with templates.
+- Continue to the canonical [Templates and Generic Programming](../../03.%20OOPS/09_Templates_and_Generic_Programming/README.md) section.

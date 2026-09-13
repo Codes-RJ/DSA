@@ -554,7 +554,7 @@ public:
         std::iota(signal.begin(), signal.end(), 0);
         std::transform(signal.begin(), signal.end(), signal.begin(),
                       [frequency, amplitude, sample_rate](size_t i) {
-                          return amplitude * std::sin(2 * M_PI * frequency * i / sample_rate);
+                          return amplitude * std::sin(2 * std::acos(-1.0) * frequency * i / sample_rate);
                       });
         
         return signal;
@@ -631,7 +631,7 @@ public:
             Complex sum(0.0, 0.0);
             
             for (size_t n = 0; n < N; ++n) {
-                double angle = -2.0 * M_PI * k * n / N;
+                double angle = -2.0 * std::acos(-1.0) * k * n / N;
                 sum += signal[n] * Complex(std::cos(angle), std::sin(angle));
             }
             

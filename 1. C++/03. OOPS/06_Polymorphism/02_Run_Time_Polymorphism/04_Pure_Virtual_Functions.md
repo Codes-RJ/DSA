@@ -57,11 +57,11 @@ public:
     Circle(string c, double r) : Shape(c), radius(r) {}
     
     double area() const override {
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
     
     double perimeter() const override {
-        return 2 * M_PI * radius;
+        return 2 * std::acos(-1.0) * radius;
     }
     
     void draw() const override {
@@ -827,4 +827,4 @@ int main() {
 
 ## Next Step
 
-- Go to [05_Abstract_Classes.md](05_Abstract_Classes.md) to continue with Abstract Classes.
+- Continue to the canonical [Abstract Classes](../../07_Abstraction/01_Abstract_Classes.md) lesson.

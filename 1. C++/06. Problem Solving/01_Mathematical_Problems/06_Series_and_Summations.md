@@ -436,10 +436,11 @@ int main() {
     cout << fixed << setprecision(10);
     
     cout << "Leibniz formula for π (1000 terms): " << leibnizPi(1000) << endl;
-    cout << "Actual π: " << M_PI << endl;
+    const double pi = std::acos(-1.0);
+    cout << "Actual π: " << pi << endl;
     
     cout << "\nBasel problem ζ(2) (1000 terms): " << baselProblem(1000) << endl;
-    cout << "π²/6: " << (M_PI * M_PI / 6) << endl;
+    cout << "π²/6: " << (pi * pi / 6) << endl;
     
     cout << "\nTelescoping series (100 terms): " << telescopingSeries(100) << endl;
     cout << "Formula 1 - 1/(n+1): " << (1 - 1.0 / 101) << endl;

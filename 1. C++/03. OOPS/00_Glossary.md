@@ -402,7 +402,7 @@ A type of inheritance where a class inherits from only one base class.
 ### **Smart Pointer**
 An object that acts like a pointer but provides automatic memory management through RAII.
 
-**Related**: [Smart Pointers](./14_Modern_Cpp_OOP_Features/04_Smart_Pointers.md)
+**Related**: [Smart Pointers](../00.%20Headers%20and%20Libraries/Others/smart_pointers.md)
 
 ### **Static Binding**
 See Early Binding.

@@ -400,4 +400,4 @@ std::function<int(int)> fib = [&fib](int n) -> int {
 
 ## Next Step
 
-- Go to [memory_management.md](memory_management.md) to continue with memory management.
+- Continue to [Smart Pointers and Ownership](smart_pointers.md), then study the OOP [Low-Level Memory Topics](../../03.%20OOPS/11_Memory_Management_in_OOP/README.md) only when needed.

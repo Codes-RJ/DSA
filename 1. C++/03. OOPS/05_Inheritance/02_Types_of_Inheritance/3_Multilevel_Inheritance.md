@@ -396,11 +396,11 @@ private:
     
 public:
     Circle(string c, double r) : TwoDShape(c), radius(r) {
-        perimeter = 2 * M_PI * radius;
+        perimeter = 2 * std::acos(-1.0) * radius;
     }
     
     double area() const override {
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
     
     void draw() const override {

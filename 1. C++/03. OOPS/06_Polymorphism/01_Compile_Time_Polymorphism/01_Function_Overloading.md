@@ -119,7 +119,7 @@ public:
     // Overloaded area functions for different shapes
     double area(double radius) {  // Circle
         cout << "Circle: ";
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
     
     double area(double length, double width) {  // Rectangle

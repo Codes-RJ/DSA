@@ -65,7 +65,7 @@ class Area {
 public:
     double calculate(double radius) {
         cout << "Circle area: ";
-        return M_PI * radius * radius;
+        return std::acos(-1.0) * radius * radius;
     }
     
     double calculate(double length, double width) {
@@ -441,7 +441,7 @@ public:
     
     double area() const {
         if (type == "circle") {
-            return M_PI * param1 * param1;
+            return std::acos(-1.0) * param1 * param1;
         } else if (type == "rectangle") {
             return param1 * param2;
         } else if (type == "triangle") {
@@ -475,7 +475,7 @@ private:
     
 public:
     GoodCircle(double r) : radius(r) {}
-    double area() const override { return M_PI * radius * radius; }
+    double area() const override { return std::acos(-1.0) * radius * radius; }
     void draw() const override { cout << "Circle radius=" << radius << endl; }
 };
 

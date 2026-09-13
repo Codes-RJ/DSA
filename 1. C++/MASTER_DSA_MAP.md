@@ -1,19 +1,23 @@
 # C++ Data Structures & Algorithms: Master Knowledge Architecture & Curriculum Map
 
-> **Curriculum Standard**: Comprehensive, Zero-Fluff, Production-Depth DSA Master Syllabus.  
-> **Target Toolchain**: C++14 / C++17 Standards (MinGW GCC, Clang, MSVC compatible).  
+> **Curriculum Status**: Broad study map; implementation verification is in progress.
+>
+> **Language Tracks**: C++17 core, with C++20 and C++23 material labeled where those standards are required.
+>
 > **Repository Root**: `d:\DSA\1. C++`
+>
+> **Audit and Roadmap**: See [REPORT.md](REPORT.md).
 
 ---
 
 ## 1. Pedagogical Architecture & Philosophy
 
-This repository is organized as a rigorous, mathematically sound, and implementation-focused master curriculum for Data Structures and Algorithms in C++. Every topic in this curriculum adheres to the **Production Depth Standard**:
+This repository is organized as an implementation-focused curriculum for Data Structures and Algorithms in C++. The following are target quality criteria; individual lessons may still be awaiting review, compilation, or testing:
 1. **Mathematical Formalism & Invariants**: Clear inductive definitions, recurrence relations, and loop/state invariants.
 2. **Memory & Pointer Visualizations**: Detailed ASCII architectural diagrams depicting memory layouts, stack frames, heap pointers, and cache-line interactions.
-3. **Canonical C++ Implementations**: Self-contained, robust, compilable C++ code adhering to modern idioms (RAII, Rule of 3/5/0, cache-conscious memory layout, and const-correctness).
-4. **Asymptotic Complexity Proofs**: Rigorous Big-$O$, $\Omega$, and $\Theta$ derivations for both time and auxiliary space.
-5. **No Fluff / No Superficial Placeholders**: Every file provides exhaustive depth, real-world edge case defenses, and interview/competitive programming patterns.
+3. **Canonical C++ Implementations**: Extracted, compilable, and tested examples with an explicit minimum language standard.
+4. **Asymptotic Complexity Proofs**: Reviewed Big-$O$, $\Omega$, and $\Theta$ derivations for both time and auxiliary space.
+5. **Practical Depth**: Concise explanations, relevant edge cases, and interview/competitive-programming patterns appropriate to the lesson.
 
 ```
        ┌────────────────────────────────────────────────────────┐
@@ -147,8 +151,8 @@ Fundamental building blocks of memory, flow control, and memory manipulation.
 #### `00. Headers and Libraries/` — The Standard Template Library (STL)
 Mastery of the standard C++ library headers with internals and implementation mechanics.
 - **Fundamentals**:
-  - Sequence Containers: [`<vector>`](00.%20Headers%20and%20Libraries/Fundamentals/02_vector.md), [`<deque>`](00.%20Headers%20and%20Libraries/Fundamentals/12_deque.md), [`<list>`](00.%20Headers%20and%20Libraries/Fundamentals/13_list.md), [`<forward_list>`](00.%20Headers%20and%20Libraries/Fundamentals/14_forward_list.md), [`<array>`](00.%20Headers%20and%20Libraries/Fundamentals/11_array.md).
-  - Associative & Hash Containers: [`<set>`](00.%20Headers%20and%20Libraries/Fundamentals/15_set.md), [`<map>`](00.%20Headers%20and%20Libraries/Fundamentals/17_map.md), [`<unordered_set>`](00.%20Headers%20and%20Libraries/Fundamentals/16_unordered_set.md), [`<unordered_map>`](00.%20Headers%20and%20Libraries/Fundamentals/18_unordered_map.md).
+  - Sequence Containers: [`<vector>`](00.%20Headers%20and%20Libraries/Fundamentals/02_vector.md), [`<deque>`](00.%20Headers%20and%20Libraries/Fundamentals/12_deque.md), [`<list>`](00.%20Headers%20and%20Libraries/Fundamentals/13_list.md), [`<forward_list>`](00.%20Headers%20and%20Libraries/Fundamentals/14_forward_list.md), [`<array>`](00.%20Headers%20and%20Libraries/Fundamentals/11_array/README.md).
+  - Associative & Hash Containers: [`<set>`](00.%20Headers%20and%20Libraries/Fundamentals/15_set.md), [`<map>`](00.%20Headers%20and%20Libraries/Fundamentals/17_map/README.md), [`<unordered_set>`](00.%20Headers%20and%20Libraries/Fundamentals/16_unordered_set.md), [`<unordered_map>`](00.%20Headers%20and%20Libraries/Fundamentals/18_unordered_map.md).
   - Adapters: [`<stack>`](00.%20Headers%20and%20Libraries/Fundamentals/19_stack.md), [`<queue>`](00.%20Headers%20and%20Libraries/Fundamentals/20_queue.md), [`<priority_queue>`](00.%20Headers%20and%20Libraries/Fundamentals/21_priority_queue.md).
   - Utilities & Algorithms: [`<algorithm>`](00.%20Headers%20and%20Libraries/Fundamentals/04_algorithm.md), [`<numeric>`](00.%20Headers%20and%20Libraries/Fundamentals/24_numeric.md), [`<memory>`](00.%20Headers%20and%20Libraries/Fundamentals/22_memory.md), [`<utility>`](00.%20Headers%20and%20Libraries/Fundamentals/09_utility.md), [`<functional>`](00.%20Headers%20and%20Libraries/Fundamentals/25_functional.md), [`<tuple>`](00.%20Headers%20and%20Libraries/Fundamentals/10_tuple.md).
 - **Others**:
@@ -191,16 +195,16 @@ Deep object-oriented design and memory safety models.
 
 ### Level 3: Linear & Associative Data Structures
 
-#### `04. Data Structures/` — Custom Implementations & STL Mechanics
-Deep architectural implementations of foundational data structures:
-- [01_Array.md](04.%20Data%20Structures/01_Array.md): Cache lines, row-major memory stride, bounds checking.
-- [02_String.md](04.%20Data%20Structures/02_String.md): SSO (Small String Optimization), dynamic capacity doubling.
-- [03_Sequence_Container.md](04.%20Data%20Structures/03_Sequence_Container.md): Internals of `std::vector`, `std::deque` page-map, `std::list`.
-- [04_Container_Adapters.md](04.%20Data%20Structures/04_Container_Adapters.md): Stack, Queue, Priority Queue adapter wrappers.
-- [05_Associative_Container.md](04.%20Data%20Structures/05_Associative_Container.md): Self-balancing Red-Black tree backends for `std::map`/`set`.
-- [06_Unassociative_Container.md](04.%20Data%20Structures/06_Unassociative_Container.md): Hash tables, open addressing vs chained buckets, load factors.
+#### `04. Data Structures/` — Abstract Data Types & Custom Implementations
+Standard-container API references have one canonical home in `00. Headers and Libraries`; this section focuses on representations and invariants:
+- [Data-Structure Foundations](04.%20Data%20Structures/Theory.md): ADTs, representation invariants, cost models, ownership, and testing.
+- [Standard-Library References](00.%20Headers%20and%20Libraries/Fundamentals/README.md): Canonical pages for arrays, strings, sequence containers, adapters, maps, sets, and vocabulary types.
 - [09_Linked_List.md](04.%20Data%20Structures/09_Linked_List.md): Singly linked, doubly linked, circular lists, Floyd's cycle detection.
 - [10_Custom_Stack_and_Queue.md](04.%20Data%20Structures/10_Custom_Stack_and_Queue.md): Circular ring-buffer queue, 2-stack queue, Min-Stack in $O(1)$.
+- [11_Trie.md](04.%20Data%20Structures/11_Trie.md): Prefix search and binary tries.
+- [12_Disjoint_Set_Union.md](04.%20Data%20Structures/12_Disjoint_Set_Union.md): Dynamic connectivity with path compression and union by rank/size.
+- [14_Fenwick_Tree.md](04.%20Data%20Structures/14_Fenwick_Tree.md): Compact prefix aggregation and point updates.
+- [13_Segment_Tree.md](04.%20Data%20Structures/13_Segment_Tree.md): General range aggregation and lazy updates.
 
 ---
 
@@ -287,20 +291,20 @@ Specialized high-performance data structures for range aggregate queries and dyn
 
 ## 4. Master Algorithmic Complexity Cheat Sheet
 
-| Data Structure / Algorithm | Operation / Case | Time Complexity | Auxiliary Space | Key Invariant / Trait |
+| Data Structure / Algorithm | Operation / Case | Time Complexity | Structure Storage / Operation Space | Key Invariant / Trait |
 |:---|:---|:---:|:---:|:---|
-| **Static Array** | Access / Append | $O(1)$ / $O(1)$ | $O(1)$ | Contiguous cache line locality |
-| **Dynamic Array (`vector`)** | Push Back (amortized) | $O(1)$ | $O(N)$ capacity | Geometric capacity doubling ($2\times$) |
-| **Singly / Doubly Linked List** | Insert at Head / Search | $O(1)$ / $O(N)$ | $O(1)$ | Dynamic heap nodes, cache pointer hopping |
-| **Stack / Queue** | Push / Pop / Top | $O(1)$ | $O(N)$ | LIFO / FIFO ordering |
-| **Binary Heap / Priority Queue** | Insert / Extract-Min | $O(\log N)$ | $O(1)$ | Complete binary tree shape, heap order |
+| **Static Array** | Access | $O(1)$ | $O(N)$ storage / $O(1)$ operation space | Fixed-size contiguous storage; no general append operation |
+| **Dynamic Array (`vector`)** | Push Back | Amortized $O(1)$; $O(N)$ when reallocation occurs | $O(N)$ storage; reallocation may temporarily require $O(N)$ additional storage | Geometric growth is typical, but the exact factor is implementation-specific |
+| **Singly / Doubly Linked List** | Insert at Head / Search | $O(1)$ / $O(N)$ | $O(N)$ storage / $O(1)$ iterative operation space | Dynamic nodes and pointer traversal |
+| **Stack / Queue** | Push / Pop / Top or Front | Usually $O(1)$ for standard adapters | $O(N)$ storage / usually $O(1)$ operation space | LIFO / FIFO ordering |
+| **Binary Heap / Priority Queue** | Insert / Extract-Min | $O(\log N)$ | $O(N)$ storage / $O(1)$ iterative operation space | Complete binary tree shape and heap order |
 | **Binary Search Tree (Unbalanced)** | Search / Insert / Delete | $O(N)$ worst, $O(\log N)$ avg | $O(H)$ recursion | BST invariant: $Left < Root < Right$ |
-| **AVL Tree** | Search / Insert / Delete | $O(\log N)$ strict | $O(1)$ | Balance factor $BF \in \{-1, 0, 1\}$ |
-| **Red-Black Tree (`std::map`)** | Search / Insert / Delete | $O(\log N)$ strict | $O(1)$ | Black height equality, no double red |
-| **Trie (Prefix Tree)** | Insert / Search (Word len $L$) | $O(L)$ | $O(\Sigma \cdot N \cdot L)$ | Shared common prefixes |
-| **Disjoint Set Union (DSU)** | Find / Union | $O(\alpha(N))$ amortized | $O(N)$ | Path compression + Union by rank |
-| **Segment Tree (with Lazy)** | Point / Range Query & Update | $O(\log N)$ | $O(4N)$ | Power-of-2 interval decomposition |
-| **Fenwick Tree (BIT)** | Point Update / Prefix Query | $O(\log N)$ | $O(N)$ | $i \mathrel{\&} (-i)$ isolation |
+| **AVL Tree** | Search / Insert / Delete | $O(\log N)$ worst case | $O(N)$ storage / up to $O(\log N)$ recursive stack | Balance factor $BF \in \{-1, 0, 1\}$ |
+| **Ordered associative container (`std::map`)** | Search / Insert / Delete | $O(\log N)$ | $O(N)$ storage | Commonly a red-black tree, but the standard does not mandate that representation |
+| **Trie (Prefix Tree)** | Insert / Search (word length $L$) | $O(L)$ | Depends on total stored characters and dense vs sparse child representation | Shared common prefixes |
+| **Disjoint Set Union (DSU)** | Find / Union | $O(\alpha(N))$ amortized | $O(N)$ storage | Path compression + union by rank/size |
+| **Segment Tree (with Lazy)** | Range Query / Update | $O(\log N)$ | $O(N)$ storage / $O(\log N)$ recursive stack | Hierarchical interval decomposition |
+| **Fenwick Tree (BIT)** | Point Update / Prefix Query | $O(\log N)$ | $O(N)$ storage / $O(1)$ operation space | Lowest set bit via $i \mathrel{\&} (-i)$ |
 | **Binary Lifting (LCA)** | Preprocessing / Query | $O(N \log N)$ / $O(\log N)$ | $O(N \log N)$ | $2^k$-step ancestor jump tables |
 | **Euler Tour Flattening** | Preprocessing / Subtree Map | $O(N)$ / $O(1)$ | $O(N)$ | Maps subtree to contiguous array slice |
 | **Quick Sort (Hoare / Lomuto)** | Best / Avg / Worst | $O(N \log N)$ / $O(N^2)$ | $O(\log N)$ stack | In-place, unstable, pivot partitioning |
@@ -309,10 +313,10 @@ Specialized high-performance data structures for range aggregate queries and dyn
 | **Kadane's Algorithm** | Max Subarray Sum | $O(N)$ | $O(1)$ | $\max(nums[i], current + nums[i])$ |
 | **Monotonic Deque (Sliding Win)** | Window Max across array | $O(N)$ | $O(K)$ | Amortized 2 pushes/pops per element |
 | **KMP Pattern Search** | Pattern Matching | $O(N + M)$ | $O(M)$ | $\pi$-table prefix function |
-| **Dijkstra's Algorithm** | Single Source Shortest Path | $O((V + E) \log V)$ | $O(V)$ | Non-negative edge weights |
-| **Bellman-Ford Algorithm** | Single Source with Neg Weights | $O(V \cdot E)$ | $O(V)$ | Negative cycle detection |
+| **Dijkstra's Algorithm** | Single Source Shortest Path | $O((V + E) \log V)$ with a binary heap | $O(V+E)$ including adjacency-list input | Requires non-negative edge weights |
+| **Bellman-Ford Algorithm** | Single Source with Negative Weights | $O(V \cdot E)$ | $O(V+E)$ including edge-list input | Detects reachable negative cycles |
 | **Floyd-Warshall Algorithm** | All-Pairs Shortest Path | $O(V^3)$ | $O(V^2)$ | $dist[i][j] = \min(..., dist[i][k]+dist[k][j])$ |
-| **Kruskal's Algorithm** | Minimum Spanning Tree | $O(E \log E)$ | $O(V)$ | Greedy edge sorting + DSU cycle check |
+| **Kruskal's Algorithm** | Minimum Spanning Forest | $O(E \log E)$ | $O(V+E)$ including stored/sorted edges | Greedy edge sorting + DSU cycle check |
 | **Prim's Algorithm** | Minimum Spanning Tree | $O(E \log V)$ | $O(V)$ | Greedy cut property via min-heap |
 | **Kosaraju's Algorithm** | Strongly Connected Components | $O(V + E)$ | $O(V)$ | 2 DFS passes on original & transpose |
 | **Edmonds-Karp Max Flow** | Network Flow | $O(V \cdot E^2)$ | $O(V + E)$ | BFS augmenting paths |
@@ -346,22 +350,22 @@ When faced with a computational or interview problem, use this taxonomy to deter
 
 When studying and applying the code in this repository, keep in mind these fundamental engineering invariants:
 
-### 1. Zero-Cost Abstractions & RAII
-Resources (heap allocations, file descriptors, synchronization locks) are tied to object lifetimes. Raw calls to `malloc`/`free` are strictly avoided in production; classes manage raw pointers using the **Rule of Five** (Destructor, Copy Constructor, Copy Assignment, Move Constructor, Move Assignment) or default to **Rule of Zero** with smart pointers (`std::unique_ptr`, `std::shared_ptr`).
+### 1. Zero-Overhead Principle & RAII
+RAII ties resources such as heap allocations, file descriptors, and synchronization locks to object lifetimes. Application code should normally prefer the **Rule of Zero** and standard resource-owning types. A type that directly owns a custom resource may instead need carefully implemented copy/move/destruction behavior; raw pointers can also be valid non-owning observers when their lifetime assumptions are documented.
 
 ### 2. Cache Line Locality & Memory Strides
-CPUs fetch memory in 64-byte cache lines. Contiguous arrays (`std::vector`, flat buffers) achieve $O(1)$ amortized memory operations with near-zero cache misses. Node-based data structures (`std::list`, raw trees) exhibit cache thrashing due to pointer chasing across scattered heap addresses. When maximum throughput is critical, contiguous backing stores (such as the array-backed `BinaryHeap`, flat `SegmentTree`, or Fenwick BIT) outperform pointer-heavy equivalents.
+CPUs transfer memory in cache-line units whose size depends on the architecture; 64 bytes is common on contemporary desktop and server processors but is not a C++ guarantee. Contiguous arrays such as `std::vector` often benefit from locality, while node-based structures can incur additional cache misses through pointer traversal. Measure representative workloads before claiming that one representation is faster.
 
 ### 3. Small String Optimization (SSO)
-Modern 64-bit `std::string` implementations allocate an internal 15–23 byte stack buffer. Any string with length $\le 15$ characters requires **zero heap allocation**. For non-owning sub-slices, string-view patterns (`StringView` or C++17 `std::string_view`) eliminate string copying overhead entirely.
+Many `std::string` implementations use a small-string optimization, but the C++ standard does not require SSO or specify an inline capacity. Code must not rely on a particular byte count or allocation threshold. For non-owning contiguous character views, C++17 `std::string_view` can avoid a copy when the referenced character sequence outlives the view.
 
 ### 4. Fast I/O for Performance & Competitive Programming
 To prevent I/O bottlenecks when processing $10^5$–$10^6$ operations:
 ```cpp
 std::ios_base::sync_with_stdio(false);
-std::cin.tie(NULL);
+std::cin.tie(nullptr);
 ```
-Uncoupling C++ streams from standard C `stdio` buffers and untying `cin` from `cout` reduces I/O latency from seconds to milliseconds.
+Disabling synchronization with C `stdio` and untying `cin` from `cout` can improve throughput in I/O-heavy programs. After disabling synchronization, avoid casually mixing C and C++ stream operations, and benchmark before making performance claims.
 
 ---
 
@@ -370,5 +374,5 @@ Uncoupling C++ streams from standard C `stdio` buffers and untying `cin` from `c
 1. To begin your journey from foundational C++ syntax, head to [01. Basics](01.%20Basics/README.md).
 2. To explore object lifecycles, memory safety, and design patterns, explore [03. OOPS](03.%20OOPS/README.md).
 3. To master core data structures and range trees, study [04. Data Structures](04.%20Data%20Structures/README.md) and [05. Trees and Graphs](05.%20Trees%20and%20Graphs/README.md).
-4. To study industrial algorithmic design paradigms, proceed to [Algorithms](Algorithms/README.md).
+4. To study major algorithmic design paradigms, proceed to [Algorithms](Algorithms/README.md).
 5. To master high-frequency competitive and interview archetypes, dive into [06. Problem Solving](06.%20Problem%20Solving/README.md).

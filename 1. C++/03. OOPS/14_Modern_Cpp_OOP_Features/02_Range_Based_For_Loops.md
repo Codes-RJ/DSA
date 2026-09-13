@@ -512,4 +512,4 @@ int main() {
 
 ## Next Step
 
-- Go to [03_Lambda_Expressions.md](03_Lambda_Expressions.md) to continue with Lambda Expressions.
+- Continue to the canonical [Lambda Expressions](../../00.%20Headers%20and%20Libraries/Others/lambda_expressions.md) lesson.

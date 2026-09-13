@@ -51,23 +51,23 @@ public:
     
     // ============ STOER-WAGNER ALGORITHM (Global Min Cut) ============
     int stoerWagner() {
-        vector<int> vertices(::vertices);
-        for (int i = 0; i < ::vertices; i++) {
-            vertices[i] = i;
+        vector<int> activeVertices(vertices);
+        for (int i = 0; i < vertices; i++) {
+            activeVertices[i] = i;
         }
         
         int minCut = INT_MAX;
         
-        while (vertices.size() > 1) {
+        while (activeVertices.size() > 1) {
             // Phase 1: Find min cut phase
-            vector<int> weights(::vertices, 0);
-            vector<bool> added(::vertices, false);
+            vector<int> weights(vertices, 0);
+            vector<bool> added(vertices, false);
             vector<int> order;
             
-            for (int i = 0; i < vertices.size(); i++) {
+            for (size_t i = 0; i < activeVertices.size(); i++) {
                 // Select most tightly connected vertex
                 int next = -1;
-                for (int v : vertices) {
+                for (int v : activeVertices) {
                     if (!added[v] && (next == -1 || weights[v] > weights[next])) {
                         next = v;
                     }
@@ -77,7 +77,7 @@ public:
                 order.push_back(next);
                 
                 // Update weights
-                for (int v : vertices) {
+                for (int v : activeVertices) {
                     if (!added[v]) {
                         weights[v] += capacity[next][v];
                     }
@@ -90,7 +90,7 @@ public:
             minCut = min(minCut, weights[last]);
             
             // Merge last two vertices
-            for (int v : vertices) {
+            for (int v : activeVertices) {
                 if (v != last) {
                     capacity[secondLast][v] += capacity[last][v];
                     capacity[v][secondLast] += capacity[v][last];
@@ -98,7 +98,9 @@ public:
             }
             
             // Remove last vertex
-            vertices.erase(remove(vertices.begin(), vertices.end(), last), vertices.end());
+            activeVertices.erase(
+                remove(activeVertices.begin(), activeVertices.end(), last),
+                activeVertices.end());
         }
         
         return minCut;

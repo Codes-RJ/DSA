@@ -851,8 +851,8 @@ int main() {
 ## 📚 Related Topics
 
 - [Try-Catch-Throw](01_Try_Catch_Throw.md)
-- [Custom Exceptions](03_Custom_Exceptions.md)
-- [Exception Specifications](04_Exception_Specifications.md)
+- [Custom Exceptions](03_Custom_Exceptions/README.md)
+- [Exception Specifications](04_Exception_Specifications/README.md)
 - [RAII Pattern](05_RAII.md)
 
 ---
@@ -870,4 +870,4 @@ Continue learning about:
 
 ## Next Step
 
-- Go to [03_Custom_Exceptions.md](03_Custom_Exceptions.md) to continue with Custom Exceptions.
+- Continue to the canonical [Custom Exceptions](03_Custom_Exceptions/README.md) module.
