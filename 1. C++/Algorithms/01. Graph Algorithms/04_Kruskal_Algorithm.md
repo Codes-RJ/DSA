@@ -60,6 +60,7 @@ Total weight: 1 + 2 + 3 = 6
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <climits>
 #include <tuple>
 #include <iomanip>
 using namespace std;

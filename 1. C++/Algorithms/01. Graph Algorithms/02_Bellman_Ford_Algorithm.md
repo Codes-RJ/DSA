@@ -58,6 +58,7 @@ Final distances from 0:
 ```cpp
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include <climits>
 #include <algorithm>
 #include <iomanip>

@@ -1,869 +1,169 @@
-﻿
-# Exception Handling in C++ - Complete Guide
+# Error Handling Fundamentals
 
-## Overview
+> **Role in the path:** Required C++ bridge
+>
+> **Prerequisites:** Functions, references, strings, and basic classes
+>
+> **Scope:** Learn enough error handling to write honest, testable DSA code. Resource safety, custom exception hierarchies, exception guarantees, and advanced `noexcept` design belong to the [Exceptions and RAII module](../03.%20OOPS/10_Exception_Handling_in_OOP/README.md).
 
-Exception handling is a powerful mechanism in C++ that allows programs to respond to exceptional conditions (errors) at runtime. It provides a structured way to handle errors, separating error-handling code from normal code flow. Exception handling uses three keywords: `try`, `catch`, and `throw`.
+Algorithms are easier to reason about when their input contract is explicit. Before choosing an error mechanism, decide whether a result is ordinary, invalid input is a caller bug, or an operation genuinely failed.
 
----
+## 1. Start with the Contract
 
-## Key Concepts
+Consider binary search. “Target not found” is a normal result, so it should not throw. An invalid search range is a violated precondition and should be rejected or prevented by the interface.
 
-| Concept | Description |
-|---------|-------------|
-| **Exception** | An event that disrupts the normal flow of program execution |
-| **throw** | Signals that an exception has occurred |
-| **try** | Encloses code that might throw an exception |
-| **catch** | Handles exceptions thrown in the try block |
-| **Stack Unwinding** | Process of destroying local objects as exceptions propagate |
+| Situation | Prefer | Example |
+|---|---|---|
+| Normal absence | Sentinel or `std::optional` | Target is not in an array |
+| Invalid argument | Validation, then `std::invalid_argument` when recovery is possible | Negative graph vertex count |
+| Valid argument outside an allowed range | `std::out_of_range` | Vertex index is not in `[0, n)` |
+| Operation failure | A relevant standard exception | Parsing malformed input |
+| Programmer invariant is false | Assertion during development | Heap size disagrees with storage |
 
----
+Do not use exceptions as a replacement for an ordinary `if` statement or as loop control.
 
-## 1. Basic Exception Handling
-
-This section demonstrates the fundamental syntax of exception handling using try, catch, and throw. The function `divideNumbers` checks for division by zero and throws an exception. The main function calls it inside a try block and catches any exception that occurs.
-
-```cpp
-#include <iostream>
-#include <stdexcept>
-using namespace std;
-
-void divideNumbers(double a, double b) {
-    if (b == 0) {
-        throw runtime_error("Error: Division by zero!");
-    }
-    cout << "Result: " << a / b << endl;
-}
-
-int main() {
-    cout << "=== Basic Exception Handling ===" << endl;
-    
-    try {
-        cout << "Trying 10 / 2..." << endl;
-        divideNumbers(10, 2);
-        
-        cout << "\nTrying 10 / 0..." << endl;
-        divideNumbers(10, 0);
-        
-        cout << "This line will never execute" << endl;
-    }
-    catch (const runtime_error& e) {
-        cout << "Caught exception: " << e.what() << endl;
-    }
-    
-    cout << "\nProgram continues normally after catch block" << endl;
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-=== Basic Exception Handling ===
-Trying 10 / 2...
-Result: 5
-
-Trying 10 / 0...
-Caught exception: Error: Division by zero!
-
-Program continues normally after catch block
-```
-
----
-
-## 2. Multiple Catch Blocks
-
-This example shows how to handle different types of exceptions with separate catch blocks. The function `processValue` throws different exception types based on the input value. The main function demonstrates catching specific exception types in order (most specific to most general) and the catch-all handler `catch(...)`.
+## 2. A Normal “Not Found” Result
 
 ```cpp
-#include <iostream>
-#include <stdexcept>
-#include <cstring>
-using namespace std;
-
-void processValue(int value) {
-    if (value < 0) {
-        throw invalid_argument("Negative values are not allowed!");
-    }
-    else if (value == 0) {
-        throw runtime_error("Zero is not a valid input!");
-    }
-    else if (value > 100) {
-        throw out_of_range("Value exceeds maximum limit of 100!");
-    }
-    else if (value == 42) {
-        throw "The answer to everything!";  // Throwing a string literal
-    }
-    else {
-        cout << "Successfully processed value: " << value << endl;
-    }
-}
-
-int main() {
-    cout << "=== Multiple Catch Blocks ===" << endl;
-    
-    int testValues[] = {50, -5, 0, 150, 42, 75};
-    
-    for (int val : testValues) {
-        cout << "\n--- Testing value: " << val << " ---" << endl;
-        
-        try {
-            processValue(val);
-        }
-        catch (const invalid_argument& e) {
-            cout << "Invalid argument caught: " << e.what() << endl;
-        }
-        catch (const runtime_error& e) {
-            cout << "Runtime error caught: " << e.what() << endl;
-        }
-        catch (const out_of_range& e) {
-            cout << "Out of range caught: " << e.what() << endl;
-        }
-        catch (const char* msg) {
-            cout << "String exception caught: " << msg << endl;
-        }
-        catch (...) {
-            cout << "Unknown exception caught!" << endl;
-        }
-    }
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-=== Multiple Catch Blocks ===
-
---- Testing value: 50 ---
-Successfully processed value: 50
-
---- Testing value: -5 ---
-Invalid argument caught: Negative values are not allowed!
-
---- Testing value: 0 ---
-Runtime error caught: Zero is not a valid input!
-
---- Testing value: 150 ---
-Out of range caught: Value exceeds maximum limit of 100!
-
---- Testing value: 42 ---
-String exception caught: The answer to everything!
-
---- Testing value: 75 ---
-Successfully processed value: 75
-```
-
----
-
-## 3. Standard Exception Classes
-
-This example demonstrates the built-in exception classes provided by the C++ standard library. Each exception type handles a specific error scenario: `bad_alloc` for memory allocation failures, `bad_cast` for failed dynamic casts, `bad_typeid` for null pointer typeid, `out_of_range` for out-of-bounds access, `invalid_argument` for invalid function arguments, and `length_error` for exceeding maximum length.
-
-```cpp
-#include <iostream>
-#include <stdexcept>
-#include <new>
-#include <typeinfo>
+#include <cstddef>
+#include <optional>
 #include <vector>
-#include <string>
-using namespace std;
 
-class Base {
-public:
-    virtual void dummy() {}
-};
-
-class Derived : public Base {};
-
-int main() {
-    cout << "=== Standard Exception Classes ===" << endl;
-    
-    // 1. bad_alloc - when new fails to allocate memory
-    cout << "\n1. bad_alloc exception:" << endl;
-    try {
-        // Attempt to allocate an impossibly large array
-        int* hugeArray = new int[1000000000000];
-        delete[] hugeArray;
+std::optional<std::size_t> findFirst(
+    const std::vector<int>& values,
+    int target) {
+    for (std::size_t index = 0; index < values.size(); ++index) {
+        if (values[index] == target) {
+            return index;
+        }
     }
-    catch (const bad_alloc& e) {
-        cout << "bad_alloc caught: " << e.what() << endl;
-    }
-    
-    // 2. bad_cast - when dynamic_cast fails for references
-    cout << "\n2. bad_cast exception:" << endl;
-    try {
-        Base baseObj;
-        Base& baseRef = baseObj;
-        // This cast will fail because baseRef is not of type Derived
-        Derived& derivedRef = dynamic_cast<Derived&>(baseRef);
-        // The above line throws bad_cast
-    }
-    catch (const bad_cast& e) {
-        cout << "bad_cast caught: " << e.what() << endl;
-    }
-    
-    // 3. bad_typeid - when typeid is used on null pointer
-    cout << "\n3. bad_typeid exception:" << endl;
-    try {
-        Base* nullPtr = nullptr;
-        cout << typeid(*nullPtr).name() << endl;  // Throws bad_typeid
-    }
-    catch (const bad_typeid& e) {
-        cout << "bad_typeid caught: " << e.what() << endl;
-    }
-    
-    // 4. out_of_range - when accessing vector element out of bounds
-    cout << "\n4. out_of_range exception:" << endl;
-    try {
-        vector<int> numbers = {1, 2, 3};
-        cout << "Accessing element at index 10: ";
-        cout << numbers.at(10) << endl;  // Throws out_of_range
-    }
-    catch (const out_of_range& e) {
-        cout << "out_of_range caught: " << e.what() << endl;
-    }
-    
-    // 5. invalid_argument - when stoi receives invalid input
-    cout << "\n5. invalid_argument exception:" << endl;
-    try {
-        string invalidNumber = "abc123";
-        int result = stoi(invalidNumber);  // Throws invalid_argument
-        cout << "Converted: " << result << endl;
-    }
-    catch (const invalid_argument& e) {
-        cout << "invalid_argument caught: " << e.what() << endl;
-    }
-    
-    // 6. length_error - when string exceeds maximum length
-    cout << "\n6. length_error exception:" << endl;
-    try {
-        string longString;
-        // Attempt to resize beyond max_size()
-        longString.resize(longString.max_size() + 1);  // Throws length_error
-    }
-    catch (const length_error& e) {
-        cout << "length_error caught: " << e.what() << endl;
-    }
-    
-    return 0;
+    return std::nullopt;
 }
 ```
 
----
+Absence is part of the function's normal domain, so the return type communicates it directly.
 
-## 4. Custom Exception Classes
+## 3. `throw`, `try`, and `catch`
 
-This example shows how to create your own exception classes by inheriting from `std::exception`. Custom exceptions can store additional information like line numbers, field names, and provide getter methods. This allows more specific error handling in your application.
-
-```cpp
-#include <iostream>
-#include <exception>
-#include <string>
-#include <sstream>
-using namespace std;
-
-// Base custom exception class
-class MyBaseException : public exception {
-private:
-    string message;
-    
-public:
-    MyBaseException(const string& msg) : message(msg) {}
-    
-    const char* what() const noexcept override {
-        return message.c_str();
-    }
-};
-
-// Specific exception for file not found
-class FileNotFoundException : public MyBaseException {
-public:
-    FileNotFoundException(const string& filename)
-        : MyBaseException("Unable to locate file: " + filename) {}
-};
-
-// Specific exception for permission denied
-class PermissionDeniedException : public MyBaseException {
-public:
-    PermissionDeniedException(const string& resource)
-        : MyBaseException("Access denied to: " + resource) {}
-};
-
-// Exception with additional data
-class ValidationException : public exception {
-private:
-    string fieldName;
-    string reason;
-    int lineNumber;
-    
-public:
-    ValidationException(const string& field, const string& msg, int line)
-        : fieldName(field), reason(msg), lineNumber(line) {}
-    
-    const char* what() const noexcept override {
-        static string fullMessage;
-        fullMessage = "Validation failed at line " + to_string(lineNumber) +
-                      " for field '" + fieldName + "': " + reason;
-        return fullMessage.c_str();
-    }
-    
-    string getField() const { return fieldName; }
-    string getReason() const { return reason; }
-    int getLine() const { return lineNumber; }
-};
-
-// Function that throws custom exceptions
-void openConfigurationFile(const string& filename) {
-    if (filename.empty()) {
-        throw ValidationException("filename", "cannot be empty", __LINE__);
-    }
-    if (filename == "config.txt") {
-        cout << "Successfully opened: " << filename << endl;
-    }
-    else if (filename == "secret.txt") {
-        throw PermissionDeniedException(filename);
-    }
-    else {
-        throw FileNotFoundException(filename);
-    }
-}
-
-int main() {
-    cout << "=== Custom Exception Classes ===" << endl;
-    
-    string files[] = {"config.txt", "", "unknown.dat", "secret.txt"};
-    
-    for (const string& file : files) {
-        cout << "\nAttempting to open: '" << file << "'" << endl;
-        
-        try {
-            openConfigurationFile(file);
-        }
-        catch (const FileNotFoundException& e) {
-            cout << "File Error: " << e.what() << endl;
-        }
-        catch (const PermissionDeniedException& e) {
-            cout << "Permission Error: " << e.what() << endl;
-        }
-        catch (const ValidationException& e) {
-            cout << "Validation Error: " << e.what() << endl;
-            cout << "  Field: " << e.getField() << endl;
-            cout << "  Reason: " << e.getReason() << endl;
-            cout << "  Line: " << e.getLine() << endl;
-        }
-        catch (const exception& e) {
-            cout << "Standard exception: " << e.what() << endl;
-        }
-    }
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-=== Custom Exception Classes ===
-
-Attempting to open: 'config.txt'
-Successfully opened: config.txt
-
-Attempting to open: ''
-Validation Error: Validation failed at line XX for field 'filename': cannot be empty
-  Field: filename
-  Reason: cannot be empty
-  Line: XX
-
-Attempting to open: 'unknown.dat'
-File Error: Unable to locate file: unknown.dat
-
-Attempting to open: 'secret.txt'
-Permission Error: Access denied to: secret.txt
-```
-
----
-
-## 5. noexcept Specifier
-
-This example explains the `noexcept` specifier introduced in C++11. Functions marked `noexcept` guarantee they will not throw exceptions, which allows compilers to optimize code. The `noexcept` operator checks at compile time whether a function can throw.
+Use an exception when the current function cannot produce its promised result and its caller may be able to recover.
 
 ```cpp
 #include <iostream>
 #include <stdexcept>
-using namespace std;
+#include <vector>
 
-// Function that guarantees no exceptions
-void safeFunction() noexcept {
-    cout << "This function will never throw an exception" << endl;
-}
-
-// Function that may throw exceptions
-void riskyFunction() {
-    cout << "This function may throw..." << endl;
-    throw runtime_error("Something went wrong!");
-}
-
-// Function with conditional noexcept
-template<typename T>
-void processData(const T& data) noexcept(noexcept(data)) {
-    cout << "Processing data..." << endl;
-}
-
-// noexcept operator example
-void demonstrateNoexceptOperator() {
-    cout << "\n--- noexcept operator ---" << endl;
-    
-    cout << "safeFunction() is noexcept: " << noexcept(safeFunction()) << endl;
-    cout << "riskyFunction() is noexcept: " << noexcept(riskyFunction()) << endl;
-    cout << "int() is noexcept: " << noexcept(int()) << endl;
-    cout << "string() is noexcept: " << noexcept(string()) << endl;
+int checkedVertexValue(const std::vector<int>& values, int vertex) {
+    if (vertex < 0 || vertex >= static_cast<int>(values.size())) {
+        throw std::out_of_range("vertex index is outside the graph");
+    }
+    return values[static_cast<std::size_t>(vertex)];
 }
 
 int main() {
-    cout << "=== noexcept Specifier ===" << endl;
-    
-    // Calling noexcept function
-    safeFunction();
-    
-    // Demonstrating noexcept operator
-    demonstrateNoexceptOperator();
-    
-    // Function that may throw - requires try-catch
+    const std::vector<int> distance{0, 4, 9};
+
     try {
-        riskyFunction();
+        std::cout << checkedVertexValue(distance, 5) << '\n';
+    } catch (const std::out_of_range& error) {
+        std::cerr << "Input error: " << error.what() << '\n';
     }
-    catch (const exception& e) {
-        cout << "Caught exception: " << e.what() << endl;
-    }
-    
-    // Note: If a noexcept function throws, program terminates
-    // This is usually undesirable
-    
-    return 0;
 }
 ```
 
-**Output:**
-```
-=== noexcept Specifier ===
-This function will never throw an exception
+The control flow is:
 
---- noexcept operator ---
-safeFunction() is noexcept: 1
-riskyFunction() is noexcept: 0
-int() is noexcept: 1
-string() is noexcept: 1
-This function may throw...
-Caught exception: Something went wrong!
-```
+1. `throw` creates an exception object.
+2. The runtime searches outward for a matching handler.
+3. Local objects on exited scopes are destroyed during stack unwinding.
+4. The selected `catch` block handles or reports the failure.
 
----
+## 4. Rules That Prevent Common Bugs
 
-## 6. Stack Unwinding and RAII
+- Throw objects by value: `throw std::invalid_argument("message");`.
+- Catch polymorphic exceptions by `const` reference: `catch (const std::exception& error)`.
+- Put specific handlers before general handlers.
+- Catch only where you can recover, add meaningful context, or produce the program's final diagnostic.
+- Use `throw;` to preserve the active exception when rethrowing. `throw error;` can slice it.
+- Never leave an empty `catch` block.
+- Do not throw raw strings or integers in normal C++ code; standard exception types compose better.
 
-This section demonstrates RAII (Resource Acquisition Is Initialization), a fundamental C++ idiom where resources are tied to object lifetimes. When an exception occurs, the stack unwinds and all local objects are destroyed automatically. This ensures proper cleanup of resources even when exceptions are thrown.
+## 5. Choose a Standard Exception
+
+The most useful beginner categories are:
+
+| Type | Meaning |
+|---|---|
+| `std::invalid_argument` | The argument's value is not acceptable |
+| `std::out_of_range` | A valid kind of value is outside the supported range |
+| `std::overflow_error` | A mathematical result cannot be represented |
+| `std::runtime_error` | A runtime failure has no more precise standard category |
+
+Prefer a precise existing category. Design custom types only when callers need a domain-specific recovery policy or structured context; that is covered in [Custom Exception Types](../03.%20OOPS/10_Exception_Handling_in_OOP/03_Custom_Exceptions/README.md).
+
+## 6. Assertions Are Different
+
+An assertion documents a condition that should be impossible if the program is correct. It is not a user-input handler.
 
 ```cpp
-#include <iostream>
-#include <fstream>
-#include <stdexcept>
-using namespace std;
+#include <cassert>
+#include <vector>
 
-// RAII class for file handling
-class FileHandler {
-private:
-    FILE* filePtr;
-    string filename;
-    
-public:
-    FileHandler(const string& name) : filename(name) {
-        cout << "Opening file: " << filename << endl;
-        filePtr = fopen(filename.c_str(), "w");
-        if (!filePtr) {
-            throw runtime_error("Failed to open file: " + filename);
-        }
-    }
-    
-    void write(const string& data) {
-        if (filePtr) {
-            fprintf(filePtr, "%s\n", data.c_str());
-            cout << "Wrote to file: " << data << endl;
-        }
-    }
-    
-    ~FileHandler() {
-        if (filePtr) {
-            fclose(filePtr);
-            cout << "Closed file: " << filename << endl;
-        }
-    }
-};
-
-// RAII class for memory management
-class MemoryBlock {
-private:
-    int* data;
-    size_t size;
-    
-public:
-    MemoryBlock(size_t sz) : size(sz) {
-        cout << "Allocating " << size << " integers" << endl;
-        data = new int[size];
-        if (!data) {
-            throw bad_alloc();
-        }
-    }
-    
-    ~MemoryBlock() {
-        cout << "Deallocating " << size << " integers" << endl;
-        delete[] data;
-    }
-};
-
-// Function that demonstrates stack unwinding
-void performRiskyOperation() {
-    cout << "\n--- Entering performRiskyOperation ---" << endl;
-    
-    FileHandler file("output.txt");
-    MemoryBlock memory(100);
-    
-    file.write("Starting operation");
-    
-    cout << "About to throw exception..." << endl;
-    throw runtime_error("Operation failed unexpectedly!");
-    
-    // This code never executes
-    file.write("Operation completed");
-    cout << "Operation finished successfully" << endl;
-}
-
-int main() {
-    cout << "=== Stack Unwinding and RAII ===" << endl;
-    
-    try {
-        performRiskyOperation();
-    }
-    catch (const exception& e) {
-        cout << "\nCaught exception: " << e.what() << endl;
-    }
-    
-    cout << "\nProgram continues normally after exception" << endl;
-    cout << "Notice that all resources were automatically cleaned up!" << endl;
-    
-    return 0;
+int heapRoot(const std::vector<int>& heap) {
+    assert(!heap.empty());
+    return heap.front();
 }
 ```
 
-**Output:**
-```
-=== Stack Unwinding and RAII ===
+If an empty heap can legitimately arrive from outside the function, represent that possibility in the return type or validate and report it. Do not rely on an assertion for recoverable input.
 
---- Entering performRiskyOperation ---
-Opening file: output.txt
-Allocating 100 integers
-Wrote to file: Starting operation
-About to throw exception...
+## 7. What `noexcept` Actually Promises
 
-Caught exception: Operation failed unexpectedly!
-Deallocating 100 integers
-Closed file: output.txt
-
-Program continues normally after exception
-Notice that all resources were automatically cleaned up!
-```
-
----
-
-## 7. Function Try Blocks
-
-Function try blocks allow catching exceptions that occur during member initialization in constructors. This is especially useful for catching exceptions thrown by base class constructors or member object constructors.
+`noexcept` is a contract: if an exception escapes the function, the program calls `std::terminate`. It is not proof that every statement in the body is safe.
 
 ```cpp
-#include <iostream>
-#include <stdexcept>
-using namespace std;
+#include <utility>
 
-class Resource {
-private:
-    int* data;
-    int size;
-    
-public:
-    Resource(int sz) : size(sz) {
-        cout << "Allocating Resource of size " << size << endl;
-        data = new int[size];
-        if (sz < 0) {
-            throw invalid_argument("Size cannot be negative");
-        }
-    }
-    
-    ~Resource() {
-        cout << "Destroying Resource" << endl;
-        delete[] data;
-    }
-};
-
-class DatabaseConnection {
-private:
-    string connectionString;
-    bool isConnected;
-    
-public:
-    DatabaseConnection(const string& conn) : connectionString(conn), isConnected(false) {
-        cout << "Creating DatabaseConnection to " << conn << endl;
-        if (conn.empty()) {
-            throw runtime_error("Empty connection string not allowed");
-        }
-        // Simulate connection
-        isConnected = true;
-        cout << "Connected to database" << endl;
-    }
-    
-    ~DatabaseConnection() {
-        if (isConnected) {
-            cout << "Disconnected from database" << endl;
-        }
-    }
-};
-
-// Class using function try block
-class Application {
-private:
-    Resource res;
-    DatabaseConnection db;
-    
-public:
-    Application(int size, const string& conn)
-    try : res(size), db(conn) {
-        cout << "Application constructor completed successfully" << endl;
-    }
-    catch (const exception& e) {
-        cout << "Application constructor caught: " << e.what() << endl;
-        // Member objects that were constructed will be destroyed automatically
-        throw;  // Re-throw to let the caller know construction failed
-    }
-    
-    ~Application() {
-        cout << "Application destructor" << endl;
-    }
-};
-
-int main() {
-    cout << "=== Function Try Blocks ===" << endl;
-    
-    cout << "\n1. Successful construction:" << endl;
-    try {
-        Application app(100, "localhost:5432");
-        cout << "Application created successfully" << endl;
-    }
-    catch (const exception& e) {
-        cout << "Main caught: " << e.what() << endl;
-    }
-    
-    cout << "\n2. Failed construction (invalid size):" << endl;
-    try {
-        Application app(-5, "localhost:5432");
-        cout << "This won't be printed" << endl;
-    }
-    catch (const exception& e) {
-        cout << "Main caught: " << e.what() << endl;
-    }
-    
-    cout << "\n3. Failed construction (empty connection):" << endl;
-    try {
-        Application app(100, "");
-        cout << "This won't be printed" << endl;
-    }
-    catch (const exception& e) {
-        cout << "Main caught: " << e.what() << endl;
-    }
-    
-    return 0;
+template <typename T>
+void exchangeValues(T& left, T& right)
+    noexcept(noexcept(std::swap(left, right))) {
+    std::swap(left, right);
 }
 ```
 
-**Output:**
-```
-=== Function Try Blocks ===
+The condition checks the exact operation performed. At this stage, use `noexcept` only when the entire call path is intentionally non-throwing. Study the full contract in [`noexcept` as a Contract](../03.%20OOPS/10_Exception_Handling_in_OOP/04_Exception_Specifications/01_Noexcept_Contract.md).
 
-1. Successful construction:
-Allocating Resource of size 100
-Creating DatabaseConnection to localhost:5432
-Connected to database
-Application constructor completed successfully
-Application created successfully
-Destroying Resource
-Disconnected from database
-Application destructor
+## 8. DSA Error-Handling Checklist
 
-2. Failed construction (invalid size):
-Allocating Resource of size -5
-Application constructor caught: Size cannot be negative
-Destroying Resource
-Main caught: Size cannot be negative
+Before submitting or publishing an implementation, ask:
 
-3. Failed construction (empty connection):
-Allocating Resource of size 100
-Creating DatabaseConnection to 
-Application constructor caught: Empty connection string not allowed
-Destroying Resource
-Main caught: Empty connection string not allowed
-```
+- What inputs are valid?
+- Is “not found” a normal result?
+- Can an index be negative or exceed the container size?
+- Can arithmetic overflow the chosen numeric type?
+- Does the function mutate data before it discovers invalid input?
+- Does the interface communicate failure without ambiguous magic values?
+- Are tests present for empty, one-element, boundary, and invalid inputs?
 
----
+Online-judge functions normally receive inputs that satisfy the problem statement. Keep their hot algorithmic path simple. In reusable library code, validate public boundaries and state the contract in the lesson.
 
-## 8. Rethrowing Exceptions
+## Practice
 
-This example demonstrates how to rethrow exceptions using `throw;` without an argument. This preserves the original exception type and allows for nested error handling.
+1. Rewrite a linear search that returns `-1` to return `std::optional<std::size_t>`.
+2. Add vertex-range validation to a graph's public `addEdge` method.
+3. Write `checkedMidpoint(int left, int right)` and decide which preconditions it should enforce.
+4. Explain why “queue is empty” may be either normal absence or misuse depending on the API.
+5. Test every failure branch without inspecting console text as the only assertion.
 
-```cpp
-#include <iostream>
-#include <stdexcept>
-using namespace std;
+## Exit Check
 
-void logError(const string& context, const exception& e) {
-    cout << "[LOG] Error in " << context << ": " << e.what() << endl;
-}
+You are ready to continue when you can:
 
-void levelThree() {
-    cout << "  Entering levelThree" << endl;
-    throw runtime_error("Database connection timeout");
-}
-
-void levelTwo() {
-    cout << " Entering levelTwo" << endl;
-    try {
-        levelThree();
-    }
-    catch (const exception& e) {
-        cout << " levelTwo caught: " << e.what() << endl;
-        logError("levelTwo", e);
-        cout << " Rethrowing from levelTwo..." << endl;
-        throw;  // Rethrow the original exception
-    }
-}
-
-void levelOne() {
-    cout << "Entering levelOne" << endl;
-    try {
-        levelTwo();
-    }
-    catch (const exception& e) {
-        cout << "levelOne caught: " << e.what() << endl;
-        logError("levelOne", e);
-        cout << "Rethrowing from levelOne..." << endl;
-        throw;  // Rethrow again
-    }
-}
-
-int main() {
-    cout << "=== Rethrowing Exceptions ===" << endl;
-    
-    try {
-        levelOne();
-    }
-    catch (const runtime_error& e) {
-        cout << "\nMain caught runtime_error: " << e.what() << endl;
-    }
-    catch (const exception& e) {
-        cout << "\nMain caught generic exception: " << e.what() << endl;
-    }
-    
-    cout << "\nNotice that the original exception type (runtime_error) is preserved" << endl;
-    
-    return 0;
-}
-```
-
-**Output:**
-```
-=== Rethrowing Exceptions ===
-Entering levelOne
- Entering levelTwo
-  Entering levelThree
- levelTwo caught: Database connection timeout
-[LOG] Error in levelTwo: Database connection timeout
- Rethrowing from levelTwo...
-levelOne caught: Database connection timeout
-[LOG] Error in levelOne: Database connection timeout
-Rethrowing from levelOne...
-
-Main caught runtime_error: Database connection timeout
-
-Notice that the original exception type (runtime_error) is preserved
-```
-
----
-
-## Libraries Used in This File
-
-| Header | Functions/Classes Used | Purpose |
-|--------|------------------------|---------|
-| `<iostream>` | `cout`, `endl` | Standard input/output operations |
-| `<stdexcept>` | `runtime_error`, `invalid_argument`, `out_of_range`, `length_error`, `bad_alloc` | Standard exception classes |
-| `<exception>` | `exception`, `set_terminate`, `terminate()` | Base exception class and termination handling |
-| `<new>` | `bad_alloc`, `nothrow` | Memory allocation exceptions |
-| `<typeinfo>` | `bad_typeid`, `typeid` | Runtime type information and exceptions |
-| `<sstream>` | `stringstream` | String stream for message construction |
-| `<vector>` | `vector`, `at()` | Dynamic array container with bounds checking |
-| `<string>` | `string`, `to_string()` | String manipulation and conversion |
-| `<fstream>` | `ifstream`, `ofstream` | File input/output operations |
-| `<cstring>` | `strcpy`, `strlen` | C string functions (reference) |
-
----
-
-## Exception Handling Summary
-
-| Concept | Description |
-|---------|-------------|
-| **try** | Block where exceptions are monitored |
-| **catch** | Block that handles specific exception types |
-| **throw** | Signals that an exception has occurred |
-| **throw;** | Rethrows the current exception |
-| **noexcept** | Function guarantees no exceptions |
-| **Stack Unwinding** | Automatic destruction of local objects |
-
----
-
-## Best Practices
-
-1. **Throw by value, catch by const reference**
-2. **Use standard exception classes when possible**
-3. **Create custom exceptions for application-specific errors**
-4. **Use RAII for automatic resource management**
-5. **Provide strong exception safety guarantee when possible**
-6. **Mark functions that don't throw as `noexcept`**
-7. **Never throw exceptions from destructors**
-8. **Use `throw;` to rethrow, not `throw e;` (preserves type)**
-
----
-
-## Common Pitfalls
-
-| Pitfall | Problem | Solution |
-|---------|---------|----------|
-| **Catching by value** | Object slicing occurs | Catch by `const&` |
-| **Empty catch block** | Swallows errors silently | At least log the error |
-| **Throwing from destructor** | Program may terminate | Log errors, don't throw |
-| **Memory leak in constructor** | Resource not freed | Use RAII for members |
-| **`throw e;` instead of `throw;`** | Loses original exception type | Use `throw;` to rethrow |
-
----
-
-## Key Takeaways
-
-1. **Exception handling** separates error handling from normal code
-2. **Stack unwinding** ensures proper cleanup
-3. **RAII** is essential for exception safety
-4. **Standard exceptions** cover common error scenarios
-5. **Custom exceptions** provide application-specific error information
-6. **noexcept** enables compiler optimizations
-7. **Exception safety levels** guide robust design
-8. **Function try blocks** catch constructor initialization errors
-
----
+- distinguish normal absence, invalid input, invariant failure, and runtime failure;
+- choose between a return value, `std::optional`, assertion, or exception;
+- throw by value and catch by `const` reference;
+- explain stack unwinding at a high level; and
+- explain why `noexcept` is a promise with termination consequences.
 
 ## Next Step
 
-- Go to [Basic Problems](../02.%20Basic%20Problems/README.md) to practice what you learned till now and understand some simple algorithms.
-- Must visit [Headers and Libraries](../00.%20Headers%20and%20Libraries/README.md) to understand more about the used `Libraries` in the files alongside continuation of your further chapters.
+Continue to [Basic Problems](../02.%20Basic%20Problems/README.md). Return to the full [Exceptions and RAII module](../03.%20OOPS/10_Exception_Handling_in_OOP/README.md) after learning classes, constructors, destructors, and ownership.

@@ -316,16 +316,25 @@ public:
 **Modern `noexcept` Semantics:**
 
 ```cpp
+#include <utility>
+
 // Guarantees no exceptions
 void func() noexcept { }
 
-// Conditionally noexcept
+// The contract queries the exact operation used by the body.
 template <typename T>
-void swap(T& a, T& b) noexcept(noexcept(T(move(a)))) { }
+void exchangeValues(T& left, T& right)
+    noexcept(noexcept(std::swap(left, right))) {
+    std::swap(left, right);
+}
 
 // noexcept operator
 static_assert(noexcept(func()));
+static_assert(noexcept(exchangeValues(std::declval<int&>(),
+                                      std::declval<int&>())));
 ```
+
+A conditional specification must cover the operations the body actually performs. Testing only move construction would be incomplete because `std::swap` may also move-assign or use a specialization with a different exception contract.
 
 ---
 

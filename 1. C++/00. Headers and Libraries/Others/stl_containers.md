@@ -1,467 +1,131 @@
-﻿# STL Containers - Comprehensive Guide
+# Choosing an STL Container
 
-This guide provides a comprehensive overview of all STL containers, their characteristics, use cases, and performance considerations.
+[← Return to the main learning path](../../LEARNING_PATH.md)
 
-## 📊 Container Overview
+- **Role:** Reference and decision guide
+- **Prerequisites:** Complexity notation, iterators, and basic `std::vector`
+- **Core standard:** C++17
 
-| Container | Category | Time Complexity | Memory | Ordered | Duplicates |
-|-----------|----------|-----------------|--------|---------|------------|
-| `vector` | Sequence | O(1) access, O(1) push_back | Contiguous | ✅ | ✅ |
-| `deque` | Sequence | O(1) access, O(1) push_front/back | Non-contiguous | ✅ | ✅ |
-| `list` | Sequence | O(n) access, O(1) insert/delete | Node-based | ✅ | ✅ |
-| `forward_list` | Sequence | O(n) access, O(1) insert/delete | Node-based | ✅ | ✅ |
-| `array` | Sequence | O(1) access | Contiguous | ✅ | ✅ |
-| `set` | Associative | O(log n) all operations | Node-based | ✅ | ❌ |
-| `multiset` | Associative | O(log n) all operations | Node-based | ✅ | ✅ |
-| `map` | Associative | O(log n) all operations | Node-based | ✅ | ❌ (keys) |
-| `multimap` | Associative | O(log n) all operations | Node-based | ✅ | ✅ (keys) |
-| `unordered_set` | Associative | O(1) average | Hash table | ❌ | ❌ |
-| `unordered_map` | Associative | O(1) average | Hash table | ❌ | ❌ (keys) |
-| `stack` | Container Adapter | O(1) push/pop | Depends | ✅ | ✅ |
-| `queue` | Container Adapter | O(1) push/pop | Depends | ✅ | ✅ |
-| `priority_queue` | Container Adapter | O(log n) push, O(1) top | Depends | ❌ | ✅ |
+This page helps you choose a standard container from the operations and guarantees your program needs. It does not repeat the full APIs owned by the individual header lessons.
 
-## 🎮 Practical Examples
+## Start With the Requirement
 
-### Example 1: Container Selection Guide
-```cpp
-#include <iostream>
-#include <vector>
-#include <deque>
-#include <list>
-#include <forward_list>
-#include <array>
-#include <set>
-#include <unordered_set>
-#include <map>
-#include <unordered_map>
-#include <stack>
-#include <queue>
-#include <chrono>
+Ask these questions in order:
 
-class ContainerPerformance {
-public:
-    // Test vector performance (random access)
-    static void testVector() {
-        std::vector<int> vec;
-        auto start = std::chrono::high_resolution_clock::now();
-        
-        for (int i = 0; i < 100000; i++) {
-            vec.push_back(i);
-        }
-        
-        // Random access test
-        long long sum = 0;
-        for (int i = 0; i < 100000; i++) {
-            sum += vec[i];
-        }
-        
-        auto end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        
-        std::cout << "Vector (100k elements): " << duration.count() << " μs" << std::endl;
-    }
-    
-    // Test list performance (frequent insertion/deletion)
-    static void testList() {
-        std::list<int> lst;
-        auto start = std::chrono::high_resolution_clock::now();
-        
-        for (int i = 0; i < 10000; i++) {
-            lst.push_back(i);
-        }
-        
-        // Insert in middle
-        auto it = lst.begin();
-        std::advance(it, 5000);
-        for (int i = 0; i < 1000; i++) {
-            lst.insert(it, i);
-        }
-        
-        auto end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        
-        std::cout << "List (insertion test): " << duration.count() << " μs" << std::endl;
-    }
-    
-    // Test unordered_map performance
-    static void testUnorderedMap() {
-        std::unordered_map<std::string, int> umap;
-        auto start = std::chrono::high_resolution_clock::now();
-        
-        // Insert
-        for (int i = 0; i < 10000; i++) {
-            umap["key" + std::to_string(i)] = i;
-        }
-        
-        // Lookup
-        long long sum = 0;
-        for (int i = 0; i < 10000; i++) {
-            sum += umap["key" + std::to_string(i)];
-        }
-        
-        auto end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        
-        std::cout << "Unordered Map (10k ops): " << duration.count() << " μs" << std::endl;
-    }
-};
+1. Must elements remain contiguous in memory?
+2. Is position/order meaningful, or are values addressed by a key?
+3. Must keys be sorted?
+4. Which operations dominate: indexed access, insertion, deletion, lookup, minimum/maximum, or traversal?
+5. Do iterator/reference invalidation rules fit the program?
+6. Is expected complexity acceptable, or is a deterministic worst-case bound required?
 
-int main() {
-    std::cout << "=== Container Performance Test ===" << std::endl;
-    ContainerPerformance::testVector();
-    ContainerPerformance::testList();
-    ContainerPerformance::testUnorderedMap();
-    
-    return 0;
-}
-```
+Do not choose a linked container merely because insertion is described as `O(1)`. Finding the insertion position may still cost `O(N)`, and poor locality may dominate real performance.
 
-### Example 2: Real-World Container Usage Patterns
-```cpp
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <unordered_map>
-#include <set>
-#include <deque>
+## Container Families
 
-class DataProcessor {
-private:
-    std::vector<int> mainData;           // Main storage
-    std::queue<int> processingQueue;     // FIFO processing
-    std::stack<int> undoStack;           // Undo operations
-    std::unordered_map<int, std::string> metadata;  // Quick lookups
-    std::set<int> uniqueValues;          // Unique values only
-    std::deque<int> slidingWindow;       // Sliding window algorithm
-    
-public:
-    // Add data with metadata
-    void addData(int value, const std::string& info) {
-        mainData.push_back(value);
-        metadata[value] = info;
-        processingQueue.push(value);
-        undoStack.push(value);
-        uniqueValues.insert(value);
-        
-        // Maintain sliding window of last 5 elements
-        slidingWindow.push_back(value);
-        if (slidingWindow.size() > 5) {
-            slidingWindow.pop_front();
-        }
-    }
-    
-    // Process data in FIFO order
-    void processData() {
-        while (!processingQueue.empty()) {
-            int current = processingQueue.front();
-            processingQueue.pop();
-            
-            std::cout << "Processing: " << current 
-                      << " (" << metadata[current] << ")" << std::endl;
-        }
-    }
-    
-    // Undo last operation
-    void undo() {
-        if (!undoStack.empty()) {
-            int last = undoStack.top();
-            undoStack.pop();
-            
-            // Remove from main data
-            auto it = std::find(mainData.begin(), mainData.end(), last);
-            if (it != mainData.end()) {
-                mainData.erase(it);
-            }
-            
-            metadata.erase(last);
-            uniqueValues.erase(last);
-            
-            std::cout << "Undone: " << last << std::endl;
-        }
-    }
-    
-    // Find max in sliding window
-    int maxInSlidingWindow() {
-        if (slidingWindow.empty()) return -1;
-        return *std::max_element(slidingWindow.begin(), slidingWindow.end());
-    }
-    
-    // Display all unique values
-    void displayUnique() {
-        std::cout << "Unique values: ";
-        for (int val : uniqueValues) {
-            std::cout << val << " ";
-        }
-        std::cout << std::endl;
-    }
-    
-    // Display current state
-    void displayState() {
-        std::cout << "=== Current State ===" << std::endl;
-        std::cout << "Main data size: " << mainData.size() << std::endl;
-        std::cout << "Queue size: " << processingQueue.size() << std::endl;
-        std::cout << "Undo stack size: " << undoStack.size() << std::endl;
-        std::cout << "Unique values: " << uniqueValues.size() << std::endl;
-        std::cout << "Sliding window: ";
-        for (int val : slidingWindow) {
-            std::cout << val << " ";
-        }
-        std::cout << std::endl;
-    }
-};
+| Need | First candidate | Important tradeoff | Canonical lesson |
+|---|---|---|---|
+| General resizable sequence | `std::vector` | Fast random access and locality; growth/middle insertion can invalidate | [`vector`](../Fundamentals/09_vector.md) |
+| Fixed-size contiguous sequence | `std::array` | Size is part of the type; no growth | [`array`](../Fundamentals/11_array/README.md) |
+| Frequent operations at both ends | `std::deque` | Random access without one contiguous allocation | [`deque`](../Fundamentals/12_deque.md) |
+| Stable node references and known-position insertion | `std::list` | No random access; allocation and locality costs | [`list`](../Fundamentals/13_list.md) |
+| Minimal-overhead singly linked nodes | `std::forward_list` | Forward traversal only; operations use “before” positions | [`forward_list`](../Fundamentals/14_forward_list.md) |
+| Sorted unique keys | `std::set` | Logarithmic operations; node-based overhead | [`set`](../Fundamentals/15_set.md) |
+| Sorted key/value pairs | `std::map` | Logarithmic operations and ordered traversal | [`map`](../Fundamentals/17_map/README.md) |
+| Expected constant-time unique-key membership | `std::unordered_set` | No ordering; rehashing and collision behavior matter | [`unordered_set`](../Fundamentals/16_unordered_set.md) |
+| Expected constant-time key/value lookup | `std::unordered_map` | No ordering; hash quality and load factor matter | [`unordered_map`](../Fundamentals/18_unordered_map.md) |
+| LIFO access only | `std::stack` | Restricted adapter interface | [`stack`](../Fundamentals/19_stack.md) |
+| FIFO access only | `std::queue` | Restricted adapter interface | [`queue`](../Fundamentals/20_queue.md) |
+| Repeated access to highest-priority item | `std::priority_queue` | No arbitrary search/removal | [`priority_queue`](../Fundamentals/21_priority_queue.md) |
 
-int main() {
-    DataProcessor processor;
-    
-    // Add some data
-    processor.addData(10, "First value");
-    processor.addData(20, "Second value");
-    processor.addData(15, "Third value");
-    processor.addData(10, "Duplicate value");
-    processor.addData(25, "Fourth value");
-    
-    processor.displayState();
-    processor.displayUnique();
-    
-    std::cout << "Max in sliding window: " << processor.maxInSlidingWindow() << std::endl;
-    
-    // Process data
-    processor.processData();
-    
-    // Undo operations
-    processor.undo();
-    processor.undo();
-    
-    processor.displayState();
-    
-    return 0;
-}
-```
+## Decision Guide
 
-### Example 3: Advanced Container Techniques
-```cpp
-#include <iostream>
-#include <vector>
-#include <map>
-#include <unordered_map>
-#include <set>
-#include <algorithm>
-#include <iterator>
+### Choose `std::vector` by default for sequences
 
-class AdvancedContainerTechniques {
-public:
-    // Custom comparator for map
-    struct CustomCompare {
-        bool operator()(const std::string& a, const std::string& b) const {
-            return a.length() < b.length();  // Sort by string length
-        }
-    };
-    
-    void demonstrateCustomComparators() {
-        std::map<std::string, int, CustomCompare> lengthMap;
-        
-        lengthMap["short"] = 1;
-        lengthMap["medium"] = 2;
-        lengthMap["very_long"] = 3;
-        
-        std::cout << "Map sorted by string length:" << std::endl;
-        for (const auto& pair : lengthMap) {
-            std::cout << pair.first << " (" << pair.second << ")" << std::endl;
-        }
-    }
-    
-    // Container of containers
-    void demonstrateNestedContainers() {
-        std::vector<std::vector<int>> matrix = {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9}
-        };
-        
-        std::cout << "Matrix:" << std::endl;
-        for (const auto& row : matrix) {
-            for (int val : row) {
-                std::cout << val << " ";
-            }
-            std::cout << std::endl;
-        }
-        
-        // Map of vectors
-        std::map<std::string, std::vector<int>> dataMap;
-        dataMap["even"] = {2, 4, 6, 8};
-        dataMap["odd"] = {1, 3, 5, 7};
-        dataMap["primes"] = {2, 3, 5, 7, 11};
-        
-        std::cout << "\nData map:" << std::endl;
-        for (const auto& pair : dataMap) {
-            std::cout << pair.first << ": ";
-            for (int val : pair.second) {
-                std::cout << val << " ";
-            }
-            std::cout << std::endl;
-        }
-    }
-    
-    // Efficient container operations
-    void demonstrateEfficientOperations() {
-        std::vector<int> vec = {5, 2, 8, 1, 9, 3};
-        
-        // Efficient removal of elements
-        vec.erase(
-            std::remove_if(vec.begin(), vec.end(),
-                          [](int x) { return x % 2 == 0; }),
-            vec.end()
-        );
-        
-        std::cout << "After removing evens: ";
-        for (int val : vec) {
-            std::cout << val << " ";
-        }
-        std::cout << std::endl;
-        
-        // Set operations
-        std::set<int> set1 = {1, 2, 3, 4, 5};
-        std::set<int> set2 = {4, 5, 6, 7, 8};
-        
-        std::vector<int> intersection;
-        std::set_intersection(set1.begin(), set1.end(),
-                             set2.begin(), set2.end(),
-                             std::back_inserter(intersection));
-        
-        std::cout << "Intersection: ";
-        for (int val : intersection) {
-            std::cout << val << " ";
-        }
-        std::cout << std::endl;
-    }
-    
-    // Memory-efficient container usage
-    void demonstrateMemoryEfficiency() {
-        // Reserve space to avoid reallocations
-        std::vector<int> vec;
-        vec.reserve(1000);  // Reserve space for 1000 elements
-        
-        for (int i = 0; i < 1000; i++) {
-            vec.push_back(i);
-        }
-        
-        std::cout << "Vector size: " << vec.size() << std::endl;
-        std::cout << "Vector capacity: " << vec.capacity() << std::endl;
-        
-        // Shrink to fit when done
-        vec.shrink_to_fit();
-        std::cout << "After shrink_to_fit: " << vec.capacity() << std::endl;
-        
-        // Use unordered_map for better cache locality
-        std::unordered_map<int, std::string> cache;
-        cache.reserve(100);  // Reserve buckets
-        
-        for (int i = 0; i < 100; i++) {
-            cache[i] = "Value " + std::to_string(i);
-        }
-        
-        std::cout << "Unordered map bucket count: " << cache.bucket_count() << std::endl;
-    }
-};
+It is the normal first choice when you need iteration, indexed access, sorting, or append-heavy storage. Contiguous layout works well with caches and standard algorithms. Consider another container only when a concrete requirement conflicts with vector's invalidation or insertion costs.
 
-int main() {
-    AdvancedContainerTechniques demo;
-    
-    std::cout << "=== Custom Comparators ===" << std::endl;
-    demo.demonstrateCustomComparators();
-    
-    std::cout << "\n=== Nested Containers ===" << std::endl;
-    demo.demonstrateNestedContainers();
-    
-    std::cout << "\n=== Efficient Operations ===" << std::endl;
-    demo.demonstrateEfficientOperations();
-    
-    std::cout << "\n=== Memory Efficiency ===" << std::endl;
-    demo.demonstrateMemoryEfficiency();
-    
-    return 0;
-}
-```
+### Choose ordered associative containers for order-dependent queries
 
-## ⚡ Performance Guidelines
+Use `std::set` or `std::map` when you need sorted iteration, lower/upper bounds, predecessor/successor logic, or deterministic logarithmic operations. If none of those properties is used, an unordered container may be simpler and faster on average.
 
-### When to Use Each Container
+### Choose unordered containers for key-based lookup without ordering
 
-#### Vector
-✅ **Use when:**
-- Random access is frequent
-- Elements are added/removed at the end
-- Cache performance is important
-- Memory overhead must be minimal
+Use `std::unordered_set` or `std::unordered_map` when expected constant-time membership/lookup matters and iteration order does not. State the hash/equality assumptions. Worst-case operations can be linear, and rehashing invalidates iterators.
 
-❌ **Avoid when:**
-- Frequent insertion/deletion in middle
-- Need stable iterators/pointers
-- Elements are very large
+### Choose node-based sequences only from an operation contract
 
-#### Deque
-✅ **Use when:**
-- Need insertion at both ends
-- Random access is required
-- Memory fragmentation is a concern
+`std::list` and `std::forward_list` are appropriate when you already hold valid positions and need stable node references or splicing. They are usually poor substitutes for a vector when the program mostly scans, sorts, or indexes data.
 
-❌ **Avoid when:**
-- Maximum performance is critical
-- Elements are very large
+### Choose adapters when a restricted interface expresses the invariant
 
-#### List
-✅ **Use when:**
-- Frequent insertion/deletion anywhere
-- Iterator stability is required
-- Splicing operations are needed
+`std::stack`, `std::queue`, and `std::priority_queue` deliberately hide unrelated operations. Their narrower interface helps communicate LIFO, FIFO, or priority behavior.
 
-❌ **Avoid when:**
-- Random access is frequent
-- Memory overhead is a concern
-- Cache performance is critical
+## Complexity Summary
 
-#### Set/Map
-✅ **Use when:**
-- Need ordered storage
-- Frequent lookups
-- Need range queries
+`N` is the number of stored elements. Unordered-container bounds below are expected/amortized unless stated otherwise.
 
-❌ **Avoid when:**
-- Order doesn't matter (use unordered versions)
-- Maximum performance is critical
-- Memory overhead is a concern
+| Container | Indexed access | End insertion | Middle/known-position insertion | Key lookup |
+|---|---:|---:|---:|---:|
+| `vector` | `O(1)` | amortized `O(1)` | `O(N)` | `O(N)` unless sorted and binary searched |
+| `array` | `O(1)` | not supported | not supported | `O(N)` unless sorted and binary searched |
+| `deque` | `O(1)` | amortized `O(1)` at either end | `O(N)` | `O(N)` |
+| `list` | `O(N)` | `O(1)` | `O(1)` with a known iterator | `O(N)` |
+| `forward_list` | `O(N)` | `O(1)` at front | `O(1)` after a known iterator | `O(N)` |
+| `set` / `map` | not positional | `O(log N)` | `O(log N)` | `O(log N)` |
+| `unordered_set` / `unordered_map` | not positional | expected `O(1)` | expected `O(1)` | expected `O(1)`, worst-case `O(N)` |
 
-#### Unordered Set/Map
-✅ **Use when:**
-- Order doesn't matter
-- Maximum lookup performance is needed
-- Average case performance is acceptable
+Complexity alone is insufficient. Include memory overhead, cache locality, invalidation, ordering, and adversarial input in the decision.
 
-❌ **Avoid when:**
-- Worst-case performance must be guaranteed
-- Need range queries
-- Order is important
+## Invalidation Questions
 
-## 🎯 Best Practices
+Before storing an iterator, pointer, or reference into a container, check the canonical lesson for the exact operation. The high-level risks are:
 
-1. **Choose the right container** for your use case
-2. **Reserve space** when you know the size beforehand
-3. **Use emplace operations** for complex objects
-4. **Prefer range-based for loops** for readability
-5. **Understand iterator invalidation** rules
-6. **Use appropriate algorithms** from `<algorithm>`
+- a `vector` reallocation invalidates all iterators, pointers, and references into it;
+- vector/deque insertion or erasure can invalidate positions at or after the modification, with deque having additional operation-specific rules;
+- list/forward-list operations normally preserve references to other elements;
+- erasing an element invalidates handles to that element in every container;
+- unordered-container rehashing invalidates iterators, while references/pointers to elements generally remain valid unless the element is erased;
+- swapping/moving containers has allocator- and operation-specific details that belong in the canonical reference page.
 
-## 🐛 Common Pitfalls
+Never rely on this summary when exact lifetime behavior is part of correctness; consult the relevant container specification/reference.
 
-1. **Using wrong container** for the use case
-2. **Not reserving space** causing reallocations
-3. **Iterator invalidation** during modifications
-4. **Using ordered containers** when unordered would be better
-5. **Memory leaks** with raw pointers in containers
----
+## DSA Mapping
+
+| Abstract need | Standard implementation | What a DSA learner should still understand |
+|---|---|---|
+| Dynamic array | `std::vector` | geometric growth, amortized analysis, relocation, invalidation |
+| Stack | `std::stack` or `std::vector` | LIFO invariant and representation tradeoffs |
+| Queue/deque | `std::queue` / `std::deque` | FIFO invariant and circular-buffer alternatives |
+| Ordered dictionary | `std::map` | balanced-search-tree invariants and logarithmic operations |
+| Hash table | `std::unordered_map` | hashing, collisions, load factor, rehashing, adversarial cases |
+| Heap | `std::priority_queue` | heap shape/order invariants and sift operations |
+
+Use the standard container in application code unless the exercise explicitly asks you to implement the structure. Custom implementations belong in [Data Structures](../../04.%20Data%20Structures/README.md), not in API reference pages.
+
+## Common Selection Errors
+
+- Using `map[key]` only to test membership and accidentally inserting a value.
+- Depending on `unordered_map` iteration order.
+- Calling `reserve` as if it changed a vector's size.
+- Keeping vector iterators across an operation that may reallocate.
+- Choosing `list` for “fast insertion” without already having the insertion iterator.
+- Using a priority queue when arbitrary deletion or priority updates are required.
+- Assuming average unordered-container complexity is a deterministic worst-case guarantee.
+- Treating container adapter internals as part of their public contract.
+
+## Practice Decisions
+
+For each scenario, name the first candidate and the requirement that could change your choice:
+
+1. Store graph adjacency lists and traverse every edge.
+2. Count word frequencies without needing sorted output.
+3. Print a leaderboard in key order.
+4. Maintain the next job by priority.
+5. Keep a sliding window with insertion/removal at opposite ends.
+6. Preserve stable references while splicing whole ranges.
+
+Then implement one scenario with two plausible containers and compare correctness, asymptotic cost, and measured behavior. A benchmark without a representative workload is not evidence of a generally superior container.
 
 ## Next Step
 
-- Continue to the canonical [Templates and Generic Programming](../../03.%20OOPS/09_Templates_and_Generic_Programming/README.md) section.
+Return to [Checkpoint 1 of the learning path](../../LEARNING_PATH.md#checkpoint-1-complexity-arrays-hashing-sorting-and-binary-search) or open the canonical lesson for the container your current problem requires.

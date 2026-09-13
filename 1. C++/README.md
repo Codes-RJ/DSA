@@ -191,7 +191,7 @@ C++ is a high-level, general-purpose programming language created as an extensio
 │   ├── BST/                       # Binary Search Trees
 │   ├── AVL Trees/                 # Self-balancing trees
 │   ├── Graph Representations/     # Graph storage and basic algorithms
-│   ├── Tree Transversals
+│   ├── Tree Traversals
 │   └── Basic Graph Algorithms
 ├── 06. Problem Solving/           # Essential problem-solving techniques
 │   ├── README.md
@@ -232,7 +232,7 @@ Start with the [toolchain guide](TOOLCHAIN.md), follow the [standards policy](ST
 ## Key Features of This Repository
 
 ### Broad Coverage
-- **435 Markdown files** after the first duplicate-topic consolidation pass
+- **Broad lesson coverage** organized behind one checkpoint-based learning path
 - **Theory and mathematical foundations** across the major algorithm families, with verification status documented in [REPORT.md](REPORT.md)
 - **Practical examples** with real-world applications
 - **Performance discussions** for many data structures and algorithms
@@ -251,30 +251,18 @@ Start with the [toolchain guide](TOOLCHAIN.md), follow the [standards policy](ST
 
 ## Getting Started
 
-### For Beginners
-1. Start with **01. Basics** to learn C++ fundamentals
-2. Move to **02. Basic Problems** for algorithm practice
-3. Study **03. OOPS** for object-oriented concepts
-4. Explore **04. Data Structures** for essential data structures
+Use one entry point: **[Start the C++ and DSA Learning Path](LEARNING_PATH.md)**.
 
-### For Intermediate Learners
-1. Master **05. Trees and Graphs** for advanced data structures
-2. Practice **06. Problem Solving** for competitive programming
-3. Study **00. Headers and Libraries** for STL mastery
-4. Implement algorithms in the **Algorithms** section
+The path includes a starting-level diagnostic, 12 checkpoints, required and optional labels, just-in-time C++ support, practice problems, and exit tasks. Do not treat the numbered folders or the repository tree above as the study order; they are stable reference locations.
 
-### For Advanced Users
-1. Review the verification findings in [REPORT.md](REPORT.md)
-2. Compile and test canonical examples before optimizing them
-3. Study advanced problem-solving techniques after completing their prerequisites
-4. Use explicit C++17, C++20, or C++23 labels when extending the material
+Use [TOOLCHAIN.md](TOOLCHAIN.md) when setting up a compiler, [STANDARDS.md](STANDARDS.md) when interpreting example status, and [REPORT.md](REPORT.md) for work that remains.
 
 ## Conclusion
 
-C++ remains a dominant language in performance-critical applications and competitive programming. While it has a steeper learning curve than modern languages, its combination of low-level control and high-level abstractions makes it an excellent choice for learning data structures and algorithms. 
+C++ remains a dominant language in performance-critical applications and competitive programming. While it has a steeper learning curve than modern languages, its combination of low-level control and high-level abstractions makes it an excellent choice for learning data structures and algorithms.
 
 This repository provides a broad path from basic C++ syntax to advanced problem-solving techniques. It is an evolving study compendium rather than an exhaustive definition of C++ or DSA; see [REPORT.md](REPORT.md) for its current verification status and improvement roadmap.
 
 ## Next Step
 
-- Go to [01_Basics](01.%20Basics/README.md) to continue understanding Basics of Programming in C++.
+- Go to the [C++ and DSA Learning Path](LEARNING_PATH.md).

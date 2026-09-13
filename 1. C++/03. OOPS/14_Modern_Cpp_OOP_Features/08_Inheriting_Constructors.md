@@ -642,4 +642,4 @@ int main() {
 
 ## Next Step
 
-- Go to [09_Override_and_Final.md](09_Override_and_Final.md) to continue with Override and Final.
+- Review the canonical runtime-polymorphism lessons for [`override`](../06_Polymorphism/02_Run_Time_Polymorphism/02_Override_Specifier.md) and [`final`](../06_Polymorphism/02_Run_Time_Polymorphism/03_Final_Specifier.md), then continue to [C++20 Concepts](10_Concepts.md).

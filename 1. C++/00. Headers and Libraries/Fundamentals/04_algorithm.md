@@ -24,6 +24,11 @@ The `algorithm` header contains numerous template functions that work with itera
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <functional>
+
+using std::greater;
+using std::sort;
+using std::vector;
 
 int main() {
     vector<int> vec = {5, 2, 8, 1, 9, 3};
@@ -72,8 +77,9 @@ reverse(vec.begin(), vec.end());  // {5, 4, 3, 2, 1}
 // Rotate
 rotate(vec.begin(), vec.begin() + 2, vec.end());  // {3, 4, 5, 1, 2}
 
-// Shuffle
-random_shuffle(vec.begin(), vec.end());  // Random order
+// Shuffle (requires <random>); a fixed seed makes this example reproducible.
+std::mt19937 engine(42);
+std::shuffle(vec.begin(), vec.end(), engine);
 
 // Fill and generate
 vector<int> vec2(10);
@@ -88,6 +94,13 @@ fill(vec2.begin(), vec2.end(), 42);  // All elements become 42
 #include <vector>
 #include <algorithm>
 #include <string>
+
+using std::cout;
+using std::endl;
+using std::partial_sort;
+using std::sort;
+using std::string;
+using std::vector;
 
 struct Student {
     string name;
@@ -143,7 +156,19 @@ int main() {
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 #include <string>
+
+using std::all_of;
+using std::count;
+using std::count_if;
+using std::cout;
+using std::distance;
+using std::endl;
+using std::find;
+using std::find_if;
+using std::string;
+using std::vector;
 
 int main() {
     vector<string> words = {"apple", "banana", "cherry", "date", "elderberry"};
@@ -185,6 +210,16 @@ int main() {
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iterator>
+
+using std::back_inserter;
+using std::copy;
+using std::cout;
+using std::endl;
+using std::remove_if;
+using std::replace;
+using std::transform;
+using std::vector;
 
 int main() {
     vector<int> original = {1, 2, 3, 4, 5};
@@ -235,6 +270,19 @@ int main() {
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iterator>
+
+using std::back_inserter;
+using std::binary_search;
+using std::cout;
+using std::distance;
+using std::endl;
+using std::lower_bound;
+using std::set_difference;
+using std::set_intersection;
+using std::set_union;
+using std::upper_bound;
+using std::vector;
 
 int main() {
     // Sorted vectors for set operations
@@ -415,202 +463,6 @@ auto is_prime = [](int n) {
 vector<int> numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10};
 auto prime_it = find_if(numbers.begin(), numbers.end(), is_prime);
 ```
-    replace(data.begin(), data.end(), 2, 99);
-    
-    cout << "After replacing 2 with 99: ";
-    for (int x : data) cout << x << " ";
-    cout << endl;
-    
-    return 0;
-}
-```
-
-### Example 4: Set Operations and Binary Search
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-int main() {
-    // Sorted vectors for set operations
-    vector<int> set1 = {1, 3, 5, 7, 9};
-    vector<int> set2 = {3, 4, 5, 6, 7};
-    
-    vector<int> intersection;
-    set_intersection(set1.begin(), set1.end(),
-                    set2.begin(), set2.end(),
-                    back_inserter(intersection));
-    
-    cout << "Intersection: ";
-    for (int x : intersection) cout << x << " ";
-    cout << endl;
-    
-    vector<int> union_set;
-    set_union(set1.begin(), set1.end(),
-             set2.begin(), set2.end(),
-             back_inserter(union_set));
-    
-    cout << "Union: ";
-    for (int x : union_set) cout << x << " ";
-    cout << endl;
-    
-    vector<int> difference;
-    set_difference(set1.begin(), set1.end(),
-                  set2.begin(), set2.end(),
-                  back_inserter(difference));
-    
-    cout << "Difference (set1 - set2): ";
-    for (int x : difference) cout << x << " ";
-    cout << endl;
-    
-    // Binary search operations
-    vector<int> sorted = {1, 3, 5, 7, 9, 11, 13};
-    int target = 7;
-    
-    if (binary_search(sorted.begin(), sorted.end(), target)) {
-        cout << target << " found in the sorted array" << endl;
-        
-        auto lower = lower_bound(sorted.begin(), sorted.end(), target);
-        auto upper = upper_bound(sorted.begin(), sorted.end(), target);
-        
-        cout << "First position: " << distance(sorted.begin(), lower) << endl;
-        cout << "Last position: " << distance(sorted.begin(), upper - 1) << endl;
-    }
-    
-    return 0;
-}
-```
-
-## ⚡ Performance Considerations
-
-### Time Complexity of Common Algorithms
-| Algorithm | Time Complexity | Notes |
-|-----------|-----------------|-------|
-| `sort` | O(n log n) | Introsort (quick + heap + insertion) |
-| `find` | O(n) | Linear search |
-| `binary_search` | O(log n) | Requires sorted data |
-| `lower_bound/upper_bound` | O(log n) | Requires sorted data |
-| `reverse` | O(n) | In-place reversal |
-| `rotate` | O(n) | In-place rotation |
-| `nth_element` | O(n) average | Partial sorting |
-
-### Choosing the Right Algorithm
-```cpp
-vector<int> data = {5, 2, 8, 1, 9, 3};
-
-// For completely sorting
-sort(data.begin(), data.end());
-
-// For finding top k elements
-nth_element(data.begin(), data.begin() + k, data.end());
-// First k elements are the k smallest, but not sorted
-
-// For checking existence in sorted data
-if (binary_search(data.begin(), data.end(), target)) { /* ... */ }
-
-// For finding range in sorted data
-auto range = equal_range(data.begin(), data.end(), target);
-```
-
-## 🎯 Common Algorithm Patterns
-
-### Pattern 1: Remove-Remove Idiom
-```cpp
-// Remove all elements matching a condition
-vector<int> vec = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-vec.erase(remove_if(vec.begin(), vec.end(),
-                   [](int x) { return x % 2 == 0; }),  // Remove evens
-          vec.end());
-```
-
-### Pattern 2: Custom Comparator
-```cpp
-// Sort by multiple criteria
-struct Person {
-    string name;
-    int age;
-    double score;
-};
-
-vector<Person> people = {/* ... */};
-
-sort(people.begin(), people.end(),
-     [](const Person& a, const Person& b) {
-         if (a.score != b.score) return a.score > b.score;
-         return a.age < b.age;
-     });
-```
-
-### Pattern 3: Efficient Copying
-```cpp
-vector<int> source = {1, 2, 3, 4, 5};
-vector<int> dest;
-
-// Reserve space first for efficiency
-dest.reserve(source.size());
-copy(source.begin(), source.end(), back_inserter(dest));
-```
-
-## 🐛 Common Pitfalls & Solutions
-
-### 1. Using `find` on Sorted Data
-```cpp
-// Inefficient
-vector<int> sorted = {1, 3, 5, 7, 9};
-auto it = find(sorted.begin(), sorted.end(), 7);  // O(n)
-
-// Efficient
-auto it = lower_bound(sorted.begin(), sorted.end(), 7);  // O(log n)
-```
-
-### 2. Not Sorting Before Binary Search
-```cpp
-vector<int> data = {5, 2, 8, 1, 9};
-// binary_search(data.begin(), data.end(), 5);  // Undefined behavior!
-
-sort(data.begin(), data.end());
-binary_search(data.begin(), data.end(), 5);  // Now it works
-```
-
-### 3. Iterator Invalidation
-```cpp
-vector<int> vec = {1, 2, 3, 4, 5};
-
-// Problem
-for (auto it = vec.begin(); it != vec.end(); it++) {
-    if (*it % 2 == 0) {
-        vec.erase(it);  // Iterator becomes invalid!
-    }
-}
-
-// Solution
-for (auto it = vec.begin(); it != vec.end(); ) {
-    if (*it % 2 == 0) {
-        it = vec.erase(it);  // Update iterator
-    } else {
-        it++;
-    }
-}
-```
-
-## 🎨 Advanced Techniques
-
-### Custom Predicates and Functors
-```cpp
-// Complex condition
-auto is_prime = [](int n) {
-    if (n < 2) return false;
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) return false;
-    }
-    return true;
-};
-
-vector<int> numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10};
-auto prime_it = find_if(numbers.begin(), numbers.end(), is_prime);
-```
-
 ### Chaining Operations
 ```cpp
 vector<int> data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};

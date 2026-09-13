@@ -289,51 +289,9 @@ static_assert(is_pointer<int*>::value == true);
 
 ### 9. Concepts (C++20)
 
-Concepts are a C++20 feature that allows specifying requirements on template parameters, improving error messages and code clarity.
+Concepts constrain template parameters and make requirements part of an interface. They are a C++20 extension, not part of this repository's C++17 core route.
 
-**Key Benefits:**
-
-| Benefit | Description |
-|---------|-------------|
-| **Clear Error Messages** | Replace template substitution errors with readable constraints |
-| **Overloading on Concepts** | Different implementations for different type categories |
-| **Code Documentation** | Concepts document template requirements |
-| **Constraint Checking** | Compiler checks requirements before instantiation |
-
-**Example:**
-```cpp
-// C++20 concept definition
-template <typename T>
-concept Numeric = is_integral_v<T> || is_floating_point_v<T>;
-
-template <typename T>
-concept Incrementable = requires(T a) {
-    ++a;
-    a++;
-};
-
-// Using concepts in templates
-template <Numeric T>
-T add(T a, T b) {
-    return a + b;  // Only numeric types allowed
-}
-
-template <Incrementable T>
-T increment(T value) {
-    return ++value;
-}
-
-int main() {
-    add(10, 20);        // OK - int is Numeric
-    add(3.14, 2.71);    // OK - double is Numeric
-    // add("hello", "world");  // Error - string not Numeric
-    
-    int x = 5;
-    increment(x);       // OK - int is Incrementable
-    
-    return 0;
-}
-```
+After mastering ordinary function/class templates, substitution, and type traits, continue to the canonical [C++20 Concepts lesson](../14_Modern_Cpp_OOP_Features/10_Concepts.md). It owns concept definitions, requires-expressions, standard concepts, constraint composition, subsumption, and complete examples. Keeping those details in one place prevents the C++17 template theory from becoming a second Concepts tutorial.
 
 ---
 

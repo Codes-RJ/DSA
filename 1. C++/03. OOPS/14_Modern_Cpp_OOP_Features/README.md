@@ -8,8 +8,7 @@ This folder now contains only lessons that are not canonical elsewhere. Each pag
 2. [Range-based `for`](02_Range_Based_For_Loops.md)
 3. [Initializer lists](06_Initializer_Lists.md)
 4. [Inheriting constructors](08_Inheriting_Constructors.md)
-5. [`override` and `final`](09_Override_and_Final.md)
-6. [Concepts](10_Concepts.md) — C++20
+5. [Concepts](10_Concepts.md) — C++20
 
 ## Canonical Lessons Moved Out of This Folder
 
@@ -17,6 +16,7 @@ This folder now contains only lessons that are not canonical elsewhere. Each pag
 - [Smart pointers](../../00.%20Headers%20and%20Libraries/Others/smart_pointers.md)
 - [Move semantics](../../00.%20Headers%20and%20Libraries/Others/move_semantics.md)
 - [Delegating constructors](../03_Constructors_and_Destructors/07_Delegating_Constructors.md)
+- [`override`](../06_Polymorphism/02_Run_Time_Polymorphism/02_Override_Specifier.md) and [`final`](../06_Polymorphism/02_Run_Time_Polymorphism/03_Final_Specifier.md)
 
 These topics are general language or standard-library facilities rather than specifically OOP features, so retaining full copies here made the learning path ambiguous.
 

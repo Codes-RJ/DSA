@@ -35,18 +35,26 @@ Bucket sort divides the interval into buckets, distributes elements into appropr
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 using namespace std;
 
 /**
  * Basic bucket sort implementation for floating-point numbers
  */
 void bucketSort(float arr[], int n) {
+    if (n <= 0) {
+        return;
+    }
+
     // Create n empty buckets
-    vector<float> buckets[n];
+    vector<vector<float>> buckets(static_cast<size_t>(n));
     
     // Put array elements in different buckets
     for (int i = 0; i < n; i++) {
-        int bucketIndex = n * arr[i];  // Index in bucket
+        if (arr[i] < 0.0f || arr[i] >= 1.0f) {
+            throw invalid_argument("basic bucket sort expects values in [0, 1)");
+        }
+        const size_t bucketIndex = static_cast<size_t>(n * arr[i]);
         buckets[bucketIndex].push_back(arr[i]);
     }
     

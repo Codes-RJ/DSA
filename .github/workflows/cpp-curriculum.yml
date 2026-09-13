@@ -61,9 +61,11 @@ jobs:
         run: ctest --test-dir build --output-on-failure -C Release
 
   documentation:
-    name: Markdown links
+    name: Markdown structure and links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - name: Check local links
         run: python "1. C++/tools/check_markdown_links.py" "1. C++"
+      - name: Check Markdown structure
+        run: python "1. C++/tools/check_markdown_structure.py" "1. C++" --max-unlabeled 1016
