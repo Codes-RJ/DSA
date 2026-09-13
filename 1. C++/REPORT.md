@@ -25,6 +25,326 @@ The right next phase is therefore not indiscriminate expansion. It is consolidat
 | Maintainability | Weak to moderate | Many lessons are very large, headings are generic, metadata is inconsistent, and code fences are not uniformly typed. |
 | Student readiness | Suitable with supervision | Useful today as a study compendium; not yet safe to present every snippet or completeness claim as verified. |
 
+## Human-First Path, Benchmarked Against External Curricula
+
+This section restates the recommended learner journey from a beginner's point of view. It is a proposed replacement model for the current path, not a claim that the files have already been reorganized this way.
+
+### Sources checked
+
+The comparison was checked online on 2026-09-13. No user-supplied copies were required.
+
+- [Striver's current A2Z DSA Sheet](https://takeuforward.org/dsa/strivers-a2z-sheet-learn-dsa-a-to-z) contains 474 problems and moves from basics to sorting, arrays, binary search, basic strings, linked lists, recursion, bit manipulation, stacks/queues, sliding windows, heaps, greedy methods, trees, BSTs, graphs, dynamic programming, tries, and advanced strings.
+- [MIT 6.006 Introduction to Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/) treats algorithms as the modeling of problems using data structures and algorithms, with explicit performance analysis, problem sets, and assignments. Its [published syllabus](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/pages/syllabus/) expects an algorithm answer to include a description, worked example, correctness justification, and complexity analysis.
+- [Princeton Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) organizes the subject as fundamentals, sorting, searching, graphs, strings, and context/applications, supported by exercises and programming assignments.
+- [LeetCode Study Plans](https://leetcode.com/studyplan/) group problems by topic and difficulty. LeetCode's [official study-plan guidance](https://leetcode.com/discuss/post/1901748/new-study-plans-released-binary-search/) recommends attempting the problem, studying the official solution afterward, and repeating plans to reinforce learning.
+
+These resources serve different purposes. Striver is an interview-oriented problem progression, MIT emphasizes models, proof, and analysis, Princeton emphasizes coherent subject organization and applications, and LeetCode supplies constrained practice and feedback. This repository should combine their useful properties rather than copy any one of them.
+
+### What should change relative to the current path
+
+| Current tendency | External comparison | Human-first adjustment |
+|---|---|---|
+| A learner can feel expected to consume a large C++ and standard-library reference before meaningful DSA practice. | Striver reaches sorting and arrays immediately after basics. | Teach only the C++ needed for the next data structure; leave the full header collection as a searchable reference shelf. |
+| OOP, language depth, DSA theory, and interview practice are presented as similarly weighted bodies of material. | Interview roadmaps keep the problem-solving spine visible; university courses assume a language and concentrate on models and analysis. | Create two lanes: a required DSA lane and a just-in-time C++ support lane. Move deep OOP and language features to integration/project checkpoints. |
+| Lessons often contain many implementations without a required output from the learner. | MIT requires description, example, correctness, and complexity; Princeton couples theory with exercises and assignments. | End every core lesson with a four-part deliverable: implement, explain invariant, analyze complexity, and test counterexamples. |
+| Practice material exists, but its order and readiness level are inconsistent. | Striver and LeetCode make graded problem progress visible. | Attach a small, curated problem ladder to each checkpoint: bridge, validation, and challenge. Do not expose a beginner to a 474-question wall. |
+| Extra and advanced topics appear inside the same directory tree as essentials. | Strong courses separate prerequisites, core material, and follow-on topics. | Keep every extra topic, but assign it to a precise bridge, reference, extension, or elective slot. |
+
+### The two-lane model
+
+Each checkpoint should show two short columns to the learner:
+
+1. **DSA lane:** the data structure, algorithm, invariant, and practice problems that advance the main curriculum.
+2. **C++ support lane:** only the syntax, library facilities, ownership rules, and debugging skills required to implement that checkpoint safely.
+
+The C++ support lane prevents two opposite failures: attempting linked structures before understanding object lifetime, or delaying arrays and searching until the learner has read hundreds of pages of unrelated library/OOP material.
+
+### Restated path
+
+#### Checkpoint 0: Orientation and C++ survival skills
+
+**Goal:** Compile, run, debug, and test small programs without needing advanced language knowledge.
+
+**DSA lane:** Input/output, tracing a simple algorithm, and recognizing an input-output contract.
+
+**C++ support lane:** Toolchain, warnings, primitive types, expressions, conditionals, loops, functions, `const`, references at a basic level, `std::string`, `std::vector`, and simple assertions.
+
+**Do not insert yet:** Templates beyond calling standard templates, inheritance, design patterns, manual memory management, concurrency, or obscure standard headers.
+
+**Practice bridge:**
+
+- [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) — loop invariant and prefix accumulation.
+- [1. Two Sum](https://leetcode.com/problems/two-sum/) — first compare a direct nested-loop solution with a later hash-based solution; do not demand hashing before it is taught.
+
+**Exit evidence:** The learner can compile from the command line, explain every variable's value during one trace, and write tests for empty/small/boundary inputs outside LeetCode's harness.
+
+#### Checkpoint 1: Complexity, arrays, hashing, sorting, and binary search
+
+**Goal:** Build the first complete algorithmic toolkit early, matching the useful opening progression in Striver and the fundamentals/sorting/searching arc in Princeton.
+
+**DSA lane:** Cost model, Big-O/Theta/Omega, arrays and dynamic arrays, prefix sums, frequency tables, hashing, elementary sorting, merge/quick/heap sort, binary search, and binary search on a monotonic answer.
+
+**C++ support lane:** `std::array`, `std::vector`, iterators, `std::sort`, `std::lower_bound`, `std::unordered_map`, `std::unordered_set`, comparator basics, integer overflow, and iterator invalidation.
+
+**Practice ladder:**
+
+- [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/) — array frequency counting versus a hash map.
+- [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) — recognize when expected `O(N)` hashing is more suitable than sorting.
+- [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) — validate an implemented `O(N log N)` comparison sort rather than calling `std::sort`.
+- [704. Binary Search](https://leetcode.com/problems/binary-search/) — closed versus half-open interval invariants.
+- [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) — preserve a binary-search invariant under partitioned order.
+- [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/) — introduce binary search over a monotonic answer space.
+
+**Exit evidence:** For each solution, the learner can state the cost model, prove the loop/partition invariant, and explain why the chosen container changes complexity.
+
+#### Checkpoint 2: Ownership, linked lists, recursion, and bit foundations
+
+**Goal:** Introduce pointer-based structures only after the minimum safe C++ ownership model is understood.
+
+**DSA lane:** Singly and doubly linked lists, pointer rewiring, fast/slow pointers, recursion trees, base cases, backtracking-state introduction, and core bit operations.
+
+**C++ support lane:** Addresses, pointers, references, object lifetime, RAII, constructors/destructors at a practical level, `std::unique_ptr` versus non-owning pointers, stack versus dynamic storage, and recursion depth.
+
+**Practice ladder:**
+
+- [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) — make the pointer-rewiring invariant explicit; implement iterative and recursive forms.
+- [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) — ownership-neutral node relinking and sentinel-node reasoning.
+- [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/) — Floyd's cycle-detection invariant and constant auxiliary space.
+- [78. Subsets](https://leetcode.com/problems/subsets/) — a first decision-tree recursion exercise, revisited later under backtracking.
+
+**Exit evidence:** The learner can draw ownership separately from links, reverse a list without losing nodes, and state the maximum recursion-depth risk.
+
+#### Checkpoint 3: Stacks, queues, monotonic structures, two pointers, and windows
+
+**Goal:** Learn reusable state-maintenance patterns immediately after their base ADTs.
+
+**DSA lane:** Stack and queue invariants, expression parsing, deque, monotonic stack, monotonic deque, two pointers, fixed and variable sliding windows.
+
+**C++ support lane:** `std::stack`, `std::queue`, `std::deque`, container-adapter limitations, lambdas used as small predicates, and safe index types.
+
+**Practice ladder:**
+
+- [20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) — direct LIFO application.
+- [155. Min Stack](https://leetcode.com/problems/min-stack/) — augment an ADT while preserving `O(1)` operations.
+- [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) — canonical monotonic-stack application.
+- [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) — variable-size window with frequency/last-seen state.
+- [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — monotonic deque challenge.
+- [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) — advanced window invariant; place last, not beside introductory strings.
+
+**Exit evidence:** The learner can say exactly what each stored index means, why each element is inserted/removed only a bounded number of times, and how that proves linear complexity.
+
+#### Checkpoint 4: Heaps, greedy reasoning, intervals, and selection
+
+**Goal:** Connect priority-based processing to proof obligations rather than teaching heap APIs in isolation.
+
+**DSA lane:** Binary heap, priority queue, top-k/streaming selection, quickselect, interval sorting, greedy choice, exchange arguments, and counterexamples to plausible greedy rules.
+
+**C++ support lane:** `std::priority_queue`, comparator direction, custom records, `std::nth_element`, and value-versus-reference costs.
+
+**Practice ladder:**
+
+- [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) — compare heap, quickselect, and full sort.
+- [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — combine hashing with heap/bucket selection.
+- [295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/) — maintain a two-heap balance invariant.
+- [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/) — sort then maintain the covered-prefix invariant.
+- [55. Jump Game](https://leetcode.com/problems/jump-game/) — require a greedy correctness argument and compare against DP.
+
+**Exit evidence:** The learner can justify why the greedy choice is safe or produce a counterexample showing that it is not.
+
+#### Checkpoint 5: Trees, BSTs, balanced trees, and range-query structures
+
+**Goal:** Progress from tree traversal to ordered-tree invariants, then to structures chosen for update/query workloads.
+
+**DSA lane:** Binary-tree vocabulary, DFS/BFS traversals, recursion-to-iteration conversion, BST ordering, heaps as trees, AVL/red-black concepts, Fenwick Tree, Segment Tree, lazy propagation, LCA, and Euler-tour flattening.
+
+**C++ support lane:** Recursive node ownership, smart-pointer tradeoffs, custom iterators only as an extension, and separating public ADT operations from representation.
+
+**Practice ladder:**
+
+- [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) — queue-based tree BFS.
+- [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/) — postorder return value versus global answer.
+- [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — global range invariant, not only parent-child comparison.
+- [307. Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/) — choose and test Fenwick Tree or Segment Tree according to the operation contract.
+
+**Extension placement:** AVL implementation follows BST mutation; red-black trees may remain conceptual unless fully tested. LCA and Euler tours follow ordinary traversals. Heavy-light and centroid decomposition belong after the verified range-query core, not between BST basics and traversal practice.
+
+**Exit evidence:** The learner can identify the maintained invariant after every mutation and choose a range structure from update/query requirements.
+
+#### Checkpoint 6: Graph modeling and algorithms
+
+**Goal:** Make representation and input contracts precede named algorithms.
+
+**DSA lane:** Adjacency structures, BFS/DFS, components, cycles, topological order, DSU, unweighted shortest paths, Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim, SCCs, bridges/articulation points, Eulerian paths, and flow/matching.
+
+**C++ support lane:** Nested containers, edge types, priority queues, numeric limits, overflow-safe relaxation, and avoiding accidental graph copies.
+
+**Practice ladder:**
+
+- [200. Number of Islands](https://leetcode.com/problems/number-of-islands/) — implicit-grid graph and component traversal.
+- [133. Clone Graph](https://leetcode.com/problems/clone-graph/) — traversal plus identity mapping and deep-copy semantics.
+- [207. Course Schedule](https://leetcode.com/problems/course-schedule/) — cycle detection/topological ordering.
+- [684. Redundant Connection](https://leetcode.com/problems/redundant-connection/) — DSU application.
+- [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/) — Dijkstra with unreachable-node behavior.
+- [1584. Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) — minimum spanning tree modeling.
+- [787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) — bounded-edge shortest paths; useful for distinguishing Bellman-Ford-style DP from ordinary Dijkstra.
+
+**Extension placement:** Floyd-Warshall and Johnson follow single-source shortest paths; A* follows Dijkstra and heuristic admissibility; max flow/min cut and bipartite matching close the graph unit. Advanced variants must not interrupt representation, BFS, or DFS.
+
+**Exit evidence:** Every solution begins by declaring directedness, weight domain, parallel/self-loop policy, disconnected behavior, and overflow strategy.
+
+#### Checkpoint 7: Exhaustive search and backtracking
+
+**Goal:** Turn earlier recursion mechanics into explicit state-space search.
+
+**DSA lane:** Choose-explore-unchoose, candidate generation, constraint propagation, pruning, duplicate handling, and output-sensitive complexity.
+
+**C++ support lane:** Mutable state by reference, undo discipline, copying costs, and lambdas/closures where they improve locality without hiding recursion.
+
+**Practice ladder:**
+
+- [78. Subsets](https://leetcode.com/problems/subsets/) — revisit and describe the binary decision tree formally.
+- [39. Combination Sum](https://leetcode.com/problems/combination-sum/) — reuse decisions and prune by remaining target.
+- [51. N-Queens](https://leetcode.com/problems/n-queens/) — maintain column/diagonal constraints and analyze search-space pruning.
+
+**Exit evidence:** The learner can name the state, choices, rejection rule, undo operation, and stopping condition before writing code.
+
+#### Checkpoint 8: Dynamic programming by state pattern
+
+**Goal:** Derive recurrences rather than memorize problem titles.
+
+**DSA lane:** Memoization, tabulation, state meaning, transition proof, reconstruction, space optimization, sequence/string/grid/knapsack/interval/tree/DAG/digit/bitmask patterns.
+
+**C++ support lane:** Correct table dimensions, sentinel values, overflow policy, memory layout, and measuring copying/allocation inside transitions.
+
+**Practice ladder:**
+
+- [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) — smallest useful state/transition exercise.
+- [198. House Robber](https://leetcode.com/problems/house-robber/) — include/exclude recurrence and rolling-state optimization.
+- [322. Coin Change](https://leetcode.com/problems/coin-change/) — unreachable-state sentinel and unbounded choices.
+- [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) — Boolean knapsack and iteration-order reasoning.
+- [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) — 2D string state and reconstruction extension.
+- [72. Edit Distance](https://leetcode.com/problems/edit-distance/) — operation-based transition and boundary initialization.
+
+**Extension placement:** Tree, digit, probability, bitmask, and optimization techniques come only after the learner can independently define and prove ordinary DP states. Meet-in-the-middle is a separate exponential-reduction pattern and should not be buried inside DP optimization.
+
+**Exit evidence:** The learner writes the state meaning, base cases, transition, evaluation order, correctness argument, and complexity before implementation.
+
+#### Checkpoint 9: Tries and advanced string algorithms
+
+**Goal:** Finish specialized string structures after hashing, trees, recursion, and DP are already available.
+
+**DSA lane:** Trie operations, prefix search, KMP/prefix function, Z-function, rolling hash with collision policy, suffix arrays, and when ordinary library search is enough.
+
+**C++ support lane:** Character-domain assumptions, `std::string_view` lifetime, array-versus-map children, Unicode limitations, and allocation ownership.
+
+**Practice ladder:**
+
+- [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/) — validates the base data-structure contract.
+- [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) — use as a KMP application after the naive scan is understood.
+- [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) — compare center expansion and DP; advanced linear-time methods remain optional.
+- [212. Word Search II](https://leetcode.com/problems/word-search-ii/) — capstone combining trie pruning and backtracking.
+
+**Exit evidence:** The learner can choose among direct scan, hashing, prefix-function methods, trie indexing, and DP based on query volume and constraints.
+
+#### Checkpoint 10: C++ design, reliability, and an integration project
+
+**Goal:** Convert isolated algorithm skill into maintainable C++ software.
+
+**DSA lane:** Integrate multiple structures behind a clear application contract; benchmark and test them.
+
+**C++ support lane:** Class design, encapsulation, value semantics, rule of zero/five, inheritance only where substitution is real, templates, exceptions/error returns, CMake, tests, sanitizers, profiling, and documentation.
+
+**Practice bridge:**
+
+- [706. Design HashMap](https://leetcode.com/problems/design-hashmap/) — use only after the repository has a canonical hash-table-internals lesson.
+- [146. LRU Cache](https://leetcode.com/problems/lru-cache/) — integrate hash lookup, ordering, invariants, and class design.
+- Convert one earlier LeetCode-style function into a reusable library component with tests and invalid-input policy; the integration artifact, not another accepted submission, is the assessment.
+
+**Required capstone:** Build the proposed graph-analysis CLI with parsing, ownership, algorithms, tests, CMake, and documented failure modes.
+
+**Exit evidence:** A clean checkout builds and tests on the supported compilers, and the learner can explain architecture and invariants without relying on the original lesson text.
+
+#### Checkpoint 11: Explicit elective shelves
+
+The following topics are valuable but should never appear as unexplained interruptions in the beginner's main sequence:
+
+- concurrency, atomics, regular expressions, filesystem, random-number facilities, advanced chrono, and specialized standard headers;
+- concepts, advanced template metaprogramming, allocators, placement new, memory pools, and low-level optimization;
+- design-pattern catalogs beyond patterns naturally used in the capstone;
+- novelty sorts such as Bogo, Gnome, Cocktail, Comb, and Pancake Sort;
+- advanced balanced/search trees, heavy-light decomposition, centroid decomposition, suffix automata, and advanced DP optimizations;
+- competitive-programming-only tricks whose safety or portability differs from normal C++ engineering.
+
+Each elective must state its prerequisites and answer “why learn this now?” If it cannot, it belongs in the reference shelf rather than the sequential path.
+
+### Placement of the repository's extra topics
+
+This placement table is essential: material not mirrored by Striver or the selected university sequences is retained, but it is deliberately positioned.
+
+| Existing material | Placement in the human path | Treatment |
+|---|---|---|
+| Pattern-making exercises | Optional warm-up before Checkpoint 0 or after loops | Use for loop fluency only; never make decorative patterns a prerequisite for DSA. |
+| Full Headers and Libraries collection | Searchable reference shelf from Checkpoint 0 onward | Link individual pages just in time; do not assign the directory linearly. |
+| Deep pointers/manual allocation | Bridge immediately before linked lists; advanced details at Checkpoint 10 | Teach lifetime and RAII first. Raw allocation exercises must be explicitly pedagogical. |
+| OOP classes/encapsulation | Minimum practical subset before custom structures | Use to define ADTs; postpone large hierarchies. |
+| Inheritance/polymorphism/abstraction | Checkpoint 10 | Teach for substitution and interface design, not as a gate before arrays or graphs. |
+| Templates/generic programming | Basic use alongside custom structures; advanced form at Checkpoint 10/electives | Introduce only when it removes duplicated implementations the learner already understands. |
+| Exception handling | Basic error boundaries early; guarantees and `noexcept` at Checkpoint 10 | Keep the beginner path short and correct; connect advanced material to RAII. |
+| Design patterns | Project-driven elective after core DSA | Introduce a pattern only when the capstone has the problem that pattern solves. |
+| Novelty sorting algorithms | Checkpoint 1 elective appendix | Use for comparison or amusement, not required progression. |
+| Mathematical problems | Just-in-time bridge before number-theory/combinatorics tasks | Separate required arithmetic foundations from optional contest mathematics. |
+| Bit manipulation | Checkpoint 2 core subset; advanced tricks elective | Cover representation and safe shifts before tricks. |
+| Array/string puzzles | Practice pool attached to relevant checkpoints | Tag by prerequisite and pattern instead of presenting as an independent linear module. |
+| AVL/red-black trees | Checkpoint 5 extension after BST | AVL may be implemented; red-black theory should explain its standard-container relevance. |
+| Fenwick/Segment Tree/LCA/Euler tour | End of Checkpoint 5 | Teach only after recursion and traversal invariants. |
+| Advanced graph algorithms | Layered extension at end of Checkpoint 6 | Preserve shortest-path-to-MST-to-connectivity-to-flow dependencies. |
+| Backtracking catalog | Checkpoint 7 | Keep recursion mechanics earlier, but delay large search catalogs until pruning can be reasoned about. |
+| Advanced DP catalog | End of Checkpoint 8/elective | Require competence with state derivation before optimization techniques. |
+| Advanced string algorithms | Checkpoint 9 | Deduplicate their explanations and require explicit character/alphabet assumptions. |
+| Modern C++20/C++23 topics | Version-labeled support/elective lane | Never force the core C++17 path to jump standards silently. |
+
+### How LeetCode links should be embedded in lessons
+
+The problem list above is not a substitute for teaching, and problem links should not be dumped into a single appendix. Add them at the exact point where all prerequisites have been taught.
+
+Every canonical lesson should end with a small block containing:
+
+1. **Bridge problem:** direct application of the new operation or invariant.
+2. **Validation problem:** requires recognizing the topic without being told the implementation.
+3. **Challenge problem:** combines the topic with an earlier structure or paradigm.
+4. **Reflection:** state the invariant, complexity, edge cases, and one rejected alternative.
+
+The learner should attempt a problem before reading the editorial, then compare approaches and revisit selected problems after a delay. Links should point to official problem pages; repository-owned notes may discuss hints, invariants, tests, and original explanations but should not copy LeetCode statements or solutions wholesale.
+
+### Human-facing navigation requirements
+
+To make this path feel designed for a person rather than merely traversable by an AI, the eventual `LEARNING_PATH.md` implementation should include:
+
+- one visible “Start here” button/link and no competing beginner entry point;
+- a progress checklist for the 12 checkpoints;
+- a “required / bridge / optional / reference” badge on every linked topic;
+- expected outcomes rather than file counts;
+- no more than five required reading links before the learner writes code;
+- a short diagnostic at the start of each checkpoint and a concrete exit task at the end;
+- solution links separated from exercises;
+- a return link to the path on every module index;
+- estimated effort as a range, clearly labeled as an estimate rather than a promise;
+- an interview-practice lane and a rigorous-proof lane that share the same core topics but differ in optional work.
+
+### Information needed before implementing a personalized schedule
+
+No additional material is required to establish the general path above. Internet access was available, and every named external problem/resource was checked directly. To turn the path into a calendar tailored to one learner, the following user choices would be needed:
+
+1. current C++ level and whether the learner has used pointers, classes, and the STL;
+2. weekly study hours and any target date;
+3. primary goal: first-principles DSA, interviews, competitive programming, university exams, or a blend;
+4. desired problem volume and tolerance for hard problems;
+5. whether only free/public exercises may be required;
+6. whether solutions should be hidden in separate files or collapsible sections;
+7. whether advanced C++ engineering is required or should remain an elective track.
+
+Until those preferences exist, the safe repository default is: true beginner, C++17 core, free/public required material, rigorous fundamentals plus interview practice, approximately two to four problems per core lesson, and advanced C++/competitive-programming content clearly optional.
+
 ## Audit Baseline
 
 The following measurements exclude this report unless stated otherwise.
@@ -428,28 +748,34 @@ Work should proceed in this exact sequence so that later cleanup is built on tru
 
 1. Repair `04_algorithm.md` and the five confirmed code/complexity issues.
 2. Add a Markdown structure check for balanced and labeled fences.
-3. Consolidate BFS/DFS and the remaining OOP/exception/string overlaps.
-4. Define the lesson metadata contract and canonical topic IDs.
-5. Build the extraction/compiler manifest and validate the first core batch.
-6. Split the largest core sorting and standard-container lessons while preserving links.
-7. Add canonical dynamic-array and hash-table-internals lessons by relocating reusable material rather than duplicating it.
-8. Add the three missing applied-pattern lessons.
-9. Implement and test the first Stage 9 project.
-10. Normalize titles, sources, exercise/solution separation, claims, and modern style across the remaining modules.
-11. Add optional advanced topics only after the verified core path is complete.
+3. Rebuild the learner-facing path around the 12 checkpoints in this report, with visible required/bridge/optional/reference labels; keep the directory layout stable until links are mapped.
+4. Place every extra repository topic using the placement table so no advanced detour silently interrupts the main path.
+5. Consolidate BFS/DFS and the remaining OOP/exception/string overlaps.
+6. Define the lesson metadata contract and canonical topic IDs.
+7. Add the staged LeetCode practice blocks to canonical lessons without copying third-party problem statements or solutions.
+8. Build the extraction/compiler manifest and validate the first core batch in checkpoint order.
+9. Split the largest core sorting and standard-container lessons while preserving links.
+10. Add canonical dynamic-array and hash-table-internals lessons by relocating reusable material rather than duplicating it.
+11. Add the three missing applied-pattern lessons.
+12. Implement and test the first integration project.
+13. Normalize titles, sources, exercise/solution separation, claims, and modern style across the remaining modules.
+14. Add optional advanced topics only after the verified core path is complete.
 
 ## Definition of “Complete Path”
 
 The C++/DSA path should be called complete only when all of the following are true:
 
 - every learning-path stage links to actual canonical lessons in a deliberate order;
+- a beginner sees one primary route, while bridge, reference, and elective material is visually distinct;
 - every canonical topic has exactly one owner, with other pages linking or applying rather than reteaching it;
 - every lesson declares prerequisites, level, language standard, and verification status;
+- every core lesson ends in an implement-explain-analyze-test deliverable and a small prerequisite-correct practice ladder;
 - every core implementation compiles with extensions disabled on GCC, Clang, and MSVC;
 - every core data structure has invariant-focused mutation tests;
 - every core algorithm has normal, boundary, invalid/precondition, and adversarial tests where relevant;
 - complexity tables separate preprocessing, operation time, auxiliary space, and total storage;
 - graph lessons declare directedness, weight rules, disconnected behavior, overflow policy, and output contract;
+- all extra topics have an explicit checkpoint or elective shelf and never appear as an unexplained detour;
 - exercises can be attempted without immediately revealing solutions;
 - all local paths, anchors, images, and navigation indexes pass automated checks;
 - “verified” and similar claims are generated from evidence rather than written manually;
